@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="854.0" style="-fx-background-color: #f4f0f0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.login">
+    <children>
+        <AnchorPane prefHeight="503.0" prefWidth="418.0" style="-fx-background-color: #a65959;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="btninscri" layoutX="120.0" layoutY="268.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #f4f0f0; -fx-background-radius: 100PX; -fx-text-fill: #a65959;" text="s'inscrire">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Text layoutX="76.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 2em; -fx-font-family: Quicksan; -fx-font-weight: bold; -fx-fill: white;" text="Welcome to Fanny" textAlignment="CENTER" wrappingWidth="226.724609375" x="20.0" y="20.0" />
+            <Text layoutX="100.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.5em; -fx-font-family: Quicksan; -fx-font-weight: bold; -fx-fill: white;" text="pas de compte ?" textAlignment="CENTER" wrappingWidth="178.0000150501728" x="20.0" y="20.0" />
+            <VBox layoutX="391.0" layoutY="-3.0" prefHeight="510.0" prefWidth="32.0" style="-fx-background-color: #343E3D;" />
+         </children></AnchorPane>
+      <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="463.0" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="345.0" prefWidth="350.0" style="-fx-background-color: white;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Text layoutX="20.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 2em; -fx-font-family: Quicksan; -fx-font-weight: bold; -fx-fill: #a65959;" text="Authentification" textAlignment="CENTER" wrappingWidth="191.724609375" x="20.0" y="20.0">
+               <VBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </VBox.margin>
+            </Text>
+            <HBox maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
+               <VBox.margin>
+                  <Insets top="70.0" />
+               </VBox.margin>
+               <children>
+                  <TextField fx:id="email" promptText="email" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
+               <children>
+                  <PasswordField fx:id="password" prefHeight="9.0" prefWidth="250.0" promptText="password" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
+                  </PasswordField>
+               </children>
+            </HBox>
+            <Button fx:id="btninsert" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #a65959; -fx-background-radius: 100PX; -fx-text-fill: white;" text="valider">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Label fx:id="btnForgot" alignment="CENTER" prefHeight="40.0" prefWidth="171.0" text="j'ai oublié mon mot de passe" textFill="#a65959">
+               <font>
+                  <Font name="Segoe UI" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+    </children>
+</AnchorPane>
