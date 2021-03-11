@@ -5,6 +5,8 @@
  */
 package xcode.entity;
 
+import java.util.Date;
+
 
 /**
  *
@@ -13,34 +15,17 @@ package xcode.entity;
 public class Commande {
     private int commande_id;
     private int user_id;
-    private int oeuvrage_id;
-    private int quantite;
+    private float prix_tot;
+    private Date date;
+
+    public Commande(int commande_id, int user_id, float prix_tot, Date date) {
+        this.commande_id = commande_id;
+        this.user_id = user_id;
+        this.prix_tot = prix_tot;
+        this.date = date;
+    }
 
     public Commande() {
-    }
-
-    public Commande(int commande_id, int quantite) {
-        this.commande_id = commande_id;
-        this.quantite = quantite;
-    }
-    
-    
-
-    public Commande(int commande_id, int user_id, int oeuvrage_id, int quantite) {
-        this.commande_id = commande_id;
-        this.user_id = user_id;
-        this.oeuvrage_id = oeuvrage_id;
-        this.quantite = quantite;
-    }
-
-    public Commande(int user_id, int oeuvrage_id, int quantite) {
-        this.user_id = user_id;
-        this.oeuvrage_id = oeuvrage_id;
-        this.quantite = quantite;
-    }
-
-    public Commande(int Quantite) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getCommande_id() {
@@ -59,50 +44,30 @@ public class Commande {
         this.user_id = user_id;
     }
 
-    public int getOeuvrage_id() {
-        return oeuvrage_id;
+    public float getPrix_tot() {
+        return prix_tot;
     }
 
-    public void setOeuvrage_id(int oeuvrage_id) {
-        this.oeuvrage_id = oeuvrage_id;
+    public void setPrix_tot(float prix_tot) {
+        this.prix_tot = prix_tot;
     }
 
-    public int getQuantite() {
-        return quantite;
+    public Date getDate() {
+        return date;
     }
 
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Commande other = (Commande) obj;
-        if (this.commande_id != other.commande_id) {
-            return false;
-        }
-        return true;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override
     public String toString() {
-        return "Commande{" + "commande_id=" + commande_id + ", user_id=" + user_id + ", oeuvrage_id=" + oeuvrage_id + ", quantite=" + quantite + '}';
+        return "Commande{" + "commande_id=" + commande_id + ", user_id=" + user_id + ", prix_tot=" + prix_tot + ", date=" + date + '}';
     }
 
     
-    }
+    
+    
+    
+    
+}

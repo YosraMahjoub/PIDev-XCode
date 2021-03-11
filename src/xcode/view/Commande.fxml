@@ -14,11 +14,10 @@
          <children>
             <TableView fx:id="Panier" layoutX="8.0" layoutY="52.0" prefHeight="294.0" prefWidth="716.0">
               <columns>
-                <TableColumn fx:id="IDCol" prefWidth="75.0" text="ID" />
-                <TableColumn fx:id="ClientCol" prefWidth="172.00006103515625" text="Client" />
-                  <TableColumn fx:id="OeuvCol" prefWidth="199.199951171875" text="Oeuvre" />
+                <TableColumn fx:id="ClientCol" prefWidth="200.79998779296875" text="Client" />
+                  <TableColumn fx:id="OeuvCol" prefWidth="171.20001220703125" text="Oeuvre" />
                   <TableColumn fx:id="QuantCol" prefWidth="152.0" text="Quantite" />
-                  <TableColumn fx:id="PrixCol" prefWidth="115.20001220703125" text="Prix" />
+                  <TableColumn fx:id="PrixCol" prefWidth="190.4000244140625" text="Prix" />
               </columns>
             </TableView>
             <Label layoutX="442.0" layoutY="344.0" prefHeight="25.0" prefWidth="89.0" text="Total" textAlignment="CENTER" textFill="RED">

@@ -6,6 +6,7 @@
 package xcode.entity;
 
 import java.util.Objects;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -19,12 +20,13 @@ public class Oeuvrage {
     private float prix;
     private float quantite;
     private String description;
+    private String image;
     
     public Oeuvrage(){
         
     }
 
-    public Oeuvrage(int oeuvrage_id, int user_id, String nom, String domaine, float prix, float quantite, String description) {
+    public Oeuvrage(int oeuvrage_id, int user_id, String nom, String domaine, float prix, float quantite, String description, String Oeuvrage) {
         this.oeuvrage_id = oeuvrage_id;
         this.user_id = user_id;
         this.nom = nom;
@@ -32,15 +34,7 @@ public class Oeuvrage {
         this.prix = prix;
         this.quantite = quantite;
         this.description = description;
-    }
-
-    public Oeuvrage(int user_id, String nom, String domaine, float prix, float quantite, String description) {
-        this.user_id = user_id;
-        this.nom = nom;
-        this.domaine = domaine;
-        this.prix = prix;
-        this.quantite = quantite;
-        this.description = description;
+        this.image = Oeuvrage;
     }
 
     public int getOeuvrage_id() {
@@ -99,6 +93,14 @@ public class Oeuvrage {
         this.description = description;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -120,18 +122,17 @@ public class Oeuvrage {
         if (this.oeuvrage_id != other.oeuvrage_id) {
             return false;
         }
-        if (!Objects.equals(this.nom, other.nom)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Oeuvrage{" + "oeuvrage_id=" + oeuvrage_id + ", user_id=" + user_id + ", nom=" + nom + ", domaine=" + domaine + ", prix=" + prix + ", quantite=" + quantite + ", description=" + description + '}';
+        return "Oeuvrage{" + "oeuvrage_id=" + oeuvrage_id + ", user_id=" + user_id + ", nom=" + nom + ", domaine=" + domaine + ", prix=" + prix + ", quantite=" + quantite + ", description=" + description + ", image=" + image + '}';
     }
+ 
+        
+  
     
     
-
-
+    
 }

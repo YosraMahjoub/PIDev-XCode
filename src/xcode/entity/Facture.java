@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -15,33 +15,23 @@ public class Facture {
     private String Oeuvrage;
     private int Quantite;
     private int Prix;
+    private String image;
 
     public Facture() {
     }
 
-    public Facture(int Quantite) {
+    public Facture(int Quantite, int Prix) {
         this.Quantite = Quantite;
+        this.Prix = Prix;
     }
 
-    
-    public Facture(int Commande_id, String User, String Oeuvrage, int Quantite, int Prix) {
+    public Facture(int Commande_id, String User, String Oeuvrage, int Quantite, int Prix, String image) {
         this.Commande_id = Commande_id;
         this.User = User;
         this.Oeuvrage = Oeuvrage;
         this.Quantite = Quantite;
         this.Prix = Prix;
-    }
-
-    public Facture(int Commande_id, int Quantite) {
-        this.Commande_id = Commande_id;
-        this.Quantite = Quantite;
-    }
-
-    public Facture(String User, String Oeuvrage, int Quantite, int Prix) {
-        this.User = User;
-        this.Oeuvrage = Oeuvrage;
-        this.Quantite = Quantite;
-        this.Prix = Prix;
+        this.image = image;
     }
 
     public int getCommande_id() {
@@ -84,9 +74,17 @@ public class Facture {
         this.Prix = Prix;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
         return hash;
     }
 
@@ -110,8 +108,10 @@ public class Facture {
 
     @Override
     public String toString() {
-        return "Facture{" + "Commande_id=" + Commande_id + ", User=" + User + ", Oeuvrage=" + Oeuvrage + ", Quantite=" + Quantite + ", Prix=" + Prix + '}';
+        return "Facture{" + "Commande_id=" + Commande_id + ", User=" + User + ", Oeuvrage=" + Oeuvrage + ", Quantite=" + Quantite + ", Prix=" + Prix + ", image=" + image + '}';
     }
+
+    
     
     
     
