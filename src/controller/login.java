@@ -5,8 +5,10 @@
  */
 package controller;
 
+import com.email.durgesh.Email;
 import entities.User;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -25,7 +27,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.mail.MessagingException;
 import service.UserService;
+import utils.EmailSend;
+import utils.hashpassword;
 
 /**
  * FXML Controller class
@@ -52,6 +57,7 @@ public class login implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        UserService pdao = new UserService();
         btninsert.setOnAction(event -> {
             String email1 = email.getText().toString();
             String password1 = password.getText().toString();
@@ -63,21 +69,58 @@ public class login implements Initializable {
 
             alert.setHeaderText("Veuillez remplir tous les champs");
             alert.showAndWait();}
+        if(!pdao.checkvalidité(email1)){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+
+            alert.setHeaderText("compte effacé");
+            alert.showAndWait();}
+        
         else{
             try {
+
                 User p = new User(email1, password1);
-                UserService pdao = new UserService();
-                
+                //UserService pdao = new UserService();
+                hashpassword hash = new hashpassword();
                 //System.out.println(obj.toString());
                 
                 
-                 if(!(pdao.displayAuth(email1, password1) == true)){
-                 } else {
-                     User obj = pdao.displayEP(email1, password1);
-                     UserService.setCurrentUser(obj);
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                 if(!hash.checkPass(password1, pdao.displayAuth(email1).getPassword())){
+                     Alert alert = new Alert(Alert.AlertType.ERROR);
 
+                    alert.setHeaderText("mot de passe incorrect");
+                    alert.showAndWait();
+
+                 } else {
+                     
+                     
+                     String hashp = hash.hashPassword(password1);
+                     //System.out.println(hashp);
+                     String pass = pdao.displayAuth(email1).getPassword();
+                     //System.out.println(pass);
+                     User obj = pdao.displayEP(email1, pass);
+                     //System.out.println(obj.toString());
+                     UserService.setCurrentUser(obj);
+                     
+                     
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Parent page1 = null;
+                    if(!pdao.checkmail(email1)){
+                         try {
+
+                             page1 = FXMLLoader.load(getClass().getResource("/view/confiremail.fxml"));
+                             Scene scene = new Scene(page1);
+                             //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                             stage.setScene(scene);
+                             stage.show();
+                        }
+                     catch (IOException ex) {
+                        Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+                         
+                     }
+                    else{
+                    
                      if(obj.getRole().toLowerCase().contains("admin")){
                     page1  = FXMLLoader.load(getClass().getResource("/view/adminprofil.fxml")); 
                      }else{
@@ -94,7 +137,7 @@ public class login implements Initializable {
                      //System.out.println(UserService.getCurrentUser().toString());
                      
                 }
-            } catch (IOException ex) {
+                 }} catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
                 
             }

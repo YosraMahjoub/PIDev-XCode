@@ -5,11 +5,11 @@
  */
 package controller;
 
-import controller.UserprofilController;
+import com.email.durgesh.Email;
 import entities.User;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import static java.util.Objects.hash;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,18 +21,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javax.mail.MessagingException;
 import service.UserService;
-import utils.hashpassword;
+import utils.EmailSend;
 
 /**
  * FXML Controller class
  *
  * @author asus
  */
-public class changer_mdp implements Initializable {
+public class ConfiremailController implements Initializable {
 
     @FXML
     private Button btnprofil;
@@ -51,79 +54,81 @@ public class changer_mdp implements Initializable {
     @FXML
     private Button btnsupp;
     @FXML
+    private Button btninfo;
+    @FXML
     private VBox mot_actuel;
     @FXML
-    private PasswordField mt_actuel;
+    private PasswordField code;
     @FXML
-    private PasswordField mot_nv;
+    private Button btnannuler;
     @FXML
-        private PasswordField mot_conf;
+    private Button btnvalider;
+    String x;
+    
+    EmailSend em = new EmailSend();
     @FXML
-    private Button btninsert;
-     private User user;
-    @FXML
-    private Button btninfo;
+    private Label label;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        UserService pdao = new UserService();
         
-        btninsert.setOnAction(event -> {
-            hashpassword hash = new hashpassword();
-            User p = new User(mot_nv.getText() );
-            UserService pdao = new UserService();
-            int id =UserService.getCurrentUser().getUser_id(); 
-            String email = UserService.getCurrentUser().getEmail(); 
-            System.out.println(id);
-            if(!(hash.checkPass(mt_actuel.getText(), pdao.displayAuth(email).getPassword()))){
-                
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-
-                alert.setHeaderText("le mot de passe actuel est incorrect");
-                alert.showAndWait();
-            }
-            if(! mot_nv.getText().equals(mot_conf.getText())){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-
-                    alert.setHeaderText("les mots de passe ne sont pas identiques");
-                    alert.showAndWait();
-            }else{
-            String hashp = hash.hashPassword(mot_conf.getText());
-            pdao.updateMDP(id, hashp);
-            User obj = pdao.displayById(id);
-            System.out.println(obj.toString());
-            UserService.setCurrentUser(obj);
-            
-        
-            
         try {
+            x = EmailSend.SendMail("aa");
+        } catch (MessagingException ex) {
+            Logger.getLogger(ConfiremailController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ConfiremailController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // TODO
+        btnannuler.setOnAction(event -> {
+            try {
+                
                 Parent page1 = FXMLLoader.load(getClass().getResource("/view/Userprofil.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
+                
                 stage.show();
             } catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }
         });
-        btnprofil.setOnAction(event -> {
-            try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/gérer_profil.fxml"));
+        btnvalider.setOnAction(event -> {
+            if(!code.getText().equals(x)){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                
+                alert.setHeaderText("code érroné");
+                alert.showAndWait();
+            }
+            else{
+                //UserService pdao = new UserService();
+                
+                pdao.updatmailconfirmé(UserService.getCurrentUser().getUser_id());
+                User obj = pdao.displayEP(UserService.getCurrentUser().getEmail(), UserService.getCurrentUser().getPassword());
+                //System.out.println(obj.toString());
+                UserService.setCurrentUser(obj);
+                try {
+                
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/Userprofil.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
+                
                 stage.show();
             } catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            }
+            
+            
         });
         btnsupp.setOnAction(event -> {
-           
-            UserService pdao = new UserService();                
+                            
 
             pdao.updatevalidité(UserService.getCurrentUser().getUser_id());
             try {
@@ -135,19 +140,12 @@ public class changer_mdp implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
-       
-        });
-        btninfo.setOnAction(event -> {
-            try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/Userprofil.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
-            }
         });
     }    
+
+    @FXML
+    private void colorchange(KeyEvent event) {
+        label.setStyle("-fx-background-color:" + code.getText()+";");
+    }
     
 }

@@ -31,6 +31,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 import service.UserService;
+import utils.controlsaisie;
+import utils.hashpassword;
 
 /**
  * FXML Controller class
@@ -38,7 +40,7 @@ import service.UserService;
  * @author asus
  */
 public class SignupController implements Initializable {
-
+    controlsaisie controle = new controlsaisie();
     @FXML
     private TextField username;
     @FXML
@@ -70,7 +72,7 @@ public class SignupController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         btninsert.setOnAction(event -> {
-            /*if (nom.getText().isEmpty()
+            if (nom.getText().isEmpty()
                 || prenom.getText().isEmpty()
                 || username.getText().isEmpty()
                 || adresse.getText().isEmpty()
@@ -81,16 +83,32 @@ public class SignupController implements Initializable {
 
             alert.setHeaderText("Veuillez remplir tous les champs");
             alert.showAndWait();}
-            else{*/
+            if(!controle.isEmailAdress(email.getText())){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+
+                alert.setHeaderText("veuillez fournir adresse email valide");
+                alert.showAndWait();
+            }
+                
+            
+            else{
+                hashpassword hash = new hashpassword();
+                String hashp = hash.hashPassword(password.getText());
+                System.out.println(hashp);
+                
+                
+                
             UserService pdao = new UserService();
             
-            User p = new User(nom.getText(), prenom.getText(), username.getText(),password.getText(),adresse.getText(),Integer.parseInt(num_tel.getText()),email.getText() );
-            pdao.insert(user);
-            
-            
+            User p = new User(nom.getText(), prenom.getText(), username.getText(),hashp,adresse.getText(),Integer.parseInt(num_tel.getText()),email.getText() );
             pdao.insert(p);
+            
+            
+            User obj = pdao.displayEP(email.getText(), hashp);
+            UserService.setCurrentUser(obj);
+           
             try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/Userprofil.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/confiremail.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -98,8 +116,11 @@ public class SignupController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
-             });
-    }    
+             
+            }});
+        
+        
+                }    
 
     @FXML
     private void Chercheimg(MouseEvent event) throws IOException {

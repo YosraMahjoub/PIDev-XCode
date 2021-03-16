@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import service.UserService;
 
@@ -27,7 +28,7 @@ import service.UserService;
  *
  * @author asus
  */
-public class AdminprofilController implements Initializable {
+public class AfficheruserdetailsController implements Initializable {
 
     @FXML
     private Button btnprofil;
@@ -42,6 +43,8 @@ public class AdminprofilController implements Initializable {
     @FXML
     private Button btninfo;
     @FXML
+    private Button btnuser;
+    @FXML
     private Label label_nom;
     @FXML
     private Label label_prenom;
@@ -52,19 +55,27 @@ public class AdminprofilController implements Initializable {
     @FXML
     private Label label_email;
     @FXML
-    private Button btnuser;
+    private Label label_bio;
+    @FXML
+    private Label label_role;
+    @FXML
+    private Text label_statut;
+    @FXML
+    private Text label_statut1;
+    @FXML
+    private Label label_cv;
+    private static int i;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         UserService pdao=new UserService();
         
-        int id = UserService.getCurrentUser().getUser_id();
-        System.out.println(id);
-        User obj = pdao.displayById(id);
+        
+        System.out.println(i);
+        User obj = pdao.displayById(i);
         
         
         
@@ -74,6 +85,11 @@ public class AdminprofilController implements Initializable {
         label_prenom.setText(obj.getPrenom());
         label_adresse.setText(obj.getAdresse());
         label_tel.setText(String.valueOf(obj.getNum_tel()));
+        label_bio.setText(obj.getBio());
+        label_role.setText(obj.getRole());
+        String value = "";
+        label_role.setText(value);
+        label_statut.setText(obj.getValidité());
         
         
         btnprofil.setOnAction(event -> {
@@ -100,17 +116,7 @@ public class AdminprofilController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        btnuser.setOnAction(event -> {
-            try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/afficher_user.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+        
         
             
         
@@ -118,7 +124,22 @@ public class AdminprofilController implements Initializable {
         
 
     }
+    
         // TODO
+
+    /**
+     * @return the i
+     */
+    public static int getI() {
+        return i;
+    }
+
+    /**
+     * @param aI the i to set
+     */
+    public static void setI(int aI) {
+        i = aI;
+    }
     }    
     
 

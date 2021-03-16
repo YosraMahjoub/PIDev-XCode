@@ -5,11 +5,15 @@
  */
 package utils;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import static javafx.scene.input.KeyCode.A;
+import static javafx.scene.input.KeyCode.Z;
 
 /**
  *
@@ -171,30 +175,11 @@ public class controlsaisie {
          }
            return true;
         }
-  public boolean validateDatePickerfin(DatePicker d)
-    {
-          if(d.getEditor().getText().isEmpty())
-         {
-            Alert alert =new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("validate Date");
-            alert.setHeaderText(null);
-            alert.setContentText("veuillez choisir la date de fin ");
-            alert.showAndWait();
-            return false;
-         }
-           return true;
+    public static boolean isEmailAdress(String email){
+        Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$" , Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(email);
+        return m.find();
         }
-    public boolean validateDatePickerexp(DatePicker d)
-    {
-          if(d.getEditor().getText().isEmpty())
-         {
-            Alert alert =new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("validate Date");
-            alert.setHeaderText(null);
-            alert.setContentText("veuillez choisir une date d'expiration ");
-            alert.showAndWait();
-            return false;
-         }
-           return true;
-        }
+    
+    
 }

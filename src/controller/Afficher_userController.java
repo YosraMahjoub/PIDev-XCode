@@ -6,13 +6,20 @@
 package controller;
 
 import entities.User;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -20,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import service.UserService;
 
 /**
@@ -65,7 +73,7 @@ public class Afficher_userController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        ObservableList<String> cat = FXCollections.observableArrayList("vendeur", "formateur","recruteur","client","validé","non validé");
+        ObservableList<String> cat = FXCollections.observableArrayList("vendeur", "formateur","recruteur","client","validé","non validé","les utilisateurs");
         filter.setItems(cat);
         
         UserService pdao=new UserService();
@@ -84,7 +92,55 @@ public class Afficher_userController implements Initializable {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
                 
                 User u = personsTable.getSelectionModel().getSelectedItem();
+                int i = u.getUser_id();
+                AfficheruserdetailsController.setI(i);
                 System.out.println(u.getNom());
+//                try {
+//
+//                Parent page1 = FXMLLoader.load(getClass().getResource("/view/afficheruserdetails.fxml"));
+//                Scene scene = new Scene(page1);
+//                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                stage.setScene(scene);
+//
+//                stage.show();
+//            } catch (IOException ex) {
+//                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            }
+        });
+        btnprofil.setOnAction(event -> {
+            try {
+                
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admingérercompte.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        btnmdp.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/changer_mdp.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        btninfo.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/adminprofil.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
@@ -96,6 +152,11 @@ public class Afficher_userController implements Initializable {
         
         UserService pdao = new UserService();
         String x =filter.getValue();
+        if(x=="les utilisateurs"){
+            persons=(ObservableList<User>) pdao.displayAll();
+            personsTable.setItems(persons);
+            
+        }
         
         if(x=="vendeur"){
             String statut = "is_vendeur";

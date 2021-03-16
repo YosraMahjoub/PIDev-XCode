@@ -108,9 +108,20 @@ public class UserprofilController implements Initializable {
             }
         });
         btnsupprimer.setOnAction(event -> {
-            //UserService pdao=UserService.getInstance();
-            
-            pdao.delete(UserService.getCurrentUser());
+           
+                            
+
+            pdao.updatevalidité(id);
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
         });
         
         

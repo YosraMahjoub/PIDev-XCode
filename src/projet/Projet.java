@@ -38,6 +38,7 @@ public class Projet extends Application {
         Scene scene = new Scene(parentPage);
         this.primaryStage.setScene(scene);
         this.primaryStage.show();
+        
 
     }
 

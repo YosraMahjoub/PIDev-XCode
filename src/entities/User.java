@@ -11,7 +11,7 @@ package entities;
  */
 public class User {
     private int user_id, num_tel;
-    private String nom, prenom , adresse, email,username,role, password, image, bio;
+    private String nom, prenom , adresse, email,username,role, password, image, bio, validité;
     
    
     
@@ -241,6 +241,20 @@ this.prenom=prenom;
      */
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    /**
+     * @return the validité
+     */
+    public String getValidité() {
+        return validité;
+    }
+
+    /**
+     * @param validité the validité to set
+     */
+    public void setValidité(String validité) {
+        this.validité = validité;
     }
 
     

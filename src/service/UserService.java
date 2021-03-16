@@ -46,8 +46,8 @@ public class UserService implements Idao<User>{
     
     @Override
     public void insert(User user) {
-        String req= "INSERT INTO user( `nom`, `prenom`, `username`, `password`,  `adresse`, `num_tel`, `email`)"
-                + "VALUES (?,?,?,?,?,?,?)";
+        String req= "INSERT INTO user( `nom`, `prenom`, `username`, `password`,  `adresse`, `num_tel`, `email` ,`validité`, `mailconfirmé`,`role` )"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps;
         try { 
             ps =conn.prepareStatement(req); 
@@ -59,6 +59,9 @@ public class UserService implements Idao<User>{
             ps.setString(5,user.getAdresse());
             ps.setInt(6,user.getNum_tel()) ; 
             ps.setString(7,user.getEmail()) ;
+            ps.setInt(8, 1);
+            ps.setInt(9, 0);
+            ps.setString(10, "client");
             
             //ps.setString(9,user.getImage());
 
@@ -188,43 +191,99 @@ public class UserService implements Idao<User>{
            System.out.println("Erreur d'affichage"+e.getMessage());}
         return null;
     }
-    public  boolean  displayAuth(String email , String password) {
+    public  User  displayAuth(String email) {
         //List<User> listeUser = new ArrayList<User>();
-        boolean x =false;
+       
         try{
-        String req = "Select * from user where email = ? and password =?";
+        String req = "Select password from user where email = ?";
         PreparedStatement st = conn.prepareStatement(req);
         st.setString(1, email);
-        st.setString(2, password);
+        
         ResultSet rs = st.executeQuery();
-        if (!rs.next()) {
-            infoBox("Enter Correct Email and Password", "Failed", null);
-             x =false;
+        if (rs.next()) {
+            User obj = new User();
+            obj.setPassword(rs.getString("password"));
+            return obj;
+        
         }
-       
-        else {
-            infoBox("Login Successfull", "Success", null);
-             x =true;
+            }catch(Exception e)
+            {
+                      
+            }
+        return null; 
+    }
+    public boolean checkmail(String email)  {
+        boolean x = false;
+        int i ;
+        try{
+        
+        String req = "Select mailconfirmé from user where email = ? ";
+        PreparedStatement st = conn.prepareStatement(req);
+        st.setString(1, email);
+        
+        ResultSet rs = st.executeQuery();
+        
+        
+
+        if (rs.next()) {
+            
+            
+            i = rs.getInt("mailconfirmé");
+            if(i==1){ x = true;}
+            else{ x=false;}
+
+           
+            
         }
         } catch(Exception e)
         {
-                   return x ;
+           System.out.println("Erreur d'affichage"+e.getMessage());}
+        return x;
+    }
+    public boolean checkvalidité(String email)  {
+        boolean x = false;
+        int i ;
+        try{
+        
+        String req = "Select validité from user where email = ? ";
+        PreparedStatement st = conn.prepareStatement(req);
+        st.setString(1, email);
+        
+        ResultSet rs = st.executeQuery();
+        
+        
+
+        if (rs.next()) {
+            
+            
+            i = rs.getInt("validité");
+            if(i==1){ x = true;}
+            else{ x=false;}
+
+           
+            
         }
+        } catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());}
         return x;
     }
      
     public User displayEP(String email , String password)  {
         //List<User> listeUser = new ArrayList<User>();
+        User obj = new User();
         try{
+        
         String req = "Select * from user where email = ? and password =?";
         PreparedStatement st = conn.prepareStatement(req);
         st.setString(1, email);
         st.setString(2, password);
         ResultSet rs = st.executeQuery();
         
+        
 
         if (rs.next()) {
-            User obj = new User();
+            
             obj.setUser_id(rs.getInt("user_id"));
             obj.setUsername(rs.getString("username"));
             obj.setEmail(rs.getString("email"));
@@ -277,14 +336,14 @@ public class UserService implements Idao<User>{
            System.out.println("Impossible de modifier un utilisateur"+ex.getMessage());
         }
     }
-    public void updateMDP(User user, int id) {
+    public void updateMDP(int id , String password) {
         String req="UPDATE user SET password=? WHERE  `user_id`= ?";
         PreparedStatement ps;
         try { 
             ps =conn.prepareStatement(req); 
             
              
-            ps.setString(1,user.getPassword());
+            ps.setString(1,password);
            
             
             ps.setInt(2,id);
@@ -296,6 +355,59 @@ public class UserService implements Idao<User>{
            System.out.println("Impossible de modifier un utilisateur"+ex.getMessage());
         }
     }
+    public void updatmailconfirmé(int id) {
+        String req="UPDATE user SET mailconfirmé=? WHERE  `user_id`= ?";
+        PreparedStatement ps;
+        try { 
+            ps =conn.prepareStatement(req); 
+            
+             
+            ps.setInt(1,1);
+           
+            
+            ps.setInt(2,id);
+
+            
+            ps.executeUpdate() ; 
+            
+        } catch (SQLException ex) {
+           System.out.println("Impossible de modifier un utilisateur"+ex.getMessage());
+        }
+    }
+    public void updatevalidité(int id) {
+        try {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(" supprimer ");
+            alert.setHeaderText(null);
+            alert.setContentText("voulez vous vraiment supprimer le compte");
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK) {
+             
+           
+            
+            String req="UPDATE user SET validité=? WHERE  `user_id`= ?";
+            PreparedStatement ps;
+         
+            ps =conn.prepareStatement(req); 
+            
+             
+            ps.setInt(1,0);
+           
+            
+            ps.setInt(2,id);
+
+            
+            ps.executeUpdate() ; 
+            
+        
+             alert.show();
+            }
+            else{}
+        }catch (SQLException ex) {
+           System.out.println("Impossible de modifier un utilisateur"+ex.getMessage());
+        }
+    }
+    
     public User getUserByEmail(String email){
         try {
             PreparedStatement pt= cnx.prepareStatement("select * from user where email = ?");

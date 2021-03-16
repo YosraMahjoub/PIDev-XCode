@@ -163,7 +163,16 @@ public class Gérer_profilController implements Initializable {
         btnsupp.setOnAction(event -> {
                             
 
-            pdao.delete(user);
+            pdao.updatevalidité(id);
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         btninfo.setOnAction(event -> {
             try {

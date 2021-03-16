@@ -126,7 +126,7 @@ public class AdmingérercompteController implements Initializable {
                 User user = pdao.displayById(id);
                 UserService.setCurrentUser(user);
                 try {
-                    Parent page1 = FXMLLoader.load(getClass().getResource("/view/Userprofil.fxml"));
+                    Parent page1 = FXMLLoader.load(getClass().getResource("/view/adminprofil.fxml"));
                     Scene scene = new Scene(page1);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(scene);
@@ -151,7 +151,7 @@ public class AdmingérercompteController implements Initializable {
         
         btninfo.setOnAction(event -> {
             try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/Userprofil.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/adminprofil.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
