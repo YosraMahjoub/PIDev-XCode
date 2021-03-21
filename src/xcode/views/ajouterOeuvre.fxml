@@ -76,12 +76,12 @@
                   <HBox alignment="CENTER" prefHeight="150.0" prefWidth="196.0" />
                </children>
             </VBox>
-            <TextField fx:id="desco" alignment="TOP_LEFT" layoutX="249.0" layoutY="199.0" prefHeight="152.0" prefWidth="188.0" promptText="description" style="-fx-background-radius: 10;" />
-            <TextField fx:id="nomo" layoutX="250.0" layoutY="119.0" onKeyPressed="#verifNom" promptText="Nom" style="-fx-background-radius: 5;" />
+            <TextField fx:id="desco" alignment="TOP_LEFT" layoutX="249.0" layoutY="190.0" prefHeight="161.0" prefWidth="188.0" promptText="description" style="-fx-background-radius: 10;" />
+            <TextField fx:id="nomo" layoutX="250.0" layoutY="121.0" onKeyPressed="#verifNom" onKeyReleased="#verifexist" promptText="Nom" style="-fx-background-radius: 5;" />
             <TextField fx:id="prixo" layoutX="503.0" layoutY="121.0" onKeyPressed="#verifprix" prefHeight="25.0" prefWidth="130.0" promptText="prix" style="-fx-background-radius: 5;" />
             <ComboBox fx:id="domaino" layoutX="249.0" layoutY="66.0" onAction="#selectcat" prefWidth="150.0" promptText="Catégorie" style="-fx-background-radius: 5;" />
-            <Spinner fx:id="qteo" editable="true" layoutX="503.0" layoutY="79.0" style="-fx-background-radius: 5;" />
-            <Label layoutX="649.0" layoutY="119.0" text="DT" textFill="#d36a6a">
+            <Spinner fx:id="qteo" editable="true" layoutX="503.0" layoutY="66.0" style="-fx-background-radius: 5;" />
+            <Label layoutX="649.0" layoutY="121.0" text="DT" textFill="#d36a6a">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -106,7 +106,7 @@
                      </viewport></ImageView>
                </children>
             </Pane>
-            <Label fx:id="errornom" layoutX="249.0" layoutY="162.0" prefHeight="17.0" prefWidth="150.0" textFill="#6f0707" />
+            <Label fx:id="errornom" layoutX="249.0" layoutY="154.0" prefHeight="17.0" prefWidth="150.0" textFill="#6f0707" />
             <Label fx:id="errorprix" layoutX="516.0" layoutY="154.0" prefHeight="17.0" prefWidth="122.0" textFill="#6f0707" />
          </children>
       </Pane>

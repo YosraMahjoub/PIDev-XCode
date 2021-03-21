@@ -72,7 +72,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="favoris" blendMode="SRC_ATOP" layoutX="39.0" layoutY="428.0" mnemonicParsing="false" opacity="0.85" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Favories" textAlignment="CENTER">
+                  <Button fx:id="stat" blendMode="SRC_ATOP" layoutX="39.0" layoutY="428.0" mnemonicParsing="false" onAction="#gotostat" opacity="0.85" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="statistique" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>

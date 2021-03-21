@@ -84,8 +84,6 @@ public class OeuvrageService implements IOeuvreService<Oeuvre>{
            Oeuvre o1 = afficherO(o.getOeuvrage_id());
             if(o1!=null){
         try {
-           
-            
             PreparedStatement ps = conx.prepareStatement(req);
             ps.setInt(1,o.getOeuvrage_id());
 
@@ -95,6 +93,28 @@ public class OeuvrageService implements IOeuvreService<Oeuvre>{
         }  
     }
             else System.out.println("cet oeuvrage n'existe pas");
+    }
+    
+     
+    
+    public float max() {
+        
+        String req="SELECT MAX(`prix`) AS maxp FROM `oeuvrage`";
+        float a = 0;
+        try {
+           Statement ste = conx.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+          if (rs.next()) {
+      a =rs.getFloat("maxp");
+           
+                }
+          } 
+        catch (SQLException ex) {
+            Logger.getLogger(OeuvrageService.class.getName()).log(Level.SEVERE, null, ex);   
+        }
+       System.out.println(a);
+        return a;
+        
     }
 
     @Override
@@ -159,7 +179,7 @@ public class OeuvrageService implements IOeuvreService<Oeuvre>{
     
     
      public List<Oeuvre> afficherLOV() {
-        String req="SELECT * FROM `oeuvrage`WHERE `isvalid`=1";
+        String req="SELECT * FROM `oeuvrage`WHERE `isvalid`=1 ORDER BY oeuvrage_id DESC";
         List<Oeuvre> listO =new ArrayList<>();
         
         try {
@@ -176,6 +196,7 @@ public class OeuvrageService implements IOeuvreService<Oeuvre>{
                 o1.setQuantite(rs.getFloat("quantité"));
                 o1.setDescription(rs.getString("description"));
                 o1.setImg(rs.getString("image"));
+                o1.setIsvalid(rs.getInt("isvalid"));
                 listO.add(o1);
             }
         } 
@@ -184,6 +205,8 @@ public class OeuvrageService implements IOeuvreService<Oeuvre>{
         }
         return listO;
     }
+         
+     
     
     public List<Oeuvre> afficherLONV() {
         String req="SELECT * FROM `oeuvrage`WHERE `isvalid`=0";
@@ -203,6 +226,7 @@ public class OeuvrageService implements IOeuvreService<Oeuvre>{
                 o1.setQuantite(rs.getFloat("quantité"));
                 o1.setDescription(rs.getString("description"));
                 o1.setImg(rs.getString("image"));
+                o1.setIsvalid(rs.getInt("isvalid"));
                 listO.add(o1);
             }
         } 
@@ -211,6 +235,24 @@ public class OeuvrageService implements IOeuvreService<Oeuvre>{
         }
         return listO;
     }
+    
+    public int exist(String nom) {
+            String req = "SELECT COUNT(oeuvrage_id) AS Nb FROM oeuvrage where nom = '"+nom+"' ";
+            
+            int b = 0;
+          try {  
+            Statement ste = conx.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            if (rs.next()) {
+                
+                b =rs.getInt("nb");
+           }
+          } catch (SQLException ex) {
+            Logger.getLogger(RatigoService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+return b;
+}
 
     @Override
     public Oeuvre afficherO(int id) {
@@ -232,6 +274,7 @@ public class OeuvrageService implements IOeuvreService<Oeuvre>{
                 o2.setQuantite(rs.getFloat("quantité"));
                 o2.setDescription(rs.getString("description"));
                 o2.setDescription(rs.getString("image"));
+                o2.setIsvalid(rs.getInt("isvalid"));
                 System.out.println(o2);
                 
                 
@@ -265,6 +308,7 @@ public class OeuvrageService implements IOeuvreService<Oeuvre>{
                 o2.setQuantite(rs.getFloat("quantité"));
                 o2.setDescription(rs.getString("description"));
                 o2.setDescription(rs.getString("image"));
+                o2.setIsvalid(rs.getInt("isvalid"));
                 System.out.println(o2);
            list.add(o2);
             }
@@ -281,6 +325,19 @@ public class OeuvrageService implements IOeuvreService<Oeuvre>{
             PreparedStatement ps = conx.prepareStatement(req);
             
             ps.setInt(1,1);
+            ps.executeUpdate();
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(OeuvrageService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
+        public void nvalider(Oeuvre o) {
+        String req = "UPDATE `oeuvrage` SET `isvalid` =? WHERE  `oeuvrage_id`="+o.getOeuvrage_id();
+        try {
+            PreparedStatement ps = conx.prepareStatement(req);
+            
+            ps.setInt(1,2);
             ps.executeUpdate();
            
         } catch (SQLException ex) {

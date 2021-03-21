@@ -34,6 +34,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -46,12 +47,10 @@ import xcode.service.OeuvrageService;
  *
  * @author pc
  */
-public class AffmesoeuvesController implements Initializable {
+public class AdminconsulterOeuvreController implements Initializable {
 
     @FXML
     private VBox chosenFruitCard;
-    @FXML
-    private GridPane grid;
     @FXML
     private Label nomO;
     @FXML
@@ -61,38 +60,40 @@ public class AffmesoeuvesController implements Initializable {
     @FXML
     private Label descO;
     @FXML
-    private Button modifierO;
+    private Button affd;
     @FXML
     private Button supprimerO;
-    @FXML
-    private ScrollPane scrollO;
-    @FXML
-    private Button ADD;
-    
-    private Oeuvre oi;
-
-    /**
-     * Initializes the controller class.
-     */
-  
-   
-   private MyListener myListener;
-    OeuvrageService os = new OeuvrageService();
-    @FXML
-    private Button ADD1;
     @FXML
     private TextField recho;
     @FXML
     private Button rechbtn;
-    
-    
+    @FXML
+    private ScrollPane scrollO;
+    @FXML
+    private GridPane grid;
+    @FXML
+    private Button dashboard;
+    @FXML
+    private HBox taper;
 
+   
     
     
-      @Override
+    
+    private MyListener myListener;
+    OeuvrageService os = new OeuvrageService();
+    private Oeuvre oi;
+    
+    /**
+     * Initializes the controller class.
+     */
+    
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-       List<Oeuvre> listOeuvre =new ArrayList<>();
-           listOeuvre.addAll(os.afficherLOBI(1));
+        List<Oeuvre> listOeuvre =new ArrayList<>();
+           listOeuvre.addAll(os.afficherLOV());
+           
+           
            if (listOeuvre.size() > 0) {
                System.out.println(listOeuvre.get(0));
                 setChosenO(listOeuvre.get(0));
@@ -149,38 +150,25 @@ public class AffmesoeuvesController implements Initializable {
         //image = new Image(getClass().getResourceAsStream(o.getImg()));
         imgO.setImage(new Image(newFile2.toURI().toString()));
         oi=o;
+       
+    }    
+
+    @FXML
+    private void dashbord(ActionEvent event) {
+        
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/AdminOeuvrenotif.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
+
     
-    @FXML
-    private void ajouter(ActionEvent event) {
-        
-      try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/ajouterOeuvre.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-    }
-
-    @FXML
-    private void modifierO(ActionEvent event) {
-    try {
-        
-            ModiferOController.setOeuvre(oi);
-            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/modiferOeuvre.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private Optional<ButtonType> alert(String deux)
+       private Optional<ButtonType> alert(String deux)
     {
         Alert alert = new Alert( Alert.AlertType.CONFIRMATION);
         alert.setTitle("Error");
@@ -188,14 +176,13 @@ public class AffmesoeuvesController implements Initializable {
         alert.setContentText(deux);
         return alert.showAndWait();
     }
-    
     @FXML
-    private void SupprimerO(ActionEvent event) {
-       if(alert("Voulez vous supprimer").get()==ButtonType.OK)
+    private void supprimer(ActionEvent event) {
+    if(alert("Voulez vous supprimer").get()==ButtonType.OK)
        {
            os.supprimerO(oi);
            try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/affmesoeuves.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/adminconsulterOeuvre.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -207,24 +194,9 @@ public class AffmesoeuvesController implements Initializable {
     }
 
     @FXML
-    private void accueil(ActionEvent event) {
-        
-        try {
-            ModiferOController.setOeuvre(oi);
-            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/consulterOeuvre.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void rechercheO(ActionEvent event) {
-      List<Oeuvre> listOeuvre =new ArrayList<>();
-       listOeuvre.addAll(os.afficherLOBI(1));
+    private void rechercher(ActionEvent event) {
+        List<Oeuvre> listOeuvre =new ArrayList<>();
+       listOeuvre.addAll(os.afficherLOV());
         boolean a = listOeuvre.stream().anyMatch(o -> o.getNom().equalsIgnoreCase(recho.getText()));
         System.out.println(a);
           
@@ -322,8 +294,23 @@ public class AffmesoeuvesController implements Initializable {
                    Logger.getLogger(AffmesoeuvesController.class.getName()).log(Level.SEVERE, null, ex);
                }
     }
-    
     }
 
-
+    @FXML
+    private void afficherd(ActionEvent event) {
+        
+        try {
+            AdmindetailoeuvreController.setOeuvre(oi);
+            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/admindetailoeuvre.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+       
+    }
+    
 }

@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import xcode.Iservice.MyListener;
 import xcode.entity.Oeuvre;
 
@@ -38,6 +40,8 @@ public class AfficherOeuvreController implements Initializable {
     private MyListener myListener;
     @FXML
     private Label valido;
+    @FXML
+    private AnchorPane anchorpane;
 
     /**
      * Initializes the controller class.
@@ -58,12 +62,16 @@ public void setData(Oeuvre oeuvre, MyListener myListener) {
         nameLabel.setText(oeuvre.getNom());
         priceLable.setText((oeuvre.getPrix())+"DT");
         File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + oeuvre.getImg());
-        System.out.println(oeuvre.getIsvalid());
         if (oeuvre.getIsvalid()==1){
             valido.setText("Quantité : "+ String.valueOf(oeuvre.getQuantite()));
         }
         if (oeuvre.getIsvalid()==0){
+            valido.setText("en attente");
+            valido.setTextFill(Color.rgb(0xa6, 0x59, 0x59));
+        }
+        if (oeuvre.getIsvalid()==2){
             valido.setText("n'est pas validé");
+            anchorpane.setStyle("-fx-background-color: #F4F0F0");
         }
 
         img.setImage(new Image(newFile2.toURI().toString()));

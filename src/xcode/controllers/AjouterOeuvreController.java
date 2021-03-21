@@ -78,18 +78,16 @@ public class AjouterOeuvreController implements Initializable {
     private Label errornom;
     @FXML
     private Label errorprix;
+  
     
-    
- 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> cat = FXCollections.observableArrayList("Peinture", "artisanat","décoration","sculpture","litérature");
+        ObservableList<String> cat = FXCollections.observableArrayList("Peinture", "Artisanat","Décoration","Sculpture","Litérature");
         domaino.setItems(cat);
     
- 
         final int initialValue = 1;
  
         // Value factory.
@@ -98,8 +96,7 @@ public class AjouterOeuvreController implements Initializable {
  
         qteo.setValueFactory(valueFactory);   
        
-    }    
-
+    } 
     @FXML
     private void ajouterO(ActionEvent event) {
         Oeuvre o1 = new Oeuvre();
@@ -114,6 +111,14 @@ public class AjouterOeuvreController implements Initializable {
             alert.setHeaderText("Veuillez remplir tous les champs");
             alert.showAndWait();
         }
+        
+        else if ( os.exist(nomo.getText())!=0) {
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+
+            alert.setHeaderText("Cet oeuvre existe déjà ! ");
+            alert.showAndWait();
+            
+        }
         else {
         o1.setNom(nomo.getText());
         o1.setDescription(desco.getText());
@@ -121,10 +126,8 @@ public class AjouterOeuvreController implements Initializable {
         o1.setPrix(Float.parseFloat( prixo.getText()));
         o1.setQuantite( qteo.getValue());
         o1.setImg(file.getName());
-        
-        os.ajouterO(o1);
-        
-        
+//            System.out.println(o1.getIsvalid());
+        os.ajouterO(o1);       
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Oeuvre ajouté ☺ ");
             alert.setContentText("oeuvre ajouté avec sucèes ☺ ");
@@ -152,22 +155,17 @@ Stage primary = new Stage();
         FileUtils.copyFileToDirectory(file, dest);
         
         File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
-
         FileInputStream input2 = new FileInputStream(newFile2);
         Image image2 = new Image(input2);
         txtimg.setText(newFile2.getName());
         imgV.setImage(image2);
-        
         
         System.out.println(txtimg.getText());
         if(file!=null)
         {
         txtimg.setVisible(true);
         txtimg.setText(file.getName());
-//            try {             Files.copy(file.toPath(),new File(path+"\\"+file.getName()).toPath());
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+     
         }
     else {
                System.out.println("Image introuvable");         
@@ -193,9 +191,7 @@ Stage primary = new Stage();
         } catch (IOException ex) {
             Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
-
 
     @FXML
     private void verifNom(KeyEvent event) {
@@ -204,6 +200,8 @@ Stage primary = new Stage();
            
        ;
         }
+      
+       
     }
 
     @FXML
@@ -215,7 +213,12 @@ Stage primary = new Stage();
         }
     }
 
- 
+    @FXML
+    private void verifexist(KeyEvent event) {
+           if( os.exist(nomo.getText())!=0) {
+            errornom.setText("cet oeuvre existe déjà");    
+        }
+    }
 }
     
 

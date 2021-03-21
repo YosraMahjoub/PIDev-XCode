@@ -57,13 +57,15 @@ public class AdminOeuvrenotifController implements Initializable {
     
     @FXML
     private Button oeuvres;
-    @FXML
-    private Button favoris;
     
     private List<Oeuvre> listOeuvreInv =new ArrayList<>();
     OeuvrageService os = new OeuvrageService();
     private MyListener myListener;
     private Oeuvre oi;
+    @FXML
+    private Button event;
+    @FXML
+    private Button stat;
     /**
      * Initializes the controller class.
      */
@@ -87,11 +89,7 @@ public class AdminOeuvrenotifController implements Initializable {
                             Logger.getLogger(AdminOeuvrenotifController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
-                };
-            
-           
-           
-           
+                };       
            }
             int column = 0;
             int row = 1;
@@ -122,17 +120,25 @@ public class AdminOeuvrenotifController implements Initializable {
                 } catch (IOException ex) {
                    Logger.getLogger(AffmesoeuvesController.class.getName()).log(Level.SEVERE, null, ex);
                }
-     
-//
-
-        
-     
 //            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/AdminOeuvrevalid.fxml"));
 //            Scene scene = new Scene(page1);
 //            Stage stage;
 //    stage = (Stage) ((Node) event.get).getScene().getWindow();
 //            stage.setScene(scene);
 //            stage.show();
-//        
-    
-}}
+}
+
+    @FXML
+    private void gotostat(ActionEvent event) {
+        
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/stat.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(RatingoController.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+}

@@ -19,13 +19,14 @@ public class Oeuvre {
     private float prix;
     private float quantite;
     private String description;
-     private String img;
-     private int isvalid;
+    private String img;
+    private int isvalid;
+    private float rate; 
      
      public Oeuvre() {
     }
 
-    public Oeuvre(int oeuvrage_id, int User_id, String nom, String doamine, float prix, float quantite, String description, String img,int isvalid) {
+    public Oeuvre(int oeuvrage_id, int User_id, String nom, String doamine, float prix, float quantite, String description, String img, int isvalid) {
         this.oeuvrage_id = oeuvrage_id;
         this.User_id = User_id;
         this.nom = nom;
@@ -34,8 +35,20 @@ public class Oeuvre {
         this.quantite = quantite;
         this.description = description;
         this.img = img;
-        this.isvalid= isvalid;
+        this.isvalid = isvalid;
+       
     }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
+    }
+
+ 
+ 
 
     public Oeuvre(int User_id, String nom, String doamine, float prix, float quantite, String description, String img) {
         this.User_id = User_id;
@@ -120,9 +133,10 @@ public class Oeuvre {
 
     @Override
     public String toString() {
-        return "Oeuvre{" + "oeuvrage_id=" + oeuvrage_id + ", User_id=" + User_id + ", nom=" + nom + ", doamine=" + doamine + ", prix=" + prix + ", quantite=" + quantite + ", description=" + description + ", img=" + img + '}';
+        return "Oeuvre{" + "oeuvrage_id=" + oeuvrage_id + ", User_id=" + User_id + ", nom=" + nom + ", doamine=" + doamine + ", prix=" + prix + ", quantite=" + quantite + ", description=" + description + ", img=" + img + ", isvalid=" + isvalid + '}';
     }
 
+    
  
    
 

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onMousePressed="#click" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xcode.controllers.AfficherOeuvreController">
+<AnchorPane id="AnchorPane" fx:id="anchorpane" onMousePressed="#click" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xcode.controllers.AfficherOeuvreController">
     <stylesheets>
         <URL value="@afficheroeuvre.css" />
     </stylesheets>
@@ -59,8 +59,11 @@
             </HBox>
             <Label fx:id="valido" alignment="CENTER" prefHeight="27.0" prefWidth="179.0">
                <font>
-                  <Font size="14.0" />
-               </font></Label>
+                  <Font name="Cambria Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding></Label>
          </children>
       </VBox>
    </children>

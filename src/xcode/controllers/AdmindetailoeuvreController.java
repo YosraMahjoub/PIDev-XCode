@@ -27,29 +27,22 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import xcode.entity.Oeuvre;
-import xcode.service.OeuvrageService;
 
 /**
  * FXML Controller class
  *
  * @author pc
  */
-public class AdminOeuvrevalidController implements Initializable {
+public class AdmindetailoeuvreController implements Initializable {
 
     @FXML
     private Button gest;
-    @FXML
-    private Button mdp;
-    @FXML
-    private Button role;
     @FXML
     private Button form;
     @FXML
     private Button event;
     @FXML
     private Button oeuvres;
-    @FXML
-    private Button favoris;
     @FXML
     private Label adesco;
     @FXML
@@ -63,20 +56,25 @@ public class AdminOeuvrevalidController implements Initializable {
     @FXML
     private Label anomo;
     @FXML
-    private Button valider;
+    private Button acc;
     @FXML
-    private Button annulero;
+    private Button SUPP;
+
+    /**
+     * Initializes the controller class.
+     */
     
-    OeuvrageService os = new OeuvrageService();
-     private static Oeuvre a ;
+         private static Oeuvre a ;
     
  public static void setOeuvre (Oeuvre o ){
         a=o;
     }
-    
+    @FXML
+    private Button stat;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + a.getImg());
+        
+        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + a.getImg());
           imgV.setImage(new Image(newFile2.toURI().toString()));
           anomo.setText("Nom : "+ a.getNom());
           aprixo.setText("Prix : "+ String.valueOf(a.getPrix())+"DT");
@@ -84,57 +82,48 @@ public class AdminOeuvrevalidController implements Initializable {
           adomaino.setText("Dans le domaine : " +a.getDoamine());
           aqteo.setText("Quantité : "+ String.valueOf(a.getQuantite()));
        
-    }  
-    
-     private Optional<ButtonType> alert(String deux) {
-        Alert alert = new Alert( Alert.AlertType.CONFIRMATION);
-        alert.setTitle("validation");
-        alert.setHeaderText("validation");      
-        alert.setContentText(deux);
-        return alert.showAndWait();
-    }
+    }    
 
     @FXML
-    private void validerO(ActionEvent event) {
-    if(alert("Voulez vous vraiment valider cet oeuvre").get()==ButtonType.OK)
-       {
-           os.valider(a);
-           a.setIsvalid(1);
-         
-           System.out.println(a.getIsvalid());
-                   
-           try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/AdminOeuvrenotif.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-       }
-    
-    }
-
-    @FXML
-    private void supprimer(ActionEvent event) {
+    private void accueil(ActionEvent event) {
         
-     if(alert("Voulez vous vraiment supprimer cet oeuvre de la liste").get()==ButtonType.OK)
-       {
-           os.nvalider(a);
-           a.setIsvalid(2);
-           System.out.println(a.getIsvalid());
-                   
-           try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/AdminOeuvrenotif.fxml"));
+      
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/adminconsulterOeuvre.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-       }   
+            Logger.getLogger(AdmindetailoeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
-    
+
+    @FXML
+    private void oeuvre(ActionEvent event) {
+        
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/adminconsulterOeuvre.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AdmindetailoeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+
+    @FXML
+    private void statque(ActionEvent event) {
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/stato.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show(); 
+        } catch (IOException ex) {
+            Logger.getLogger(AdmindetailoeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
