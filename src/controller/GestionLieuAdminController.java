@@ -1,0 +1,281 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller;
+
+import Configuration.Constants;
+import entities.EventPlace;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import service.EventPlaceService;
+
+/**
+ * FXML Controller class
+ *
+ * @author hedi
+ */
+public class GestionLieuAdminController implements Initializable {
+
+    @FXML
+    private Button btninsert1;
+    @FXML
+    private Button btninsert11;
+    @FXML
+    private Button btninsert111;
+    @FXML
+    private Button btninsert1111;
+    @FXML
+    private Button btninsert11111;
+    @FXML
+    private Button btninsert111111;
+    @FXML
+    private Button btninsert1111111;
+    @FXML
+    private Button btninsert112;
+    @FXML
+    private Button btninsert111112;
+    @FXML
+    private VBox eventPlacesPage;
+    @FXML
+    private Button goToeventPlacesAdd;
+    @FXML
+    private ScrollPane EventPlacesScrollPane;
+    @FXML
+    private VBox eventPlacesAdd;
+    @FXML
+    private TextField addEventPlaceTitle;
+    @FXML
+    private TextField AddEventPlaceDescription;
+    @FXML
+    private Button AddEventPlaceSubmit;
+    @FXML
+    private Button AddEventPlaceCancel;
+    @FXML
+    private WebView AddEventPlacesWebView;
+    @FXML
+    private VBox eventPlacesUpdate;
+    @FXML
+    private VBox eventPlacesAdminDetails;
+    @FXML
+    private Label EventPlacesDetailsTitle;
+    @FXML
+    private WebView EventPlacesDetailsWebview;
+    @FXML
+    private Label EventPlaceDetailsDescription;
+    @FXML
+    private TextField UpdateEventPlaceTitle;
+    @FXML
+    private TextField UpdateEventPlaceDescription;
+    @FXML
+    private Button UpdateEventPlaceSubmit;
+    @FXML
+    private Button UpdateEventPlaceCancel;
+    @FXML
+    private WebView UpdateEventPlacesWebView;
+    double longitude = 0;
+    double latitude = 0;
+    @FXML
+    private Button EventPlaceDetailsCancel;
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        closeAllWindows();
+        eventPlacesPage.setVisible(true);
+        try {
+            getAllPlaces();
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionLieuAdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        goToeventPlacesAdd.setOnMouseClicked((e) -> {
+            WebEngine webEngine2 = AddEventPlacesWebView.getEngine();
+            // webEngine2.loadContent(Constants.setMapData(10.337973,36.850505,""));
+            webEngine2.loadContent(Constants.setMapEmpty());
+
+            webEngine2.setOnAlert((eventAlert) -> {
+                if (eventAlert.getData().contains("LatLng")) {
+                    String data = eventAlert.getData().replace("LatLng(", "");
+                    data = data.replace(")", "");
+                    data = data.replace(")", "");
+                    longitude = Double.valueOf(data.substring(data.indexOf(",") + 1, data.length()));
+                    latitude = Double.valueOf(data.substring(0, data.indexOf(",")));
+
+                    System.out.println("long:" + String.valueOf(longitude) + " latitude: " + String.valueOf(latitude));
+                }
+            });
+
+            closeAllWindows();
+            eventPlacesAdd.setVisible(true);
+        });
+        AddEventPlaceCancel.setOnMouseClicked((e) -> {
+            try {
+                getAllPlaces();
+            } catch (SQLException ex) {
+                Logger.getLogger(GestionLieuAdminController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            closeAllWindows();
+            eventPlacesPage.setVisible(true);
+        });
+        
+          EventPlaceDetailsCancel.setOnMouseClicked((e) -> {
+            try {
+                getAllPlaces();
+            } catch (SQLException ex) {
+                Logger.getLogger(GestionLieuAdminController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            closeAllWindows();
+            eventPlacesPage.setVisible(true);
+        });
+    }
+
+    public void closeAllWindows() {
+        eventPlacesAdminDetails.setVisible(false);
+        eventPlacesAdd.setVisible(false);
+        eventPlacesPage.setVisible(false);
+        eventPlacesUpdate.setVisible(false);
+
+    }
+
+    public void getAllPlaces() throws SQLException {
+        EventPlaceService eventPlaceService = new EventPlaceService();
+        List<EventPlace> places = new ArrayList<EventPlace>();
+        places = eventPlaceService.Afficher();
+        GridPane MyEventsGrid = new GridPane();
+        MyEventsGrid.setHgap(20);
+        MyEventsGrid.setVgap(20);
+        MyEventsGrid.getChildren().clear();
+        for (int i = 0; i < places.size(); i++) {
+            MyEventsGrid.add(PlaceCard(places.get(i)), 1, i + 1);
+        }
+        EventPlacesScrollPane.setContent(MyEventsGrid);
+
+    }
+
+    public HBox PlaceCard(EventPlace eventPlace) {
+        String stylep = "-fx-effect: dropshadow(three-pass-box, derive(cadetblue, -20%), 10, 0, 5, 5);\n  -fx-background-color: white \n ;-fx-border-color: #b0b1b2 \n ; -fx-border-width: 1; \n -fx-border-radius: 10;  ";
+
+        HBox container = new HBox();
+        container.setMaxWidth(440);
+        container.setMinWidth(440);
+        container.setMaxHeight(120);
+        container.setMinHeight(120);
+        container.setStyle(stylep);
+
+        WebView webView = new WebView();
+        webView.setMaxWidth(150);
+        webView.setMinWidth(150);
+        webView.setMaxHeight(120);
+        webView.setMinHeight(120);
+        WebEngine webEngine = webView.getEngine();
+        webEngine.loadContent(Constants.setMapData(eventPlace.getLongitude(), eventPlace.getLatitude(), eventPlace.getTitle()));
+
+        HBox Titlecontainer = new HBox();
+        Label titleLabel = new Label("Titre:");
+        Label titre = new Label(eventPlace.getTitle());
+        Titlecontainer.getChildren().add(titleLabel);
+        Titlecontainer.getChildren().add(titre);
+
+        HBox Descriptioncontainer = new HBox();
+        Label descriptionLabel = new Label("Description:");
+        Label description = new Label(eventPlace.getTitle());
+        Descriptioncontainer.getChildren().add(descriptionLabel);
+        Descriptioncontainer.getChildren().add(description);
+
+        VBox ContentData = new VBox();
+        ContentData.setMaxWidth(215);
+        ContentData.setMinWidth(215);
+        ContentData.setMaxHeight(120);
+        ContentData.setMinHeight(120);
+
+        ContentData.getChildren().add(Titlecontainer);
+        ContentData.getChildren().add(Descriptioncontainer);
+
+        VBox ContentActions = new VBox();
+        ContentActions.setMaxWidth(215);
+        ContentActions.setMinWidth(215);
+        ContentActions.setMaxHeight(120);
+        ContentActions.setMinHeight(120);
+
+        Button Delete = new Button("Supprimer");
+        Button Update = new Button("Modifier");
+        Button Details = new Button("Détails");
+        ContentActions.getChildren().add(Details);
+      //  ContentActions.getChildren().add(Update);
+        ContentActions.getChildren().add(Delete);
+
+        container.getChildren().add(webView);
+        container.getChildren().add(ContentData);
+        container.getChildren().add(ContentActions);
+
+        EventPlaceService eventPlaceService = new EventPlaceService();
+
+        Delete.setOnMouseClicked((e) -> {
+            try {
+                eventPlaceService.Supprimer(eventPlace);
+                getAllPlaces();
+            } catch (SQLException ex) {
+                Logger.getLogger(GestionLieuAdminController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+
+        Details.setOnMouseClicked((e) -> {
+            EventPlaceDetailsDescription.setText(eventPlace.getDescription());
+            EventPlacesDetailsTitle.setText(eventPlace.getTitle());
+
+            WebEngine webEngineDetails = EventPlacesDetailsWebview.getEngine();
+            webEngineDetails.loadContent(Constants.setMapData(eventPlace.getLongitude(), eventPlace.getLatitude(), eventPlace.getTitle()));
+
+            closeAllWindows();
+            eventPlacesAdminDetails.setVisible(true);
+        });
+        /*   Update.setOnMouseClicked((e) -> {
+                
+           closeAllWindows();
+           eventPlacesUpdate.setVisible(true);
+          });
+         */
+
+        AddEventPlaceSubmit.setOnMouseClicked((e) -> {
+
+            if (longitude == latitude && longitude == 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Vous devez choisir les coordonnées à travers la carte !", ButtonType.OK);
+                alert.show();
+            } else {
+                EventPlace newEventPlace = new EventPlace(addEventPlaceTitle.getText().toString(), AddEventPlaceDescription.getText().toString(), longitude, latitude);
+                EventPlaceService eventPlaceService2 = new EventPlaceService();
+                try {
+                    eventPlaceService2.Ajouter(newEventPlace);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GestionLieuAdminController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        });
+
+        return container;
+    }
+
+}

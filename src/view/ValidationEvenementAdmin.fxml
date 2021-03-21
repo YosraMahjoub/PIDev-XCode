@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.102" fx:controller="controller.ValidationEvenementAdminController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="735.0">
+         <children>
+            <AnchorPane layoutX="8.0" prefHeight="555.0" prefWidth="277.0" style="-fx-background-color: #a65959;">
+               <children>
+                  <AnchorPane layoutX="-8.0" layoutY="-10.0" prefHeight="568.0" prefWidth="264.0" style="-fx-background-color: #343E3D;">
+                     <children>
+                        <Accordion layoutX="83.0" layoutY="85.0" />
+                        <Button fx:id="btninsert1" blendMode="SRC_ATOP" layoutX="25.0" layoutY="164.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Gérer mon profil" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="btninsert11" blendMode="SRC_ATOP" layoutX="25.0" layoutY="205.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Changer mot de passe" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="btninsert111" blendMode="SRC_ATOP" layoutX="25.0" layoutY="248.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes roles" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="btninsert1111" blendMode="SRC_ATOP" layoutX="25.0" layoutY="289.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes formation" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="btninsert11111" blendMode="SRC_ATOP" layoutX="25.0" layoutY="331.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes évenements" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="btninsert111111" blendMode="SRC_ATOP" layoutX="25.0" layoutY="374.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes Oeuvres" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="btninsert1111111" blendMode="SRC_ATOP" layoutX="25.0" layoutY="416.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Favories" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <ImageView fitHeight="94.0" fitWidth="93.0" layoutX="79.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Deafult-Profile-Pitcher-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btninsert112" blendMode="SRC_ATOP" layoutX="25.0" layoutY="449.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Supprimer compte" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="btninsert111112" blendMode="SRC_ATOP" layoutX="25.0" layoutY="482.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #414e4d; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Gérer les évenements" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+               <padding>
+                  <Insets right="1.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </AnchorPane>
+            <VBox fx:id="eventPlacesPage" layoutX="284.0" layoutY="-1.0" prefHeight="555.0" prefWidth="456.0" style="-fx-background-color: white;">
+               <children>
+                  <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Liste des événements" translateX="60.0" translateY="50.0" />
+                  <ScrollPane fx:id="ValidateEventScrollPane" prefHeight="438.0" prefWidth="455.0" translateY="60.0" />
+               </children>
+               <padding>
+                  <Insets right="1.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
