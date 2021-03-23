@@ -12,6 +12,7 @@ import java.io.IOException;
 import xcode.entity.Oeuvre;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +27,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -97,6 +99,17 @@ public class AjouterOeuvreController implements Initializable {
         qteo.setValueFactory(valueFactory);   
        
     } 
+    
+    
+        private Optional<ButtonType> alert(String deux)
+    {
+        Alert alert = new Alert( Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Ajout");
+        alert.setHeaderText("Oeuvre existe déja");      
+        alert.setContentText(deux);
+        return alert.showAndWait();
+    }
+    
     @FXML
     private void ajouterO(ActionEvent event) {
         Oeuvre o1 = new Oeuvre();
@@ -107,17 +120,24 @@ public class AjouterOeuvreController implements Initializable {
                 || nameCat ==""
                ) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-
             alert.setHeaderText("Veuillez remplir tous les champs");
             alert.showAndWait();
+            
         }
         
         else if ( os.exist(nomo.getText())!=0) {
-             Alert alert = new Alert(Alert.AlertType.ERROR);
-
-            alert.setHeaderText("Cet oeuvre existe déjà ! ");
-            alert.showAndWait();
-            
+             if(alert("Voulez vous le modifier ").get()==ButtonType.OK)
+       {     try {
+                     ModiferOController.setOeuvre(os.afficherbynom(nomo.getText()));
+                     Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/modiferOeuvre.fxml"));
+                     Scene scene = new Scene(page1);
+                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                     stage.setScene(scene);
+                     stage.show();
+                 } catch (IOException ex) {
+                     Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+         }
         }
         else {
         o1.setNom(nomo.getText());

@@ -63,7 +63,7 @@ public class ModiferOController implements Initializable {
     private Button messo;
     @FXML
     private Button modifiero;
-    private static Oeuvre s ;
+     private static Oeuvre s ;
     
     ControleSaisie controlem = new ControleSaisie();
     
@@ -141,6 +141,7 @@ public class ModiferOController implements Initializable {
         s.setPrix(Float.parseFloat( prixo.getText()));
         s.setQuantite( qteo.getValue());
         
+        
         os.modifierO(s);
         
         
@@ -151,13 +152,6 @@ public class ModiferOController implements Initializable {
         }
     
     }
-
-    
-       
-        
-                                                                                                                                                                                                                                                                                                
-   
-
     @FXML
     private void CLICK(ActionEvent event) {
         
@@ -198,17 +192,14 @@ public class ModiferOController implements Initializable {
     @FXML
     private void verifn(KeyEvent event) {
         if (!controlem.controleTextFieldOnlyLetters(nomo, "que des lettres", nomer)) 
-         {
-           
-       ;
+         { ;
         }
     }
 
     @FXML
     private void verifp(KeyEvent event) {
         if (!controlem.controleTextFieldChiffres(prixo, "que des chiffres", prixerr)) 
-         {
-           
+         { 
        ;
         }
     }

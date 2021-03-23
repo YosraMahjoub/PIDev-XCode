@@ -49,9 +49,9 @@
                         </Button>
                      </children>
                   </HBox>
-                  <HBox prefHeight="521.0" prefWidth="1000.0">
+                  <HBox prefHeight="490.0" prefWidth="1000.0">
                      <children>
-                        <Pane prefHeight="518.0" prefWidth="1003.0">
+                        <Pane prefHeight="428.0" prefWidth="1000.0">
                            <children>
                              
                                <Label fx:id="adesco" alignment="TOP_LEFT" layoutX="400.0" layoutY="368.0" prefHeight="129.0" prefWidth="323.0" style="-fx-background-color: F4F0F0;">
@@ -75,7 +75,7 @@
                <font>
                   <Font name="Cambria Bold" size="18.0" />
                </font></Label>
-            <Button layoutX="764.0" layoutY="258.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="196.0" style="-fx-background-color: #D36A6A;" text="Ajouter au panier" textFill="WHITE">
+            <Button layoutX="764.0" layoutY="258.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="183.0" style="-fx-background-color: #D36A6A;" text="Ajouter au panier" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -96,7 +96,7 @@
                                     <Font name="Cambria Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="back" layoutX="764.0" layoutY="384.0" mnemonicParsing="false" onAction="#back" prefHeight="37.0" prefWidth="183.0" style="-fx-background-color: #878787;" text="Revenir à la liste" textFill="WHITE">
+                              <Button fx:id="back" layoutX="764.0" layoutY="368.0" mnemonicParsing="false" onAction="#back" prefHeight="37.0" prefWidth="183.0" style="-fx-background-color: #878787;" text="Revenir à la liste" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -115,6 +115,19 @@
                                  </effect>
                               </Rating>
                               <Label fx:id="nb" layoutX="58.0" layoutY="413.0" />
+                              <HBox layoutX="843.0" layoutY="60.0" prefHeight="35.0" prefWidth="38.0" stylesheets="@ratingo.css">
+                                 <children>
+                                    <Button id="an" fx:id="heart" mnemonicParsing="false" onAction="#favoris" prefHeight="105.0" prefWidth="210.0" styleClass="another-simple-heart" stylesheets="@ratingo.css" />
+                                 </children>
+                              </HBox>
+                              <Button fx:id="SUPP" layoutX="764.0" layoutY="443.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="183.0" style="-fx-background-color: #D36A6A;" text="Réclamer" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIconView fx:id="reco" fill="WHITE" glyphName="EDIT" onDragDetected="#reclamerO" size="22" />
+                                 </graphic>
+                              </Button>
        
                            </children></Pane>
                         

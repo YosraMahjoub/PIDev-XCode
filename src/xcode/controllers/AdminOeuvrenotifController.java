@@ -132,7 +132,7 @@ public class AdminOeuvrenotifController implements Initializable {
     private void gotostat(ActionEvent event) {
         
         try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/stat.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/stato.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

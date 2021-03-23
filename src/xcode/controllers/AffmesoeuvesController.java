@@ -37,6 +37,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 import xcode.Iservice.MyListener;
 import xcode.entity.Oeuvre;
 import xcode.service.OeuvrageService;
@@ -94,7 +98,6 @@ public class AffmesoeuvesController implements Initializable {
        List<Oeuvre> listOeuvre =new ArrayList<>();
            listOeuvre.addAll(os.afficherLOBI(1));
            if (listOeuvre.size() > 0) {
-               System.out.println(listOeuvre.get(0));
                 setChosenO(listOeuvre.get(0));
                 myListener = new MyListener() {
                     @Override
@@ -154,6 +157,21 @@ public class AffmesoeuvesController implements Initializable {
     @FXML
     private void ajouter(ActionEvent event) {
         
+        if (os.nbNV(2)>= 5){
+         
+        String titre = "Attention";
+        String msg = "vous avez déjà 5 oeuvres non valid ! rod bellik !";
+        TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        
+        tray.setAnimationType(type);
+        tray.setTitle(titre);
+        tray.setMessage(msg);
+        tray.setNotificationType(NotificationType.WARNING);
+        tray.showAndDismiss(Duration.millis(4000));
+           
+        }
+        
       try {
             Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/ajouterOeuvre.fxml"));
             Scene scene = new Scene(page1);
@@ -167,8 +185,9 @@ public class AffmesoeuvesController implements Initializable {
 
     @FXML
     private void modifierO(ActionEvent event) {
-    try {
+  
         
+        try {
             ModiferOController.setOeuvre(oi);
             Parent page1 = FXMLLoader.load(getClass().getResource("/xcode/views/modiferOeuvre.fxml"));
             Scene scene = new Scene(page1);
@@ -176,8 +195,9 @@ public class AffmesoeuvesController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AffmesoeuvesController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
     private Optional<ButtonType> alert(String deux)

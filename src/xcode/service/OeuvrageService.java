@@ -273,7 +273,7 @@ return b;
                 o2.setPrix(rs.getFloat("prix"));
                 o2.setQuantite(rs.getFloat("quantité"));
                 o2.setDescription(rs.getString("description"));
-                o2.setDescription(rs.getString("image"));
+                o2.setImg(rs.getString("image"));
                 o2.setIsvalid(rs.getInt("isvalid"));
                 System.out.println(o2);
                 
@@ -287,7 +287,38 @@ return b;
     
     
     }
-
+  public Oeuvre afficherbynom(String nom ) {
+    String req="SELECT * FROM `oeuvrage`WHERE `nom`='"+nom+"'";
+       Oeuvre o2 = new Oeuvre();
+        
+        try {
+           Statement ste = conx.createStatement();
+        
+            ResultSet rs = ste.executeQuery(req);
+           
+           while(rs.next()){
+               
+                o2.setOeuvrage_id(rs.getInt("Oeuvrage_id"));
+                o2.setUser_id(rs.getInt("user_id"));
+                 o2.setNom(rs.getString("nom"));
+                  o2.setDoamine(rs.getString("domaine"));
+                o2.setPrix(rs.getFloat("prix"));
+                o2.setQuantite(rs.getFloat("quantité"));
+                o2.setDescription(rs.getString("description"));
+                o2.setImg(rs.getString("image"));
+                o2.setIsvalid(rs.getInt("isvalid"));
+                System.out.println(o2);
+                
+                
+            }}
+        catch (SQLException ex) {
+            Logger.getLogger(OeuvrageService.class.getName()).log(Level.SEVERE, null, ex);   
+        }
+        
+        return o2;
+    
+    
+    }
     @Override
     public List<Oeuvre> displayAll() {
          String req="select * from `oeuvrage`";
@@ -344,4 +375,21 @@ return b;
             Logger.getLogger(OeuvrageService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+        
+         public int nbNV(int v) {
+            String req = "SELECT COUNT(oeuvrage_id) AS Nb FROM oeuvrage where `isvalid`="+v+" AND user_id =1";
+            
+            int b = 0;
+          try {  
+            Statement ste = conx.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            if (rs.next()) {
+                
+                b =rs.getInt("nb");
+           }
+          } catch (SQLException ex) {
+            Logger.getLogger(RatigoService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+return b;
+}
 }

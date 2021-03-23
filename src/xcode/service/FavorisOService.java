@@ -27,9 +27,9 @@ import xcode.utils.ConnexionDB;
 public class FavorisOService {
     Connection conx = ConnexionDB.getInstance().getConnection();
     
-       public void creerRo(Oeuvre o) {
+       public void creerFo(Oeuvre o) {
         try {
-            String req = "INSERT INTO `favoris_o`( `user_id`, `oeuvrage_id`) VALUES VALUES (?,?)";
+            String req = "INSERT INTO `favoris_o`( `user_id`, `oeuvrage_id`)  VALUES (?,?)";
             
             PreparedStatement ps = conx.prepareStatement(req);
             
@@ -42,7 +42,7 @@ public class FavorisOService {
            
         
     }
-       public void supprimerRo(User u, Oeuvre o) {
+       public void supprimerFo(Oeuvre o) {
         try {
             String req = "DELETE FROM `favoris_o` WHERE `user_id` =? AND `oeuvrage_id`=?";
             
@@ -55,34 +55,49 @@ public class FavorisOService {
         }
         
 }
-       public List<FavorisO> afflr() {
-////            String req = "SELECT f.oeuvrage_id, `nom`, `domaine`, `prix`, `quantité`, `description`, `image` FROM `rating_oeuvre` r INNER join oeuvrage o on r.oeuvrage_id = o.oeuvrage_id GROUP by r.oeuvrage_id ORDER by rate DESC; ";
-         List<FavorisO> listO =new ArrayList<>();
-//        
-//        try {
-//           Statement ste = conx.createStatement();
-//        
-//            ResultSet rs = ste.executeQuery(req);
-//            
-//            
-//            while(rs.next()){
-//                FavorisO f =new FavorisO();
-//                f.getO().setOeuvrage_id(rs.getInt("Oeuvrage_id"));
-//                f.getO().setNom(rs.getString("nom"));
-//                o1.setDoamine(rs.getString("domaine"));
-//                o1.setPrix(rs.getFloat("prix"));
-//                o1.setQuantite(rs.getFloat("quantité"));
-//                o1.setDescription(rs.getString("description"));
-//                o1.setImg(rs.getString("image"));
-//                o1.setIsvalid(rs.getInt("isvalid"));
-//              o1.setRate(rs.getFloat("rate"));
-//              
-//            }
-//}catch (SQLException ex) {
-//            Logger.getLogger(OeuvrageService.class.getName()).log(Level.SEVERE, null, ex);   
-//        }
-     return listO;
-
+       public List<FavorisO> afflf() {
+      
+            String req = "SELECT f.oeuvrage_id, `nom`, `domaine`, `prix`, `quantité`, `description`, `image` FROM favoris_o f INNER join oeuvrage o on f.oeuvrage_id = o.oeuvrage_id WHERE F.user_id = 1";
+            List<FavorisO> listO =new ArrayList<>();
+            
+             try { 
+            Statement ste = conx.createStatement();
+            
+            ResultSet rs = ste.executeQuery(req);
+            
+            
+            while(rs.next()){
+                FavorisO f =new FavorisO();
+                f.getO().setOeuvrage_id(rs.getInt("Oeuvrage_id"));
+                f.getO().setNom(rs.getString("nom"));
+                f.getO().setDoamine(rs.getString("domaine"));
+                f.getO().setPrix(rs.getFloat("prix"));
+                f.getO().setQuantite(rs.getFloat("quantité"));
+                f.getO().setDescription(rs.getString("description"));
+                f.getO().setImg(rs.getString("image"));
+              listO.add(f);
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FavorisOService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+return listO;
 }
-    
+   public int isclicked( Oeuvre o) {
+            String req = " SELECT  count(oeuvrage_id) as nb FROM favoris_o where oeuvrage_id= "+o.getOeuvrage_id()+" AND user_id=1";
+             int b = 0;
+          try {  
+            Statement ste = conx.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            if (rs.next()) {
+                  b =rs.getInt("nb");
+           }
+            
+          } catch (SQLException ex) {
+            Logger.getLogger(RatigoService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+return b;
+}
 }

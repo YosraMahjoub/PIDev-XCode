@@ -38,6 +38,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 import xcode.Iservice.MyListener;
 import xcode.entity.Oeuvre;
 import xcode.service.OeuvrageService;
@@ -90,6 +94,22 @@ public class AdminconsulterOeuvreController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         if (os.nbNV(0)>= 1){
+         
+        String titre = "Oeuvre non valid ";
+        String msg = "vous avez des noeuveux oeuvres non valid ! Veuillez consultez votre dashbord ";
+        TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.FADE;
+        
+        tray.setAnimationType(type);
+        tray.setTitle(titre);
+        tray.setMessage(msg);
+        tray.setNotificationType(NotificationType.NOTICE);
+        tray.showAndDismiss(Duration.millis(5000));
+           
+        }
+        
+        
         List<Oeuvre> listOeuvre =new ArrayList<>();
            listOeuvre.addAll(os.afficherLOV());
            

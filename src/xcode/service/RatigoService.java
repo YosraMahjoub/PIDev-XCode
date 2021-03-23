@@ -103,7 +103,7 @@ public int nbu( Oeuvre o) {
 return b;
 }
 public int israted( Oeuvre o) {
-            String req = "   SELECT count(oeuvrage_id) as nb FROM rating_oeuvre GROUP BY oeuvrage_id HAVING oeuvrage_id="+o.getOeuvrage_id();
+            String req = "   SELECT user_id,count(oeuvrage_id) as nb FROM rating_oeuvre GROUP BY oeuvrage_id HAVING oeuvrage_id="+o.getOeuvrage_id()+" and user_id=1";
              int b = 0;
           try {  
             Statement ste = conx.createStatement();
@@ -191,7 +191,7 @@ public  XYChart.Series<String, Float>  firstP() {
 
 public  XYChart.Series<String, Float>  secondP() {
           XYChart.Series<String, Float> serie = new XYChart.Series<>();
-            
+          
           try {  
             String req="select domaine, oeuvrage_id , rate from (select o.domaine, r.oeuvrage_id , AVG(`note`) as rate FROM `rating_oeuvre` r INNER join oeuvrage o on r.oeuvrage_id = o.oeuvrage_id group by oeuvrage_id having  o.domaine = 'artisanat ' ORDER by rate DESC LIMIT 1 OFFSET 1 )\n" +
 "as t1 UNION\n" +

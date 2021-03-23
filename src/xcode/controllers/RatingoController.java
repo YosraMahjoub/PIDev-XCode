@@ -7,6 +7,7 @@ package xcode.controllers;
 import animatefx.animation.FadeIn;
 import animatefx.animation.Flash;
 import animatefx.animation.Tada;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,11 +32,18 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.controlsfx.control.Rating;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 import xcode.entity.Oeuvre;
 import xcode.entity.RatingO;
+import xcode.service.FavorisOService;
 import xcode.service.RatigoService;
 
 /**
@@ -64,6 +72,7 @@ public class RatingoController implements Initializable {
     private Label pourcent;
      
      RatigoService rs = new RatigoService();
+     FavorisOService fs = new FavorisOService();
      
     /**
      * Initializes the controller class.
@@ -76,9 +85,26 @@ public class RatingoController implements Initializable {
     private Rating rats;
     @FXML
     private Label nb;
+    @FXML
+    private Button heart;
+    @FXML
+    private Button SUPP;
+    @FXML
+    private FontAwesomeIconView reco;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+//        AJOUTER AUX FAVORIS
+        if (fs.isclicked(a)!=0){ 
+            heart.setStyle("-fx-background-color: #A65959; "); 
+        }
+        else if(fs.isclicked(a)==0) {
+            heart.setStyle("-fx-background-color: #FFFFFF; ");
+             heart.setStyle("-fx-border-color:  #000000 ");
+        }
+        
+//        RATING
          new FadeIn(rats).play();
         
         File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + a.getImg());
@@ -124,11 +150,7 @@ public class RatingoController implements Initializable {
                 }
                
         });
-     
-        System.out.println(rats.getRating());
-
-        
-    }    
+       }    
 
 
     @FXML
@@ -170,6 +192,44 @@ public class RatingoController implements Initializable {
 
 
             }  
+
+    @FXML
+    private void favoris(ActionEvent event) {
+        if (fs.isclicked(a)==0){
+            fs.creerFo(a);
+            heart.setStyle("-fx-background-color: #A65959; "); 
+         
+        String msg = "Oeuvre ajouté à la liste des favoris ";
+        TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        
+        tray.setAnimationType(type);
+        tray.setMessage(msg);
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.millis(2000));
+           
+        
+        }
+        else {
+            fs.supprimerFo( a);
+            heart.setStyle("-fx-background-color: #FFFFFF; "); 
+            heart.setStyle("-fx-border-color:  #000000 ");
+             String msg = "Oeuvre suprimé la liste des favoris ";
+        TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        
+        tray.setAnimationType(type);
+        tray.setMessage(msg);
+        tray.setNotificationType(NotificationType.ERROR);
+        tray.showAndDismiss(Duration.millis(2000));
+               
+            
+        }
+    }
+
+    @FXML
+    private void reclamerO(MouseEvent event) {
+    }
     
     
 }
