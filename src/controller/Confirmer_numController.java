@@ -17,87 +17,68 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
+import javafx.scene.control.PasswordField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import service.UserService;
+import utils.SMSsend;
 
 /**
  * FXML Controller class
  *
  * @author asus
  */
-public class UserprofilController implements Initializable {
+public class Confirmer_numController implements Initializable {
 
     @FXML
-    private Button btngérer;
+    private Button btnprofil;
     @FXML
     private Button btnmdp;
     @FXML
-    private Button btnrole;
-    @FXML
     private Button btnformation;
     @FXML
-    private Button btneven;
+    private Button btnevenement;
     @FXML
     private Button btnoeuvres;
     @FXML
     private Button btnfavories;
     @FXML
-    private Button btnsupprimer;
-    @FXML
-    private Label label_nom;
-    @FXML
-    private Label label_prenom;
-    @FXML
-    private Label label_adresse;
-    @FXML
-    private Label label_tel;
-    @FXML
-    private Label label_email;
-    @FXML
-    private Label label_bio;
-    public User obj;
-   
-    
+    private Button btnsupp;
     @FXML
     private Button btninfo;
     @FXML
-    private Button confirmer_num;
+    private VBox mot_actuel;
     @FXML
-    private Button btnsupprimer1;
+    private PasswordField code;
     @FXML
-    private Button btnsupprimer11;
+    private Label label;
+    @FXML
+    private Button btnannuler;
+    @FXML
+    private Button btnvalider;
+    @FXML
+    private Button reclamation;
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    
-        
-        UserService pdao=new UserService();
-        
-        int id = UserService.getCurrentUser().getUser_id();
-        System.out.println(id);
-        User obj = pdao.displayById(id);
+        UserService pdao = new UserService();
+        String x = null;
+
+        // x = SMSsend.SMSsend("aa"); 
         
         
-        
-        
-        label_nom.setText(obj.getNom());
-        label_email.setText(obj.getEmail());
-        label_prenom.setText(obj.getPrenom());
-        label_adresse.setText(obj.getAdresse());
-        label_tel.setText(String.valueOf(obj.getNum_tel()));
-        label_bio.setText(obj.getBio());
-        if(!pdao.checknum(UserService.getCurrentUser().getEmail())){
-            confirmer_num.setVisible(true);
-        }else{
-            confirmer_num.setVisible(false);
-        }
-        
-        btngérer.setOnAction(event -> {
+       
+        btnannuler.setOnAction(event -> {
             try {
                 
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/gérer_profil.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/Userprofil.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -107,22 +88,39 @@ public class UserprofilController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        btnmdp.setOnAction(event -> {
-            try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/changer_mdp.fxml"));
+        btnvalider.setOnAction(event -> {
+            if(!code.getText().equals(x)){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                
+                alert.setHeaderText("code érroné");
+                alert.showAndWait();
+            }
+            else{
+                //UserService pdao = new UserService();
+                
+                pdao.updatnumconfirmé(UserService.getCurrentUser().getUser_id());
+                User obj = pdao.displayEP(UserService.getCurrentUser().getEmail(), UserService.getCurrentUser().getPassword());
+                //System.out.println(obj.toString());
+                UserService.setCurrentUser(obj);
+                try {
+                
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/Userprofil.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
+                
                 stage.show();
             } catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            }
+            
+            
         });
-        btnsupprimer.setOnAction(event -> {
-           
+        btnsupp.setOnAction(event -> {
                             
 
-            pdao.updatevalidité(id);
+            pdao.updatevalidité(UserService.getCurrentUser().getUser_id());
             try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
                 Scene scene = new Scene(page1);
@@ -132,11 +130,10 @@ public class UserprofilController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
-       
         });
-        confirmer_num.setOnAction(event -> {
+        reclamation.setOnAction(event -> {
             try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/confirmer_num.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admin_reclamations.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -145,16 +142,10 @@ public class UserprofilController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
-        
-            
-        
+    }    
 
-        
-
+    @FXML
+    private void colorchange(KeyEvent event) {
+        label.setStyle("-fx-background-color:" + code.getText()+";");
     }
 }
-    
-  
-    
-

@@ -40,7 +40,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button fx:id="btnrole" blendMode="SRC_ATOP" layoutX="25.0" layoutY="274.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes roles" textAlignment="CENTER">
+                        <Button fx:id="btnformation" blendMode="SRC_ATOP" layoutX="26.0" layoutY="272.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes formation" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -48,7 +48,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button fx:id="btnformation" blendMode="SRC_ATOP" layoutX="25.0" layoutY="315.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes formation" textAlignment="CENTER">
+                        <Button fx:id="btnevenement" blendMode="SRC_ATOP" layoutX="25.0" layoutY="305.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes évenements" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -56,7 +56,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button fx:id="btnevenement" blendMode="SRC_ATOP" layoutX="25.0" layoutY="357.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes évenements" textAlignment="CENTER">
+                        <Button fx:id="btnoeuvres" blendMode="SRC_ATOP" layoutX="25.0" layoutY="345.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes Oeuvres" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -64,15 +64,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button fx:id="btnoeuvres" blendMode="SRC_ATOP" layoutX="25.0" layoutY="400.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes Oeuvres" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Button>
-                        <Button fx:id="btnfavories" blendMode="SRC_ATOP" layoutX="25.0" layoutY="442.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Favories" textAlignment="CENTER">
+                        <Button fx:id="btnfavories" blendMode="SRC_ATOP" layoutX="26.0" layoutY="384.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Favories" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -85,7 +77,7 @@
                               <Image url="@Deafult-Profile-Pitcher-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btnsupp" blendMode="SRC_ATOP" layoutX="25.0" layoutY="475.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Supprimer compte" textAlignment="CENTER">
+                        <Button fx:id="btnsupp" blendMode="SRC_ATOP" layoutX="25.0" layoutY="428.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Supprimer compte" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -94,6 +86,14 @@
                            </opaqueInsets>
                         </Button>
                         <Button fx:id="btninfo" blendMode="SRC_ATOP" layoutX="26.0" layoutY="148.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes informations" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="reclamation" blendMode="SRC_ATOP" layoutX="25.0" layoutY="467.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes réclamations" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>

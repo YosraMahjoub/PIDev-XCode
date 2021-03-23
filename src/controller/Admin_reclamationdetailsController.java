@@ -5,7 +5,7 @@
  */
 package controller;
 
-import entities.User;
+import entities.Reclamation;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,85 +19,74 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import service.UserService;
+import service.ReclamationService;
 
 /**
  * FXML Controller class
  *
  * @author asus
  */
-public class UserprofilController implements Initializable {
+public class Admin_reclamationdetailsController implements Initializable {
 
+    private static int i;
     @FXML
-    private Button btngérer;
+    private Button btnprofil;
     @FXML
     private Button btnmdp;
     @FXML
-    private Button btnrole;
-    @FXML
     private Button btnformation;
     @FXML
-    private Button btneven;
+    private Button btnevenement;
     @FXML
     private Button btnoeuvres;
     @FXML
-    private Button btnfavories;
+    private Button btninfo;
     @FXML
-    private Button btnsupprimer;
+    private Button btnuser;
+    @FXML
+    private Label err_prenom;
+    @FXML
+    private Label err_adresse;
+    @FXML
+    private Label err_num;
+    @FXML
+    private Button btninsert;
     @FXML
     private Label label_nom;
     @FXML
-    private Label label_prenom;
+    private Label err_username;
     @FXML
-    private Label label_adresse;
+    private Label label_nomP;
     @FXML
-    private Label label_tel;
+    private Label label_sujet;
     @FXML
-    private Label label_email;
+    private Label label_user;
     @FXML
-    private Label label_bio;
-    public User obj;
-   
-    
+    private Label label_desc;
     @FXML
-    private Button btninfo;
-    @FXML
-    private Button confirmer_num;
-    @FXML
-    private Button btnsupprimer1;
-    @FXML
-    private Button btnsupprimer11;
+    private Button reclamations;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    
-        
-        UserService pdao=new UserService();
-        
-        int id = UserService.getCurrentUser().getUser_id();
-        System.out.println(id);
-        User obj = pdao.displayById(id);
         
         
         
+        ReclamationService rec = new ReclamationService();
+        Reclamation re = rec.displayById(i);
+        label_nom.setText(re.getReclamation_nom());
+        label_sujet.setText(re.getSujet());
+        label_desc.setText(re.getDescription());
+        label_nomP.setText(rec.displayproduit(i));
+        label_user.setText(rec.displayuser(i));
         
-        label_nom.setText(obj.getNom());
-        label_email.setText(obj.getEmail());
-        label_prenom.setText(obj.getPrenom());
-        label_adresse.setText(obj.getAdresse());
-        label_tel.setText(String.valueOf(obj.getNum_tel()));
-        label_bio.setText(obj.getBio());
-        if(!pdao.checknum(UserService.getCurrentUser().getEmail())){
-            confirmer_num.setVisible(true);
-        }else{
-            confirmer_num.setVisible(false);
-        }
         
-        btngérer.setOnAction(event -> {
+        
+btnprofil.setOnAction(event -> {
             try {
                 
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/gérer_profil.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admingérercompte.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -109,7 +98,7 @@ public class UserprofilController implements Initializable {
         });
         btnmdp.setOnAction(event -> {
             try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/changer_mdp.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admin_changer_mdp.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -118,13 +107,9 @@ public class UserprofilController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        btnsupprimer.setOnAction(event -> {
-           
-                            
-
-            pdao.updatevalidité(id);
+        btninfo.setOnAction(event -> {
             try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/adminprofil.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -132,11 +117,10 @@ public class UserprofilController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
-       
         });
-        confirmer_num.setOnAction(event -> {
+        reclamations.setOnAction(event -> {
             try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/confirmer_num.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admin_reclamations.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -145,16 +129,21 @@ public class UserprofilController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
-        
-            
-        
-
-        
-
     }
-}
     
-  
-    
+public static int getI() {
+        return i;
+    }
 
+    /**
+     * @param aI the i to set
+     */
+    public static void setI(int aI) {
+        i = aI;
+    }    
+
+    @FXML
+    private void verifusername(KeyEvent event) {
+    }
+    
+}

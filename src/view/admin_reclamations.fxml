@@ -3,18 +3,20 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AfficheruserdetailsController">
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controller.Admin_reclamationsController">
    <children>
-      <AnchorPane layoutX="-2.0" layoutY="-7.0" prefHeight="522.0" prefWidth="279.0" style="-fx-background-color: #936c6c;">
+      <AnchorPane layoutX="-13.0" layoutY="-4.0" prefHeight="522.0" prefWidth="279.0" style="-fx-background-color: #936c6c;">
          <children>
             <AnchorPane prefHeight="552.0" prefWidth="250.0" style="-fx-background-color: #343E3D;">
                <children>
@@ -72,7 +74,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="btnuser" blendMode="SRC_ATOP" layoutX="25.0" layoutY="299.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Les utilisateurs" textAlignment="CENTER">
+                  <Button fx:id="btnprofil1" blendMode="SRC_ATOP" layoutX="25.0" layoutY="299.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Les utilisateurs" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -80,7 +82,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="reclamation" blendMode="SRC_ATOP" layoutX="25.0" layoutY="475.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #414e4d; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Les réclamations" textAlignment="CENTER">
+                  <Button fx:id="btnoeuvres1" blendMode="SRC_ATOP" layoutX="26.0" layoutY="484.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #414e4d; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Les réclamations" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -95,45 +97,21 @@
             <Insets right="1.0" />
          </padding>
       </AnchorPane>
-      <VBox layoutX="276.0" layoutY="-9.0" prefHeight="553.0" prefWidth="441.0">
+      <VBox layoutX="265.0" layoutY="-6.0" prefHeight="553.0" prefWidth="441.0">
          <children>
-            <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Informations réclamation" translateX="60.0" translateY="50.0" />
-            <HBox prefHeight="30.0" prefWidth="430.0" style="-fx-background-color: #f4f0f0;" translateY="120.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Nom :" translateX="60.0" />
-                  <Label fx:id="label_nom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom" translateX="80.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="150.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="sujet" translateX="60.0" />
-                  <Label fx:id="label_sujet" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="sujet" translateX="70.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="160.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Bio : " translateX="60.0" />
-                  <Label fx:id="label_bio" prefHeight="23.0" prefWidth="309.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="bio" translateX="70.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="170.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Role :" translateX="60.0" />
-                  <Label fx:id="label_role" prefHeight="23.0" prefWidth="98.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="role" translateX="70.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="180.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Statut" translateX="60.0" />
-                  <Label fx:id="label_statut" text="statut" translateX="100.0" translateY="4.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="190.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Cv" translateX="60.0" />
-                  <Label fx:id="label_cv" prefHeight="23.0" prefWidth="98.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="CV" translateX="70.0" />
-               </children>
-            </HBox>
+            <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Les réclamations" translateX="60.0" translateY="50.0" />
+            <ComboBox fx:id="filter" onAction="#comboAction" prefWidth="150.0" promptText="filter by" translateX="260.0" translateY="100.0" />
+            <TableView fx:id="reclamationsTable" prefHeight="326.0" prefWidth="402.0" translateY="130.0">
+               <columns>
+                  <TableColumn fx:id="nom" prefWidth="79.0" text="nom" />
+                  <TableColumn fx:id="sujet" prefWidth="67.0" text="sujet" />
+                  <TableColumn fx:id="description" prefWidth="178.0" text="description" />
+                  <TableColumn fx:id="date" prefWidth="75.0" text="date" />
+               </columns>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </TableView>
          </children>
          <padding>
             <Insets right="1.0" />

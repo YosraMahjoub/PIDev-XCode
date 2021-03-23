@@ -83,6 +83,14 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
+                        <Button fx:id="reclamation" blendMode="SRC_ATOP" layoutX="25.0" layoutY="482.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="les réclamations" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
                      </children>
                   </AnchorPane>
                </children>
@@ -96,11 +104,10 @@
                   <ComboBox fx:id="filter" onAction="#comboAction" prefWidth="150.0" promptText="filter by" translateX="260.0" translateY="100.0" />
                   <TableView fx:id="personsTable" prefHeight="326.0" prefWidth="367.0" translateY="130.0">
                     <columns>
-                      <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
-                      <TableColumn fx:id="username" prefWidth="75.0" text="username" />
-                        <TableColumn fx:id="nom" prefWidth="75.0" text="nom" />
-                        <TableColumn fx:id="prenom" prefWidth="75.0" text="prenom" />
-                        <TableColumn fx:id="email" prefWidth="75.0" text="Email" />
+                      <TableColumn fx:id="username" prefWidth="98.0" text="username" />
+                        <TableColumn fx:id="nom" prefWidth="85.0" text="nom" />
+                        <TableColumn fx:id="prenom" prefWidth="78.0" text="prenom" />
+                        <TableColumn fx:id="email" prefWidth="118.0" text="Email" />
                     </columns>
                      <VBox.margin>
                         <Insets left="30.0" right="30.0" />

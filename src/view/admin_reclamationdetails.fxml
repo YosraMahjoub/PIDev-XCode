@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AfficheruserdetailsController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Admin_reclamationdetailsController">
    <children>
-      <AnchorPane layoutX="-2.0" layoutY="-7.0" prefHeight="522.0" prefWidth="279.0" style="-fx-background-color: #936c6c;">
+      <AnchorPane layoutX="-10.0" layoutY="-11.0" prefHeight="522.0" prefWidth="279.0" style="-fx-background-color: #936c6c;">
          <children>
             <AnchorPane prefHeight="552.0" prefWidth="250.0" style="-fx-background-color: #343E3D;">
                <children>
@@ -80,7 +82,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="reclamation" blendMode="SRC_ATOP" layoutX="25.0" layoutY="475.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #414e4d; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Les réclamations" textAlignment="CENTER">
+                  <Button fx:id="reclamations" blendMode="SRC_ATOP" layoutX="26.0" layoutY="485.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #414e4d; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Les réclamations" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -95,44 +97,69 @@
             <Insets right="1.0" />
          </padding>
       </AnchorPane>
-      <VBox layoutX="276.0" layoutY="-9.0" prefHeight="553.0" prefWidth="441.0">
+      <VBox layoutX="269.0" layoutY="5.0" prefHeight="536.0" prefWidth="454.0" style="-fx-background-color: white;">
          <children>
-            <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Informations réclamation" translateX="60.0" translateY="50.0" />
-            <HBox prefHeight="30.0" prefWidth="430.0" style="-fx-background-color: #f4f0f0;" translateY="120.0">
+            <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Informations réclamations" translateX="60.0" translateY="40.0" />
+            <HBox prefHeight="36.0" prefWidth="420.0" style="-fx-background-color: #f4f0f0;" translateY="120.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Nom :" translateX="60.0" />
-                  <Label fx:id="label_nom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom" translateX="80.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Nom produit " translateX="30.0" translateY="5.0" />
+                  <Label fx:id="label_nomP" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom produit" translateX="50.0" translateY="5.0" />
+                  <Label fx:id="err_prenom" translateX="80.0" translateY="10.0" />
                </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
             </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="150.0">
+            <HBox prefHeight="30.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="130.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="sujet" translateX="60.0" />
-                  <Label fx:id="label_sujet" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="sujet" translateX="70.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Sujet" translateX="30.0" />
+                  <Label fx:id="err_adresse" translateX="50.0" translateY="7.0" />
+                  <Label fx:id="label_sujet" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="sujet" translateX="50.0" />
                </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
             </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="160.0">
+            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="140.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Bio : " translateX="60.0" />
-                  <Label fx:id="label_bio" prefHeight="23.0" prefWidth="309.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="bio" translateX="70.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="utilisateur" translateX="30.0" />
+                  <Label fx:id="err_num" translateX="50.0" translateY="6.0" />
+                  <Label fx:id="label_user" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="user" translateX="50.0" />
                </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
             </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="170.0">
+            <VBox prefHeight="140.0" prefWidth="316.0" style="-fx-background-color: #f4f0f0;" translateY="170.0" VBox.vgrow="NEVER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Role :" translateX="60.0" />
-                  <Label fx:id="label_role" prefHeight="23.0" prefWidth="98.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="role" translateX="70.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Description" translateX="60.0" translateY="12.0" />
+                  <Label fx:id="label_desc" prefHeight="90.0" prefWidth="367.0" translateX="20.0" translateY="12.0">
+                     <effect>
+                        <Blend opacity="0.0" />
+                     </effect>
+                  </Label>
                </children>
-            </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="180.0">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </VBox>
+            <Button fx:id="btninsert" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #a65959; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Valider" translateX="145.0" translateY="190.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <HBox onKeyPressed="#verifusername" prefHeight="36.0" prefWidth="420.0" style="-fx-background-color: #f4f0f0;" translateY="-200.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Statut" translateX="60.0" />
-                  <Label fx:id="label_statut" text="statut" translateX="100.0" translateY="4.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="nom réclamation" translateX="30.0" translateY="5.0" />
+                  <Label fx:id="label_nom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom" translateX="50.0" translateY="5.0" />
+                  <Label fx:id="err_username" prefHeight="17.0" prefWidth="63.0" translateX="50.0" translateY="10.0" />
                </children>
-            </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="190.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Cv" translateX="60.0" />
-                  <Label fx:id="label_cv" prefHeight="23.0" prefWidth="98.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="CV" translateX="70.0" />
-               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
             </HBox>
          </children>
          <padding>

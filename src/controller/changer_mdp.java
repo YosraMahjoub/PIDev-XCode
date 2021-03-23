@@ -39,8 +39,6 @@ public class changer_mdp implements Initializable {
     @FXML
     private Button btnmdp;
     @FXML
-    private Button btnrole;
-    @FXML
     private Button btnformation;
     @FXML
     private Button btnevenement;
@@ -63,6 +61,8 @@ public class changer_mdp implements Initializable {
      private User user;
     @FXML
     private Button btninfo;
+    @FXML
+    private Button reclamation;
 
     /**
      * Initializes the controller class.
@@ -140,6 +140,17 @@ public class changer_mdp implements Initializable {
         btninfo.setOnAction(event -> {
             try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/view/Userprofil.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        reclamation.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admin_reclamations.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);

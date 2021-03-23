@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConfiremailController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Confirmer_numController">
    <children>
-      <AnchorPane layoutX="-1.0" layoutY="-6.0" prefHeight="522.0" prefWidth="279.0" style="-fx-background-color: #936c6c;">
+      <AnchorPane layoutY="-6.0" prefHeight="522.0" prefWidth="279.0" style="-fx-background-color: #936c6c;">
          <children>
             <AnchorPane prefHeight="552.0" prefWidth="250.0" style="-fx-background-color: #343E3D;">
                <children>
@@ -36,7 +36,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="btnformation" blendMode="SRC_ATOP" layoutX="25.0" layoutY="269.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes formation" textAlignment="CENTER">
+                  <Button fx:id="btnformation" blendMode="SRC_ATOP" layoutX="26.0" layoutY="270.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes formation" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -44,7 +44,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="btnevenement" blendMode="SRC_ATOP" layoutX="26.0" layoutY="315.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes évenements" textAlignment="CENTER">
+                  <Button fx:id="btnevenement" blendMode="SRC_ATOP" layoutX="26.0" layoutY="311.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes évenements" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -52,7 +52,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="btnoeuvres" blendMode="SRC_ATOP" layoutX="25.0" layoutY="360.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes Oeuvres" textAlignment="CENTER">
+                  <Button fx:id="btnoeuvres" blendMode="SRC_ATOP" layoutX="26.0" layoutY="351.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes Oeuvres" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -60,7 +60,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="btnfavories" blendMode="SRC_ATOP" layoutX="26.0" layoutY="400.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Favories" textAlignment="CENTER">
+                  <Button fx:id="btnfavories" blendMode="SRC_ATOP" layoutX="25.0" layoutY="393.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Favories" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -73,7 +73,7 @@
                         <Image url="@Deafult-Profile-Pitcher-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnsupp" blendMode="SRC_ATOP" layoutX="25.0" layoutY="443.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Supprimer compte" textAlignment="CENTER">
+                  <Button fx:id="btnsupp" blendMode="SRC_ATOP" layoutX="26.0" layoutY="437.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Supprimer compte" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -89,7 +89,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="reclamation" blendMode="SRC_ATOP" layoutX="22.0" layoutY="483.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes réclamations" textAlignment="CENTER">
+                  <Button fx:id="reclamation" blendMode="SRC_ATOP" layoutX="26.0" layoutY="480.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes réclamations" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -104,9 +104,9 @@
             <Insets right="1.0" />
          </padding>
       </AnchorPane>
-      <VBox fx:id="mot_actuel" layoutX="275.0" layoutY="-7.0" prefHeight="552.0" prefWidth="461.0" style="-fx-background-color: white;">
+      <VBox fx:id="mot_actuel" layoutX="276.0" layoutY="-7.0" prefHeight="552.0" prefWidth="461.0" style="-fx-background-color: white;">
          <children>
-            <Label prefHeight="35.0" prefWidth="331.0" style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Confirmer adresse mail" translateX="60.0" translateY="40.0" />
+            <Label prefHeight="35.0" prefWidth="331.0" style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Confirmer numero téléphone" translateX="60.0" translateY="40.0" />
             <HBox prefHeight="36.0" prefWidth="420.0" style="-fx-background-color: #f4f0f0;" translateY="220.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="code" translateX="60.0" translateY="5.0" />

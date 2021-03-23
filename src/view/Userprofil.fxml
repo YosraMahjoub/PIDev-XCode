@@ -68,7 +68,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="btnfavories" blendMode="SRC_ATOP" layoutX="25.0" layoutY="430.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Favories" textAlignment="CENTER">
+                  <Button fx:id="btnfavories" blendMode="SRC_ATOP" layoutX="25.0" layoutY="421.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Favories" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -81,7 +81,7 @@
                         <Image url="@Deafult-Profile-Pitcher-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnsupprimer" blendMode="SRC_ATOP" layoutX="25.0" layoutY="475.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Supprimer compte" textAlignment="CENTER">
+                  <Button fx:id="btnsupprimer" blendMode="SRC_ATOP" layoutX="25.0" layoutY="463.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Supprimer compte" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -90,6 +90,22 @@
                      </opaqueInsets>
                   </Button>
                   <Button fx:id="btninfo" blendMode="SRC_ATOP" layoutX="26.0" layoutY="136.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #414e4d; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes informations" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="btnsupprimer1" blendMode="SRC_ATOP" layoutX="26.0" layoutY="463.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Supprimer compte" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="btnsupprimer11" blendMode="SRC_ATOP" layoutX="25.0" layoutY="496.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Réclamations" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -131,13 +147,14 @@
                   <Insets left="20.0" right="20.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="110.0">
+            <Button fx:id="confirmer_num" mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" text="confirmer" translateX="320.0" translateY="138.0" />
+            <HBox prefHeight="37.0" prefWidth="214.0" style="-fx-background-color: #f4f0f0;" translateY="110.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Numero :" translateX="60.0" />
                   <Label fx:id="label_tel" style="-fx-font-size: 1.3em;" text="num_tel" translateX="70.0" />
                </children>
                <VBox.margin>
-                  <Insets left="20.0" right="20.0" />
+                  <Insets left="20.0" right="150.0" />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="120.0">
@@ -149,7 +166,7 @@
                   <Insets left="20.0" right="20.0" />
                </VBox.margin>
             </HBox>
-            <VBox prefHeight="140.0" prefWidth="316.0" style="-fx-background-color: #f4f0f0;" translateY="200.0" VBox.vgrow="NEVER">
+            <VBox prefHeight="140.0" prefWidth="316.0" style="-fx-background-color: #f4f0f0;" translateY="170.0" VBox.vgrow="NEVER">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Bio" translateX="60.0" translateY="20.0" />
                   <Label fx:id="label_bio" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Bio " translateX="130.0" translateY="-2.0" />

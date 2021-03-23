@@ -46,25 +46,23 @@ public class AfficheruserdetailsController implements Initializable {
     private Button btnuser;
     @FXML
     private Label label_nom;
-    @FXML
     private Label label_prenom;
-    @FXML
     private Label label_adresse;
-    @FXML
     private Label label_tel;
-    @FXML
     private Label label_email;
     @FXML
     private Label label_bio;
     @FXML
     private Label label_role;
     @FXML
-    private Text label_statut;
-    @FXML
-    private Text label_statut1;
+    private Label label_statut;
     @FXML
     private Label label_cv;
     private static int i;
+    @FXML
+    private Label label_sujet;
+    @FXML
+    private Button reclamation;
 
     /**
      * Initializes the controller class.
@@ -107,7 +105,18 @@ public class AfficheruserdetailsController implements Initializable {
         });
         btnmdp.setOnAction(event -> {
             try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/changer_mdp.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admin_changer_mdp.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        reclamation.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admin_reclamations.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);

@@ -17,44 +17,45 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import service.UserService;
+import utils.hashpassword;
 
 /**
  * FXML Controller class
  *
  * @author asus
  */
-public class AdminprofilController implements Initializable {
+public class Admin_changer_mdpController implements Initializable {
 
     @FXML
-    private Button btnprofil;
+    private VBox mot_actuel;
     @FXML
-    private Button btnmdp;
+    private PasswordField mt_actuel;
     @FXML
-    private Button btnformation;
+    private PasswordField mot_nv;
     @FXML
-    private Button btnevenement;
+    private PasswordField mot_conf;
     @FXML
-    private Button btnoeuvres;
+    private Button btninsert;
     @FXML
-    private Button btninfo;
+    private Button btnprofil1;
     @FXML
-    private Label label_nom;
+    private Button btnmdp1;
     @FXML
-    private Label label_prenom;
+    private Button btnformation1;
     @FXML
-    private Label label_adresse;
+    private Button btnevenement1;
     @FXML
-    private Label label_tel;
+    private Button btnoeuvres1;
     @FXML
-    private Label label_email;
+    private Button btninfo1;
     @FXML
-    private Button btnuser;
-    @FXML
-    private Button confirmer_num;
+    private Button btnuser1;
     @FXML
     private Button reclamation;
 
@@ -63,29 +64,46 @@ public class AdminprofilController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       btninsert.setOnAction(event -> {
+            hashpassword hash = new hashpassword();
+            User p = new User(mot_nv.getText() );
+            UserService pdao = new UserService();
+            int id =UserService.getCurrentUser().getUser_id(); 
+            String email = UserService.getCurrentUser().getEmail(); 
+            System.out.println(id);
+            if(!(hash.checkPass(mt_actuel.getText(), pdao.displayAuth(email).getPassword()))){
+                
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+
+                alert.setHeaderText("le mot de passe actuel est incorrect");
+                alert.showAndWait();
+            }
+            if(! mot_nv.getText().equals(mot_conf.getText())){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+
+                    alert.setHeaderText("les mots de passe ne sont pas identiques");
+                    alert.showAndWait();
+            }else{
+            String hashp = hash.hashPassword(mot_conf.getText());
+            pdao.updateMDP(id, hashp);
+            User obj = pdao.displayById(id);
+            System.out.println(obj.toString());
+            UserService.setCurrentUser(obj);
+            
         
-        UserService pdao=new UserService();
-        
-        int id = UserService.getCurrentUser().getUser_id();
-        System.out.println(id);
-        User obj = pdao.displayById(id);
-        
-        
-        
-        
-        label_nom.setText(obj.getNom());
-        label_email.setText(obj.getEmail());
-        label_prenom.setText(obj.getPrenom());
-        label_adresse.setText(obj.getAdresse());
-        label_tel.setText(String.valueOf(obj.getNum_tel()));
-        if(!pdao.checknum(UserService.getCurrentUser().getEmail())){
-            confirmer_num.setVisible(true);
-        }else{
-            confirmer_num.setVisible(false);
-        }
-        
-        
-        btnprofil.setOnAction(event -> {
+            
+        try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/adminprofil.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+        });
+       btnprofil1.setOnAction(event -> {
             try {
                 
                 Parent page1 = FXMLLoader.load(getClass().getResource("/view/admingérercompte.fxml"));
@@ -98,9 +116,9 @@ public class AdminprofilController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        btnmdp.setOnAction(event -> {
+       btninfo1.setOnAction(event -> {
             try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admin_changer_mdp.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/adminprofil.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -109,20 +127,9 @@ public class AdminprofilController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        btnuser.setOnAction(event -> {
+       btnuser1.setOnAction(event -> {
             try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/view/afficher_user.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-        confirmer_num.setOnAction(event -> {
-            try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/confirmer_num.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -142,14 +149,6 @@ public class AdminprofilController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
-            
-        
-
-        
-
-    }
-        // TODO
     }    
     
-
+}

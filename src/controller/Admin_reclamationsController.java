@@ -5,9 +5,10 @@
  */
 package controller;
 
-import entities.User;
+import entities.Reclamation;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,14 +29,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import service.UserService;
+import service.ReclamationService;
 
 /**
  * FXML Controller class
  *
  * @author asus
  */
-public class Afficher_userController implements Initializable {
+public class Admin_reclamationsController implements Initializable {
 
     @FXML
     private Button btnprofil;
@@ -52,52 +53,48 @@ public class Afficher_userController implements Initializable {
     @FXML
     private Button btnprofil1;
     @FXML
+    private Button btnoeuvres1;
+    @FXML
     private ComboBox<String> filter;
-    private ObservableList<User> persons=FXCollections.observableArrayList();
     @FXML
-    private TableView<User> personsTable;
+    private TableColumn<Reclamation, String> nom;
     @FXML
-    private TableColumn<User, String> username;
+    private TableColumn<Reclamation, String> sujet;
     @FXML
-    private TableColumn<User, String> nom;
+    private TableColumn<Reclamation, String> description;
+    private TableView<Reclamation> reclamationTable;
+    private ObservableList<Reclamation> reclamations=FXCollections.observableArrayList();
     @FXML
-    private TableColumn<User, String> prenom;
+    private TableView<Reclamation> reclamationsTable;
     @FXML
-    private TableColumn<User, String> email;
-    @FXML
-    private Button reclamation;
+    private TableColumn<Reclamation, Date> date;
+
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        ObservableList<String> cat = FXCollections.observableArrayList("vendeur", "formateur","recruteur","client","validé","non validé","les utilisateurs");
+        ObservableList<String> cat = FXCollections.observableArrayList("evenements", "formations","oeuvres","tous les réclamations");
         filter.setItems(cat);
+        ReclamationService recla = new ReclamationService();
+        reclamations =(ObservableList<Reclamation>)recla.displayAll();
+        reclamationsTable.setItems(reclamations);
         
-        UserService pdao=new UserService();
+        nom.setCellValueFactory(new PropertyValueFactory<>("reclamation_nom"));
+        sujet.setCellValueFactory(new PropertyValueFactory<>("sujet"));
+        description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
         
-        //personsTable.setItems(persons);
-        //id.setCellValueFactory(new PropertyValueFactory<>("user_id"));
-        username.setCellValueFactory(new PropertyValueFactory<>("username"));
-        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        persons=(ObservableList<User>) pdao.displayAll();
-        personsTable.setItems(persons);
-        
-        
-        personsTable.setOnMouseClicked((MouseEvent event) -> {
+        reclamationsTable.setOnMouseClicked((MouseEvent event) -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
                 
-                User u = personsTable.getSelectionModel().getSelectedItem();
-                int i = u.getUser_id();
-                AfficheruserdetailsController.setI(i);
-                System.out.println(u.getNom());
+                Reclamation r = reclamationsTable.getSelectionModel().getSelectedItem();
+                int i = r.getReclamation_id();
+                Admin_reclamationdetailsController.setI(i);
                 try {
 
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/afficheruserdetails.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admin_reclamationdetails.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -106,8 +103,9 @@ public class Afficher_userController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }
-        });
+                }
+       
+    });
         btnprofil.setOnAction(event -> {
             try {
                 
@@ -143,61 +141,34 @@ public class Afficher_userController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        reclamation.setOnAction(event -> {
-            try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admin_reclamations.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-    }
-        
-        
+                }
+                    
 
     @FXML
     private void comboAction(ActionEvent event) {
-        
-        UserService pdao = new UserService();
+        ReclamationService pdao = new ReclamationService();
         String x =filter.getValue();
-        if(x=="les utilisateurs"){
-            persons=(ObservableList<User>) pdao.displayAll();
-            personsTable.setItems(persons);
-            
-        }
         
-        if(x=="vendeur"){
-            String statut = "is_vendeur";
-            persons = (ObservableList<User>) pdao.displaystatut(statut);
-            personsTable.setItems(persons);
+        
+        if(x=="formations"){
+            String statut = "formation_id";
+           reclamations=(ObservableList<Reclamation>) pdao.displaystatut(statut);
+           reclamationsTable.setItems(reclamations);
             
         }
-        if(x=="formateur"){
-            String statut = "is_formateur";
-            persons =(ObservableList<User>)  pdao.displaystatut(statut); 
-            personsTable.setItems(persons);
+        if(x=="evenements"){
+            String statut = "evenement_id";
+            reclamations=(ObservableList<Reclamation>) pdao.displaystatut(statut);
+            reclamationsTable.setItems(reclamations);
         }
-        if(x=="recruteur"){
-            String statut = "is_recruteur";
-           persons = (ObservableList<User>) pdao.displaystatut(statut);  
-           personsTable.setItems(persons);
+        if(x=="oeuvres"){
+            String statut = "oeuvrage_id";
+           reclamations=(ObservableList<Reclamation>) pdao.displaystatut(statut);
+           reclamationsTable.setItems(reclamations);
         }
-        if(x=="client"){
-            persons =(ObservableList<User>)  pdao.displayrole();  
-            personsTable.setItems(persons);
-        }
-        if(x=="validé"){
-            int i=1;
-            persons = (ObservableList<User>) pdao.displayvalidité(i);
-            personsTable.setItems(persons);
-        }
-        if(x=="non validé"){
-            int i=0;
-            persons = (ObservableList<User>) pdao.displayvalidité(i);
-            personsTable.setItems(persons);
+        if(x=="tous les réclamations"){
+            reclamations=(ObservableList<Reclamation>) pdao.displayAll();
+           reclamationsTable.setItems(reclamations);
         }
     }
     

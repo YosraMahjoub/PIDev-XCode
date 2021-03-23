@@ -82,6 +82,8 @@ public class AdmingérercompteController implements Initializable {
     private ImageView img;
     controlsaisie controle = new controlsaisie();
     File file;
+    @FXML
+    private Button reclamations;
     /**
      * Initializes the controller class.
      */
@@ -139,7 +141,7 @@ public class AdmingérercompteController implements Initializable {
 
         btnmdp.setOnAction(event -> {
             try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/view/changer_mdp.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admin_changer_mdp.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -152,6 +154,17 @@ public class AdmingérercompteController implements Initializable {
         btninfo.setOnAction(event -> {
             try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/view/adminprofil.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        reclamations.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admin_reclamations.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);

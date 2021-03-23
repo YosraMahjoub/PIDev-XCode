@@ -161,7 +161,7 @@ public class UserService implements Idao<User>{
 
     @Override
     public User displayById(int id) {
-        List<User> listeUser = new ArrayList<User>();
+       
         try{
         String req = "Select * from user where user_id = ?";
         PreparedStatement st = conn.prepareStatement(req);
@@ -182,6 +182,10 @@ public class UserService implements Idao<User>{
             obj.setBio(rs.getString("bio"));
             obj.setAdresse(rs.getString("adresse"));
             //obj.setImage(rs.getString("image"));
+            int x = rs.getInt("validité");
+            if(x==1){
+                 obj.setValidité("valide");
+            }else{ obj.setValidité("compte supprimé");};
 
            
             return obj;
@@ -229,6 +233,34 @@ public class UserService implements Idao<User>{
             
             
             i = rs.getInt("mailconfirmé");
+            if(i==1){ x = true;}
+            else{ x=false;}
+
+           
+            
+        }
+        } catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());}
+        return x;
+    }
+    public boolean checknum(String email)  {
+        boolean x = false;
+        int i ;
+        try{
+        
+        String req = "Select numconfirmé from user where email = ? ";
+        PreparedStatement st = conn.prepareStatement(req);
+        st.setString(1, email);
+        
+        ResultSet rs = st.executeQuery();
+        
+        
+
+        if (rs.next()) {
+            
+            
+            i = rs.getInt("numconfirmé");
             if(i==1){ x = true;}
             else{ x=false;}
 
@@ -294,6 +326,11 @@ public class UserService implements Idao<User>{
             obj.setPrenom(rs.getString("prenom"));
             obj.setBio(rs.getString("bio"));
             obj.setAdresse(rs.getString("adresse"));
+            int x = rs.getInt("validité");
+            if(x==1){
+                 obj.setValidité("valide");
+            }else{ obj.setValidité("compte supprimé");};
+           
             //obj.setImage(rs.getString("image"));
 
            
@@ -357,6 +394,25 @@ public class UserService implements Idao<User>{
     }
     public void updatmailconfirmé(int id) {
         String req="UPDATE user SET mailconfirmé=? WHERE  `user_id`= ?";
+        PreparedStatement ps;
+        try { 
+            ps =conn.prepareStatement(req); 
+            
+             
+            ps.setInt(1,1);
+           
+            
+            ps.setInt(2,id);
+
+            
+            ps.executeUpdate() ; 
+            
+        } catch (SQLException ex) {
+           System.out.println("Impossible de modifier un utilisateur"+ex.getMessage());
+        }
+    }
+     public void updatnumconfirmé(int id) {
+        String req="UPDATE user SET numconfirmé=? WHERE  `user_id`= ?";
         PreparedStatement ps;
         try { 
             ps =conn.prepareStatement(req); 
