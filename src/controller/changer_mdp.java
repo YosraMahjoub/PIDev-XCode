@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import service.UserService;
@@ -63,6 +64,14 @@ public class changer_mdp implements Initializable {
     private Button btninfo;
     @FXML
     private Button reclamation;
+    @FXML
+    private HBox hi;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private HBox hello;
+    @FXML
+    private Button ADD;
 
     /**
      * Initializes the controller class.

@@ -24,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javax.mail.MessagingException;
@@ -68,6 +69,14 @@ public class ConfiremailController implements Initializable {
     private Label label;
     @FXML
     private Button reclamation;
+    @FXML
+    private HBox hi;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private HBox hello;
+    @FXML
+    private Button ADD;
 
     /**
      * Initializes the controller class.

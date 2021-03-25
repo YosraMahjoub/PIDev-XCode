@@ -105,6 +105,12 @@ this.prenom=prenom;
         this.password=password;
         this.image=image;    }
 
+    public User(int user_id, String username, String email) {
+        this.username=username;
+        this.email=email;
+        this.user_id=user_id;
+    }
+
     
     public int getUser_id() {
         return user_id;

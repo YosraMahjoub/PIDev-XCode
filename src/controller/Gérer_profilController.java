@@ -29,6 +29,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
@@ -84,7 +85,6 @@ public class Gérer_profilController implements Initializable {
     private Label err_email;
     @FXML
     private Label err_username;
-    @FXML
     private ImageView img;
     private User user;
     File file;
@@ -92,6 +92,14 @@ public class Gérer_profilController implements Initializable {
     private Button btninfo;
     @FXML
     private Button reclamation;
+    @FXML
+    private HBox hi;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button ADD;
+    @FXML
+    private Button btnannuler;
 
     /**
      * Initializes the controller class.
@@ -144,7 +152,7 @@ public class Gérer_profilController implements Initializable {
                     stage.setScene(scene);
                     stage.show();
                 } catch (IOException ex) {
-                    Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Gérer_profilController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -157,7 +165,18 @@ public class Gérer_profilController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Gérer_profilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+         btnannuler.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/Userprofil.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(Gérer_profilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         btnsupp.setOnAction(event -> {
@@ -171,7 +190,7 @@ public class Gérer_profilController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Gérer_profilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         btninfo.setOnAction(event -> {
@@ -182,7 +201,7 @@ public class Gérer_profilController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Gérer_profilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         reclamation.setOnAction(event -> {
@@ -193,7 +212,7 @@ public class Gérer_profilController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Gérer_profilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
 
@@ -227,7 +246,6 @@ public class Gérer_profilController implements Initializable {
         }
     }
 
-    @FXML
     private void Chercheimg(MouseEvent event) throws FileNotFoundException, IOException {
         Stage primary = new Stage();
         File dest = new File("C:\\xampp\\htdocs\\PI\\IMG");

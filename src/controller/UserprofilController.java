@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import service.UserService;
 
@@ -34,8 +35,6 @@ public class UserprofilController implements Initializable {
     private Button btngérer;
     @FXML
     private Button btnmdp;
-    @FXML
-    private Button btnrole;
     @FXML
     private Button btnformation;
     @FXML
@@ -66,9 +65,21 @@ public class UserprofilController implements Initializable {
     @FXML
     private Button confirmer_num;
     @FXML
-    private Button btnsupprimer1;
-    @FXML
     private Button btnsupprimer11;
+    @FXML
+    private HBox hi;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Label label_abonnees;
+    @FXML
+    private Label label_jaime;
+    @FXML
+    private Label label_nbarticle;
+    @FXML
+    private HBox hello;
+    @FXML
+    private Button ADD;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     

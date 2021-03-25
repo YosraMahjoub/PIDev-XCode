@@ -158,6 +158,103 @@ public class UserService implements Idao<User>{
         } 
         return list;
     }
+    public ObservableList<User> displayvendeurs() {
+        ObservableList<User> list=FXCollections.observableArrayList(); 
+        
+        try
+        {
+            
+            ResultSet res;
+            
+            String req ="select * from user where is_vendeur=?";
+            PreparedStatement st = conn.prepareStatement(req);
+            st.setInt(1, 1);
+            res= st.executeQuery();
+            while(res.next())
+            {
+                int id = res.getInt("user_id");
+                String userName=res.getString("username");
+                String email=res.getString("email"); 
+                String password=res.getString("password"); 
+                String roles=res.getString("role"); 
+                String nom=res.getString("nom"); 
+                String prenom=res.getString("prenom");
+                String image=res.getString("image"); 
+                User user = new User(id, userName,  email);
+                list.add(user);
+            }
+        }
+          catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());
+        } 
+        return list;
+    }
+    public ObservableList<User> displayformateurs() {
+        ObservableList<User> list=FXCollections.observableArrayList(); 
+        
+        try
+        {
+            
+            ResultSet res;
+            
+            String req ="select * from user where is_formateur=?";
+            PreparedStatement st = conn.prepareStatement(req);
+            st.setInt(1, 1);
+            res= st.executeQuery();
+            while(res.next())
+            {
+                int id = res.getInt("user_id");
+                String userName=res.getString("username");
+                String email=res.getString("email"); 
+                String password=res.getString("password"); 
+                String roles=res.getString("role"); 
+                String nom=res.getString("nom"); 
+                String prenom=res.getString("prenom");
+                String image=res.getString("image"); 
+                User user = new User(id, userName,  email);
+                list.add(user);
+            }
+        }
+          catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());
+        } 
+        return list;
+    }
+    public ObservableList<User> displayrecruteurs() {
+        ObservableList<User> list=FXCollections.observableArrayList(); 
+        
+        try
+        {
+            
+            ResultSet res;
+            
+            String req ="select * from user where is_recruteur=?";
+            PreparedStatement st = conn.prepareStatement(req);
+            st.setInt(1, 1);
+            res= st.executeQuery();
+            while(res.next())
+            {
+                int id = res.getInt("user_id");
+                String userName=res.getString("username");
+                String email=res.getString("email"); 
+                String password=res.getString("password"); 
+                String roles=res.getString("role"); 
+                String nom=res.getString("nom"); 
+                String prenom=res.getString("prenom");
+                String image=res.getString("image"); 
+                User user = new User(id, userName,  email);
+                list.add(user);
+            }
+        }
+          catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());
+        } 
+        return list;
+    }
+
 
     @Override
     public User displayById(int id) {
@@ -190,6 +287,65 @@ public class UserService implements Idao<User>{
            
             return obj;
         }
+        } catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());}
+        return null;
+    }
+    public User displayusername(String username) {
+       
+        try{
+        String req = "Select * from user where username = ?";
+        PreparedStatement st = conn.prepareStatement(req);
+        st.setString(1, username);
+        ResultSet rs = st.executeQuery();
+        
+
+        if (rs.next()) {
+            User obj = new User();
+            obj.setUser_id(rs.getInt("user_id"));
+            obj.setUsername(rs.getString("username"));
+            obj.setEmail(rs.getString("email"));
+            obj.setPassword(rs.getString("password"));
+            obj.setRole(rs.getString("role"));
+            obj.setNom(rs.getString("nom"));
+            obj.setNum_tel(rs.getInt("num_tel"));
+            obj.setPrenom(rs.getString("prenom"));
+            obj.setBio(rs.getString("bio"));
+            obj.setAdresse(rs.getString("adresse"));
+            //obj.setImage(rs.getString("image"));
+            int x = rs.getInt("validité");
+            if(x==1){
+                 obj.setValidité("valide");
+            }else{ obj.setValidité("compte supprimé");};
+
+           
+            return obj;
+        }
+        } catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());}
+        return null;
+    }
+    public String displayrole(String username) {
+       String x="";
+        try{
+        String req = "Select * from user where username = ?";
+        PreparedStatement st = conn.prepareStatement(req);
+        st.setString(1, username);
+        ResultSet rs = st.executeQuery();
+        
+
+        if (rs.next()) {
+            
+            int is_formateur = rs.getInt("is_formateur");
+            int is_recruteur = rs.getInt("is_recruteur");
+            int is_vendeur = rs.getInt("is_vendeur");
+            
+            if(is_formateur==0){x="formateur" ;}
+            if(is_recruteur==0){x= " / "+"recruteur";}
+            if(is_vendeur==0){x= " / "+"vendeur";}
+            return x; }
         } catch(Exception e)
         {
            System.out.println("Erreur d'affichage"+e.getMessage());}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -14,104 +14,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="541.0" prefWidth="727.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Gérer_profilController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Gérer_profilController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="9.0" prefHeight="522.0" prefWidth="727.0" />
-      <AnchorPane id="AnchorPane" layoutX="-5.0" layoutY="-2.0" prefHeight="533.0" prefWidth="737.0">
+      <AnchorPane id="AnchorPane" layoutX="-5.0" layoutY="-2.0" prefHeight="620.0" prefWidth="1008.0">
          <children>
-            <AnchorPane prefHeight="522.0" prefWidth="279.0" style="-fx-background-color: #936c6c;">
+            <VBox layoutX="461.0" layoutY="115.0" prefHeight="421.0" prefWidth="506.0" style="-fx-background-color: white;" translateX="-200.0" translateY="10.0">
                <children>
-                  <AnchorPane prefHeight="544.0" prefWidth="250.0" style="-fx-background-color: #343E3D;">
-                     <children>
-                        <Accordion layoutX="83.0" layoutY="85.0" />
-                        <Button fx:id="btnprofil" blendMode="SRC_ATOP" layoutX="25.0" layoutY="190.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #414e4d; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Gérer mon profil" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Button>
-                        <Button fx:id="btnmdp" blendMode="SRC_ATOP" layoutX="25.0" layoutY="231.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Changer mot de passe" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Button>
-                        <Button fx:id="btnformation" blendMode="SRC_ATOP" layoutX="26.0" layoutY="272.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes formation" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Button>
-                        <Button fx:id="btnevenement" blendMode="SRC_ATOP" layoutX="25.0" layoutY="305.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes évenements" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Button>
-                        <Button fx:id="btnoeuvres" blendMode="SRC_ATOP" layoutX="25.0" layoutY="345.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes Oeuvres" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Button>
-                        <Button fx:id="btnfavories" blendMode="SRC_ATOP" layoutX="26.0" layoutY="384.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Favories" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Button>
-                        <ImageView fx:id="img" fitHeight="94.0" fitWidth="93.0" layoutX="79.0" layoutY="31.0" onMouseClicked="#Chercheimg" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Deafult-Profile-Pitcher-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="btnsupp" blendMode="SRC_ATOP" layoutX="25.0" layoutY="428.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Supprimer compte" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Button>
-                        <Button fx:id="btninfo" blendMode="SRC_ATOP" layoutX="26.0" layoutY="148.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes informations" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Button>
-                        <Button fx:id="reclamation" blendMode="SRC_ATOP" layoutX="25.0" layoutY="467.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes réclamations" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-               </children>
-               <padding>
-                  <Insets right="1.0" />
-               </padding>
-            </AnchorPane>
-            <VBox layoutX="276.0" layoutY="-1.0" prefHeight="544.0" prefWidth="461.0" style="-fx-background-color: white;">
-               <children>
-                  <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Gérer profil" translateX="60.0" translateY="40.0" />
-                  <HBox prefHeight="36.0" prefWidth="420.0" style="-fx-background-color: #f4f0f0;" translateY="100.0">
+                  <HBox prefHeight="36.0" prefWidth="420.0" style="-fx-background-color: #f4f0f0;" translateY="65.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Nom :" translateX="30.0" translateY="5.0" />
                         <TextField fx:id="text_nom" onKeyPressed="#verifprenom" prefHeight="25.0" prefWidth="62.0" promptText="nom" translateX="40.0" translateY="5.0" />
@@ -127,7 +36,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="30.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="110.0">
+                  <HBox prefHeight="30.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="72.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Adresse :" translateX="30.0" />
                         <TextField fx:id="text_adresse" prefHeight="25.0" prefWidth="95.0" promptText="adresse" translateX="40.0" />
@@ -137,7 +46,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="119.0">
+                  <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="80.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Numero :" translateX="30.0" />
                         <TextField fx:id="text_num" onKeyPressed="#verifnum" prefHeight="25.0" prefWidth="134.0" promptText="numero" translateX="40.0" />
@@ -147,7 +56,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="130.0">
+                  <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="88.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Email :" translateX="30.0" />
                         <TextField fx:id="text_email" promptText="email" translateX="40.0" />
@@ -157,7 +66,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <VBox prefHeight="140.0" prefWidth="316.0" style="-fx-background-color: #f4f0f0;" translateY="150.0" VBox.vgrow="NEVER">
+                  <VBox prefHeight="140.0" prefWidth="316.0" style="-fx-background-color: #f4f0f0;" translateY="120.0" VBox.vgrow="NEVER">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Bio" translateX="60.0" translateY="12.0" />
                         <TextField fx:id="test_bio" prefHeight="85.0" prefWidth="420.0" translateY="20.0">
@@ -173,12 +82,7 @@
                         <DropShadow />
                      </effect>
                   </VBox>
-                  <Button fx:id="btninsert" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #a65959; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Valider" translateX="145.0" translateY="175.0">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Button>
-                  <HBox onKeyPressed="#verifusername" prefHeight="36.0" prefWidth="420.0" style="-fx-background-color: #f4f0f0;" translateY="-255.0">
+                  <HBox onKeyPressed="#verifusername" prefHeight="36.0" prefWidth="420.0" style="-fx-background-color: #f4f0f0;" translateY="-260.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Username" translateX="30.0" translateY="5.0" />
                         <TextField fx:id="text_username" onKeyPressed="#verifinom" prefHeight="25.0" prefWidth="84.0" promptText="username" translateX="40.0" translateY="5.0" />
@@ -193,8 +97,163 @@
                   <Insets right="1.0" />
                </padding>
             </VBox>
+            <HBox fx:id="hi" alignment="CENTER_RIGHT" layoutX="230.0" prefHeight="75.0" prefWidth="777.0" style="-fx-background-color: #343E3D;">
+                <children>
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Emplois" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="BRIEFCASE" size="22" />
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="113.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="formations" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="MORTAR_BOARD" size="22" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button layoutX="23.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="événements" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="22" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="oeuvres" mnemonicParsing="false" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="œuvres" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_BAG" size="22" />
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Profil" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="USER" size="22" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button layoutX="23.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="114.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="SIGN_IN" size="22" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="6.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="232.0" style="-fx-background-color: #343E3D; -fx-background-radius: 0;">
+               <children>
+                  <Button fx:id="ADD" mnemonicParsing="false" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="22" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <ImageView fitHeight="133.0" fitWidth="137.0" layoutX="810.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Deafult-Profile-Pitcher-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnannuler" layoutX="797.0" layoutY="556.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #a65959; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Annuler">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btninsert" layoutX="797.0" layoutY="509.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #a65959; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Valider">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
+      <VBox alignment="CENTER" layoutX="16.0" layoutY="94.0" prefHeight="502.0" prefWidth="206.0" style="-fx-background-color: #343E3D; -fx-background-radius: 25;">
+         <children>
+            <Button fx:id="btninfo" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #414e4d; -fx-background-radius: 20;" text="Mes informations" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnprofil" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Gérer mon profil" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnmdp" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Changer mot de passe" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnformation" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: #343E3D;" text="Mes formation" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnevenement" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Mes évenements" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnoeuvres" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Mes Oeuvres" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnfavories" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Favories" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="reclamation" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: #343E3D;" text="Réclamations" textAlignment="CENTER" textFill="WHITE" translateY="90.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnsupp" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #a65959; -fx-background-radius: 20;" text="Supprimer compte" textAlignment="CENTER" textFill="WHITE" translateY="90.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+         </children>
+      </VBox>
    </children>
    <padding>
       <Insets right="-10.0" top="-10.0" />
