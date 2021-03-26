@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1092.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InscrController">
+    <stylesheets>
+        <URL value="@affmesoeuves.css" />
+    </stylesheets>
+    <children>
+      <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="600.0" prefWidth="320.0" style="-fx-background-color: #FFFFFF;" styleClass="right-bar" stylesheets="@affmesoeuves.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="159.0" prefWidth="382.0">
+                     <children>
+                        <Pane prefHeight="96.0" prefWidth="382.0" style="-fx-background-color: #343E3D;">
+                           <children>
+                              <Button fx:id="ADD1" layoutX="50.0" layoutY="23.0" mnemonicParsing="false" onAction="#accueil" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="22" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="33.0" />
+                           </HBox.margin>
+                        </Pane>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="320.0" text="Les formations" textAlignment="CENTER" textFill="#878787">
+                           <font>
+                              <Font name="Cambria Bold" size="39.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox fx:id="chosenFruitCard" alignment="CENTER" focusTraversable="true" layoutX="277.0" layoutY="92.0" prefHeight="463.0" prefWidth="337.0" styleClass="oeuvre-choisi" stylesheets="@affmesoeuves.css">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label fx:id="nomO" alignment="TOP_LEFT" prefHeight="38.0" prefWidth="179.0" text="Nom:" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="20.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="img" fitHeight="164.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Desktop/esprit/xcode_pidev/src/xcode/img/icon-carte.png" />
+                           </image>
+                        </ImageView>
+                        <HBox fillHeight="false" prefHeight="38.0" prefWidth="305.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="20.0" right="10.0" />
+                           </padding>
+                           <children>
+                              <Label fx:id="descO" alignment="TOP_LEFT" prefHeight="51.0" prefWidth="277.0" text="Description:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label fx:id="prixo" prefHeight="50.0" prefWidth="171.0" text="Prix" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <children>
+                              <Separator prefHeight="0.0" prefWidth="118.0" />
+                              <Separator prefHeight="0.0" prefWidth="118.0" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="inscrit" mnemonicParsing="false" onAction="#afficherFor" prefHeight="35.0" prefWidth="258.0" styleClass="add-btn" stylesheets="@affmesoeuves.css" text="Afficher" textFill="#828282">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <Pane prefHeight="26.0" prefWidth="382.0" />
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="744.0" prefWidth="834.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="85.0" prefWidth="563.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <Pane prefHeight="100.0" prefWidth="996.0" style="-fx-background-color: #343E3D;">
+                           <children>
+                              <Button layoutX="443.0" layoutY="23.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Profil" textFill="WHITE">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="USER" size="22" />
+                                 </graphic>
+                              </Button>
+                              <Button layoutX="291.0" layoutY="23.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Evénements" textFill="WHITE">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="22" />
+                                 </graphic>
+                              </Button>
+                              <Button layoutX="138.0" layoutY="23.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Formations" textFill="WHITE">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="MORTAR_BOARD" size="22" />
+                                 </graphic>
+                              </Button>
+                              <Button layoutX="569.0" layoutY="23.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textAlignment="CENTER" textFill="WHITE">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="SIGN_IN" size="22" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="ADD" layoutX="-71.0" layoutY="19.0" mnemonicParsing="false" onAction="#ajoutttt" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: b7b7b7;" styleClass="search-button" stylesheets="@affmesoeuves.css" text="Devenir un formateur?" textFill="WHITE" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="69.0" prefWidth="522.0" stylesheets="@affmesoeuves.css" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <Pane prefHeight="69.0" prefWidth="191.0" style="-fx-background-color: F4F0F0;" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="cher" onAction="#chercher" prefHeight="40.0" prefWidth="184.0" promptText="tapez ici" styleClass="transparent" stylesheets="@affmesoeuves.css">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria Bold" size="18.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="rechbtn" minWidth="45.0" mnemonicParsing="false" onAction="#rechercheO" prefHeight="46.0" prefWidth="47.0" style="-fx-background-radius: 200;" styleClass="search-button" stylesheets="@../../../../../Desktop/PIDev-XCode-gestion-oeuvre/src/xcode/views/affmesoeuves.css" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="18" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <ComboBox fx:id="tri" onAction="#TriparPrix" opacity="0.0" prefWidth="150.0" promptText="Trier par" />
+                        <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: b7b7b7;" text="Trier par">
+                           <items>
+                              <MenuItem fx:id="triTitre" mnemonicParsing="false" onAction="#triTitre" text="date" />
+                              <MenuItem fx:id="prixT" mnemonicParsing="false" onAction="#TriparPrix" text="prix" />
+                           </items>
+                        </MenuButton>
+                       
+                                 </children>
+                     <styleClass>
+                        <String fx:value="search-box" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="300.0" prefWidth="277.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="scrollO" prefHeight="406.0" prefWidth="773.0" styleClass="transparent">
+                           <content>
+                              <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                           <HBox.margin>
+                              <Insets top="40.0" />
+                           </HBox.margin>
+                        </ScrollPane>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
