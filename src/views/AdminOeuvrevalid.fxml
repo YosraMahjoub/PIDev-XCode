@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminOeuvrevalidController">
@@ -17,47 +16,58 @@
         <URL value="@../Style/adminoeuvrevalid.css" />
     </stylesheets>
     <children>
-      <Pane layoutX="68.0" layoutY="85.0" prefHeight="470.0" prefWidth="1002.0">
+      <Pane layoutY="86.0" prefHeight="515.0" prefWidth="1000.0">
          <children>
-            <Label fx:id="adesco" alignment="TOP_LEFT" layoutX="39.0" layoutY="298.0" prefHeight="206.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;">
+            <Label fx:id="adesco" alignment="TOP_LEFT" layoutX="63.0" layoutY="278.0" prefHeight="159.0" prefWidth="285.0" style="-fx-background-color: F4F0F0;">
                <font>
-                  <Font size="16.0" />
+                  <Font size="14.0" />
                </font></Label>
-            <ImageView fx:id="imgV" fitHeight="183.0" fitWidth="243.0" layoutX="50.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="aqteo" alignment="TOP_LEFT" layoutX="381.0" layoutY="429.0" prefHeight="54.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;">
+            <ImageView fx:id="imgV" fitHeight="170.0" fitWidth="230.0" layoutX="63.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="aqteo" alignment="TOP_LEFT" layoutX="408.0" layoutY="380.0" prefHeight="45.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;">
                <font>
-                  <Font size="16.0" />
+                  <Font size="14.0" />
                </font></Label>
-            <Label fx:id="aprixo" alignment="TOP_LEFT" layoutX="380.0" layoutY="346.0" prefHeight="54.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;">
+            <Label fx:id="aprixo" alignment="TOP_LEFT" layoutX="408.0" layoutY="290.0" prefHeight="45.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;">
                <font>
-                  <Font size="16.0" />
+                  <Font size="14.0" />
                </font></Label>
-            <Label fx:id="adomaino" alignment="TOP_LEFT" layoutX="380.0" layoutY="257.0" prefHeight="54.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;">
+            <Label fx:id="adomaino" alignment="TOP_LEFT" layoutX="408.0" layoutY="200.0" prefHeight="45.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;">
                <font>
-                  <Font size="16.0" />
+                  <Font size="14.0" />
                </font></Label>
-            <Label fx:id="anomo" alignment="TOP_LEFT" layoutX="380.0" layoutY="177.0" prefHeight="54.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;">
+            <Label fx:id="anomo" alignment="TOP_LEFT" layoutX="408.0" layoutY="110.0" prefHeight="45.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;">
                <font>
-                  <Font size="16.0" />
+                  <Font size="14.0" />
                </font></Label>
-            <Button fx:id="valider" layoutX="750.0" layoutY="271.0" mnemonicParsing="false" onAction="#validerO" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #D36A6A;" text="valider" textFill="WHITE">
+            <Button fx:id="supprimer" layoutX="769.0" layoutY="397.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #D36A6A;" text="annuler " textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="TRASH_ALT" size="22" />
+               </graphic>
             </Button>
-            <Button fx:id="annulero" layoutX="750.0" layoutY="368.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #D36A6A;" text="annuler" textFill="WHITE">
+            <Label fx:id="vendeur" alignment="CENTER" layoutX="783.0" layoutY="200.0" prefHeight="17.0" prefWidth="120.0" text="user" textAlignment="CENTER">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font size="14.0" />
                </font>
+            </Label>
+            <Button layoutX="775.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#voirprofil" prefHeight="138.0" prefWidth="138.0" style="-fx-background-radius: 360; -fx-border-color: #000000; -fx-border-radius: 360;" />
+            <Button fx:id="valid" layoutX="769.0" layoutY="336.0" mnemonicParsing="false" onAction="#valider" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #D36A6A;" text="valider" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CHECK_SQUARE_ALT" size="22" />
+               </graphic>
             </Button>
-            <Circle fill="#f4f0f0" layoutX="562.0" layoutY="80.0" radius="61.0" stroke="#343e3d" strokeType="INSIDE" />
          </children>
       </Pane>
-        <HBox alignment="CENTER_RIGHT" prefHeight="85.0" prefWidth="1137.0" style="-fx-background-color: #343E3D;">
-                     <children>
+        <HBox alignment="CENTER_RIGHT" prefHeight="85.0" prefWidth="1000.0" style="-fx-background-color: #343E3D;">
+                    <children>
                           <HBox prefHeight="85.0" prefWidth="275.0" style="-fx-background-color: #343E3D;">
                      <children>
-                        <Pane prefHeight="85.0" prefWidth="321.0" translateX="-145.0">
+                        <Pane prefHeight="85.0" prefWidth="321.0" translateX="-121.0">
                            <children>
                               <Button fx:id="home" layoutX="24.0" layoutY="23.0" mnemonicParsing="false" onAction="#accueil" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE">
                                   <font>
@@ -110,7 +120,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="deconnexion" layoutX="23.0" mnemonicParsing="false" onAction="#deconnecter" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textFill="WHITE">
+                        <Button fx:id="Deconnexion" layoutX="23.0" mnemonicParsing="false" onAction="#deconnecter" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textFill="WHITE">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="SIGN_IN" size="22" />
                            </graphic>

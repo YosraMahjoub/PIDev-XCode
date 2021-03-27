@@ -40,7 +40,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.OeuvrageService;
 import org.apache.commons.io.FileUtils;
-import service.UserService;
+
 import utils.ControleSaisie;
 
 /**
@@ -73,8 +73,7 @@ public class AjouterOeuvreController implements Initializable {
     
      ControleSaisie controle = new ControleSaisie();
     OeuvrageService os = new OeuvrageService();
-      UserService pdao = new UserService();
-        int id =UserService.getCurrentUser().getUser_id(); 
+     
     String nameCat = "" ;
     File file ;
     @FXML
@@ -162,7 +161,7 @@ public class AjouterOeuvreController implements Initializable {
         o1.setQuantite( qteo.getValue());
         o1.setImg(file.getName());
 //            System.out.println(o1.getIsvalid());
-        os.ajouterO(o1,id);       
+        os.ajouterO(o1,1);       
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Oeuvre ajouté ☺ ");
             alert.setContentText("oeuvre ajouté avec sucèes ☺ ");

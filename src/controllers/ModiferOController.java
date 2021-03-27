@@ -165,9 +165,15 @@ public class ModiferOController implements Initializable {
     @FXML
     private void CLICK(ActionEvent event) {
         
-        desco.setText("");
-        nomo.setText(""); 
-        prixo.setText("");
+      try {
+         File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + s.getImg());
+          imgV.setImage(new Image(newFile2.toURI().toString()));
+          nomo.setText(s.getNom());
+          prixo.setText(String.valueOf(s.getPrix()));
+          desco.setText(s.getDescription());
+          domaino.setValue(s.getDoamine());
+        } catch (Exception e) {
+        }
         
     }
     

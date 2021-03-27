@@ -71,7 +71,7 @@ public void setData(Oeuvre oeuvre, MyListener myListener) {
         }
         if (oeuvre.getIsvalid()==2){
             valido.setText("n'est pas validé");
-            anchorpane.setStyle("-fx-background-color: #F4F0F0");
+            anchorpane.setStyle("-fx-background-color: #C3C0C0");
         }
 
         img.setImage(new Image(newFile2.toURI().toString()));

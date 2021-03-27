@@ -57,7 +57,7 @@ public class Xcode_pidev extends Application {
 this.primaryStage = primaryStage;
         this.primaryStage.setTitle("gestion des œuvres");
         
-        parentPage = FXMLLoader.load(getClass().getResource("/views/Signup.fxml"));
+        parentPage = FXMLLoader.load(getClass().getResource("/views/adminconsulterOeuvre.fxml"));
         Scene scene = new Scene(parentPage);
         this.primaryStage.setScene(scene);
         this.primaryStage.show();

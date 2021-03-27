@@ -27,6 +27,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import entities.Oeuvre;
+import javafx.scene.input.MouseEvent;
+import service.OeuvrageService;
 
 /**
  * FXML Controller class
@@ -36,11 +38,7 @@ import entities.Oeuvre;
 public class AdmindetailoeuvreController implements Initializable {
 
     @FXML
-    private Button gest;
-    @FXML
     private Button form;
-    @FXML
-    private Button event;
     @FXML
     private Button oeuvres;
     @FXML
@@ -55,40 +53,69 @@ public class AdmindetailoeuvreController implements Initializable {
     private Label adomaino;
     @FXML
     private Label anomo;
-    @FXML
-    private Button acc;
-    @FXML
-    private Button SUPP;
 
     /**
      * Initializes the controller class.
      */
     
          private static Oeuvre a ;
+         OeuvrageService os = new OeuvrageService();
     
  public static void setOeuvre (Oeuvre o ){
         a=o;
     }
     @FXML
-    private Button stat;
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button events;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
+    @FXML
+    private Button supprimer;
+    @FXML
+    private Label vendeur;
+    @FXML
+    private Button recclam;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + a.getImg());
           imgV.setImage(new Image(newFile2.toURI().toString()));
-          anomo.setText("Nom : "+ a.getNom());
-          aprixo.setText("Prix : "+ String.valueOf(a.getPrix())+"DT");
-          adesco.setText("A propos : " +a.getDescription());
-          adomaino.setText("Dans le domaine : " +a.getDoamine());
-          aqteo.setText("Quantité : "+ String.valueOf(a.getQuantite()));
+          anomo.setText("Nom : \n"+ a.getNom());
+          aprixo.setText("Prix :\n "+ String.valueOf(a.getPrix())+" DT");
+          adesco.setText("A propos :\n " +a.getDescription());
+          adomaino.setText("Dans le domaine : \n" +a.getDoamine());
+          aqteo.setText("Quantité : \n"+ String.valueOf(a.getQuantite()));
        
     }    
 
     @FXML
     private void accueil(ActionEvent event) {
-        
       
-        try {
+        
+    }
+
+   
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+          try {
             Parent page1 = FXMLLoader.load(getClass().getResource("/views/adminconsulterOeuvre.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -101,29 +128,44 @@ public class AdmindetailoeuvreController implements Initializable {
     }
 
     @FXML
-    private void oeuvre(ActionEvent event) {
-        
-        try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/adminconsulterOeuvre.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AdmindetailoeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    } 
+    private void gotoprofil(ActionEvent event) {
+    }
 
     @FXML
-    private void statque(ActionEvent event) {
-        try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/stato.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show(); 
-        } catch (IOException ex) {
-            Logger.getLogger(AdmindetailoeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void supprimer(ActionEvent event) {
+          if(alert("Voulez vous vraiment supprimer cet oeuvre de la liste").get()==ButtonType.OK)
+       {
+             os.nvalider(a);
+             a.setIsvalid(2);
+             System.out.println(a.getIsvalid());
+              try { 
+             Parent page1 = FXMLLoader.load(getClass().getResource("/views/adminconsulterOeuvre.fxml"));
+             Scene scene = new Scene(page1);
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(scene);
+             stage.show();
+         } catch (IOException ex) {
+             Logger.getLogger(AdminOeuvrevalidController.class.getName()).log(Level.SEVERE, null, ex);
+         } 
+       } 
+    }
+       private Optional<ButtonType> alert(String deux) {
+        Alert alert = new Alert( Alert.AlertType.CONFIRMATION);
+        alert.setTitle("validation");
+        alert.setHeaderText("validation");      
+        alert.setContentText(deux);
+        return alert.showAndWait();
+    }
+
+    @FXML
+    private void voirprofil(MouseEvent event) {
+    }
+
+    @FXML
+    private void reclamer(ActionEvent event) {
     }
 }

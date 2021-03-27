@@ -44,6 +44,9 @@ import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 import Iservice.MyListener;
 import entities.Oeuvre;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import service.OeuvrageService;
 
 /**
@@ -53,20 +56,10 @@ import service.OeuvrageService;
  */
 public class AdminconsulterOeuvreController implements Initializable {
 
-    @FXML
-    private VBox chosenFruitCard;
-    @FXML
     private Label nomO;
-    @FXML
     private Label prixo;
-    @FXML
     private ImageView imgO;
-    @FXML
     private Label descO;
-    @FXML
-    private Button affd;
-    @FXML
-    private Button supprimerO;
     @FXML
     private TextField recho;
     @FXML
@@ -75,20 +68,27 @@ public class AdminconsulterOeuvreController implements Initializable {
     private ScrollPane scrollO;
     @FXML
     private GridPane grid;
-    @FXML
-    private Button dashboard;
-    @FXML
-    private HBox taper;
 
-   
-    
-    
     
     private MyListener myListener;
     OeuvrageService os = new OeuvrageService();
     private Oeuvre oi;
     @FXML
-    private Button oeuvre;
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
+    @FXML
+    private ComboBox<String>   combov;
     
     /**
      * Initializes the controller class.
@@ -96,10 +96,14 @@ public class AdminconsulterOeuvreController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ObservableList<String> vald = FXCollections.observableArrayList("oeuvre validé", "oeuvre en attente","oeuvre non validé");
+        combov.setItems(vald);
+        
+        
          if (os.nbNV(0)>= 1){
          
         String titre = "Oeuvre non valid ";
-        String msg = "vous avez des noeuveux oeuvres non valid ! Veuillez consultez votre dashbord ";
+        String msg = "vous avez des noeuveux oeuvres non valid ! Veuillez les voir ";
         TrayNotification tray = new TrayNotification();
         AnimationType type = AnimationType.FADE;
         
@@ -113,26 +117,64 @@ public class AdminconsulterOeuvreController implements Initializable {
         
         
         List<Oeuvre> listOeuvre =new ArrayList<>();
-           listOeuvre.addAll(os.afficherLOV());
+           listOeuvre.addAll(os.displayAll());
            
            
            if (listOeuvre.size() > 0) {
-               System.out.println(listOeuvre.get(0));
-                setChosenO(listOeuvre.get(0));
                 myListener = new MyListener() {
                     @Override
                     public void onClickListener(MouseEvent event ,Oeuvre oeuvre) {
-
-                        setChosenO(oeuvre);
+                           if (oeuvre.getIsvalid()==1){
+           try {
+                            AdmindetailoeuvreController.setOeuvre(oeuvre);
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/admindetailoeuvre.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+        }
+        if (oeuvre.getIsvalid()==0){
+             try {
+                            AdminOeuvrevalidController.setOeuvre(oeuvre);
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminOeuvrevalid.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+        }
+        if (oeuvre.getIsvalid()==2){
+           
+           try {
+                            AdminOeuvrevalidController.setOeuvre(oeuvre);
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminOeuvrevalid.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+         
+            
+        }
+                       
                     }
                 };
             }
            int column = 0;
             int row = 1;
-           try {
+         
                 for (int i = 0; i < listOeuvre.size(); i++) {
 
-                   FXMLLoader fxmlLoader = new FXMLLoader();
+            try {
+                
+               FXMLLoader fxmlLoader = new FXMLLoader();
                    fxmlLoader.setLocation(getClass().getResource("/views/afficherOeuvre.fxml"));
                    AnchorPane anchorPane = fxmlLoader.load();
 
@@ -154,40 +196,14 @@ public class AdminconsulterOeuvreController implements Initializable {
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
                 GridPane.setMargin(anchorPane, new Insets(10));
+            } catch (IOException ex) {
+                Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 }
-                } catch (IOException ex) {
-                   Logger.getLogger(AffmesoeuvesController.class.getName()).log(Level.SEVERE, null, ex);
-               }
-
-        
-        
     }    
 
-        private void setChosenO(Oeuvre o) {
-        nomO.setText(o.getNom());
-        prixo.setText((o.getPrix())+"DT");
-        descO.setText(o.getDescription());
-                File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + o.getImg());
+      
 
-        //image = new Image(getClass().getResourceAsStream(o.getImg()));
-        imgO.setImage(new Image(newFile2.toURI().toString()));
-        oi=o;
-       
-    }    
-
-    @FXML
-    private void dashbord(ActionEvent event) {
-        
-        try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminOeuvrenotif.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    }
 
     
        private Optional<ButtonType> alert(String deux)
@@ -198,27 +214,28 @@ public class AdminconsulterOeuvreController implements Initializable {
         alert.setContentText(deux);
         return alert.showAndWait();
     }
-    @FXML
     private void supprimer(ActionEvent event) {
     if(alert("Voulez vous supprimer").get()==ButtonType.OK)
        {
-           os.supprimerO(oi);
-           try {
+        try {
+            os.supprimerO(oi);
+            
             Parent page1 = FXMLLoader.load(getClass().getResource("/views/adminconsulterOeuvre.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }  
        }
-    }
+    
 
     @FXML
     private void rechercher(ActionEvent event) {
         List<Oeuvre> listOeuvre =new ArrayList<>();
-       listOeuvre.addAll(os.afficherLOV());
+       listOeuvre.addAll(os.displayAll());
         boolean a = listOeuvre.stream().anyMatch(o -> o.getNom().equalsIgnoreCase(recho.getText()));
         System.out.println(a);
           
@@ -270,14 +287,11 @@ public class AdminconsulterOeuvreController implements Initializable {
             System.out.println(rechOeuvre.size() );
             
            if (rechOeuvre.size() > 0) {
-               System.out.println(rechOeuvre.get(0));
                
-                setChosenO(rechOeuvre.get(0));
                 myListener = new MyListener() {
                     @Override
                     public void onClickListener(MouseEvent event ,Oeuvre oeuvre) {
 
-                        setChosenO(oeuvre);
                     }
                 };
             }
@@ -317,13 +331,12 @@ public class AdminconsulterOeuvreController implements Initializable {
                }
     }
     }
-
+    
     @FXML
-    private void afficherd(ActionEvent event) {
+    private void allerauxoeuvres(ActionEvent event) {
         
-        try {
-            AdmindetailoeuvreController.setOeuvre(oi);
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/admindetailoeuvre.fxml"));
+         try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/adminconsulterOeuvre.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -331,16 +344,196 @@ public class AdminconsulterOeuvreController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
-       
-    }
-
-    @FXML
-    private void allerauxoeuvres(ActionEvent event) {
     }
 
     @FXML
     private void accueil(ActionEvent event) {
     }
-    
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+         try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/stato.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void filtrer(ActionEvent event) {
+        if(combov.getSelectionModel().getSelectedItem().equals("oeuvre validé")){
+          
+          List<Oeuvre> listOeuvreV =new ArrayList<>();
+           listOeuvreV.addAll(os.afficherLOV());
+            myListener = new MyListener() {
+                    @Override
+                    public void onClickListener(MouseEvent event ,Oeuvre oeuvre) {
+                        try {
+                            AdmindetailoeuvreController.setOeuvre(oeuvre);
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/admindetailoeuvre.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                };
+           
+           grid.getChildren().clear();
+           int column = 0;
+            int row = 1;
+         
+                for (int i = 0; i < listOeuvreV.size(); i++) {
+
+              try {
+                  FXMLLoader fxmlLoader = new FXMLLoader();
+                  fxmlLoader.setLocation(getClass().getResource("/views/afficherOeuvre.fxml"));
+                  AnchorPane anchorPane = fxmlLoader.load();
+                  
+                  AfficherOeuvreController itemController = fxmlLoader.getController();
+                  itemController.setData(listOeuvreV.get(i),myListener);
+                  
+                  if (column == 3) {
+                      column = 0;
+                      row++;
+                  }
+                  grid.add(anchorPane, column++, row);
+                  
+                  //(child,column,row)
+                  //set grid width
+                  grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                  grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                  grid.setMaxWidth(Region.USE_PREF_SIZE);
+                  //set grid height
+                  grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                  grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                  grid.setMaxHeight(Region.USE_PREF_SIZE);
+                  GridPane.setMargin(anchorPane, new Insets(10));
+              } catch (IOException ex) {
+                  Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+              } }
+        }
+        
+         if(combov.getSelectionModel().getSelectedItem().equals("oeuvre en attente")){
+          
+          List<Oeuvre> listOeuvreV =new ArrayList<>();
+           listOeuvreV.addAll(os.afficherLONV());
+            myListener = new MyListener() {
+                    @Override
+                    public void onClickListener(MouseEvent event ,Oeuvre oeuvre) {
+                          try {
+                            AdminOeuvrevalidController.setOeuvre(oeuvre);
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminOeuvrevalid.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                };
+           
+           grid.getChildren().clear();
+           int column = 0;
+            int row = 1;
+         
+                for (int i = 0; i < listOeuvreV.size(); i++) {
+
+              try {
+                  FXMLLoader fxmlLoader = new FXMLLoader();
+                  fxmlLoader.setLocation(getClass().getResource("/views/afficherOeuvre.fxml"));
+                  AnchorPane anchorPane = fxmlLoader.load();
+                  
+                  AfficherOeuvreController itemController = fxmlLoader.getController();
+                  itemController.setData(listOeuvreV.get(i),myListener);
+                  
+                  if (column == 3) {
+                      column = 0;
+                      row++;
+                  }
+                  grid.add(anchorPane, column++, row);
+                  
+                  //(child,column,row)
+                  //set grid width
+                  grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                  grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                  grid.setMaxWidth(Region.USE_PREF_SIZE);
+                  //set grid height
+                  grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                  grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                  grid.setMaxHeight(Region.USE_PREF_SIZE);
+                  GridPane.setMargin(anchorPane, new Insets(10));
+              } catch (IOException ex) {
+                  Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+              } }
+        }
+         if(combov.getSelectionModel().getSelectedItem().equals("oeuvre non validé")){
+          
+          List<Oeuvre> listOeuvreV =new ArrayList<>();
+           listOeuvreV.addAll(os.afficherLOR());
+            myListener = new MyListener() {
+                    @Override
+                    public void onClickListener(MouseEvent event ,Oeuvre oeuvre) {
+                    
+                    }
+                };
+           grid.getChildren().clear();
+           int column = 0;
+            int row = 1;
+         
+                for (int i = 0; i < listOeuvreV.size(); i++) {
+
+              try {
+                  FXMLLoader fxmlLoader = new FXMLLoader();
+                  fxmlLoader.setLocation(getClass().getResource("/views/afficherOeuvre.fxml"));
+                  AnchorPane anchorPane = fxmlLoader.load();
+                  
+                  AfficherOeuvreController itemController = fxmlLoader.getController();
+                  itemController.setData(listOeuvreV.get(i),myListener);
+                  
+                  if (column == 3) {
+                      column = 0;
+                      row++;
+                  }
+                  grid.add(anchorPane, column++, row);
+//                  //(child,column,row)
+
+                  //set grid width
+                  grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                  grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                  grid.setMaxWidth(Region.USE_PREF_SIZE);
+                  //set grid height
+                  grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                  grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                  grid.setMaxHeight(Region.USE_PREF_SIZE);
+                  GridPane.setMargin(anchorPane, new Insets(10));
+              } catch (IOException ex) {
+                  Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+              } }
+        }
+    }
 }

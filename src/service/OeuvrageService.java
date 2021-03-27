@@ -235,7 +235,34 @@ public class OeuvrageService implements IOeuvreService<Oeuvre>{
         }
         return listO;
     }
+  
     
+      public List<Oeuvre> afficherLOR() {
+        String req="SELECT * FROM `oeuvrage`WHERE `isvalid`=2";
+        List<Oeuvre> listO =new ArrayList<>();
+        try {
+           Statement ste = conx.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+                Oeuvre o1 =new Oeuvre();
+                o1.setOeuvrage_id(rs.getInt("Oeuvrage_id"));
+                o1.setUser_id(rs.getInt("user_id"));
+                o1.setNom(rs.getString("nom"));
+                o1.setDoamine(rs.getString("domaine"));
+                o1.setPrix(rs.getFloat("prix"));
+                o1.setQuantite(rs.getFloat("quantité"));
+                o1.setDescription(rs.getString("description"));
+                o1.setImg(rs.getString("image"));
+                o1.setIsvalid(rs.getInt("isvalid"));
+                listO.add(o1);
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(OeuvrageService.class.getName()).log(Level.SEVERE, null, ex);   
+        }
+        return listO;
+    }
     public int exist(String nom) {
             String req = "SELECT COUNT(oeuvrage_id) AS Nb FROM oeuvrage where nom = '"+nom+"' ";
             
@@ -275,7 +302,7 @@ return b;
                 o2.setDescription(rs.getString("description"));
                 o2.setImg(rs.getString("image"));
                 o2.setIsvalid(rs.getInt("isvalid"));
-                System.out.println(o2);
+               
                 
                 
             }}
@@ -307,7 +334,7 @@ return b;
                 o2.setDescription(rs.getString("description"));
                 o2.setImg(rs.getString("image"));
                 o2.setIsvalid(rs.getInt("isvalid"));
-                System.out.println(o2);
+             
                 
                 
             }}
@@ -338,9 +365,9 @@ return b;
                 o2.setPrix(rs.getFloat("prix"));
                 o2.setQuantite(rs.getFloat("quantité"));
                 o2.setDescription(rs.getString("description"));
-                o2.setDescription(rs.getString("image"));
+                o2.setImg(rs.getString("image"));
                 o2.setIsvalid(rs.getInt("isvalid"));
-                System.out.println(o2);
+                
            list.add(o2);
             }
             
@@ -378,13 +405,11 @@ return b;
         
          public int nbNV(int v) {
             String req = "SELECT COUNT(oeuvrage_id) AS Nb FROM oeuvrage where `isvalid`="+v+" AND user_id =1";
-            
             int b = 0;
           try {  
             Statement ste = conx.createStatement();
             ResultSet rs = ste.executeQuery(req);
             if (rs.next()) {
-                
                 b =rs.getInt("nb");
            }
           } catch (SQLException ex) {

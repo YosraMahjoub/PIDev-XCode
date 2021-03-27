@@ -44,7 +44,7 @@ import tray.notification.TrayNotification;
 import Iservice.MyListener;
 import entities.Oeuvre;
 import service.OeuvrageService;
-import service.UserService;
+
 
 /**
  * FXML Controller class
@@ -101,8 +101,7 @@ public class AffmesoeuvesController implements Initializable {
     private Button profil;
     @FXML
     private Button deconnexion;
-      UserService pdao = new UserService();
-        int id =UserService.getCurrentUser().getUser_id(); 
+   
     
     
 
@@ -160,7 +159,7 @@ public class AffmesoeuvesController implements Initializable {
 
         private void setChosenO(Oeuvre o) {
         nomO.setText(o.getNom());
-        prixo.setText((o.getPrix())+"DT");
+        prixo.setText((o.getPrix())+" DT");
         descO.setText(o.getDescription());
                 File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + o.getImg());
 
@@ -296,7 +295,7 @@ public class AffmesoeuvesController implements Initializable {
             System.out.println(rechOeuvre.size() );
             
            if (rechOeuvre.size() > 0) {
-               System.out.println(rechOeuvre.get(0));
+              
                
                 setChosenO(rechOeuvre.get(0));
                 myListener = new MyListener() {

@@ -124,7 +124,7 @@ BorderPane root;
                 @Override
                 public void handle(MouseEvent event) {
                   
-                    int inputs = JOptionPane.showConfirmDialog(null,"vendeur :"+data.getName()+ "  a "+(int)data.getPieValue()+" oeuvres.","Voulez vous voir ce profil",JOptionPane.YES_NO_OPTION);
+                    int inputs = JOptionPane.showConfirmDialog(null,"vendeur : "+data.getName()+ "  a "+(int)data.getPieValue()+" oeuvres.","Voulez vous voir ce profil",JOptionPane.YES_NO_OPTION);
                     System.out.println(inputs);
                           if (inputs == 0){
                               

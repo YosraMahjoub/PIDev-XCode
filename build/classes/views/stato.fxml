@@ -23,11 +23,11 @@
    <children>
       <BorderPane prefHeight="600.0" prefWidth="1000.0">
          <top>
-            <HBox alignment="CENTER_RIGHT" prefHeight="85.0" prefWidth="1000.0" style="-fx-background-color: #343E3D;">
+             <HBox alignment="CENTER_RIGHT" prefHeight="85.0" prefWidth="1000.0" style="-fx-background-color: #343E3D;">
                     <children>
                           <HBox prefHeight="85.0" prefWidth="275.0" style="-fx-background-color: #343E3D;">
                      <children>
-                        <Pane prefHeight="85.0" prefWidth="321.0" translateX="-145.0">
+                        <Pane prefHeight="85.0" prefWidth="321.0" translateX="-121.0">
                            <children>
                               <Button fx:id="home" layoutX="24.0" layoutY="23.0" mnemonicParsing="false" onAction="#accueil" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE">
                                   <font>

@@ -27,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import entities.Oeuvre;
+import javafx.scene.input.MouseEvent;
 import service.OeuvrageService;
 
 /**
@@ -50,10 +51,6 @@ public class AdminOeuvrevalidController implements Initializable {
     private Label adomaino;
     @FXML
     private Label anomo;
-    @FXML
-    private Button valider;
-    @FXML
-    private Button annulero;
     
     OeuvrageService os = new OeuvrageService();
      private static Oeuvre a ;
@@ -72,17 +69,27 @@ public class AdminOeuvrevalidController implements Initializable {
     @FXML
     private Button profil;
     @FXML
-    private Button deconnexion;
+    private Button supprimer;
+    @FXML
+    private Label vendeur;
+    @FXML
+    private Button valid;
+    @FXML
+    private Button Deconnexion;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+       if (a.getIsvalid()==2){
+           supprimer.setVisible(false);
+       }
          File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + a.getImg());
           imgV.setImage(new Image(newFile2.toURI().toString()));
-          anomo.setText("Nom : "+ a.getNom());
-          aprixo.setText("Prix : "+ String.valueOf(a.getPrix())+"DT");
-          adesco.setText("A propos : " +a.getDescription());
-          adomaino.setText("Dans le domaine : " +a.getDoamine());
-          aqteo.setText("Quantité : "+ String.valueOf(a.getQuantite()));
+          anomo.setText("Nom :\n "+ a.getNom());
+          aprixo.setText("Prix :\n "+ String.valueOf(a.getPrix())+" DT");
+          adesco.setText("A propos : \n" +a.getDescription());
+          adomaino.setText("Dans le domaine : \n" +a.getDoamine());
+          aqteo.setText("Quantité : \n"+ String.valueOf(a.getQuantite()));
        
     }  
     
@@ -94,46 +101,24 @@ public class AdminOeuvrevalidController implements Initializable {
         return alert.showAndWait();
     }
 
-    @FXML
-    private void validerO(ActionEvent event) {
-    if(alert("Voulez vous vraiment valider cet oeuvre").get()==ButtonType.OK)
-       {
-           os.valider(a);
-           a.setIsvalid(1);
-         
-           System.out.println(a.getIsvalid());
-                   
-           try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminOeuvrenotif.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-       }
-    
-    }
 
     @FXML
     private void supprimer(ActionEvent event) {
         
      if(alert("Voulez vous vraiment supprimer cet oeuvre de la liste").get()==ButtonType.OK)
        {
-           os.nvalider(a);
-           a.setIsvalid(2);
-           System.out.println(a.getIsvalid());
-                   
-           try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminOeuvrenotif.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+             os.nvalider(a);
+             a.setIsvalid(2);
+             System.out.println(a.getIsvalid());
+              try { 
+             Parent page1 = FXMLLoader.load(getClass().getResource("/views/adminconsulterOeuvre.fxml"));
+             Scene scene = new Scene(page1);
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(scene);
+             stage.show();
+         } catch (IOException ex) {
+             Logger.getLogger(AdminOeuvrevalidController.class.getName()).log(Level.SEVERE, null, ex);
+         } 
        }   
     }
 
@@ -163,6 +148,33 @@ public class AdminOeuvrevalidController implements Initializable {
 
     @FXML
     private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void voirprofil(MouseEvent event) {
+        
+    }
+
+    @FXML
+    private void valider(ActionEvent event) {
+           if(alert("Voulez vous vraiment valider cet oeuvre").get()==ButtonType.OK)
+       {
+           os.valider(a);
+           a.setIsvalid(1);
+         
+           System.out.println(a.getIsvalid());
+                   
+         try { 
+             Parent page1 = FXMLLoader.load(getClass().getResource("/views/adminconsulterOeuvre.fxml"));
+             Scene scene = new Scene(page1);
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(scene);
+             stage.show();
+         } catch (IOException ex) {
+             Logger.getLogger(AdminOeuvrevalidController.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+       }
     }
     
 }
