@@ -10,6 +10,7 @@
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="lib\AnimateFX-1.2.0.jar" size="85823" download="eager" />
     <jar href="lib\TrayTester.jar" size="52070" download="eager" />
+    <jar href="lib\commons-io-2.2.jar" size="173587" download="eager" />
     <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
     <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
     <jar href="lib\jBCrypt-0.4.1.jar" size="17570" download="eager" />
@@ -21,7 +22,7 @@
     <jar href="lib\org.apache.commons.io.jar" size="83613" download="eager" />
     <jar href="lib\techsoftemail.jar" size="3878" download="eager" />
     <jar href="lib\twilio-0.0.1-jar-with-dependencies.jar" size="8300618" download="eager" />
-    <jar href="xcode_pidev.jar" size="276766" download="eager" />
+    <jar href="xcode_pidev.jar" size="2581313" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="xcode_pidev" >
     <param name="requiredFXVersion" value="8.0+"/>
