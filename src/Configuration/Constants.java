@@ -12,6 +12,7 @@ package Configuration;
 public class Constants {
     
     public static String EVENT_PICTURES_PATH="C:\\Users\\hp\\OneDrive\\Bureau\\GestionUser\\src\\Pictures\\Events\\";
+    public static String EVENT_ICONS_PATH="C:\\Users\\hp\\OneDrive\\Bureau\\GestionUser\\src\\Icons\\";
     
     public static String setMapData(double Longitude,double Latitude,String Title){
         return "<!DOCTYPE html>\n" +

@@ -10,6 +10,7 @@ import entities.Event;
 import entities.Reservation;
 import entities.User;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.Instant;
@@ -21,7 +22,9 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -31,6 +34,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import service.EventService;
 import service.ReservationService;
 
@@ -41,6 +45,9 @@ import service.ReservationService;
  */
 public class AccueilUtilisateurController implements Initializable {
 
+    public static Event ticketEventData=new Event();
+    public static User ticketEventUserData=new User();
+    
     @FXML
     private VBox myeventsDetails1;
     @FXML
@@ -254,7 +261,29 @@ public class AccueilUtilisateurController implements Initializable {
                         reservation.setNumero(String.valueOf(date.getTime()));
                         reservationService.Ajouter(reservation);
                         getEvents();
+                        
+                        //to do open window
+                        ticketEventData=event;
+                        ticketEventUserData=user;
                        
+                        //open ticket
+                         try {
+                             FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/view/Ticket.fxml"));
+        /* 
+         * if "fx:controller" is not set in fxml
+         * fxmlLoader.setController(NewWindowController);
+         */
+                             Scene scene = new Scene(fxmlLoader.load(), 600, 254);
+                             Stage stage = new Stage();
+        stage.setTitle("Mon ticket");
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException e) {
+        Logger logger = Logger.getLogger(getClass().getName());
+        logger.log(Level.SEVERE, "Failed to create new Window.", e);
+    }
+                        
                     }else{
                       Reservation reservationToDelete=  reservationService.getCheckedReservation(user.getUser_id(), event.getId());
                    reservationService.Supprimer(reservationToDelete);

@@ -417,7 +417,37 @@ myeventsPage.setVisible(true);
     
     public VBox EventCard(Event event){
                 String stylep = "-fx-effect: dropshadow(three-pass-box, derive(cadetblue, -20%), 10, 0, 5, 5);\n  -fx-background-color: white \n ;-fx-border-color: #b0b1b2 \n ; -fx-border-width: 1; \n -fx-border-radius: 10;  ";
-
+              
+                //declaration des styles
+                
+                String styleData = " -fx-font : 14px \"serief\";  \n  -fx-text-alignment: left ; \n   -fx-text-background-color: #4e4e52;";
+                String Styledetails = " -fx-font : 20px \"serief\";  \n  -fx-text-alignment: center ; \n   -fx-text-background-color: #1c1cff; \n ";
+                String StyleDelete= "    -fx-effect:dropshadow(one-pass-box,black,8,0.0,2,0);  \n  -fx-border-radius:20;  \n -fx-font:bold10pt\"Arial\" ; \n -fx-background-color: #ba1300 ;\n   -fx-text-fill: #ffffff ;  ";
+                String StyleAdd ="    -fx-effect:dropshadow(one-pass-box,black,8,0.0,2,0);  \n  -fx-border-radius:20;  \n -fx-font:bold10pt\"Arial\" ; \n -fx-background-color: #64de72 ;\n   -fx-text-fill: #ffffff ;  ";
+                String StyleUpdate ="    -fx-effect:dropshadow(one-pass-box,black,8,0.0,2,0);  \n  -fx-border-radius:20;  \n -fx-font:bold10pt\"Arial\" ; \n -fx-background-color: #e0cb2b ;\n   -fx-text-fill: #ffffff ;  ";
+                String styleTitle = "fx-font-weight:700; \n   -fx-font-family: \"Broadway\";\n  -fx-alignment: center ;\n -fx-text-alignment: center ; \n   -fx-text-background-color: #0b0082;";
+                //fin declaration des styles
+                
+                //declarationdes icones
+                  ImageView descriptionIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"description.png").toURI().toString()));
+            descriptionIcon.setFitWidth(20);
+            descriptionIcon.setFitHeight(20);
+                
+                 ImageView dateIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"calendar.png").toURI().toString()));
+            dateIcon.setFitWidth(20);
+            dateIcon.setFitHeight(20);    
+            
+             ImageView placeIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"place-localizer.png").toURI().toString()));
+            placeIcon.setFitWidth(20);
+            placeIcon.setFitHeight(20);
+            
+             ImageView priceeIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"dollar-tag.png").toURI().toString()));
+            priceeIcon.setFitWidth(20);
+            priceeIcon.setFitHeight(20);
+            
+            //fin declaration des icones
+            
+            
        EventService eventService=new EventService();
          VBox container = new VBox();
             container.setMinWidth(190);
@@ -433,44 +463,71 @@ myeventsPage.setVisible(true);
             eventPicture.setImage(image);
 
             Label eventTitle = new Label(event.getTitle());
+         //   eventTitle.setMinWidth(container.getMaxWidth());
+           eventTitle.setMaxWidth(container.getMaxWidth());
             eventTitle.setTextAlignment(TextAlignment.CENTER);
-            eventTitle.setMinWidth(container.getMaxWidth());
+eventTitle.setStyle(styleTitle);
+            
+            
+            Label eventDescriptionLabel = new Label(" "+event.getDescription());
+            eventDescriptionLabel.setTextAlignment(TextAlignment.LEFT);
+            eventDescriptionLabel.setStyle(styleData);
+            eventDescriptionLabel.setMinWidth(container.getMaxWidth() - 10);
+          
+HBox eventDescription=new HBox();
+eventDescription.getChildren().add(descriptionIcon);
+eventDescription.getChildren().add(eventDescriptionLabel);
 
-            Label eventDescription = new Label(event.getDescription());
-            eventDescription.setTextAlignment(TextAlignment.LEFT);
-            eventDescription.setMinWidth(container.getMaxWidth() - 10);
 
-            HBox eventDatePlace = new HBox();
+            VBox eventDatePlace = new VBox();
             eventDatePlace.setMinWidth(container.getMaxWidth());
-            eventDatePlace.setSpacing(eventDatePlace.getMaxWidth() / 7);
+           
 
-            Label eventDate = new Label(event.getDate().toString());
-            double dateWidth = (eventDatePlace.getMaxWidth() * 3) / 7;
-            eventDate.setMinWidth(dateWidth);
+            Label eventDate = new Label(" "+ event.getDate().toString());
+           
+            eventDate.setMaxWidth(container.getMaxWidth()-20);
+   eventDate.setStyle(styleData);
+        
+            HBox eventDateHBOX=new HBox();
+            eventDateHBOX.getChildren().add(dateIcon);
+            eventDateHBOX.getChildren().add(eventDate);
+            
+            Label eventPlace = new Label(" "+event.getEventPlace().getTitle());
+            eventPlace.setMinWidth(container.getMaxWidth());
+            eventPlace.setStyle(styleData);
+            
+   
+            HBox eventPlaceHBOX=new HBox();
+            eventPlaceHBOX.getChildren().add(placeIcon);
+            eventPlaceHBOX.getChildren().add(eventPlace);
+            
+            eventDatePlace.getChildren().add(eventDateHBOX);
+            eventDatePlace.getChildren().add(eventPlaceHBOX);
 
-            Label eventPlace = new Label(event.getEventPlace().getTitle());
-            eventPlace.setMinWidth(dateWidth);
-
-            eventDatePlace.getChildren().add(eventDate);
-            eventDatePlace.getChildren().add(eventPlace);
-
-            HBox eventPriceAndDetails = new HBox();
+            VBox eventPriceAndDetails = new VBox();
             eventPriceAndDetails.setMinWidth(container.getMaxWidth());
 
             Label eventPrice = new Label(String.valueOf(event.getPrice()));
-            eventPrice.setMinWidth(dateWidth);
+            eventPrice.setStyle(styleData);
+  
+            HBox eventPriceHBOX=new HBox();
+            eventPriceHBOX.getChildren().add(priceeIcon);
+            eventPriceHBOX.getChildren().add(eventPrice);
+            
 
             Label goToDetails = new Label("Details");
-            goToDetails.setMinWidth(dateWidth);
+           goToDetails.setStyle(Styledetails);
 
-            eventPriceAndDetails.getChildren().add(eventPrice);
+            eventPriceAndDetails.getChildren().add(eventPriceHBOX);
             eventPriceAndDetails.getChildren().add(goToDetails);
 
             HBox eventActions = new HBox();
-            Button update = new Button("update");
-            Button delete = new Button("Delete");
-            delete.setMinWidth(dateWidth);
-            update.setMinWidth(dateWidth);
+            Button update = new Button("Modifier");
+            Button delete = new Button("Supprimer");
+            update.setStyle(StyleUpdate);
+            delete.setStyle(StyleDelete);
+            delete.setMinWidth(90);
+            update.setMinWidth(90);
 
             eventActions.getChildren().add(update);
             eventActions.getChildren().add(delete);

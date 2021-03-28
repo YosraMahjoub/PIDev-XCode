@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Afficher_mesévenementsController">
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Afficher_mesévenementsController">
    <children>
       <AnchorPane layoutX="8.0" prefHeight="555.0" prefWidth="277.0" style="-fx-background-color: #a65959;">
          <children>
@@ -104,7 +104,7 @@
       <VBox fx:id="myeventsPage" layoutX="284.0" layoutY="-1.0" prefHeight="555.0" prefWidth="456.0" style="-fx-background-color: white;">
          <children>
             <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Mes événements" translateX="60.0" translateY="50.0" />
-            <Button fx:id="goToMyEventsAdd" mnemonicParsing="false" text="Ajouter" translateX="380.0" translateY="50.0" />
+            <Button fx:id="goToMyEventsAdd" mnemonicParsing="false" style="-fx-background-color: #64de72; -fx-text-fill: white;" text="Ajouter" translateX="380.0" translateY="50.0" />
             <ScrollPane fx:id="myEventsScrollPane" prefHeight="438.0" prefWidth="455.0" translateY="60.0" />
          </children>
          <padding>
@@ -130,10 +130,10 @@
                   <TextField fx:id="AddEventNbr" layoutX="251.0" layoutY="153.0" />
                   <Label layoutX="247.0" layoutY="129.0" text="Nombre de participants" />
                   <ImageView fx:id="AddEventPicturePreview" fitHeight="138.0" fitWidth="179.0" layoutX="236.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="AddEventSubmit" layoutX="165.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" text="Ajouter" />
-                  <Label fx:id="AddEventOpenFIlePicker" layoutX="235.0" layoutY="369.0" text="Cliquer ici pour ajouter une image" underline="true" />
+                  <Button fx:id="AddEventSubmit" layoutX="165.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #64de72; -fx-text-fill: white;" text="Ajouter" />
+                  <Label fx:id="AddEventOpenFIlePicker" layoutX="235.0" layoutY="369.0" style="-fx-text-fill: blue;" text="Cliquer ici pour ajouter une image" underline="true" />
                   <Label layoutX="44.0" layoutY="259.0" text="Prix (dt)" />
-                  <Button fx:id="AddEventCancel" layoutX="371.0" layoutY="411.0" mnemonicParsing="false" text="Annuler" />
+                  <Button fx:id="AddEventCancel" layoutX="371.0" layoutY="411.0" mnemonicParsing="false" style="-fx-background-color: #e0cb2b; -fx-text-fill: white;" text="Annuler" />
                   <TextField fx:id="AddEventPrice" layoutX="47.0" layoutY="288.0" />
                </children>
             </AnchorPane>
@@ -161,10 +161,10 @@
                   <TextField fx:id="UpdateEventNbr" layoutX="251.0" layoutY="153.0" />
                   <Label layoutX="247.0" layoutY="129.0" text="Nombre de participants" />
                   <ImageView fx:id="UpdateEventPicturePreview" fitHeight="138.0" fitWidth="179.0" layoutX="236.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="UpdateEventSubmit" layoutX="165.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" text="Modifier" />
-                  <Label fx:id="UpdateEventOpenFIlePicker" layoutX="235.0" layoutY="369.0" text="Cliquer ici pour ajouter une image" underline="true" />
+                  <Button fx:id="UpdateEventSubmit" layoutX="165.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #64de72; -fx-text-fill: white;" text="Modifier" />
+                  <Label fx:id="UpdateEventOpenFIlePicker" layoutX="235.0" layoutY="369.0" style="-fx-text-fill: blue;" text="Cliquer ici pour ajouter une image" underline="true" />
                   <Label layoutX="44.0" layoutY="259.0" text="Prix (dt)" />
-                  <Button fx:id="UpdateEventCancel" layoutX="371.0" layoutY="411.0" mnemonicParsing="false" text="Annuler" />
+                  <Button fx:id="UpdateEventCancel" layoutX="371.0" layoutY="411.0" mnemonicParsing="false" style="-fx-text-fill: white; -fx-background-color: #e0cb2b;" text="Annuler" />
                   <TextField fx:id="UpdateEventPrice" layoutX="47.0" layoutY="288.0" />
                </children>
             </AnchorPane>
@@ -178,7 +178,7 @@
       </VBox>
       <VBox fx:id="myeventsDetails" layoutX="284.0" layoutY="-1.0" prefHeight="555.0" prefWidth="456.0" style="-fx-background-color: white;">
          <children>
-            <Button fx:id="DetailEventCancel" mnemonicParsing="false" text="Retour" translateX="380.0" translateY="40.0" />
+            <Button fx:id="DetailEventCancel" mnemonicParsing="false" style="-fx-background-color: #e0cb2b; -fx-text-fill: white;" text="Retour" translateX="380.0" translateY="40.0" />
             <Label fx:id="DetailEventTitle" style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Modifier un événement" translateX="50.0" translateY="30.0" />
             <AnchorPane prefHeight="458.0" prefWidth="455.0" translateY="40.0">
                <children>
@@ -189,7 +189,7 @@
                   <ImageView fx:id="DetailEventPicture" fitHeight="172.0" fitWidth="248.0" layoutX="104.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                   <Label layoutX="265.0" layoutY="353.0" style="-fx-text-fill: #a65959; -fx-font-size: 1.5em;" text="Prix (dt)" />
                   <Label fx:id="DetailEventDescription" layoutX="170.0" layoutY="205.0" prefHeight="59.0" prefWidth="230.0" style="-fx-font-size: 1.2em;" wrapText="true" />
-                  <Button fx:id="DetailEventOpenMap" layoutX="352.0" layoutY="405.0" mnemonicParsing="false" text="Localisation" />
+                  <Button fx:id="DetailEventOpenMap" layoutX="352.0" layoutY="405.0" mnemonicParsing="false" style="-fx-text-fill: white; -fx-background-color: #770391;" text="Localisation" />
                   <Label fx:id="DetailEventNbr" layoutX="271.0" layoutY="294.0" prefHeight="27.0" prefWidth="112.0" style="-fx-font-size: 1.5em;" text="Label" />
                   <Label fx:id="DetailEventDate" layoutX="90.0" layoutY="348.0" prefHeight="27.0" prefWidth="79.0" style="-fx-font-size: 1.5em;" text="Label" />
                   <Label fx:id="DetailEventPrice" layoutX="344.0" layoutY="353.0" prefHeight="27.0" prefWidth="79.0" style="-fx-font-size: 1.5em;" text="Label" />
@@ -206,11 +206,11 @@
       </VBox>
       <VBox fx:id="myeventsDetailsMap" layoutX="284.0" layoutY="-1.0" prefHeight="555.0" prefWidth="456.0" style="-fx-background-color: white;">
          <children>
-            <Button fx:id="MapEventCancel" mnemonicParsing="false" text="Retour" translateX="380.0" translateY="40.0" />
+            <Button fx:id="MapEventCancel" mnemonicParsing="false" style="-fx-text-fill: white; -fx-background-color: #e0cb2b;" text="Retour" translateX="380.0" translateY="40.0" />
             <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Localisation" translateX="50.0" translateY="30.0" />
-            <AnchorPane prefHeight="458.0" prefWidth="455.0" translateY="40.0">
+            <AnchorPane prefHeight="458.0" prefWidth="455.0" style="-fx-background-color: #bdfcd9;" translateY="40.0">
                <children>
-                  <WebView fx:id="myeventsDetailsMapWebView" prefHeight="458.0" prefWidth="455.0" />
+                  <WebView fx:id="myeventsDetailsMapWebView" layoutX="7.0" layoutY="5.0" prefHeight="446.0" prefWidth="442.0" />
                </children>
             </AnchorPane>
          </children>

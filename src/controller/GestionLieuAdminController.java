@@ -7,6 +7,7 @@ package controller;
 
 import Configuration.Constants;
 import entities.EventPlace;
+import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -176,7 +179,38 @@ public class GestionLieuAdminController implements Initializable {
 
     public HBox PlaceCard(EventPlace eventPlace) {
         String stylep = "-fx-effect: dropshadow(three-pass-box, derive(cadetblue, -20%), 10, 0, 5, 5);\n  -fx-background-color: white \n ;-fx-border-color: #b0b1b2 \n ; -fx-border-width: 1; \n -fx-border-radius: 10;  ";
-
+  
+             //declaration des styles
+                
+                String styleData = " -fx-font : 14px \"serief\";  \n  -fx-text-alignment: left ; \n   -fx-text-background-color: #4e4e52;";
+                String Styledetails = " -fx-font : 20px \"serief\";  \n  -fx-text-alignment: center ; \n   -fx-text-background-color: #1c1cff; \n ";
+                String StyleDelete= "    -fx-effect:dropshadow(one-pass-box,black,8,0.0,2,0);  \n  -fx-border-radius:20;  \n -fx-font:bold10pt\"Arial\" ; \n -fx-background-color: #ba1300 ;\n   -fx-text-fill: #ffffff ;  ";
+                String StyleAdd ="    -fx-effect:dropshadow(one-pass-box,black,8,0.0,2,0);  \n  -fx-border-radius:20;  \n -fx-font:bold10pt\"Arial\" ; \n -fx-background-color: #64de72 ;\n   -fx-text-fill: #ffffff ;  ";
+                String StyleUpdate ="    -fx-effect:dropshadow(one-pass-box,black,8,0.0,2,0);  \n  -fx-border-radius:20;  \n -fx-font:bold10pt\"Arial\" ; \n -fx-background-color: #e0cb2b ;\n   -fx-text-fill: #ffffff ;  ";
+                String styleTitle = "fx-font-weight:700; \n   -fx-font-family: \"Broadway\";\n  -fx-alignment: center ;\n -fx-text-alignment: center ; \n   -fx-text-background-color: #0b0082;";
+                //fin declaration des styles
+                
+                //declarationdes icones
+                  ImageView descriptionIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"description.png").toURI().toString()));
+            descriptionIcon.setFitWidth(20);
+            descriptionIcon.setFitHeight(20);
+                
+                 ImageView dateIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"calendar.png").toURI().toString()));
+            dateIcon.setFitWidth(20);
+            dateIcon.setFitHeight(20);    
+            
+             ImageView placeIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"place-localizer.png").toURI().toString()));
+            placeIcon.setFitWidth(20);
+            placeIcon.setFitHeight(20);
+            
+             ImageView priceeIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"dollar-tag.png").toURI().toString()));
+            priceeIcon.setFitWidth(20);
+            priceeIcon.setFitHeight(20);
+            
+            //fin declaration des icones
+            
+        
+        
         HBox container = new HBox();
         container.setMaxWidth(440);
         container.setMinWidth(440);
@@ -195,13 +229,15 @@ public class GestionLieuAdminController implements Initializable {
         HBox Titlecontainer = new HBox();
         Label titleLabel = new Label("Titre:");
         Label titre = new Label(eventPlace.getTitle());
+        titre.setStyle(styleTitle);
         Titlecontainer.getChildren().add(titleLabel);
         Titlecontainer.getChildren().add(titre);
 
         HBox Descriptioncontainer = new HBox();
-        Label descriptionLabel = new Label("Description:");
-        Label description = new Label(eventPlace.getTitle());
-        Descriptioncontainer.getChildren().add(descriptionLabel);
+        
+        Label description = new Label(eventPlace.getDescription());
+        description.setStyle(Styledetails);
+        Descriptioncontainer.getChildren().add(descriptionIcon);
         Descriptioncontainer.getChildren().add(description);
 
         VBox ContentData = new VBox();
@@ -222,6 +258,8 @@ public class GestionLieuAdminController implements Initializable {
         Button Delete = new Button("Supprimer");
         Button Update = new Button("Modifier");
         Button Details = new Button("Détails");
+        Delete.setStyle(StyleDelete);
+        Update.setStyle(StyleUpdate);
         ContentActions.getChildren().add(Details);
       //  ContentActions.getChildren().add(Update);
         ContentActions.getChildren().add(Delete);

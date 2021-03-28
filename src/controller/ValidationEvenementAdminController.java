@@ -119,28 +119,64 @@ public class ValidationEvenementAdminController implements Initializable {
     
     public VBox EventCard(Event event) throws SQLException{
                 String stylep = "-fx-effect: dropshadow(three-pass-box, derive(cadetblue, -20%), 10, 0, 5, 5);\n  -fx-background-color: white \n ;-fx-border-color: #b0b1b2 \n ; -fx-border-width: 1; \n -fx-border-radius: 10;  ";
-
+     //declaration des styles
+                
+                String styleData = " -fx-font : 14px \"serief\";  \n  -fx-text-alignment: left ; \n   -fx-text-background-color: #4e4e52;";
+                String Styledetails = " -fx-font : 20px \"serief\";  \n  -fx-text-alignment: center ; \n   -fx-text-background-color: #1c1cff; \n ";
+                String StyleEnAttente = " -fx-font : 20px \"serief\";  \n  -fx-text-alignment: center ; \n   -fx-text-background-color: #e0cb2b ; \n ";
+                String StyleRefusee = " -fx-font : 20px \"serief\";  \n  -fx-text-alignment: center ; \n   -fx-text-background-color: #ba1300 ; \n ";
+                String StyleAcceptee = " -fx-font : 20px \"serief\";  \n  -fx-text-alignment: center ; \n   -fx-text-background-color: #64de72; \n ";
+                String StyleDelete= "    -fx-effect:dropshadow(one-pass-box,black,8,0.0,2,0);  \n  -fx-border-radius:20;  \n -fx-font:bold10pt\"Arial\" ; \n -fx-background-color: #ba1300 ;\n   -fx-text-fill: #ffffff ;  ";
+                String StyleAdd ="    -fx-effect:dropshadow(one-pass-box,black,8,0.0,2,0);  \n  -fx-border-radius:20;  \n -fx-font:bold10pt\"Arial\" ; \n -fx-background-color: #64de72 ;\n   -fx-text-fill: #ffffff ;  ";
+                String StyleUpdate ="    -fx-effect:dropshadow(one-pass-box,black,8,0.0,2,0);  \n  -fx-border-radius:20;  \n -fx-font:bold10pt\"Arial\" ; \n -fx-background-color: #e0cb2b ;\n   -fx-text-fill: #ffffff ;  ";
+                String styleTitle = "fx-font-weight:700; \n   -fx-font-family: \"Broadway\";\n  -fx-alignment: center ;\n -fx-text-alignment: center ; \n   -fx-text-background-color: #0b0082;";
+                //fin declaration des styles
+                
+                //declarationdes icones
+                  ImageView descriptionIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"description.png").toURI().toString()));
+            descriptionIcon.setFitWidth(20);
+            descriptionIcon.setFitHeight(20);
+                
+                 ImageView dateIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"calendar.png").toURI().toString()));
+            dateIcon.setFitWidth(20);
+            dateIcon.setFitHeight(20);    
+            
+             ImageView placeIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"place-localizer.png").toURI().toString()));
+            placeIcon.setFitWidth(20);
+            placeIcon.setFitHeight(20);
+            
+             ImageView priceeIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"dollar-tag.png").toURI().toString()));
+            priceeIcon.setFitWidth(20);
+            priceeIcon.setFitHeight(20);
+       
+            
+                  ImageView membresIcon=new ImageView(new Image(new File(Constants.EVENT_ICONS_PATH+"community.png").toURI().toString()));
+            membresIcon.setFitWidth(20);
+            membresIcon.setFitHeight(20);
+       
+            //fin declaration des icones
+            
        EventService eventService=new EventService();
          VBox container = new VBox();
-            container.setMinWidth(330);
-            container.setMaxWidth(330);
-              container.setMinHeight(225);
-            container.setMaxHeight(225);
+            container.setMinWidth(380);
+            container.setMaxWidth(380);
+              container.setMinHeight(255);
+            container.setMaxHeight(255);
             container.setStyle(stylep);
             
               HBox secondContainer = new HBox();
             secondContainer.setMinWidth(330);
             secondContainer.setMaxWidth(330);
-              secondContainer.setMinHeight(160);
-            secondContainer.setMaxHeight(160);
+              secondContainer.setMinHeight(190);
+            secondContainer.setMaxHeight(190);
         
             
             
                 VBox dataContainer = new VBox();
             dataContainer.setMinWidth(170);
             dataContainer.setMaxWidth(170);
-              dataContainer.setMinHeight(160);
-            dataContainer.setMaxHeight(160);
+              dataContainer.setMinHeight(190);
+            dataContainer.setMaxHeight(190);
           
             
              HBox actionContainer = new HBox();
@@ -169,6 +205,7 @@ public class ValidationEvenementAdminController implements Initializable {
             eventPicture.setImage(image);
 
             Label eventTitle = new Label(event.getTitle());
+            eventTitle.setStyle(styleTitle);
             eventTitle.setTextAlignment(TextAlignment.CENTER);
             eventTitle.setMinWidth(container.getMaxWidth());
             titleContainer.getChildren().add(eventTitle);
@@ -179,53 +216,61 @@ public class ValidationEvenementAdminController implements Initializable {
             Label eventDescription = new Label(event.getDescription());
             eventDescription.setTextAlignment(TextAlignment.LEFT);
             eventDescription.setMinWidth(dataContainer.getMaxWidth() - 5);
-           //2
-            Label eventDescriptionlabel = new Label("Description:");
-            eventDescriptionlabel.setTextAlignment(TextAlignment.LEFT);
-            eventDescriptionlabel.setMinWidth(dataContainer.getMaxWidth() - 5);
-            
+HBox eventDescriptionHBox=new HBox();
+eventDescriptionHBox.getChildren().add(descriptionIcon);
+eventDescriptionHBox.getChildren().add(eventDescription);
           
             //3 4
-            HBox eventDatePlace = new HBox();
+            VBox eventDatePlace = new VBox();
             eventDatePlace.setMinWidth(dataContainer.getMaxWidth());
             eventDatePlace.setSpacing(dataContainer.getMaxWidth() / 7);
 
             Label eventDate = new Label(event.getDate().toString());
-            double dateWidth = (eventDatePlace.getMaxWidth() * 3) / 7;
-            eventDate.setMinWidth(dateWidth);
-
+HBox eventDateHBox= new HBox();
+HBox eventPlaceHBox= new HBox();
             Label eventPlace = new Label(event.getEventPlace().getTitle());
 
-            eventDatePlace.getChildren().add(eventDate);
-            eventDatePlace.getChildren().add(eventPlace);
+            eventDateHBox.getChildren().add(dateIcon);
+            eventDateHBox.getChildren().add(eventDate);
+            eventPlaceHBox.getChildren().add(placeIcon);
+            eventPlaceHBox.getChildren().add(eventPlace);
+            eventDatePlace.getChildren().add(eventDateHBox);
+            eventDatePlace.getChildren().add(eventPlaceHBox);
             
             
 
          
 //5
             Label eventPrice = new Label(String.valueOf(event.getPrice())+" dt");
-            eventPrice.setMinWidth(dateWidth);
-              Label eventPriceLabel = new Label("Prix: ");
+              
           
             HBox eventPriceData=new HBox();
-            eventPriceData.getChildren().add(eventPriceLabel);
+            eventPriceData.getChildren().add(priceeIcon);
             eventPriceData.getChildren().add(eventPrice);
             
             //6
               Label placesRestantes = new Label(String.valueOf((event.getCapacite()-eventService.getTotalParticipantsEvent(event.getId())))+" places restantes");
+         HBox   placesRestantesHBox=new HBox();
+         placesRestantesHBox.getChildren().add(membresIcon);
+         placesRestantesHBox.getChildren().add(placesRestantes);
             
-            
-            HBox goToDetails = new HBox();
+            HBox evState = new HBox();
             Label stateLabel=new Label("Etat: ");
             
             
             Label state=new Label();
+            Label goToDetails=new Label("Détails");
+            goToDetails.setStyle(Styledetails);
             
-            goToDetails.getChildren().add(stateLabel);
-            goToDetails.getChildren().add(state);
+            evState.getChildren().add(stateLabel);
+            evState.getChildren().add(state);
+            
             Button approuver = new Button("Approuver");
             Button refuser = new Button("Refuser");
-          
+          approuver.setStyle(StyleAdd);
+          approuver.setMaxWidth(110);
+          approuver.setMaxWidth(110);
+          refuser.setStyle(StyleDelete);
 
            actionContainer.getChildren().add(goToDetails);
            actionContainer.getChildren().add(approuver);
@@ -240,12 +285,11 @@ public class ValidationEvenementAdminController implements Initializable {
            
            
            dataContainer.getChildren().add(artistContainer);
-           dataContainer.getChildren().add(eventDescriptionlabel);
-           dataContainer.getChildren().add(eventDescription);
-           dataContainer.getChildren().add(placesRestantes);
+           dataContainer.getChildren().add(eventDescriptionHBox);
+           dataContainer.getChildren().add(placesRestantesHBox);
            dataContainer.getChildren().add(eventDatePlace);
            dataContainer.getChildren().add(eventPriceData);
-           
+           dataContainer.getChildren().add(evState);
            secondContainer.getChildren().add(eventPicture);
            secondContainer.getChildren().add(dataContainer);
            
@@ -255,14 +299,17 @@ public class ValidationEvenementAdminController implements Initializable {
         
 if(eventService.getEventState(event.getId())==0){
                 state.setText("En atente");
+                state.setStyle(StyleEnAttente);
                 
             }else if(eventService.getEventState(event.getId())==1){
                 state.setText("Approuvée");
+                                state.setStyle(StyleAcceptee);
                 approuver.setDisable(true);
                 refuser.setDisable(false);
                 
             }else{
                 state.setText("Refusé");
+                                state.setStyle(StyleRefusee);
                 refuser.setDisable(true);
                 approuver.setDisable(false);
             }

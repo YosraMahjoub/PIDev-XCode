@@ -34,10 +34,10 @@ public class Projet extends Application {
         this.primaryStage.setTitle("Pa login ");
         
        //parentPage = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
-        //parentPage = FXMLLoader.load(getClass().getResource("/view/afficher_mesévenements.fxml"));
-      //parentPage = FXMLLoader.load(getClass().getResource("/view/AccueilUtilisateur.fxml"));
+     //   parentPage = FXMLLoader.load(getClass().getResource("/view/afficher_mesévenements.fxml"));
+      parentPage = FXMLLoader.load(getClass().getResource("/view/AccueilUtilisateur.fxml"));
          //parentPage = FXMLLoader.load(getClass().getResource("/view/GestionLieuAdmin.fxml"));
-       parentPage = FXMLLoader.load(getClass().getResource("/view/ValidationEvenementAdmin.fxml"));
+   //   parentPage = FXMLLoader.load(getClass().getResource("/view/ValidationEvenementAdmin.fxml"));
         Scene scene = new Scene(parentPage);
         this.primaryStage.setScene(scene);
         this.primaryStage.show();
