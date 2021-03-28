@@ -40,7 +40,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.OeuvrageService;
 import org.apache.commons.io.FileUtils;
-import service.UserService;
 import utils.ControleSaisie;
 
 /**
