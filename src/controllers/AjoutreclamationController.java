@@ -30,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import service.ReclamationService;
@@ -55,8 +56,6 @@ public class AjoutreclamationController implements Initializable {
     @FXML
     private Button btnfavories;
     @FXML
-    private ImageView img;
-    @FXML
     private Button btnsupp;
     @FXML
     private Button btninfo;
@@ -80,6 +79,14 @@ public class AjoutreclamationController implements Initializable {
     private TextField description;
     @FXML
     private Text nom_prod;
+    @FXML
+    private HBox hi;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private HBox hello;
+    @FXML
+    private Button ADD;
 
     /**
      * Initializes the controller class.
@@ -105,21 +112,39 @@ public class AjoutreclamationController implements Initializable {
                 String x =filter.getValue();
                 if(x=="evenement"){
                     try {
-                        recla.insert(o, "evenement_id" , x,"nom",text_nomProd.getText());
+                        if(recla.existreclm(UserService.getCurrentUser().getUser_id(), "evenement_id", recla.getID("evenement_id" , x,"nom",text_nomProd.getText()))!=0){
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+
+                            alert.setHeaderText("vous avez déja fait une réclamation à cet évenement");
+                            alert.showAndWait();
+                        }else {
+                        recla.insert(o, "evenement_id" , x,"nom",text_nomProd.getText());}
                     } catch (SQLException ex) {
                         Logger.getLogger(AjoutreclamationController.class.getName()).log(Level.SEVERE, null, ex);
                     }
             }
                 if(x=="formation"){
                     try {
-                        recla.insert(o, "formation_id" , x,"titre",text_nomProd.getText());
+                        if(recla.existreclm(UserService.getCurrentUser().getUser_id(),"formation_id", recla.getID("formation_id" , x,"nom",text_nomProd.getText()))!=0){
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+
+                            alert.setHeaderText("vous avez déja fait une réclamation à cette formation");
+                            alert.showAndWait();}
+                else{
+                        recla.insert(o, "formation_id" , x,"titre",text_nomProd.getText());}
                     } catch (SQLException ex) {
                         Logger.getLogger(AjoutreclamationController.class.getName()).log(Level.SEVERE, null, ex);
                     }
             }
                 if(x=="oeuvre"){
                     try {
-                        recla.insert(o, "oeuvrage_id" , "oeuvrage","nom",text_nomProd.getText());
+                        if(recla.existreclm(UserService.getCurrentUser().getUser_id(),"oeuvrage_id", recla.getID("oeuvrage_id" , x,"nom",text_nomProd.getText()))!=0){
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+
+                            alert.setHeaderText("vous avez déja fait une réclamation à cet oeuvre");
+                            alert.showAndWait();}
+                else{
+                        recla.insert(o, "oeuvrage_id" , "oeuvrage","nom",text_nomProd.getText());}
                     } catch (SQLException ex) {
                         Logger.getLogger(AjoutreclamationController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -130,20 +155,17 @@ public class AjoutreclamationController implements Initializable {
         });
         reclamation.setOnAction(event -> {
             try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/admin_reclamations.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/admin_reclamations.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AjoutreclamationController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }    
 
-    @FXML
-    private void Chercheimg(MouseEvent event) {
-    }
 
     @FXML
     private void comboAction(ActionEvent event) {
