@@ -33,8 +33,8 @@ public class Formation {
   private String niveau ;
   private String langue;
   private int nbr_inscrits;
-  private int notation;
-  private int cours_id;
+ // private int notation;
+//  private int cours_id;
   private String description;
   private String image;
 
@@ -69,7 +69,7 @@ public class Formation {
         this.lieu = lieu;
     }
   
-    public Formation( int user_id, String domaine, String date, String duree, String lieu, float prix, String niveau, String langue, int nbr_inscrits, int notation,  String description,String image,String titre ) {
+    public Formation( int user_id, String domaine, String date, String duree, String lieu, float prix, String niveau, String langue, int nbr_inscrits,   String description,String image,String titre ) {
        
         this.user_id = user_id;
         this.domaine = domaine;
@@ -80,7 +80,7 @@ public class Formation {
         this.niveau = niveau;
         this.langue = langue;
         this.nbr_inscrits = nbr_inscrits;
-        this.notation = notation;
+       // this.notation = notation;
         
         this.description = description;
         this.image = image;
@@ -192,7 +192,7 @@ public class Formation {
 
     @Override
     public String toString() {
-        return "Formation{" + "formation_id=" + formation_id + ", domaine=" + domaine + ", date=" + date + ", duree=" + duree + ", lieu=" + lieu + ", prix=" + prix + ", niveau=" + niveau + ", langue=" + langue + ", nbr_inscrits=" + nbr_inscrits + ", description=" + description + '}';
+        return "Formation{" + "formation_id=" + formation_id + ", domaine=" + domaine + ", date=" + date + ", duree=" + duree + ", lieu=" + lieu + ", prix=" + prix + ", niveau=" + niveau + ", langue=" + langue + ", description=" + description + '}';
     }
 
     @Override
@@ -262,21 +262,7 @@ public class Formation {
         this.user_id = user_id;
     }
 
-    public void setNotation(int notation) {
-        this.notation = notation;
-    }
-
-    public void setCours_id(int cours_id) {
-        this.cours_id = cours_id;
-    }
-
-    public int getNotation() {
-        return notation;
-    }
-
-    public int getCours_id() {
-        return cours_id;
-    }
+   
 
     public int getIsvalid() {
         return isvalid;

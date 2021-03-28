@@ -11,6 +11,7 @@ import Entities.Inscription;
 import Services.CoursServices;
 import Services.FormationServices;
 import Services.InscriptionsServices;
+import Services.TextFileReader;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +35,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import controllers.ACCUEILController;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -59,7 +72,7 @@ public class AfficherCoursController implements Initializable {
      * Initializes the controller class.
      */
     private static Formation a;
-    private static Cours aa = new Cours();
+     static Cours aa = new Cours();
     //  FormationServices fs = FormationServices.getInstance();
 
     public static void setF(Formation f) {
@@ -69,7 +82,16 @@ public class AfficherCoursController implements Initializable {
     public static void setC(Cours fc) {
         aa = fc;
     }
-
+     private TextFileReader reader = new TextFileReader();
+    private static final Logger LOG = Logger.getLogger(AfficherCoursController.class.getName());
+    @FXML 
+	private TextArea linesTextArea;
+    @FXML 
+            Button showFile;
+    @FXML
+    TextField  urlTextField;
+        private Future<List<String>> future;
+	private ExecutorService executorService = Executors.newSingleThreadExecutor();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         CoursServices cs = new CoursServices();
@@ -97,11 +119,57 @@ public class AfficherCoursController implements Initializable {
 // tekhdemsh 
   File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + aa.getFile());
         file.setImage(new Image(newFile2.toURI().toString()));
+        
         desc.setText(aa.getDescription());
         titre.setText(aa.getTitre());
         duree.setText(aa.getDuree());
         niveau.setText(aa.getNiveau());
+      //  linesTextArea.setText(aa.getFile());
+      urlTextField.setText(aa.getFile());
+      
     }
+    @FXML
+	@SuppressWarnings("NestedAssignment")
+	public void showFileLines(ActionEvent event) throws InterruptedException, ExecutionException {
+            
+            try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/View/AfficherCoursFiles.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherCoursController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+//             try {
+//                 
+//            FXMLLoader page1 = FXMLLoader.load(getClass().getResource("/View/AfficherCoursFiles.fxml"));
+//           // Scene scene = new Scene(page1);
+//           Parent root = (Parent) page1.load();
+//            Stage stage =  new Stage();
+//                    //(Stage) ((Node) event.getSource()).getScene().getWindow();
+////            stage.initStyle(StageStyle.DECORATED);
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//        } catch (IOException ex) {
+//            Logger.getLogger(AfficherCoursController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//		future = executorService.submit(new Callable<List<String>>() {
+//			public List<String> call() throws Exception {
+//				return reader.read(new File ("C:\\xampp\\htdocs\\PI\\IMG\\" + aa.getFile())
+//                                );
+//			}
+//		});
+//		
+//		List<String> lines = future.get();
+//		executorService.shutdownNow();
+//		linesTextArea.clear();
+//		for (String line : lines ) {
+//			linesTextArea.appendText(line + "\n");
+//		}
+        
+        }
 
     @FXML
     private void backFor(ActionEvent event) {

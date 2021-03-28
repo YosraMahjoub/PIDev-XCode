@@ -42,10 +42,12 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
+
 import service.FileUploader;
 
 import controllers.ACCUEILController;
 import controllers.AjoutercoursController;
+import static controllers.CoursListeController.f;
 
 /**
  * FXML Controller class
@@ -71,7 +73,7 @@ public class AjouerFormationController implements Initializable {
     @FXML
     private TextField btn_desc;
     @FXML
-    private TextField btn_niv;
+    private ComboBox<String>   btn_niv;
     @FXML
     private TextField txtimg;
 
@@ -81,6 +83,7 @@ public class AjouerFormationController implements Initializable {
     private ImageView imgV;
 
     String nameCat = "";
+     String nameNIV = "";
     File file;
     @FXML
     private Button bimgo;
@@ -92,10 +95,23 @@ public class AjouerFormationController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    FormationServices fs = FormationServices.getInstance();
+    @FXML
+    private Button apprenti;
+   
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> cat = FXCollections.observableArrayList("dance", "theatre", "musique", "littérature", "peinture", "audiovisuel", "sculpture");
         btn_domaine.setItems(cat);
+           
+        ObservableList<String> catniv = FXCollections.observableArrayList("débutant", "intermédiaire","avancé");
+        btn_niv.setItems(catniv);
+                
+        if (fs.formationsVisible(Main.connectedUser.getUser_id()))
+          {back.setVisible(true);}
+          else {back.setVisible(false);}
     }
 
     @FXML
@@ -108,11 +124,13 @@ public class AjouerFormationController implements Initializable {
                 || btn_titre.getText().isEmpty()
                 || btn_duree.getText().isEmpty()
                 || btn_lieu.getText().isEmpty()
-                || btn_niv.getText().isEmpty()
+                || nameCat==""
                 || btn_prix.getText().isEmpty()
                 || btn_lang.getText().isEmpty()
                 || btn_desc.getText().isEmpty()
-                || nameCat == "") {
+                || nameNIV == ""
+                ) 
+                {
             Alert alert = new Alert(Alert.AlertType.ERROR);
 
             alert.setHeaderText("merci de remplir tous les champs");
@@ -136,19 +154,20 @@ public class AjouerFormationController implements Initializable {
             f.setDomaine(nameCat);
             f.setPrix(Float.parseFloat(btn_prix.getText()));
             f.setDate(btn_date.getValue().toString());
+            
             f.setImage(file.getName());
-            f.setNiveau(btn_niv.getText());
+            f.setNiveau(nameNIV);
+           
             String textTOimg = txtimg.getText();
-
 textTOimg= FileUploader.upload(textTOimg);
 textTOimg="http://localhost/Formation/Images/"+textTOimg;
             //  Formation f = new Formation(1,nameCat ,btn_date.getValue().toString() , btn_duree.getText(), btn_lieu.getText(),Float.parseFloat((btn_prix.getText())), btn_niv.getText(),btn_lang.getText() ,
             //  0, 0,1,  btn_desc.getText(), null);
 
-            FormationServices fs = FormationServices.getInstance();
+            
             fs.ajouter(f);
             
-            AjoutercoursController.f=f;
+           
             
             
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -162,6 +181,8 @@ textTOimg="http://localhost/Formation/Images/"+textTOimg;
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ajouterC) {
                 try {
+//static Formation a=f;
+                     AjoutercoursController.f=f;
                     Parent page1 = FXMLLoader.load(getClass().getResource("/View/Cours.fxml"));
                     Scene scene = new Scene(page1);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -174,7 +195,7 @@ textTOimg="http://localhost/Formation/Images/"+textTOimg;
             } else {
                 alert.setHeaderText("");
                 alert.setContentText(" Formation en attente de confirmation de la part de l'admin ");
-
+ alert.getButtonTypes().setAll(ButtonType.CLOSE);
             }
 //switch (ff.back(event)){
 //case back(event) 
@@ -192,7 +213,11 @@ textTOimg="http://localhost/Formation/Images/"+textTOimg;
 //            }
         }
     }
-
+    @FXML
+    private void selectcat(ActionEvent event) {
+        String s = btn_niv.getSelectionModel().getSelectedItem();
+        nameNIV = s ;
+    }
     @FXML
     private void choisirDomaine(ActionEvent event) {
         String s = btn_domaine.getSelectionModel().getSelectedItem();
@@ -266,6 +291,19 @@ textTOimg="http://localhost/Formation/Images/"+textTOimg;
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void backAprrenti(ActionEvent event) {
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/View/MesFormations.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjouerFormationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

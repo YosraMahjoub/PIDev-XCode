@@ -21,13 +21,10 @@
          <children>
             <HBox prefHeight="41.0" prefWidth="225.0">
                <children>
-                  <Label fx:id="nameLabel" prefHeight="19.0" prefWidth="194.0" text="Description">
+                  <Label fx:id="titre" prefHeight="43.0" prefWidth="194.0" text="Titre">
                      <font>
                         <Font name="Cambria Bold" size="12.0" />
                      </font>
-                     <HBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </HBox.margin>
                   </Label>
                   <Label fx:id="priceLable" prefHeight="19.0" prefWidth="52.0" text="prix">
                      <font>
@@ -46,6 +43,11 @@
                         <Image url="@../../../../../Desktop/icon-carte.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="nameLabel" layoutX="12.0" layoutY="183.0" prefHeight="19.0" prefWidth="194.0" text="Description">
+                     <font>
+                        <Font name="Cambria Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

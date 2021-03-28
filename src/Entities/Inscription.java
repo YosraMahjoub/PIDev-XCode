@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 public class Inscription {
     public Users u1 = new Users();
   public Formation f = new Formation();
+  public int isinscrit;
     SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 Date date = new Date(System.currentTimeMillis());
 //System.out.println(formatter.format(date));
@@ -51,6 +52,10 @@ Date date = new Date(System.currentTimeMillis());
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public void setIsinscrit(int isinscrit) {
+        this.isinscrit = isinscrit;
     }
 
 

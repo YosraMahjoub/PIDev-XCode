@@ -43,16 +43,16 @@ private static RatingSer instance;
         return instance;
     }
     
-       public void rating (RatingEntity r, Formation f) throws SQLException{
-           // req temshish 
+       public void rating (double v, Formation f) throws SQLException{
+            
          
-           String req= "insert into rating (value, user_id, formation_id) values (?,?,?)";  
-           String req1 = "insert into rating (value) values(?)";
+           String req= "insert into rating (value, user_id, formation_id) values (?,?,?);";  
+          // String req1 = "insert into rating (value) values(?)";
            pste =cnx.prepareStatement(req);
-           pste.setDouble(1,r.getValue());
+           pste.setDouble(1,v);
+           pste.setInt(2, Main.connectedUser.getUser_id());
+           pste.setInt(3, f.getFormation_id());
            
-           pste.setInt(2, f.getFormation_id());
-           pste.setInt(3, r.getU1().getUser_id());
            pste.executeUpdate();
            //pste.setInt(2, r.);
          }

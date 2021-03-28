@@ -46,6 +46,11 @@
                         <Image url="@../../../../../Desktop/icon-carte.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="desc" layoutX="57.0" layoutY="139.0" prefHeight="49.0" prefWidth="137.0" text="Description">
+                     <font>
+                        <Font name="Cambria Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

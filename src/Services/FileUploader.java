@@ -12,14 +12,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.text.html.HTML;
+//import javax.swing.text.html.HTML;
 
 public class FileUploader {
     private static String ScriptsURL = "http://localhost/Formation/";
     
     public static String upload(String path){
         try {
-            HttpURLConnection httpUrlConnection = (HttpURLConnection)new URL(ScriptsURL+"upload.php").openConnection();
+            HttpURLConnection httpUrlConnection = (HttpURLConnection)new URL(ScriptsURL+"upload.php").openConnection();// url class: to open a connection to the file we want to download.
             httpUrlConnection.setDoOutput(true);
             httpUrlConnection.setRequestMethod("POST");
             httpUrlConnection.setRequestProperty("Content-Type", "mutipart/form-data");

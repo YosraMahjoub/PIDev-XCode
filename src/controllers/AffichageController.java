@@ -33,6 +33,8 @@ public class AffichageController implements Initializable {
     private Label priceLable;
     @FXML
     private ImageView img;
+    @FXML
+    private Label titre;
     /**
      * Initializes the controller class.
      */
@@ -51,9 +53,10 @@ public class AffichageController implements Initializable {
     public void setData(Formation f, MyListener myListener) {
         this.f  = f;
         this.myListener = myListener;
+        titre.setText(f.getTitre());
         nameLabel.setText(f.getDescription());
         priceLable.setText((f.getPrix())+"DT");
-                    File newFile= new File("C:\\xampp\\htdocs\\PI\\IMG" + f.getImage());
+                    File newFile= new File("C:\\xampp\\htdocs\\Formation\\Images" + f.getImage());
 
         //image = new Image(getClass().getResourceAsStream(o.getImg()));
         img.setImage(new Image(newFile.toURI().toString()));

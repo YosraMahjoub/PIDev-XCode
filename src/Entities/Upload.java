@@ -21,7 +21,10 @@ import java.util.logging.Logger;
  */
 public class Upload {
     public String upload(File file) throws FileNotFoundException, IOException {
-        BufferedOutputStream stream = null;
+      
+        
+        BufferedOutputStream stream = null;//increase the performance
+        
         String globalPath="C:\\xampp\\htdocs\\Formation\\Images";
         String localPath="localhost/";
         String fileName = file.getName();

@@ -5,7 +5,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -25,9 +24,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1092.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InscrController">
-    <stylesheets>
-        <URL value="@affmesoeuves.css" />
-    </stylesheets>
+    
     <children>
       <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -61,7 +58,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <VBox fx:id="chosenFruitCard" alignment="CENTER" focusTraversable="true" layoutX="277.0" layoutY="92.0" prefHeight="463.0" prefWidth="337.0" styleClass="oeuvre-choisi" stylesheets="@affmesoeuves.css">
+                  <VBox fx:id="chosenFruitCard" alignment="CENTER" focusTraversable="true" layoutX="277.0" layoutY="92.0" prefHeight="463.0" prefWidth="280.0" styleClass="oeuvre-choisi" stylesheets="@affmesoeuves.css">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
@@ -118,7 +115,7 @@
                   <Pane prefHeight="26.0" prefWidth="382.0" />
                </children>
                <effect>
-                  <DropShadow />
+                  <DropShadow color="TRANSPARENT" />
                </effect>
             </VBox>
          </left>
@@ -152,7 +149,6 @@
                                     <FontAwesomeIconView fill="WHITE" glyphName="SIGN_IN" size="22" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="ADD" layoutX="-71.0" layoutY="19.0" mnemonicParsing="false" onAction="#ajoutttt" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: b7b7b7;" styleClass="search-button" stylesheets="@affmesoeuves.css" text="Devenir un formateur?" textFill="WHITE" />
                            </children>
                         </Pane>
                      </children>
@@ -162,7 +158,13 @@
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                      <children>
-                        <Pane prefHeight="69.0" prefWidth="191.0" style="-fx-background-color: F4F0F0;" HBox.hgrow="ALWAYS" />
+                        <Pane opacity="0.0" prefHeight="69.0" prefWidth="18.0" style="-fx-background-color: F4F0F0;" HBox.hgrow="ALWAYS" />
+                        <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: b7b7b7;" text="Trier par">
+                           <items>
+                              <MenuItem fx:id="triTitre" mnemonicParsing="false" onAction="#triTitre" text="date" />
+                              <MenuItem fx:id="prixT" mnemonicParsing="false" onAction="#TriparPrix" text="prix" />
+                           </items>
+                        </MenuButton>
                         <TextField fx:id="cher" onAction="#chercher" prefHeight="40.0" prefWidth="184.0" promptText="tapez ici" styleClass="transparent" stylesheets="@affmesoeuves.css">
                            <HBox.margin>
                               <Insets left="20.0" />
@@ -179,13 +181,7 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <ComboBox fx:id="tri" onAction="#TriparPrix" opacity="0.0" prefWidth="150.0" promptText="Trier par" />
-                        <MenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: b7b7b7;" text="Trier par">
-                           <items>
-                              <MenuItem fx:id="triTitre" mnemonicParsing="false" onAction="#triTitre" text="date" />
-                              <MenuItem fx:id="prixT" mnemonicParsing="false" onAction="#TriparPrix" text="prix" />
-                           </items>
-                        </MenuButton>
+                        <Button fx:id="ADD" mnemonicParsing="false" onAction="#ajoutttt" prefHeight="48.0" prefWidth="201.0" style="-fx-background-color: b7b7b7;" styleClass="search-button" stylesheets="@affmesoeuves.css" text="Enseigner sur Fanny " textFill="WHITE" />
                        
                                  </children>
                      <styleClass>

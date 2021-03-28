@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HELA/Documents/NetBeansProjects/PI/src/xcode/controllers/AfficherCoursController.java</file>
+            <file>file:/C:/Users/HELA/Documents/NetBeansProjects/PI/src/controllers/ModifierController.java</file>
+            <file>file:/C:/Users/HELA/Documents/NetBeansProjects/PI/src/controllers/AfficherCoursController.java</file>
+            <file>file:/C:/Users/HELA/Documents/NetBeansProjects/PI/src/Services/CoursServices.java</file>
+            <file>file:/C:/Users/HELA/Documents/NetBeansProjects/PI/src/controllers/AjoutercoursController.java</file>
             <file>file:/C:/Users/HELA/Documents/NetBeansProjects/PI/src/Services/RatingSer.java</file>
-            <file>file:/C:/Users/HELA/Documents/NetBeansProjects/PI/src/xcode/controllers/CoursListeController.java</file>
-            <file>file:/C:/Users/HELA/Documents/NetBeansProjects/PI/src/xcode/controllers/RatingController.java</file>
+            <file>file:/C:/Users/HELA/Documents/NetBeansProjects/PI/src/controllers/ModifierCoursController.java</file>
         </group>
     </open-files>
 </project-private>

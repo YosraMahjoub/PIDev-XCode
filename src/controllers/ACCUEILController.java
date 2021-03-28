@@ -9,6 +9,7 @@ import Entities.Cours;
 import Entities.Formation;
 import IServices.MyListener;
 import Services.FormationServices;
+import Test.Main;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -92,7 +93,7 @@ public class ACCUEILController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        listf.addAll(ff.readAll(1));
+        listf.addAll(ff.readAll(Main.connectedUser.getUser_id()));
            if (listf.size() > 0) {
                System.out.println(listf.get(0));
                 setChosenO(listf.get(0));
@@ -153,7 +154,7 @@ public class ACCUEILController implements Initializable {
         titre.setText(ff.getTitre());
         prixo.setText((ff.getPrix())+"DT");
         descO.setText(ff.getDescription());
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + ff.getImage());
+        File newFile2 = new File("C:\\xampp\\htdocs\\Formation\\Images" + ff.getImage());
 
         img.setImage(new Image(newFile2.toURI().toString()));
         f=ff;

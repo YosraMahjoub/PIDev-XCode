@@ -55,9 +55,9 @@ private static FormationServices instance;
 //         ZoneId defaultZoneId = ZoneId.systemDefault();
 //          (java.sql.Date) Date.from(f.getDate().atStartOfDay(defaultZoneId).toInstant())
         try {
-            pste =cnx.prepareStatement("insert into formation (user_id ,domaine,date,durée, lieu,prix,niveau,langue,nbr_inscrits,notation,description,image,titre) "
+            pste =cnx.prepareStatement("insert into formation (user_id ,domaine,date,durée, lieu,prix,niveau,langue,nbr_inscrits,description,image,titre) "
                     //  + "values((select user_id=? from user)a,?,?,?,?,?,?,?,?,?,(select cours_id=? from cours) b,?);");
-                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?);");
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,?);");
             int userid =f.u1.getUser_id();
             
             pste.setInt(1,userid);
@@ -70,13 +70,13 @@ private static FormationServices instance;
             pste.setString (7,f.getNiveau());
             pste.setString (8, f.getLangue());
             pste.setInt (9, f.getNbr_inscrits());
-            pste.setInt(10, f.getNotation());
+            //pste.setInt(10, f.getNotation());
             
            // pste.setInt(11, f.getCours_id());
             
-            pste.setString(11, f.getDescription());
-            pste.setString(12, f.getImage());
-            pste.setString(13, f.getTitre());
+            pste.setString(10, f.getDescription());
+            pste.setString(11, f.getImage());
+            pste.setString(12, f.getTitre());
           //  pste.setInt(14, f.getFormation_id());
             
             pste.executeUpdate();
@@ -101,10 +101,12 @@ private static FormationServices instance;
 
     @Override
     public void update(Formation f ) throws SQLException {
-        String req = "update  formation set domaine=?, date = ?, duree=?, lieu=?,"
-              + "prix = ?  , langue=?, niveau=?, description=?, image=?; " ; 
+        String req = "update formation set user_id=?, domaine=?, date = ?, durée=?, lieu=?,"
+              + "prix = ?  , langue=?, niveau=?, description=?, image=?, titre = ? where formation_id= "+f.getFormation_id() ; 
           pste=cnx.prepareStatement(req);
-           pste.setInt(1,f.getUser_id());
+           int userid =f.u1.getUser_id();
+            
+            pste.setInt(1,userid);
            pste.setString(2,f.getDomaine());
             pste.setString(3,f.getDate() );
             pste.setString (4,f.getDuree());
@@ -113,11 +115,12 @@ private static FormationServices instance;
             pste.setString (7,f.getNiveau());
             pste.setString (8, f.getLangue());
             //maybe i should remove this
-          //  pste.setInt (, f.getNbr_inscrits());
+          //pste.setInt (, f.getNbr_inscrits());
             //pste.setInt(10, f.getNotation());
-            pste.setInt(9, f.getCours_id());
-            pste.setString(10, f.getDescription());
-            pste.setString(11, f.getImage());
+            //pste.setInt(9, f.getCours_id());
+            pste.setString(9, f.getDescription());
+            pste.setString(10, f.getImage());
+            pste.setString(11, f.getTitre());
             pste.executeUpdate();
      
     }
@@ -133,15 +136,22 @@ private static FormationServices instance;
          
              while(rs.next()){
                   Formation f1 = new Formation();
-                   // f1.setFormation_id(rs.getInt("formation_id"));
+                    f1.setUser_id(rs.getInt("user_id"));
                          
                // formations.add(new Formation(rs.getInt(1),rs.getString("image")));
-               f1.setUser_id(rs.getInt("user_id"));
+               f1.setTitre(rs.getString("titre"));
+               f1.setFormation_id(rs.getInt("formation_id"));
                f1.setDescription(rs.getString("description"));
                f1.setImage(rs.getString("image"));
                f1.setPrix(rs.getFloat("prix"));
+                f1.setDuree(rs.getString("durée"));
+                 f1.setNiveau(rs.getString("niveau"));
+                  f1.setLangue(rs.getString("langue"));
+               f1.setLieu(rs.getString("lieu"));
+               f1.setDomaine(rs.getString("domaine"));
+               f1.setDate(rs.getString("date"));
                formations.add(f1);
-//                 
+                System.out.println(formations.size());
 //            formations.add(new Formation(rs.getInt("user_id"),rs.getString("domaine"),rs.getString("date"), rs.getString("durée"), rs.getString("lieu"), rs.getFloat("prix"), rs.getString("niveau"),
 //                    rs.getString("langue"), 0, 0, 0, rs.getString("description"), rs.getString("image")) );
        // formations.add(new Formation(0, req, req, req, req, 0, req, req, 0, 0, 0, req, req) )
@@ -161,6 +171,7 @@ private static FormationServices instance;
                     f1.setUser_id(rs.getInt("user_id"));
                          
                // formations.add(new Formation(rs.getInt(1),rs.getString("image")));
+               f1.setTitre(rs.getString("titre"));
                f1.setFormation_id(rs.getInt("formation_id"));
                f1.setDescription(rs.getString("description"));
                f1.setImage(rs.getString("image"));
@@ -172,6 +183,7 @@ private static FormationServices instance;
                f1.setDomaine(rs.getString("domaine"));
                f1.setDate(rs.getString("date"));
                formations.add(f1);
+                System.out.println(formations.size());
             }
                     } 
         catch (SQLException ex) {
@@ -235,7 +247,41 @@ private static FormationServices instance;
         }
         return listf;
     }
+      
+      
+       public List<Formation> afficherForClient() {
+        String req="SELECT * FROM `formation`WHERE `isvalid`=1";
+        List<Formation> listf =new ArrayList<>();
+        
+        try {
+           Statement ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+                Formation f1 =new Formation();
+             f1.setFormation_id(rs.getInt("formation_id"));
+                         
+               // formations.add(new Formation(rs.getInt(1),rs.getString("image")));
+               f1.setUser_id(rs.getInt("user_id"));
+               f1.setDescription(rs.getString("description"));
+               f1.setImage(rs.getString("image"));
+               f1.setPrix(rs.getFloat("prix"));
+               f1.setDuree(rs.getString("durée"));
+               f1.setLieu(rs.getString("lieu"));
+               f1.setDomaine(rs.getString("domaine"));
+               f1.setDate(rs.getString("date"));
+                       
+               listf.add(f1);
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(FormationServices.class.getName()).log(Level.SEVERE, null, ex);   
+        }
+        return listf;
+    }
      
+       
+       
     public List order() throws SQLException {
         List <Formation> formations = new   ArrayList();
      String req="select sum(notation) as rating, domaine from formation order by rating ";
@@ -298,7 +344,7 @@ String req = "SELECT * FROM formation order by prix asc";
               String niv =rs.getString("niveau");
               String lang = rs.getString("langue");
               String titre = rs.getString("titre");
-              Formation f = new Formation(user_id, dom, date, dur, lieu, prix, niv, lang, 0, 0, desc,img, titre);
+              Formation f = new Formation(user_id, dom, date, dur, lieu, prix, niv, lang, 0,  desc,img, titre);
            // Formation f = new Formation(user_id, dom, date, dur, lieu, prix, niv, lang, user_id, user_id, desc, img, titre)
                     
               listP.add(f)  ;          }
@@ -324,7 +370,7 @@ String req = "SELECT * FROM formation order by prix asc";
               String date= rs.getString("date");  
               String niv =rs.getString("niveau");
               String lang = rs.getString("langue");
-              Formation f = new Formation(user_id, dom, date, dur, lieu, prix, niv, lang, 0, 0, desc,img, titre);
+              Formation f = new Formation(user_id, dom, date, dur, lieu, prix, niv, lang, 0, desc,img, titre);
            // Formation f = new Formation(user_id, dom, date, dur, lieu, prix, niv, lang, user_id, user_id, desc, img, titre)
                     
               listef.add(f)  ;          }
@@ -333,5 +379,76 @@ String req = "SELECT * FROM formation order by prix asc";
           return listef;
     
     }
-      
-}
+     public List  read(int id){
+        List <Formation> formations = new   ArrayList();
+        try {
+            String req = "select * from inscription i join formation f on i.formation_id=f.formation_id where i.user_id="+id;
+            ResultSet rs= ste.executeQuery(req);
+            while(rs.next()){
+                Formation f1 = new Formation();
+                f1.setUser_id(rs.getInt("user_id"));
+                
+                // formations.add(new Formation(rs.getInt(1),rs.getString("image")));
+                f1.setTitre(rs.getString("titre"));
+                f1.setFormation_id(rs.getInt("formation_id"));
+                f1.setDescription(rs.getString("description"));
+                f1.setImage(rs.getString("image"));
+                f1.setPrix(rs.getFloat("prix"));
+                f1.setDuree(rs.getString("durée"));
+                f1.setNiveau(rs.getString("niveau"));
+                f1.setLangue(rs.getString("langue"));
+                f1.setLieu(rs.getString("lieu"));
+                f1.setDomaine(rs.getString("domaine"));
+                f1.setDate(rs.getString("date"));
+                formations.add(f1);
+                
+            }  } 
+        catch (SQLException ex) {
+            Logger.getLogger(FormationServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+  
+      return formations;
+        }
+     
+     public boolean inscritVisible(int f_id,int u_id){
+     boolean x=false;
+     String req = "select count(inscription_id) as nb from inscription where user_id=? and formation_id=?";
+        try {
+            pste=cnx.prepareStatement(req);
+            pste.setInt(1, u_id);
+            pste.setInt(2, f_id);
+             ResultSet rs= pste.executeQuery();
+             
+             
+           if(rs.next()){
+          int i= rs.getInt("nb");
+          if (i==0) {x= true;}
+          else {x=false;}
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(FormationServices.class.getName()).log(Level.SEVERE, null, ex);
+            ex.getMessage();
+        }
+     
+     return x;
+     }
+     
+     public boolean formationsVisible (int u_id){
+     boolean x=false;
+         String req = "select count(formation_id) as nb from formation where user_id=?";
+        try {
+            pste=cnx.prepareStatement(req);
+            pste.setInt(1, u_id);
+            ResultSet rs= pste.executeQuery();
+            if (rs.next()){
+            int i= rs.getInt("nb");
+          if (i==0) {x= false;}
+          else {x=true;}
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FormationServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return x;     
+     }
+             
+             }

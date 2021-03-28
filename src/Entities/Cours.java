@@ -17,7 +17,7 @@ public class Cours {
       private String duree;
       private String file;
      private int formation_id;
-     private static Formation f = new Formation();
+     public static Formation f = new Formation();
      
     public Cours() {
         

@@ -13,6 +13,7 @@ import Entities.Inscription;
 import IServices.MyListener;
 import Services.FormationServices;
 import Services.InscriptionsServices;
+import Test.Main;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -83,11 +84,6 @@ public class InscrController implements Initializable {
      * Initializes the controller class.
      */
     
-     private  Formation f;
-     private Image image;
-   private MyListener myListener;
-    private List<Formation> listf =new ArrayList<>();
-    FormationServices ff = new FormationServices();
     @FXML
     private MenuItem prixT;
     @FXML
@@ -102,23 +98,28 @@ public class InscrController implements Initializable {
     private Label nomO;
     @FXML
     private Button rechbtn;
+      private  Formation f;
+     private Image image;
+   private MyListener myListener;
+    private List<Formation> listf =new ArrayList<>();
+    FormationServices fs = new FormationServices();
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-         ObservableList<String> cat = FXCollections.observableArrayList( "prix","date");
-        tri.setItems(cat);  
-        listf.addAll(ff.readAll(1));
-           if (listf.size() > 0) {
-               System.out.println(listf.get(0));
-               
-                setChosenO(listf.get(0));
-                
-                myListener = new MyListener() {
-                    
-                    @Override
-                    public void onClickListener(MouseEvent event ,Formation formation) {
-                         setChosenO(formation);
+//s
+listf.addAll(fs.afficherForClient());
+if (listf.size() > 0) {
+    System.out.println(listf.get(0));
+    
+    setChosenO(listf.get(0));
+    
+    myListener = new MyListener() {
+        
+        @Override
+        public void onClickListener(MouseEvent event ,Formation formation) {
+            setChosenO(formation);// allows the click on the
 //                        try {
 //                            AfficherForController.setF(f);
 //                            Parent page1 = FXMLLoader.load(getClass().getResource("/View/AfficherFor.fxml"));
@@ -129,52 +130,56 @@ public class InscrController implements Initializable {
 //                        } catch (IOException ex) {
 //                            Logger.getLogger(InscrController.class.getName()).log(Level.SEVERE, null, ex);
 //                        }
-                    }
+        }
+        
+        @Override
+        public void onClickListener(MouseEvent event, Cours cours) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    };
+}
+int column = 0;
+int row = 1;
+try {
+    for (int i = 0; i < listf.size(); i++) {
+        
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/View/AfficherForClick.fxml"));
+        AnchorPane anchorPane = fxmlLoader.load();
+// allows to show and scroll  of all the "formations" with their titre/prix/desc
+AfficherForClickController itemController = fxmlLoader.getController();
 
-                   @Override
-                   public void onClickListener(MouseEvent event, Cours cours) {
-                       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                   }
-                };
-            }
-           int column = 0;
-            int row = 1;
-           try {
-                for (int i = 0; i < listf.size(); i++) {
+itemController.setData(listf.get(i),myListener);
 
-                   FXMLLoader fxmlLoader = new FXMLLoader();
-                   fxmlLoader.setLocation(getClass().getResource("/View/AfficherForClick.fxml"));
-                   AnchorPane anchorPane = fxmlLoader.load();
+if (column == 3) {
+    column = 0;
+    row++;
+}
 
-                    AfficherForClickController itemController = fxmlLoader.getController();
-                    
-                itemController.setData(listf.get(i),myListener);
+grid.add(anchorPane, column++, row); //(child,column,row)
+//set grid width
+grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+grid.setMaxWidth(Region.USE_PREF_SIZE);
 
-                if (column == 3) {
-                    column = 0;
-                    row++;
-                }
-                
-                grid.add(anchorPane, column++, row); //(child,column,row)
-                //set grid width
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                //set grid height
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-                GridPane.setMargin(anchorPane, new Insets(10));
-                }
-                
-                
-                
-                } catch (IOException ex) {
-                   Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
-               } 
+//set grid height
+grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+grid.setMaxHeight(Region.USE_PREF_SIZE);
+GridPane.setMargin(anchorPane, new Insets(10));
     }
     
+    
+    
+} catch (IOException ex) {
+    Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
+}
+//
+if (fs.formationsVisible( Main.connectedUser.getUser_id()))
+{ADD.setText("Ajouter Formation");}
+else {ADD.setText("Enseigner sur Fanny");}
+    }
+    // show formation in small corner with "afficher" button 
         private void setChosenO(Formation ff) {
       nomO.setText(ff.getTitre());
         prixo.setText((ff.getPrix())+"DT");
@@ -183,7 +188,15 @@ public class InscrController implements Initializable {
 
         //image = new Image(getClass().getResourceAsStream(o.getImg()));
         img.setImage(new Image(newFile2.toURI().toString()));
-        f=ff;
+         f=ff;
+//        String path = "http://...";
+//String pathToOpen = "http://...";
+//
+//Image image = new Image(path);
+//ImageView imageView = new ImageView(image);
+
+        
+       
     }
 
   
@@ -221,28 +234,26 @@ public class InscrController implements Initializable {
     @FXML
     private void chercher(ActionEvent event) throws SQLException  {
         
-        
-        if(cher.getText()!=f.getTitre())
-               // equals(""))
+         listf.addAll(fs.readAll());
+        boolean a = listf.stream().anyMatch(f -> f.getTitre().equalsIgnoreCase(cher.getText()));
+        if (a!=true)
+      //  if(cher.getText()!=f.getTitre())
         {
-            System.out.println("pas de resultat");
-            try {
-                            AfficherForController.setF(f);
-                            Parent page1 = FXMLLoader.load(getClass().getResource("/View/chercherNull.fxml"));
-                            Scene scene = new Scene(page1);
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(scene); 
-                            stage.show();
-                        } catch (IOException ex) {
-                           Logger.getLogger(InscrController.class.getName()).log(Level.SEVERE, null, ex);
-                   
-                };
-                
-        
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+     
+            alert.setContentText("pas de formation avec ce nom");
+            alert.showAndWait();
         }
+               // equals(""))
+       
+             
+     
+            
+       
+//   
     else{
         
-        ArrayList<Formation> listf = (ArrayList<Formation>) ff.rechercherFor(cher.getText()); 
+        ArrayList<Formation> listf = (ArrayList<Formation>) fs.rechercherFor(cher.getText()); 
             //  data.clear();
              // data = FXCollections.observableArrayList(liste);           
           if (listf.size() > 0) {
@@ -329,7 +340,7 @@ public class InscrController implements Initializable {
     void TriparPrix(ActionEvent event) throws SQLException {
          System.out.println("tri par prix");
   //  Slider
-        listf= ff.tri_prix();
+        listf= fs.tri_prix();
            if (listf.size() > 0) {
                System.out.println(listf.get(0));
                

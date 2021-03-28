@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,15 +39,21 @@ Connection cnx = DB.getInstance().getConnection();
 
     public void ajouter(Inscription p) {
         try {
-            PreparedStatement pre = cnx.prepareStatement("INSERT INTO `inscription` ( `user_id`, `formation_id`, `date`) VALUES ( ?, ?, ?);");
+            PreparedStatement pre = cnx.prepareStatement("INSERT INTO `inscription` ( `user_id`, `formation_id`, `date`, `isinscrit`) VALUES ( ?, ?, ?,?);");
             pre.setInt(1, p.u1.getUser_id());
             pre.setInt(2, p.f.getFormation_id());
             pre.setDate(3, p.getDate());
+            pre.setInt(4,1);
             pre.executeUpdate();
         } catch (SQLException ex) {
             
             Logger.getLogger(InscriptionsServices.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+   
+    
+            
+        
+    
 
 }

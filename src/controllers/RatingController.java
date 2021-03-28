@@ -76,24 +76,24 @@ static Formation ff;
     private void applyR(ActionEvent event) throws SQLException {
        
         try {
-            r.setValue( rate.getRating());
-              r.setU1(Main.connectedUser);
-              Formation x=ff;
-              r.setF(x);// nheb nekhou id te3ha 
+//            r.setValue( rate.getRating());
+//              r.setU1(Main.connectedUser);
+//              Formation x=ff;
+//              r.setF(x);// nheb nekhou id te3ha 
           
-            rs.rating(r,ff);
+            rs.rating(rate.getRating(),ff);
             
 //ra.setRating(rate.getRating());
-Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-alert.setTitle("confirmation");
-alert.setHeaderText("notation ajoutée");
-alert.setContentText("Merci pour votre contribution!!");
-alert.show();
-Parent page1 = FXMLLoader.load(getClass().getResource("/View/CoursListe.fxml"));
-Scene scene = new Scene(page1);
-Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-stage.setScene(scene);
-stage.show();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("confirmation");
+        alert.setHeaderText("notation ajoutée");
+        alert.setContentText("Merci pour votre contribution!!");
+        alert.show();
+        Parent page1 = FXMLLoader.load(getClass().getResource("/View/CoursListe.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
         } catch (IOException ex) {
             Logger.getLogger(RatingController.class.getName()).log(Level.SEVERE, null, ex);
         }

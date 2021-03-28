@@ -6,7 +6,9 @@
 package controllers;
 
 import Entities.Formation;
+import Services.CoursServices;
 import Services.FormationServices;
+import Test.Main;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,6 +17,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,8 +49,6 @@ import org.apache.commons.io.FileUtils;
  */
 public class ModifierController implements Initializable {
 
-    @FXML
-    private Button back;
     @FXML
     private TextField btn_lieu;
     @FXML
@@ -84,7 +85,19 @@ public class ModifierController implements Initializable {
     FormationServices fs = new FormationServices();
     String nameCat = "" ;
     File file ;
-    
+    @FXML
+    private Button back1;
+    @FXML
+    private Button apprenti;
+    @FXML
+    private Button back;
+    @FXML
+    private Button apprenti1;
+    @FXML
+    private TextField btn_titre;
+    @FXML
+    private Button cours;
+    CoursServices cs= new CoursServices();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -92,23 +105,34 @@ public class ModifierController implements Initializable {
          ObservableList<String> cat = FXCollections.observableArrayList( "dance","theatre", "musique","littérature",	"peinture",	"audiovisuel",	"sculpture");
         btn_domaine.setItems(cat);
     
-       // final int initialValue = (int) s.getQuantite();
+  
  
       
         
-        try {
-         File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + s.getImage());
+        
+         File newFile2 = new File("C:\\xampp\\htdocs\\Formation\\Images" + s.getImage());
           imgV.setImage(new Image(newFile2.toURI().toString()));
+          btn_titre.setText(s.getTitre());
           btn_lieu.setText(s.getLieu());
           btn_lang.setText(s.getLangue());
           btn_duree.setText(s.getDuree());
          // btn_date.setValue(s.getDate().todate); lezem nrod string date !!!
-        
+        btn_niv.setText(s.getNiveau());
         btn_prix.setText(String.valueOf(s.getPrix()));
           btn_desc.setText(s.getDescription());
           btn_domaine.setValue(s.getDomaine());
-        } catch (Exception e) {
-        }
+        
+//        LocalDate d = btn_date.getValue();
+//                d.toString();
+//              // .toLocalDate();
+//          btn_date.setValue(d);
+          
+        // btn_date.setAccessibleText(s.getDate());
+        if (cs.coursVisible(s.getFormation_id()))
+          {cours.setVisible(true);}
+          else {cours.setVisible(false);}
+         
+         
         
     }    
 
@@ -173,27 +197,34 @@ public class ModifierController implements Initializable {
     private void validerModif(ActionEvent event) throws FileNotFoundException, IOException, SQLException {
         
         //while(isvalid=0)
-        if (btn_date.getValue()==null
-              //  ||  date. ==0
-                                                
-                || btn_duree.getText().isEmpty()
-                || btn_lieu.getText().isEmpty()
-                || btn_niv.getText().isEmpty()
-                || btn_prix.getText().isEmpty()
-                 ||   btn_lang.getText().isEmpty()
-                 ||   btn_desc.getText().isEmpty()
-                || nameCat ==""
+ // if (
+//btn_date.getValue()==null
+//              //  ||  date. ==0
+//                                                
+//                || btn_duree.getText().isEmpty()
+//                || btn_lieu.getText().isEmpty()
+//                || btn_niv.getText().isEmpty()
+//                || btn_prix.getText().isEmpty()
+//                 ||   btn_lang.getText().isEmpty()
+//                 ||   btn_desc.getText().isEmpty()
+//                || nameCat ==""
                 
-               ) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-
-            alert.setHeaderText("merci de remplir tous les champs");
-            alert.showAndWait();
-        }
-        else {
-             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-        Date date = new Date(System.currentTimeMillis());
-        date.toLocalDate();
+//               ) 
+//  {
+//      
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//
+//            alert.setHeaderText("merci de remplir tous les champs");
+//            alert.showAndWait();
+//        }
+//        else {
+          
+          
+//             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+//        Date date = new Date(System.currentTimeMillis());
+//        date.toLocalDate();
+        s.setU1(Main.connectedUser);
+        s.setTitre(btn_titre.getText());
              s.setDuree(btn_duree.getText());
            s.setLieu(btn_lieu.getText());
            s.setLangue(btn_lang.getText());
@@ -211,7 +242,7 @@ public class ModifierController implements Initializable {
       //  alert.setHeaderText("Formation modifié ☺ ");
             alert.setContentText("Formation modifiée avec sucèes ☺ ");
             alert.showAndWait();
-        }
+       // }
       
        // LocalDate date2= btn_date.getValue();
      
@@ -232,4 +263,33 @@ public class ModifierController implements Initializable {
                 Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
+
+    @FXML
+    private void backAprrenti(ActionEvent event) {
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/View/MesFormations.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ModifierController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void CoursModif(ActionEvent event) {
+        try {
+            CoursListeController.f=s;
+            Parent page1 = FXMLLoader.load(getClass().getResource("/View/ModifierCoursListe.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ModifierController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+   
 }

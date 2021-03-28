@@ -6,19 +6,25 @@
 package controllers;
 
 import Entities.Cours;
+import Entities.Download;
 import Entities.Formation;
 import Entities.Inscription;
 import IServices.MyListener;
+import Services.FileDownloader;
 import Services.FormationServices;
 import Services.InscriptionsServices;
 import Test.Main;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,10 +35,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TreeTableColumn;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import service.FileUploader;
 
 /**
  * FXML Controller class
@@ -65,26 +73,80 @@ public class AfficherForController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    private MyListener myListener;
-     private static Formation a ;
-     
-     FormationServices fs = FormationServices.getInstance();
-     public static void setF (Formation f ){
-        a=f;
-    }
-      private static Cours ac ;
-      private  Cours c;
+   
     @FXML
     private Button inscrit1;
     @FXML
     private Button inscrit;
     @FXML
     private Label titre;
+    @FXML
+    private Button gest;
+    @FXML
+    private Button mdp;
+    @FXML
+    private Button role;
+    @FXML
+    private Button event;
+    @FXML
+    private Button favoris;
+    @FXML
+    private Button apprenti;
+    @FXML
+    private Button event1;
+    @FXML
+    private Button back1;
+    
+     private MyListener myListener;
+     private static Formation a ;
+     Inscription i = new Inscription();
+     FormationServices fs = FormationServices.getInstance();
+     public static void setF (Formation f ){
+        a=f;
+    }
+      private static Cours ac ;
+      private  Cours c;
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-           File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + a.getImage());
-        imgV.setImage(new Image(newFile2.toURI().toString()));
+           File newFile2 = new File("C:\\xampp\\htdocs\\Formation\\Images" + a.getImage());
+      imgV.setImage(new Image(newFile2.toURI().toString()));
+//      imgV.setImage(new Image(newFile2.g));
+//        Image.setCellValueFactory((TreeTableColumn.CellDataFeatures<BonPlan, Image> param) ->  
+//                new SimpleObjectProperty(new Image(param.getValue().getValue().getImg_bp())));
+//Download d = new Download("http://localhost/Formation/Images/", "C:\\xampp\\htdocs\\Formation\\Images");
+//textTOimg= 
+////textTOimg="http://localhost/Formation/Images/"+textTOimg;
+//
+//      try{
+//         String fileName = "C:\\xampp\\htdocs\\Formation\\Images";
+//         String website = "http://localhost/Formation/Images"+fileName;
+//         
+//         System.out.println("Downloading File From: " + website);
+//         
+//         url = new URL(website);
+//         InputStream inputStream = url.openStream();
+//         OutputStream outputStream = new FileOutputStream(fileName);
+//         byte[] buffer = new byte[2048];
+//         
+//         int length = 0;
+//         
+//         while ((length = inputStream.read(buffer)) != -1) {
+//            System.out.println("Buffer Read of length: " + length);
+//            outputStream.write(buffer, 0, length);
+//         }
+//         
+//         inputStream.close();
+//         outputStream.close();
+//         
+//      } catch(Exception e) {
+//         System.out.println("Exception: " + e.getMessage());
+//      }
+   
+
          adesco.setText(a.getDescription());
         aprixo.setText(String.valueOf(a.getPrix()));
          adomaino.setText(a.getDomaine());
@@ -94,6 +156,14 @@ public class AfficherForController implements Initializable {
           duree.setText(a.getDuree());
           date.setText(a.getDate());
           titre.setText(a.getTitre());
+          
+          
+          if (fs.inscritVisible(a.getFormation_id(), Main.connectedUser.getUser_id()))
+          {inscrit.setVisible(true);}
+          else {inscrit.setVisible(false);}
+          
+          
+          
     }    
 
     @FXML
@@ -117,8 +187,7 @@ public class AfficherForController implements Initializable {
                 i.setU1(Main.connectedUser);
                 Formation x =a;
                 i.setF(x);
-                
-                              
+                                              
                 in.ajouter(i);
                 
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -128,8 +197,9 @@ public class AfficherForController implements Initializable {
                 alert.show();
                 
           // AfficherCoursController.setF(a);
-          CoursListeController.f=a;
-           
+          CoursListeController.f=a;// hedhi mesh teb3a el ajout ta3 inscrit hedhi naamloha
+          //pour fixer formation pour laquelle on veut afficher ses cours 
+           RatingController.ff=a;
             Parent page1 = FXMLLoader.load(getClass().getResource("/View/CoursListe.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -143,8 +213,8 @@ public class AfficherForController implements Initializable {
 
     @FXML
     private void afficherCours(ActionEvent event) {
-        
-        try {
+        if (fs.inscritVisible(a.getFormation_id(), Main.connectedUser.getUser_id()))//test sur inscrit
+          { try {
              CoursListeSANinscriController.f=a;
             Parent page1 = FXMLLoader.load(getClass().getResource("/View/CoursListeSANSinscri.fxml"));
             Scene scene = new Scene(page1);
@@ -153,9 +223,36 @@ public class AfficherForController implements Initializable {
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(AfficherForController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }}
+          else {   try {
+             CoursListeController.f=a;
+            Parent page1 = FXMLLoader.load(getClass().getResource("/View/CoursListe.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherForController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+           }
+     
             
                }
+
+    @FXML
+    private void backAprrenti(ActionEvent event) {
+        
+             try {
+          //   CoursListeSANinscriController.f=a;
+            Parent page1 = FXMLLoader.load(getClass().getResource("/View/MesFormations.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherForController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
            }
 
     

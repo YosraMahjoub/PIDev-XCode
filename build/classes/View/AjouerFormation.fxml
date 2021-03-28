@@ -8,8 +8,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
@@ -18,25 +16,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="624.0" prefWidth="878.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouerFormationController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouerFormationController">
    <children>
-      <AnchorPane layoutX="-11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="743.0" prefWidth="898.0">
+      <AnchorPane layoutX="66.0" layoutY="-52.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="407.0">
          <children>
-            <MenuBar layoutX="-7.0" layoutY="-2.0" prefHeight="32.0" prefWidth="823.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="Qui sommes nous? ">
-                  <items>
-                        <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Besoin d'aide?">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
             <MenuButton layoutX="789.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="109.0" text="Username">
               <items>
                 <MenuItem mnemonicParsing="false" text="Profil" />
@@ -50,53 +33,66 @@
             <Accordion layoutX="281.0" layoutY="145.0" prefHeight="95.0" prefWidth="166.0" />
             <Accordion layoutX="387.0" layoutY="192.0" />
             <Group layoutX="177.0" layoutY="267.0" />
-            <Pane layoutX="-65.0" layoutY="29.0" prefHeight="716.0" prefWidth="217.0" style="-fx-background-color: A65959;">
+            <Pane layoutX="-52.0" layoutY="50.0" prefHeight="624.0" prefWidth="208.0" style="-fx-background-color: A65959;">
                <children>
-                  <Button fx:id="back" alignment="CENTER" blendMode="SRC_ATOP" layoutX="82.0" layoutY="237.0" mnemonicParsing="false" onAction="#back" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: #414E4D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes formations" textAlignment="CENTER" underline="true">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Button>
-                  <Button fx:id="back1" alignment="CENTER" blendMode="SRC_ATOP" layoutX="85.0" layoutY="174.0" mnemonicParsing="false" onAction="#backClient" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #414E4D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Accueil" textAlignment="CENTER" underline="true">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Button>
+                  <AnchorPane layoutX="-48.0" prefHeight="624.0" prefWidth="248.0" style="-fx-background-color: #343E3D;">
+                     <children>
+                        <Accordion layoutX="83.0" layoutY="85.0" />
+                        <Button fx:id="apprenti" blendMode="SRC_ATOP" layoutX="43.0" layoutY="268.0" mnemonicParsing="false" onAction="#backAprrenti" opacity="0.0" prefHeight="33.0" prefWidth="189.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mon apprentissage" textAlignment="CENTER" underline="true">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="back1" alignment="CENTER" blendMode="SRC_ATOP" layoutX="73.0" layoutY="172.0" mnemonicParsing="false" onAction="#backClient" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Formations" textAlignment="CENTER" underline="true">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="back" alignment="CENTER" blendMode="SRC_ATOP" layoutX="70.0" layoutY="220.0" mnemonicParsing="false" onAction="#back" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: #414E4D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes Formations" textAlignment="CENTER" underline="true">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                     </children>
+                  </AnchorPane>
                </children>
             </Pane>
-            <Label layoutX="161.0" layoutY="182.0" prefHeight="21.0" prefWidth="200.0" text="Domaine" />
-            <TextField fx:id="btn_lieu" layoutX="157.0" layoutY="491.0" prefHeight="31.0" prefWidth="308.0" />
-            <TextField fx:id="btn_duree" layoutX="157.0" layoutY="398.0" prefHeight="31.0" prefWidth="308.0" />
-            <Label layoutX="161.0" layoutY="453.0" prefHeight="21.0" prefWidth="80.0" text="Lieu" />
-            <Label layoutX="160.0" layoutY="277.0" text="Date" />
-            <Label layoutX="161.0" layoutY="362.0" text="Durée" />
-            <DatePicker fx:id="btn_date" layoutX="157.0" layoutY="308.0" prefHeight="31.0" prefWidth="308.0" />
-            <TextField fx:id="btn_lang" layoutX="562.0" layoutY="213.0" prefHeight="31.0" prefWidth="308.0" />
-            <TextField fx:id="btn_prix" layoutX="562.0" layoutY="491.0" prefHeight="31.0" prefWidth="308.0" />
-            <TextField fx:id="btn_desc" layoutX="562.0" layoutY="398.0" prefHeight="31.0" prefWidth="308.0" />
-            <TextField fx:id="btn_niv" layoutX="562.0" layoutY="308.0" prefHeight="31.0" prefWidth="308.0" />
-            <Label layoutX="562.0" layoutY="362.0" prefHeight="21.0" prefWidth="80.0" text="Description" />
-            <Label layoutX="562.0" layoutY="277.0" prefHeight="21.0" prefWidth="80.0" text="Niveau" />
-            <Label layoutX="562.0" layoutY="182.0" prefHeight="21.0" prefWidth="80.0" text="Langue" />
-            <Label layoutX="562.0" layoutY="453.0" prefHeight="21.0" prefWidth="80.0" text="Prix" />
-            <ComboBox fx:id="btn_domaine" layoutX="157.0" layoutY="213.0" onAction="#choisirDomaine" prefHeight="31.0" prefWidth="308.0" promptText="Choisir un domaine" />
-            <TextField fx:id="txtimg" layoutX="350.0" layoutY="640.0" prefHeight="32.0" prefWidth="277.0" promptText="telechager" />
-            <Button fx:id="bimgo" layoutX="627.0" layoutY="641.0" mnemonicParsing="false" onAction="#chercherI" prefHeight="25.0" prefWidth="11.0" text="..." />
-            <Button fx:id="btn_valider" layoutX="455.0" layoutY="686.0" mnemonicParsing="false" onAction="#ajouter" text="Valider" textFill="#000000ea" />
-            <ImageView fx:id="imgV" fitHeight="113.0" fitWidth="189.0" layoutX="405.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
-               <viewport>
-                  <Rectangle2D />
-               </viewport>
-            </ImageView>
-            <TextField fx:id="btn_titre" layoutX="346.0" layoutY="130.0" prefHeight="31.0" prefWidth="308.0" />
-            <Label layoutX="350.0" layoutY="93.0" prefHeight="21.0" prefWidth="67.0" text="Titre" />
          </children>
       </AnchorPane>
+      <ImageView fx:id="imgV" fitHeight="113.0" fitWidth="189.0" layoutX="770.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true">
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <TextField fx:id="btn_lieu" layoutX="273.0" layoutY="443.0" prefHeight="31.0" prefWidth="308.0" />
+      <TextField fx:id="btn_duree" layoutX="273.0" layoutY="350.0" prefHeight="31.0" prefWidth="308.0" />
+      <DatePicker fx:id="btn_date" layoutX="273.0" layoutY="260.0" prefHeight="31.0" prefWidth="308.0" />
+      <TextField fx:id="btn_lang" layoutX="678.0" layoutY="165.0" prefHeight="31.0" prefWidth="308.0" />
+      <TextField fx:id="btn_prix" layoutX="678.0" layoutY="443.0" prefHeight="31.0" prefWidth="308.0" />
+      <TextField fx:id="btn_desc" layoutX="678.0" layoutY="350.0" prefHeight="31.0" prefWidth="308.0" />
+      <ComboBox fx:id="btn_domaine" layoutX="273.0" layoutY="165.0" onAction="#choisirDomaine" prefHeight="31.0" prefWidth="308.0" promptText="Choisir un domaine" />
+      <TextField fx:id="txtimg" layoutX="466.0" layoutY="522.0" prefHeight="32.0" prefWidth="277.0" promptText="telechager" />
+      <Button fx:id="btn_valider" layoutX="563.0" layoutY="561.0" mnemonicParsing="false" onAction="#ajouter" text="Valider" textFill="#000000ea" />
+      <TextField fx:id="btn_titre" layoutX="462.0" layoutY="82.0" prefHeight="31.0" prefWidth="308.0" />
+      <Button fx:id="bimgo" layoutX="718.0" layoutY="523.0" mnemonicParsing="false" onAction="#chercherI" prefHeight="25.0" prefWidth="11.0" text="..." />
+      <Label layoutX="281.0" layoutY="131.0" prefHeight="21.0" prefWidth="200.0" text="Domaine" />
+      <Label layoutX="281.0" layoutY="402.0" prefHeight="21.0" prefWidth="80.0" text="Lieu" />
+      <Label layoutX="280.0" layoutY="226.0" text="Date" />
+      <Label layoutX="281.0" layoutY="311.0" text="Durée" />
+      <Label layoutX="682.0" layoutY="311.0" prefHeight="21.0" prefWidth="80.0" text="Description" />
+      <Label layoutX="682.0" layoutY="226.0" prefHeight="21.0" prefWidth="80.0" text="Niveau" />
+      <Label layoutX="682.0" layoutY="131.0" prefHeight="21.0" prefWidth="80.0" text="Langue" />
+      <Label layoutX="682.0" layoutY="402.0" prefHeight="21.0" prefWidth="80.0" text="Prix" />
+      <Label layoutX="470.0" layoutY="42.0" prefHeight="21.0" prefWidth="67.0" text="Titre" />
+      <ComboBox fx:id="btn_niv" layoutX="681.0" layoutY="260.0" onAction="#selectcat" prefHeight="31.0" prefWidth="308.0" promptText="préciser le niveau" />
    </children>
 </AnchorPane>

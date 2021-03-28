@@ -35,6 +35,7 @@ import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 import Services.CoursServices;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import javafx.scene.control.ButtonType;
 
@@ -55,11 +56,10 @@ public class AjoutercoursController implements Initializable {
     private TextField duree;
     @FXML
     private Button bimgo;
+   
     @FXML
-    private Button annulero;
-    @FXML
-    private TextField txtimg;
-File file;
+     TextField txtimg;
+    File file;
     @FXML
     private Button ajouterC;
     @FXML
@@ -75,7 +75,7 @@ File file;
      * Initializes the controller class.
      */
     
-     public static Formation f ;
+      static Formation f ;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -107,27 +107,28 @@ File file;
         c.setDescription(desc.getText());
         c.setNiveau(nameCat);
         c.setDuree(duree.getText());
-        c.setFile(nameCat);
+        //c.setFile(nameCat);
       //  c.setFormation_id(4);// the problem is here 
       
         c.setFile(file.getName());
         CoursServices cs = new CoursServices();
-         Formation x =f;
-                c.setF(x);
-        c.setFormation_id(x.getFormation_id());
-       // cs.ajouter1(c,f);
-        cs.ajouter(c);
+//         Formation x =f;
+//                c.setF(x);
+       // c.setFormation_id(f.getFormation_id());
+        //cs.ajouter(c);
+       cs.ajouter(c,f);
         
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("confirmation");
         alert.setHeaderText("Cours ajouté");
         alert.setContentText("Vous pouvez ajouter encore des cours");
         
-ButtonType ajouterC= new ButtonType("ajouter ");
-ButtonType buttonTypeTwo = new ButtonType("Non ");
-alert.getButtonTypes().setAll(ajouterC, buttonTypeTwo);
-Optional<ButtonType> result = alert.showAndWait();
-if (result.get() == ajouterC){
+        ButtonType ajouterC= new ButtonType("ajouter ");
+        ButtonType buttonTypeTwo = new ButtonType("Non ");
+        alert.getButtonTypes().setAll(ajouterC, buttonTypeTwo);
+        Optional<ButtonType> result = alert.showAndWait();
+        
+        if (result.get() == ajouterC){
     try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/View/Cours.fxml"));
                 Scene scene = new Scene(page1);
@@ -166,30 +167,45 @@ else { Alert aa = new Alert(Alert.AlertType.INFORMATION);
         FileChooser filechooser = new FileChooser();
         filechooser.setInitialDirectory(new File("C:\\"));
         filechooser.setTitle("insérer image");
-        filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"), new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+      //  filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"), new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("all", "*.*"));
+     //   file = filechooser.showOpenDialog(primary);
         
-        file = filechooser.showOpenDialog(primary);
-        FileUtils.copyFileToDirectory(file, dest);
         
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
+        List <File> files = filechooser.showOpenMultipleDialog(primary);
+         
+     for (int i=0; i<files.size(); i++){
+        
+        FileUtils.copyFileToDirectory(files.get(i), dest);
+        
+        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + files.get(i).getName());
 
         FileInputStream input2 = new FileInputStream(newFile2);
+        
         Image image2 = new Image(input2);
         txtimg.setText(newFile2.getName());
      //   imgV.setImage(image2);
        System.out.println(txtimg.getText());
-        if(file!=null)
+        if(files.get(i)!=null)
         {
         txtimg.setVisible(true);
-        txtimg.setText(file.getName());
+        txtimg.setText(files.get(i).getName());
 //            try {             Files.copy(file.toPath(),new File(path+"\\"+file.getName()).toPath());
 //            } catch (IOException e) {
 //                e.printStackTrace();
 //            }
         }
-    else {
+   
+     else {
                System.out.println("Image introuvable");         
-    }}
+    }}}
+    
+    public void chercherI2 (ActionEvent event) throws FileNotFoundException, IOException  {
+    
+    
+    
+    
+    }
 
     @FXML
     private void selectcat(ActionEvent event) {
@@ -224,5 +240,18 @@ else { Alert aa = new Alert(Alert.AlertType.INFORMATION);
     }
 
 }
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+
+
+
 
 

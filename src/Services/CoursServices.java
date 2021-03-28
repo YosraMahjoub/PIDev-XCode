@@ -24,10 +24,12 @@ import java.util.logging.Logger;
  *
  * @author HELA
  */
+
 public class CoursServices implements IServicesCours{
       Connection cnx;
     Statement ste;
     PreparedStatement pste;
+     
  //   private static CoursServices instance;
 
     public CoursServices()  {
@@ -45,8 +47,8 @@ public class CoursServices implements IServicesCours{
 //            instance=new CoursServices();
 //        return instance;
 //    }
-     @Override
-     public void ajouter(Cours c) {
+     
+     public void ajouter(Cours c,Formation f) {
           try {
               //String req = "insert into `cours` ( `titre`, `niveau`,`description`,`durée`,`image`,`formation_id`)  Values ('"+ c.getTitre() +"' , '"+ c.getNiveau() +"','"+ c.getDescription() +"','"+ c.getDuree() +"','"+ c.getFile() +"','"+ c.getF().getFormation_id() + "');";
                String req = "insert into `cours` ( `titre`, `niveau`,`description`,`durée`,`image`,`formation_id`)  Values(?,?,?,?,?,?);";
@@ -56,10 +58,10 @@ public class CoursServices implements IServicesCours{
             pste.setString(3,c.getDescription());
             pste.setString(4,c.getDuree());
             pste.setString(5, c.getFile() );
-            
-              pste.setInt(6, c.getF().getFormation_id());
+         pste.setInt(6,Cours.f.getFormation_id());//prob
 
               pste.executeUpdate();
+              System.out.println("error");
           } catch (SQLException ex) {
               System.out.println(ex.getMessage()); 
               ex.printStackTrace();
@@ -68,17 +70,17 @@ public class CoursServices implements IServicesCours{
         
      }
 
-//    @Override
-//    public void ajouter(Cours c, Formation f) throws SQLException {
-//      try {
-//              String req = "insert into `cours` ( `titre`, `niveau`,`description`,`durée`,`image`,`formation_id`)  Values ('"+ c.getTitre() +"' , '"+ c.getNiveau() +"','"+ c.getDescription() +"','"+ c.getDuree() +"','"+ c.getFile() +"','"+  5+ "');";
-//              
-//              ste.executeUpdate(req);
-//          } catch (SQLException ex) {
-//              System.out.println(ex.getMessage());
-//              Logger.getLogger(CoursServices.class.getName()).log(Level.SEVERE, null, ex);
-//          } 
-//    }
+    @Override
+    public void ajouter(Cours c) throws SQLException {
+      try {
+     String req = "insert into `cours` ( `titre`, `niveau`,`description`,`durée`,`image`,`formation_id`)  Values ('"+ c.getTitre() +"' , '"+ c.getNiveau() +"','"+ c.getDescription() +"','"+ c.getDuree() +"','"+ c.getFile() +"','"+  5+ "');";
+              
+              ste.executeUpdate(req);
+          } catch (SQLException ex) {
+              System.out.println(ex.getMessage());
+              Logger.getLogger(CoursServices.class.getName()).log(Level.SEVERE, null, ex);
+          } 
+    }
 
     @Override
     public void delete(Cours c) throws SQLException {
@@ -90,14 +92,20 @@ public class CoursServices implements IServicesCours{
     public void update(Cours c) throws SQLException {
         try {
             
-            PreparedStatement pste = cnx.prepareStatement("update cours set titre=?, niveau=?, description=? , duree=? where id_cours=?");
+            PreparedStatement pste = cnx.prepareStatement("update cours set titre=?, niveau=?, description=? , durée=?, image=?, formation_id=?  where cours_id="+c.getCours_id());
             pste.setString(1,c.getTitre());
             pste.setString(2,c.getNiveau());
             pste.setString(3,c.getDescription());
             pste.setString(4,c.getDuree());
+            pste.setString(5, c.getFile());
+            //pste.setInt(6, 4);
             pste.executeUpdate();
+            System.out.println("nekhdem");
         } catch (SQLException ex) {
+            System.out.println("lllllllleeeel");
             Logger.getLogger(CoursServices.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println( ex.getMessage());    
+           
         }
     }
 
@@ -192,6 +200,25 @@ public class CoursServices implements IServicesCours{
               Logger.getLogger(CoursServices.class.getName()).log(Level.SEVERE, null, ex);
           }
              return cours;
+           
     
     }
+    
+   public boolean coursVisible (int f_id){
+     boolean x=false;
+         String req = "select count(cours_id) as nb from cours where formation_id=?";
+        try {
+            pste=cnx.prepareStatement(req);
+            pste.setInt(1, f_id);
+            ResultSet rs= pste.executeQuery();
+            if (rs.next()){
+            int i= rs.getInt("nb");
+          if (i==0) {x= false;}
+          else {x=true;}
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FormationServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return x;     
+     }
 }
