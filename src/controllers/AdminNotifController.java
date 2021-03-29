@@ -5,10 +5,9 @@
  */
 package controllers;
 
-import Entities.Cours;
-import Entities.Formation;
-import IServices.MyListener;
-import Services.FormationServices;
+import entities.Cours;
+import entities.Formation;
+import service.FormationServices;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,6 +30,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import Iservice.MyListenerF;
 
 /**
  * FXML Controller class
@@ -59,7 +59,7 @@ public class AdminNotifController implements Initializable {
     /**
      * Initializes the controller class.
      */
-     private MyListener myListener;
+     private MyListenerF myListener;
     private List<Formation> listforADMIN =new ArrayList<>();
     private FormationServices fs = new FormationServices();
     @FXML
@@ -72,12 +72,12 @@ public class AdminNotifController implements Initializable {
         listforADMIN.addAll(fs.afficherForAdmin());
         if (listforADMIN.size() > 0) {
                System.out.println(listforADMIN.get(0));
-               myListener = new MyListener() {
+               myListener = new MyListenerF() {
                    @Override
                    public void onClickListener(MouseEvent event, Formation f) {
                           try {
                             ValidationAdmiController.setF(f);
-                            Parent page1 = FXMLLoader.load(getClass().getResource("/View/ValidationAdmin.fxml"));
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/ValidationAdmin.fxml"));
                             Scene scene = new Scene(page1);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene); 
@@ -103,7 +103,7 @@ public class AdminNotifController implements Initializable {
                 for (int i = 0; i < listforADMIN.size(); i++) {
 
                    FXMLLoader fxmlLoader = new FXMLLoader();
-                   fxmlLoader.setLocation(getClass().getResource("/View/Adminclick.fxml"));
+                   fxmlLoader.setLocation(getClass().getResource("/views/Adminclick.fxml"));
                    AnchorPane anchorPane = fxmlLoader.load();
                    AdminclickController itemController = fxmlLoader.getController();
                 itemController.setData(listforADMIN.get(i),myListener);
@@ -125,7 +125,9 @@ public class AdminNotifController implements Initializable {
               
                 } catch (IOException ex) {
                    Logger.getLogger(AdminNotifController.class.getName()).log(Level.SEVERE, null, ex);
-               }
+               } catch (Exception ex) {
+            Logger.getLogger(AdminNotifController.class.getName()).log(Level.SEVERE, null, ex);
+        }
             
         
     }
@@ -134,7 +136,7 @@ public class AdminNotifController implements Initializable {
     private void statistics(ActionEvent event) {
           try {
                             //ValidationAdmiController.setF(f);
-                            Parent page1 = FXMLLoader.load(getClass().getResource("/View/StatDomaine.fxml"));
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/StatDomaine.fxml"));
                             Scene scene = new Scene(page1);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene); 

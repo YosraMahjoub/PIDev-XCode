@@ -5,8 +5,8 @@
  */
 package controllers;
 
-import Entities.Cours;
-import Services.TextFileReader;
+import entities.Cours;
+import service.TextFileReader;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -81,7 +81,7 @@ public class AfficherCoursFiles implements Initializable {
     @FXML
     private void backFor(ActionEvent event) {
         try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/CoursListe.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/CoursListe.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

@@ -5,8 +5,8 @@
  */
 package controllers;
 
-import Entities.Cours;
-import Services.CoursServices;
+import entities.Cours;
+import service.CoursServices;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -102,7 +102,7 @@ List <File> files ;
 	public void showFileLines(ActionEvent event) throws InterruptedException, ExecutionException, IOException {
             AfficherCoursFiles.c=aa;
          
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/AfficherCoursFiles.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AfficherCoursFiles.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -111,7 +111,7 @@ List <File> files ;
     @FXML
     private void backClient(ActionEvent event) {
         try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/InscriptionForm.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -124,7 +124,7 @@ List <File> files ;
     @FXML
     private void acceuilFormafteur(ActionEvent event) {
         try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/ACCUEIL.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/ACCUEIL.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

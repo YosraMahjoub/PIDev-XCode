@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package entities;
 
-import Utils.DB;
+import Utils.ConnexionDB;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

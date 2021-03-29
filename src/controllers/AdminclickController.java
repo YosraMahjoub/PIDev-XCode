@@ -5,8 +5,8 @@
  */
 package controllers;
 
-import Entities.Formation;
-import IServices.MyListener;
+import entities.Download;
+import entities.Formation;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import Iservice.MyListenerF;
 
 /**
  * FXML Controller class
@@ -34,8 +35,10 @@ public class AdminclickController implements Initializable {
     /**
      * Initializes the controller class.
      */
-      private MyListener myListener;
+      private MyListenerF myListener;
       private Formation f;
+    @FXML
+    private Label nameLabel1;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -46,14 +49,18 @@ public class AdminclickController implements Initializable {
             myListener.onClickListener(event,f);
     }
         
-    public void setData(Formation f, MyListener myListener) {
+    public void setData(Formation f, MyListenerF myListener) throws Exception {
         this.f  = f;
         this.myListener = myListener;
         nameLabel.setText(f.getTitre());
+        nameLabel1.setText(f.getDescription());
         priceLable.setText((f.getPrix())+"DT");
-      File newFile = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + f.getImage());
-
-        img.setImage(new Image(newFile.toURI().toString()));
+        Download d = new Download("C:\\xampp\\htdocs\\Formation\\Images","http://localhost/Formation/Images/");
+    d.doInBackground();
+    img.setImage(new Image(f.getImage()));
+     File newFile = new File("C:\\xampp\\htdocs\\PI\\IMG" + f.getImage());
+//
+//        img.setImage(new Image(newFile.toURI().toString()));
        
     }
 }

@@ -7,13 +7,12 @@ package controllers;
  */
 
 
-import Entities.Cours;
-import Entities.Formation;
-import Entities.Inscription;
-import IServices.MyListener;
-import Services.FormationServices;
-import Services.InscriptionsServices;
-import Test.Main;
+import entities.Cours;
+import entities.Formation;
+import entities.Inscription;
+import service.FormationServices;
+import service.InscriptionsServices;
+import xcode_pidev.Main;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -53,6 +52,9 @@ import controllers.ACCUEILController;
 import controllers.AffichageController;
 import controllers.AfficherForClickController;
 import controllers.AfficherForController;
+import org.controlsfx.control.Rating;
+import service.RatingSer;
+import Iservice.MyListenerF;
 
 /**
  * FXML Controller class
@@ -77,7 +79,6 @@ public class InscrController implements Initializable {
     private Button inscrit;
     @FXML
     private ImageView img;
-    @FXML
     private ComboBox<String> tri;
 
     /**
@@ -100,26 +101,30 @@ public class InscrController implements Initializable {
     private Button rechbtn;
       private  Formation f;
      private Image image;
-   private MyListener myListener;
+   private MyListenerF myListener;
     private List<Formation> listf =new ArrayList<>();
     FormationServices fs = new FormationServices();
+    @FXML
+    private Rating rateF;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-//s
-listf.addAll(fs.afficherForClient());
-if (listf.size() > 0) {
-    System.out.println(listf.get(0));
-    
-    setChosenO(listf.get(0));
-    
-    myListener = new MyListener() {
-        
-        @Override
-        public void onClickListener(MouseEvent event ,Formation formation) {
-            setChosenO(formation);// allows the click on the
+
+        listf.addAll(fs.afficherForClient());
+        if (listf.size() > 0) {
+            try {
+                System.out.println(listf.get(0));
+                
+                setChosenO(listf.get(0));
+                
+                myListener = new MyListenerF() {
+                    
+                    @Override
+                    public void onClickListener(MouseEvent event ,Formation formation) {
+                        try {
+                            setChosenO(formation);// allows the click on the
 //                        try {
 //                            AfficherForController.setF(f);
 //                            Parent page1 = FXMLLoader.load(getClass().getResource("/View/AfficherFor.fxml"));
@@ -130,13 +135,18 @@ if (listf.size() > 0) {
 //                        } catch (IOException ex) {
 //                            Logger.getLogger(InscrController.class.getName()).log(Level.SEVERE, null, ex);
 //                        }
-        }
-        
-        @Override
-        public void onClickListener(MouseEvent event, Cours cours) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-    };
+                        } catch (SQLException ex) {
+                            Logger.getLogger(InscrController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    
+                    @Override
+                    public void onClickListener(MouseEvent event, Cours cours) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+                };      } catch (SQLException ex) {
+                Logger.getLogger(InscrController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 }
 int column = 0;
 int row = 1;
@@ -144,46 +154,49 @@ try {
     for (int i = 0; i < listf.size(); i++) {
         
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/View/AfficherForClick.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/views/AfficherForClick.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
 // allows to show and scroll  of all the "formations" with their titre/prix/desc
 AfficherForClickController itemController = fxmlLoader.getController();
 
-itemController.setData(listf.get(i),myListener);
+                itemController.setData(listf.get(i),myListener);
 
-if (column == 3) {
-    column = 0;
-    row++;
-}
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
 
-grid.add(anchorPane, column++, row); //(child,column,row)
-//set grid width
-grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-grid.setMaxWidth(Region.USE_PREF_SIZE);
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
 
-//set grid height
-grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-grid.setMaxHeight(Region.USE_PREF_SIZE);
-GridPane.setMargin(anchorPane, new Insets(10));
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new Insets(10));
     }
     
     
     
-} catch (IOException ex) {
-    Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
-}
+        } catch (IOException ex) {
+            Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 //
-if (fs.formationsVisible( Main.connectedUser.getUser_id()))
-{ADD.setText("Ajouter Formation");}
-else {ADD.setText("Enseigner sur Fanny");}
-    }
-    // show formation in small corner with "afficher" button 
-        private void setChosenO(Formation ff) {
+            if (fs.formationsVisible( Main.connectedUser.getUser_id()))
+            {ADD.setText("Ajouter Formation");}
+            else {ADD.setText("Enseigner sur Fanny");}
+                }
+                // show formation in small corner with "afficher" button 
+        private void setChosenO(Formation ff) throws SQLException {
       nomO.setText(ff.getTitre());
         prixo.setText((ff.getPrix())+"DT");
         descO.setText(ff.getDescription());
+        RatingSer rs = new RatingSer();
+       // rs.ratingAff(ff.getFormation_id());
+        rateF.setRating(rs.ratingAff(ff.getFormation_id()));
                 File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + ff.getImage());
 
         //image = new Image(getClass().getResourceAsStream(o.getImg()));
@@ -203,7 +216,7 @@ else {ADD.setText("Enseigner sur Fanny");}
      @FXML
     private void ajoutttt(ActionEvent event) {
       try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/View/AjouerFormation.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/AjouerFormation.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -216,7 +229,7 @@ else {ADD.setText("Enseigner sur Fanny");}
     @FXML
     private void afficherFor(ActionEvent event) {
          try { AfficherForController.setF(f);
-                Parent page1 = FXMLLoader.load(getClass().getResource("/View/AfficherFor.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/AfficherFor.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -261,13 +274,13 @@ else {ADD.setText("Enseigner sur Fanny");}
                
                 setChosenO(listf.get(0));
                 
-                myListener = new MyListener() {
+                myListener = new MyListenerF() {
                     
                     @Override
                     public void onClickListener(MouseEvent event ,Formation formation) {
                        try {
                             AfficherForController.setF(f);
-                            Parent page1 = FXMLLoader.load(getClass().getResource("/View/AfficherFor.fxml"));
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AfficherFor.fxml"));
                             Scene scene = new Scene(page1);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene); 
@@ -290,7 +303,7 @@ else {ADD.setText("Enseigner sur Fanny");}
                 for (int i = 0; i < listf.size(); i++) {
 
                    FXMLLoader fxmlLoader = new FXMLLoader();
-                   fxmlLoader.setLocation(getClass().getResource("/View/AfficherForClick.fxml"));
+                   fxmlLoader.setLocation(getClass().getResource("/views/AfficherForClick.fxml"));
                    AnchorPane anchorPane = fxmlLoader.load();
 
                     AfficherForClickController itemController = fxmlLoader.getController();
@@ -346,11 +359,12 @@ else {ADD.setText("Enseigner sur Fanny");}
                
                 setChosenO(listf.get(0));
                 
-                myListener = new MyListener() {
+                myListener = new MyListenerF() {
                     
                     @Override
                     public void onClickListener(MouseEvent event ,Formation formation) {
-                        setChosenO(formation);                     
+                        try {                     
+                            setChosenO(formation);
 //  try {
 //                            AfficherForController.setF(f);
 //                            Parent page1 = FXMLLoader.load(getClass().getResource("/View/AfficherFor.fxml"));
@@ -360,8 +374,11 @@ else {ADD.setText("Enseigner sur Fanny");}
 //                            stage.show();
 //                        } catch (IOException ex) {
 //                           Logger.getLogger(InscrController.class.getName()).log(Level.SEVERE, null, ex);
-                   
-              //  };
+
+//  };
+                        } catch (SQLException ex) {
+                            Logger.getLogger(InscrController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
     }
 
                    @Override
@@ -376,7 +393,7 @@ else {ADD.setText("Enseigner sur Fanny");}
                 for (int i = 0; i < listf.size(); i++) {
 
                    FXMLLoader fxmlLoader = new FXMLLoader();
-                   fxmlLoader.setLocation(getClass().getResource("/View/AfficherForClick.fxml"));
+                   fxmlLoader.setLocation(getClass().getResource("/views/AfficherForClick.fxml"));
                    AnchorPane anchorPane = fxmlLoader.load();
 
                     AfficherForClickController itemController = fxmlLoader.getController();

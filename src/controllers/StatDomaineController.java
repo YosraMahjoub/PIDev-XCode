@@ -5,7 +5,7 @@
  */
 package controllers;
 
-import Services.FormationServices;
+import service.FormationServices;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;

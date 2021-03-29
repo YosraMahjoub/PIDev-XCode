@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
-import Services.FileDownloader;
+package entities;
+import service.FileDownloader;
     import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class Download {
      * Executed in background thread
      */
     
-    protected Void doInBackground() throws Exception {
+    public Void doInBackground() throws Exception {
         try {
             FileDownloader util = new FileDownloader();
             util.downloadFile(downloadURL);

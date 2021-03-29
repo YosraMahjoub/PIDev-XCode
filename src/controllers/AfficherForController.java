@@ -5,15 +5,14 @@
  */
 package controllers;
 
-import Entities.Cours;
-import Entities.Download;
-import Entities.Formation;
-import Entities.Inscription;
-import IServices.MyListener;
-import Services.FileDownloader;
-import Services.FormationServices;
-import Services.InscriptionsServices;
-import Test.Main;
+import entities.Cours;
+import entities.Download;
+import entities.Formation;
+import entities.Inscription;
+import service.FileDownloader;
+import service.FormationServices;
+import service.InscriptionsServices;
+import xcode_pidev.Main;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,6 +40,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import service.FileUploader;
+import Iservice.MyListenerF;
 
 /**
  * FXML Controller class
@@ -49,8 +49,6 @@ import service.FileUploader;
  */
 public class AfficherForController implements Initializable {
 
-    @FXML
-    private Button back;
     @FXML
     private Label adesco;
     @FXML
@@ -81,23 +79,11 @@ public class AfficherForController implements Initializable {
     @FXML
     private Label titre;
     @FXML
-    private Button gest;
-    @FXML
-    private Button mdp;
-    @FXML
-    private Button role;
-    @FXML
-    private Button event;
-    @FXML
-    private Button favoris;
-    @FXML
     private Button apprenti;
-    @FXML
-    private Button event1;
     @FXML
     private Button back1;
     
-     private MyListener myListener;
+     private MyListenerF myListener;
      private static Formation a ;
      Inscription i = new Inscription();
      FormationServices fs = FormationServices.getInstance();
@@ -106,6 +92,20 @@ public class AfficherForController implements Initializable {
     }
       private static Cours ac ;
       private  Cours c;
+    @FXML
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
     
     
     
@@ -169,7 +169,7 @@ public class AfficherForController implements Initializable {
     @FXML
     private void backClient(ActionEvent event) {
          try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/View/InscriptionForm.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -200,7 +200,7 @@ public class AfficherForController implements Initializable {
           CoursListeController.f=a;// hedhi mesh teb3a el ajout ta3 inscrit hedhi naamloha
           //pour fixer formation pour laquelle on veut afficher ses cours 
            RatingController.ff=a;
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/CoursListe.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/CoursListe.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -216,7 +216,7 @@ public class AfficherForController implements Initializable {
         if (fs.inscritVisible(a.getFormation_id(), Main.connectedUser.getUser_id()))//test sur inscrit
           { try {
              CoursListeSANinscriController.f=a;
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/CoursListeSANSinscri.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/CoursListeSANSinscri.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -226,7 +226,7 @@ public class AfficherForController implements Initializable {
         }}
           else {   try {
              CoursListeController.f=a;
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/CoursListe.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/CoursListe.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -244,7 +244,7 @@ public class AfficherForController implements Initializable {
         
              try {
           //   CoursListeSANinscriController.f=a;
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/MesFormations.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/MesFormations.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -252,6 +252,34 @@ public class AfficherForController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AfficherForController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
     }
            }
 

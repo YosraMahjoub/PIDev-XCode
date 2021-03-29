@@ -5,10 +5,10 @@
  */
 package controllers;
 
-import Entities.Formation;
-import Services.CoursServices;
-import Services.FormationServices;
-import Test.Main;
+import entities.Formation;
+import service.CoursServices;
+import service.FormationServices;
+import xcode_pidev.Main;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -139,7 +139,7 @@ public class ModifierController implements Initializable {
     @FXML
     private void back(ActionEvent event) {
           try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/View/ACCUEIL.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/ACCUEIL.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -254,7 +254,7 @@ public class ModifierController implements Initializable {
       @FXML
     private void backClient(ActionEvent event) {
          try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/View/InscriptionForm.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -267,7 +267,7 @@ public class ModifierController implements Initializable {
     @FXML
     private void backAprrenti(ActionEvent event) {
         try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/MesFormations.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/MesFormations.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -281,7 +281,7 @@ public class ModifierController implements Initializable {
     private void CoursModif(ActionEvent event) {
         try {
             CoursListeController.f=s;
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/ModifierCoursListe.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/ModifierCoursListe.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

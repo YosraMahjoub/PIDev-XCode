@@ -5,8 +5,8 @@
  */
 package controllers;
 
-import Entities.Formation;
-import Services.FormationServices;
+import entities.Formation;
+import service.FormationServices;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -71,7 +71,8 @@ public class ValidationAdmiController implements Initializable {
     private Label date;
     @FXML
     private Label duree;
-
+    @FXML
+    private Label titre;
     /**
      * Initializes the controller class.
      */
@@ -82,11 +83,13 @@ public class ValidationAdmiController implements Initializable {
      public static void setF (Formation f ){
         a=f;
     }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-          File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + a.getImage());
+          File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG" + a.getImage());
         imgV.setImage(new Image(newFile2.toURI().toString()));
+        titre.setText(a.getTitre());
          adesco.setText(a.getDescription());
         aprixo.setText(String.valueOf(a.getPrix()));
          adomaino.setText(a.getDomaine());
@@ -102,7 +105,7 @@ public class ValidationAdmiController implements Initializable {
            //ValidationAdmiController.setF(f);
           if(alert("Voulez vous vraiment valider cette formation?").get()==ButtonType.OK)
           {  fs.valider(a); try {
-              Parent page1 = FXMLLoader.load(getClass().getResource("/View/AdminNotif.fxml"));
+              Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminNotif.fxml"));
               Scene scene = new Scene(page1);
               Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
               stage.setScene(scene);
@@ -128,7 +131,7 @@ public class ValidationAdmiController implements Initializable {
     private void acceuilFor(ActionEvent event) {
         
           try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/View/AdminNotif.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminNotif.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);

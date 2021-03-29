@@ -5,8 +5,7 @@
  */
 package controllers;
 
-import Entities.Formation;
-import IServices.MyListener;
+import entities.Formation;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -19,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import Iservice.MyListenerF;
 
 /**
  * FXML Controller class
@@ -37,7 +37,7 @@ public class AfficherForClickController implements Initializable {
     /**
      * Initializes the controller class.
      */
-     private MyListener myListener;
+     private MyListenerF myListener;
       private Formation f;
    
   
@@ -51,13 +51,13 @@ public class AfficherForClickController implements Initializable {
     private void click(MouseEvent event) {
          myListener.onClickListener(event,f);
     }
-     public void setData(Formation f, MyListener myListener) {
+     public void setData(Formation f, MyListenerF myListener) {
         this.f  = f;
         this.myListener = myListener;
         nameLabel.setText(f.getTitre());
         priceLable.setText((f.getPrix())+"DT");
         desc.setText(f.getDescription());
-      File newFile = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + f.getImage());
+      File newFile = new File("C:\\xampp\\htdocs\\Formation\\Images" + f.getImage());
 
       img.setImage(new Image(newFile.toURI().toString()));
         

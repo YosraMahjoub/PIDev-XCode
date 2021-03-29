@@ -5,10 +5,10 @@
  */
 package controllers;
 
-import Entities.Formation;
-import Entities.RatingEntity;
-import Services.RatingSer;
-import Test.Main;
+import entities.Formation;
+import entities.RatingEntity;
+import service.RatingSer;
+import xcode_pidev.Main;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -89,7 +89,7 @@ static Formation ff;
         alert.setHeaderText("notation ajoutée");
         alert.setContentText("Merci pour votre contribution!!");
         alert.show();
-        Parent page1 = FXMLLoader.load(getClass().getResource("/View/CoursListe.fxml"));
+        Parent page1 = FXMLLoader.load(getClass().getResource("/views/CoursListe.fxml"));
         Scene scene = new Scene(page1);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

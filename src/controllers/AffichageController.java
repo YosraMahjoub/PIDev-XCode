@@ -5,8 +5,7 @@
  */
 package controllers;
 
-import Entities.Formation;
-import IServices.MyListener;
+import entities.Formation;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import Iservice.MyListenerF;
 
 /**
  * FXML Controller class
@@ -26,7 +26,7 @@ public class AffichageController implements Initializable {
 
     
         private Formation f;
-    private MyListener myListener;
+    private MyListenerF myListener;
     @FXML
     private Label nameLabel;
     @FXML
@@ -50,7 +50,7 @@ public class AffichageController implements Initializable {
     private void click(MouseEvent event) {
            myListener.onClickListener(event,f);
     }
-    public void setData(Formation f, MyListener myListener) {
+    public void setData(Formation f, MyListenerF myListener) {
         this.f  = f;
         this.myListener = myListener;
         titre.setText(f.getTitre());

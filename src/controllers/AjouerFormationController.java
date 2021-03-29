@@ -5,10 +5,10 @@
  */
 package controllers;
 
-import Entities.Formation;
-import Services.FormationServices;
-import Test.Main;
-import entite.Upload;
+import entities.Formation;
+import service.FormationServices;
+import xcode_pidev.Main;
+import entities.Upload;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -48,6 +48,7 @@ import service.FileUploader;
 import controllers.ACCUEILController;
 import controllers.AjoutercoursController;
 import static controllers.CoursListeController.f;
+import java.sql.SQLException;
 
 /**
  * FXML Controller class
@@ -115,7 +116,7 @@ public class AjouerFormationController implements Initializable {
     }
 
     @FXML
-    private void ajouter(ActionEvent event) {
+    private void ajouter(ActionEvent event) throws SQLException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
         LocalDate d = date.toLocalDate();
@@ -157,16 +158,18 @@ public class AjouerFormationController implements Initializable {
             
             f.setImage(file.getName());
             f.setNiveau(nameNIV);
+            
            
             String textTOimg = txtimg.getText();
-textTOimg= FileUploader.upload(textTOimg);
-textTOimg="http://localhost/Formation/Images/"+textTOimg;
+            textTOimg= FileUploader.upload(textTOimg);
+            textTOimg="http://localhost/Formation/Images/"+textTOimg;
             //  Formation f = new Formation(1,nameCat ,btn_date.getValue().toString() , btn_duree.getText(), btn_lieu.getText(),Float.parseFloat((btn_prix.getText())), btn_niv.getText(),btn_lang.getText() ,
             //  0, 0,1,  btn_desc.getText(), null);
 
             
             fs.ajouter(f);
-            
+            Formation x = fs.readformation(btn_titre.getText(), btn_lieu.getText(), btn_desc.getText());
+            System.out.println("fel formation"+x.getFormation_id());           
            
             
             
@@ -182,8 +185,8 @@ textTOimg="http://localhost/Formation/Images/"+textTOimg;
             if (result.get() == ajouterC) {
                 try {
 //static Formation a=f;
-                     AjoutercoursController.f=f;
-                    Parent page1 = FXMLLoader.load(getClass().getResource("/View/Cours.fxml"));
+                    AjoutercoursController.setI(x.getFormation_id());
+                    Parent page1 = FXMLLoader.load(getClass().getResource("/views/Cours.fxml"));
                     Scene scene = new Scene(page1);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(scene);
@@ -228,7 +231,7 @@ textTOimg="http://localhost/Formation/Images/"+textTOimg;
     private void back(ActionEvent event) {
 
         try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/ACCUEIL.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/ACCUEIL.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -269,7 +272,7 @@ textTOimg="http://localhost/Formation/Images/"+textTOimg;
            
            Upload u = new Upload();
            u.upload(file);
-           txtimg.setText(file.getAbsolutePath());
+           txtimg.setText(file.getAbsolutePath());//ahaya liaison
             
                  
 //            try {  Files.copy(file.toPath(),new File(path+"\\"+file.getName()).toPath());
@@ -284,7 +287,7 @@ textTOimg="http://localhost/Formation/Images/"+textTOimg;
     @FXML
     private void backClient(ActionEvent event) {
         try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/InscriptionForm.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -297,7 +300,7 @@ textTOimg="http://localhost/Formation/Images/"+textTOimg;
     @FXML
     private void backAprrenti(ActionEvent event) {
         try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/MesFormations.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/MesFormations.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

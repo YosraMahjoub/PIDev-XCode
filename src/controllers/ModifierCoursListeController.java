@@ -5,10 +5,9 @@
  */
 package controllers;
 
-import Entities.Cours;
-import Entities.Formation;
-import IServices.MyListener;
-import Services.CoursServices;
+import entities.Cours;
+import entities.Formation;
+import service.CoursServices;
 import static controllers.CoursListeController.f;
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +31,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import Iservice.MyListenerF;
 
 /**
  * FXML Controller class
@@ -52,7 +52,7 @@ public class ModifierCoursListeController implements Initializable {
      */
     static Formation s;
     static Cours c;
-     MyListener myListener;
+     MyListenerF myListener;
     private List<Cours> listc =new ArrayList<>();
   private CoursServices cs = new CoursServices();
     @Override
@@ -61,7 +61,7 @@ public class ModifierCoursListeController implements Initializable {
         listc.addAll(cs.readAll(f));
                 if (listc.size() > 0) {
                     System.out.println(listc.get(0));
-                    myListener = new MyListener() {
+                    myListener = new MyListenerF() {
                         @Override
                         public void onClickListener(MouseEvent event, Formation oeuvre) {
                            // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -74,7 +74,7 @@ public class ModifierCoursListeController implements Initializable {
 //                                AfficherCoursController.setC(cours);
                                  ModifierController.setFor(f);
                                  ModifierCoursController.aa=cours;
-                            Parent page1 = FXMLLoader.load(getClass().getResource("/View/ModifierCours.fxml"));
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/ModifierCours.fxml"));
                             Scene scene = new Scene(page1);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene);
@@ -92,7 +92,7 @@ public class ModifierCoursListeController implements Initializable {
                     for (int i = 0; i < listc.size(); i++) {
                         
                         FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("/View/CoursClick.fxml"));
+                        fxmlLoader.setLocation(getClass().getResource("/views/CoursClick.fxml"));
                         AnchorPane anchorPane = fxmlLoader.load();
                         CoursClickController itemController = fxmlLoader.getController();
                         itemController.setData(listc.get(i),myListener);
@@ -122,7 +122,7 @@ public class ModifierCoursListeController implements Initializable {
     private void backForMod(ActionEvent event) {
         try {
            
-            Parent page1 = FXMLLoader.load(getClass().getResource("/View/ModifierFor.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/ModifierFor.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

@@ -5,11 +5,10 @@
  */
 package controllers;
 
-import Entities.Cours;
-import Entities.Formation;
-import IServices.MyListener;
-import Services.FormationServices;
-import Test.Main;
+import entities.Cours;
+import entities.Formation;
+import service.FormationServices;
+import xcode_pidev.Main;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -32,6 +31,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import Iservice.MyListenerF;
 
 /**
  * FXML Controller class
@@ -68,7 +68,7 @@ public class MesFormationsController implements Initializable {
      */
     
     
-      private MyListener myListener;
+      private MyListenerF myListener;
     private List<Formation> listforInscrit =new ArrayList<>();
     private FormationServices fs = new FormationServices();
     @Override
@@ -77,12 +77,12 @@ public class MesFormationsController implements Initializable {
         listforInscrit.addAll(fs.read(Main.connectedUser.getUser_id()));
         if (listforInscrit.size() > 0) {
                System.out.println(listforInscrit.get(0));
-               myListener = new MyListener() {
+               myListener = new MyListenerF() {
                    @Override
                    public void onClickListener(MouseEvent event, Formation f) {
                           try {
                             AfficherForController.setF(f);
-                            Parent page1 = FXMLLoader.load(getClass().getResource("/View/AfficherFor.fxml"));
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AfficherFor.fxml"));
                             Scene scene = new Scene(page1);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene); 
@@ -108,7 +108,7 @@ public class MesFormationsController implements Initializable {
                 for (int i = 0; i < listforInscrit.size(); i++) {
 
                    FXMLLoader fxmlLoader = new FXMLLoader();
-                   fxmlLoader.setLocation(getClass().getResource("/View/affichage.fxml"));
+                   fxmlLoader.setLocation(getClass().getResource("/views/affichage.fxml"));
                    AnchorPane anchorPane = fxmlLoader.load();
                    AffichageController itemController = fxmlLoader.getController();
                 itemController.setData(listforInscrit.get(i),myListener);
@@ -141,7 +141,7 @@ public class MesFormationsController implements Initializable {
     @FXML
     private void backClient(ActionEvent event) throws IOException {
         
-        Parent page1 = FXMLLoader.load(getClass().getResource("/View/InscriptionForm.fxml"));
+        Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
                             Scene scene = new Scene(page1);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene); 

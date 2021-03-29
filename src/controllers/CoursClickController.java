@@ -5,9 +5,8 @@
  */
 package controllers;
 
-import Entities.Cours;
-import Entities.Formation;
-import IServices.MyListener;
+import entities.Cours;
+import entities.Formation;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import Iservice.MyListenerF;
 
 /**
  * FXML Controller class
@@ -28,7 +28,7 @@ public class CoursClickController implements Initializable {
 
    
 private Cours c;
-private MyListener myListener;
+private MyListenerF myListener;
     @FXML
     private Label titre;
     @FXML
@@ -48,7 +48,7 @@ private MyListener myListener;
         myListener.onClickListener(event,c);
     }
     
-     public void setData(Cours c, MyListener myListener) {
+     public void setData(Cours c, MyListenerF myListener) {
         this.c  = c;
         this.myListener = myListener;
         titre.setText(c.getTitre());

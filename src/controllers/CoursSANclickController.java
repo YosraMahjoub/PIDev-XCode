@@ -5,8 +5,7 @@
  */
 package controllers;
 
-import Entities.Cours;
-import IServices.MyListener;
+import entities.Cours;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import Iservice.MyListenerF;
 
 /**
  * FXML Controller class
@@ -30,7 +30,7 @@ public class CoursSANclickController implements Initializable {
     @FXML
     private ImageView img;
 private Cours c;
-private MyListener myListener;
+private MyListenerF myListener;
     /**
      * Initializes the controller class.
      */
@@ -38,7 +38,7 @@ private MyListener myListener;
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-     public void setData(Cours c, MyListener myListener) {
+     public void setData(Cours c, MyListenerF myListener) {
         this.c  = c;
         this.myListener = myListener;
         titre.setText(c.getTitre());

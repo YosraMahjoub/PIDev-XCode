@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane id="AnchorPane" prefHeight="389.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RatingController">
+   <children>
+      <Rating fx:id="rate" layoutX="191.0" layoutY="94.0" prefHeight="32.0" prefWidth="198.0" rating="0.0">
+         <effect>
+            <DropShadow color="#ffd000" spread="0.77" />
+         </effect>
+      </Rating>
+      <Label fx:id="msg" layoutX="226.0" layoutY="195.0" prefHeight="32.0" prefWidth="126.0" text="Label" />
+      <Button fx:id="submit" layoutX="189.0" layoutY="281.0" mnemonicParsing="false" onAction="#applyR" prefHeight="31.0" prefWidth="199.0" style="-fx-background-color: #414E4D; -fx-text-fill: white; -fx-background-radius: 100PX;" text="Enregistrer votre notation" />
+   </children>
+</AnchorPane>

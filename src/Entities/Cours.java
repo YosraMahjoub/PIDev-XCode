@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package entities;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Cours {
       private String duree;
       private String file;
      private int formation_id;
-     public static Formation f = new Formation();
+     public  Formation f = new Formation();
      
     public Cours() {
         
