@@ -31,7 +31,7 @@ public class XCode extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Hello World");
         
-        parentPage = FXMLLoader.load(getClass().getResource("/xcode/view/AjouterOeuv.fxml"));
+        parentPage = FXMLLoader.load(getClass().getResource("/xcode/views/AjouterOeuv.fxml"));
         Scene scene = new Scene(parentPage);
         this.primaryStage.setScene(scene);
         this.primaryStage.show();
