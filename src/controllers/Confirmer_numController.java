@@ -56,8 +56,6 @@ public class Confirmer_numController implements Initializable {
     @FXML
     private PasswordField code;
     @FXML
-    private Label label;
-    @FXML
     private Button btnannuler;
     @FXML
     private Button btnvalider;
@@ -71,6 +69,8 @@ public class Confirmer_numController implements Initializable {
     private HBox hello;
     @FXML
     private Button ADD;
+    @FXML
+    private Button apprentissage;
 
     /**
      * Initializes the controller class.

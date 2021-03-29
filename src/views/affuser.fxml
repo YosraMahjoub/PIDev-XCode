@@ -4,16 +4,20 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="494.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controllers.AffuserController">
+<AnchorPane id="AnchorPane" prefHeight="190.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AffuserController">
    <children>
-      <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="186.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="img" />
-         </image>
-      </ImageView>
-      <Label fx:id="username" layoutX="221.0" layoutY="237.0" text="username" />
-      <Label fx:id="nbr_oeuvre" layoutX="218.0" layoutY="272.0" prefHeight="17.0" prefWidth="59.0" text="nnboeuvre" />
+      <VBox alignment="CENTER" prefHeight="199.0" prefWidth="208.0">
+         <children>
+            <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/0.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="username" text="username" />
+            <Label fx:id="nbr_oeuvre" prefHeight="17.0" prefWidth="59.0" text="nnboeuvre" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

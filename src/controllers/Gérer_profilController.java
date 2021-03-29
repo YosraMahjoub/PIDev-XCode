@@ -100,6 +100,8 @@ public class Gérer_profilController implements Initializable {
     private Button ADD;
     @FXML
     private Button btnannuler;
+    @FXML
+    private Button apprentissage;
 
     /**
      * Initializes the controller class.

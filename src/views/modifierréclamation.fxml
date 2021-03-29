@@ -192,7 +192,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="reclamation" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="164.0" style="-fx-background-color: #414e4d; -fx-background-radius: 20;" text="Mes réclamations" textAlignment="CENTER" textFill="WHITE" translateY="80.0">
+            <Button fx:id="apprentissage" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Mon apprentissage" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -200,7 +200,15 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnsupp" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #a65959; -fx-background-radius: 20;" text="Supprimer compte" textAlignment="CENTER" textFill="WHITE" translateY="90.0">
+            <Button fx:id="reclamation" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="164.0" style="-fx-background-color: #414e4d; -fx-background-radius: 20;" text="Mes réclamations" textAlignment="CENTER" textFill="WHITE" translateY="70.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnsupp" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #a65959; -fx-background-radius: 20;" text="Supprimer compte" textAlignment="CENTER" textFill="WHITE" translateY="78.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

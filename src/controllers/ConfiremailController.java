@@ -65,7 +65,6 @@ public class ConfiremailController implements Initializable {
     String x;
     
     EmailSend em = new EmailSend();
-    @FXML
     private Label label;
     @FXML
     private Button reclamation;
@@ -77,6 +76,8 @@ public class ConfiremailController implements Initializable {
     private HBox hello;
     @FXML
     private Button ADD;
+    @FXML
+    private Button apprentissage;
 
     /**
      * Initializes the controller class.

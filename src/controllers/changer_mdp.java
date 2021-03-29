@@ -72,6 +72,8 @@ public class changer_mdp implements Initializable {
     private HBox hello;
     @FXML
     private Button ADD;
+    @FXML
+    private Button apprentissage;
 
     /**
      * Initializes the controller class.

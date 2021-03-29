@@ -87,6 +87,8 @@ public class AjoutreclamationController implements Initializable {
     private HBox hello;
     @FXML
     private Button ADD;
+    @FXML
+    private Button apprentissage;
 
     /**
      * Initializes the controller class.

@@ -85,6 +85,8 @@ public class ModifierréclamationController implements Initializable {
     private Button ADD;
     @FXML
     private Button annuler;
+    @FXML
+    private Button apprentissage;
 
     /**
      * Initializes the controller class.

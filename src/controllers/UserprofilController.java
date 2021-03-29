@@ -81,6 +81,8 @@ public class UserprofilController implements Initializable {
     private Button ADD;
     @FXML
     private Button reclamation;
+    @FXML
+    private Button apprentissage;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     
