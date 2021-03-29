@@ -15,6 +15,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,6 +44,7 @@ import xcode.entity.ElementPanier;
 import xcode.entity.Facture;
 import xcode.entity.PDFAP;
 import xcode.entity.PanierHolder;
+import xcode.entity.paniertemp;
 
 import xcode.services.cmdservices;
 
@@ -76,6 +79,7 @@ public class PanierController implements Initializable {
     private GridPane grid;
     
     private ElementPanier fi;
+    private Facture fa;
     
     private Image image;
     
@@ -89,8 +93,11 @@ public class PanierController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+           
            ListF=PanierHolder.getInstance().getEP();
+
+           System.out.println(PanierHolder.getInstance().getEP());
+           
            if (ListF.size() > 0) {
                System.out.println(ListF.get(0));
                setChosenF(ListF.get(0));
@@ -143,7 +150,7 @@ public class PanierController implements Initializable {
             nomC.setText(f.getOeuv().getNom());
             prixC.setText((f.getOeuv().getPrix())+"DT");
             //descO.setText(f.getDescription());
-                File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + f.getOeuv().getImage());
+                File newFile2 = new File("C:\\Users\\Mega-PC\\Desktop\\XCode\\src\\xcode\\images\\" + f.getOeuv().getImage());
 
              //image = new Image(getClass().getResourceAsStream(o.getImg()));
             imgC.setImage(new Image(newFile2.toURI().toString()));
@@ -154,26 +161,21 @@ public class PanierController implements Initializable {
     
 
      @FXML
-    private void DeletePanier(ActionEvent event) {
-            List<ElementPanier> listEOp=PanierHolder.getInstance().getEP();
-                ElementPanier ep=new ElementPanier();
+    private void DeletePanier(ActionEvent event) throws IOException {
+      os.deletepaniertElem(1, fi.getOeuv().getOeuvrage_id());
+      PanierHolder.getInstance().removeEP(fi);
+      fi=null;
+              Parent tableViewParent = FXMLLoader.load(getClass().getResource("Panier.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+        
+        
+      
 
-     
-        boolean existsElem=false;
-        int i;
-        for(i=0;i<listEOp.size();i++)
-        {
-            if(listEOp.get(i).getOeuv().equals(oi))
-            {
-                existsElem=true;
-                listEOp.remove(i);
-                break;
-            }  
-            //listEOp.set(i, ep);
-
-            System.out.println("Supprimé"); 
-       
-        }
     }
     
     
@@ -187,9 +189,11 @@ public class PanierController implements Initializable {
             Alert alert = new Alert (Alert.AlertType.INFORMATION);
             alert.setTitle("Succès !");
             alert.setHeaderText("Validé !");
-            alert.setContentText("La commande est bien validé !");
+            alert.setContentText("La commande est bien validé ! PDF Crée!");
             alert.showAndWait();
-            listEOp.clear();
+            
+                            os.deletepaniert(1);
+                            listEOp.clear();
             
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("AjouterOeuv.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);

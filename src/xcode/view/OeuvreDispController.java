@@ -52,7 +52,7 @@ public void setData(Oeuvrage oeuvrage, Listener Listener) {
         this.Listener = Listener;
         nameLabel.setText(oeuvrage.getNom());
         priceLable.setText((oeuvrage.getPrix())+"DT");
-                    File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + oeuvrage.getImage());
+                    File newFile2 = new File("C:\\Users\\Mega-PC\\Desktop\\XCode\\src\\xcode\\images\\"+oeuvrage.getImage());
 
         //image = new Image(getClass().getResourceAsStream(o.getImg()));
         img.setImage(new Image(newFile2.toURI().toString()));

@@ -63,7 +63,7 @@ public void setData(ElementPanier facture, MyListener MyListener) {
         QteLabel.setText((facture.getQuantite()+""));
         priceTLabel.setText((prixTotal)+"");
         
-                    File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + facture.getOeuv().getImage());
+                    File newFile2 = new File("C:\\Users\\Mega-PC\\Desktop\\XCode\\src\\xcode\\images\\"+facture.getOeuv().getImage());
 
         //image = new Image(getClass().getResourceAsStream(o.getImg()));
         img.setImage(new Image(newFile2.toURI().toString()));

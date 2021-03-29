@@ -77,6 +77,7 @@ public class AjouterOeuvController implements Initializable {
     private Button Rechercher;
     
     private Oeuvrage oi;
+    private Facture fa;
     
     private Image image;
     
@@ -142,11 +143,12 @@ public class AjouterOeuvController implements Initializable {
         nomO.setText(o.getNom());
         prixo.setText((o.getPrix())+"DT");
         descO.setText(o.getDescription());
-                File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + o.getImage());
+                File newFile2 = new File("C:\\Users\\Mega-PC\\Desktop\\XCode\\src\\xcode\\images\\"+o.getImage());
 
         //image = new Image(getClass().getResourceAsStream(o.getImg()));
         imgO.setImage(new Image(newFile2.toURI().toString()));
         oi=o;
+        System.out.println(oi.getOeuvrage_id());
     }
     
 
@@ -169,9 +171,9 @@ public class AjouterOeuvController implements Initializable {
 
     @FXML
     private void addPanier(ActionEvent event) {
-         
-     
-     
+        
+    
+        
         List<ElementPanier> listEOp=PanierHolder.getInstance().getEP();
                 ElementPanier ep=new ElementPanier();
 
@@ -184,37 +186,53 @@ public class AjouterOeuvController implements Initializable {
             {
                 existsElem=true;
                 ep=listEOp.get(i);
-               // listEOp.remove(i);
-                break;
+                
+                 break;
             }
-            
+
         }
+        
+         
         if(!existsElem)
-        {
+        {   
             ep.setOeuv(oi);
             ep.setQuantite(1);
             listEOp.add(ep);
+            System.out.println(ep.getOeuv().getOeuvrage_id());
+            os.createPanierTemp(1,ep.getOeuv().getOeuvrage_id(),ep.getQuantite());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Element ajouté ! ");
+            alert.setHeaderText("Element ajouté ! ");
             alert.setContentText("Element ajouté avec sucèes ! ");
             alert.showAndWait(); 
         }
         else
-        {
+        {   
+            if(oi.getQuantite()>ep.getQuantite())
+            {
+            os.updatePanierTemp(1,ep.getOeuv().getOeuvrage_id(),1);
+            System.out.println(oi.getOeuvrage_id()+"    1");
             ep.setQuantite(ep.getQuantite()+1);
+            
             listEOp.set(i, ep);
+            
             
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
          alert.setHeaderText("Element existe ! ");
             alert.setContentText("Element existe deja, quantité incrementé ! ");
             alert.showAndWait(); 
+            }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Stock insuffisant ! ");
+            alert.setContentText("Stock insuffisant! ");
+            alert.showAndWait(); 
+            }
         }
-                PanierHolder.getInstance().setEP(listEOp);
+             
+            PanierHolder.getInstance().setEP(listEOp);
 
-        
-        
-
+                
         }
+    
     
     
 }

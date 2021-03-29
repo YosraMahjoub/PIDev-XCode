@@ -12,7 +12,8 @@ package xcode.entity;
 public class Facture {
     private int Commande_id;
     private String User;
-    private String Oeuvrage;
+    private Oeuvrage Oeuvrage;
+    private String oeuv;
     private int Quantite;
     private int Prix;
     private String image;
@@ -25,7 +26,7 @@ public class Facture {
         this.Prix = Prix;
     }
 
-    public Facture(int Commande_id, String User, String Oeuvrage, int Quantite, int Prix, String image) {
+    public Facture(int Commande_id, String User, Oeuvrage Oeuvrage, int Quantite, int Prix, String image) {
         this.Commande_id = Commande_id;
         this.User = User;
         this.Oeuvrage = Oeuvrage;
@@ -33,6 +34,9 @@ public class Facture {
         this.Prix = Prix;
         this.image = image;
     }
+    
+    
+    
 
     public int getCommande_id() {
         return Commande_id;
@@ -50,13 +54,24 @@ public class Facture {
         this.User = User;
     }
 
-    public String getOeuvrage() {
+    public Oeuvrage getOeuvrage() {
         return Oeuvrage;
     }
 
-    public void setOeuvrage(String Oeuvrage) {
+    public void setOeuvrage(Oeuvrage Oeuvrage) {
         this.Oeuvrage = Oeuvrage;
     }
+
+    public String getOeuv() {
+        return oeuv;
+    }
+
+    public void setOeuv(String oeuv) {
+        this.oeuv = oeuv;
+    }
+
+    
+    
 
     public int getQuantite() {
         return Quantite;
@@ -100,7 +115,7 @@ public class Facture {
             return false;
         }
         final Facture other = (Facture) obj;
-        if (this.Commande_id != other.Commande_id) {
+        if (this.Oeuvrage.getOeuvrage_id() != other.Oeuvrage.getOeuvrage_id()) {
             return false;
         }
         return true;
