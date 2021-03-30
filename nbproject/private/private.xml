@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/PIDev-XCode/src/service/ReclamationService.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/PIDev-XCode/src/controllers/Admin_reclamationsController.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/PIDev-XCode/src/controllers/Admin_reclamationdetailsController.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/PIDev-XCode/src/controllers/AdminAfficheruserdetailsController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/PIDev-XCode/src/controllers/RéclamationController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/PIDev-XCode/src/controllers/ModifierréclamationController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/PIDev-XCode/src/controllers/UserprofilController.java</file>
         </group>
     </open-files>
 </project-private>

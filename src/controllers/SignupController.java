@@ -117,15 +117,20 @@ public class SignupController implements Initializable {
             User obj = pdao.displayEP(email.getText(), hashp);
             UserService.setCurrentUser(obj);
            
-            try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/confiremail.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+           
+            if(obj.getRole().toLowerCase().contains("admin")){
+                    try { 
+                        Parent page1  = FXMLLoader.load(getClass().getResource("/views/adminconfirmail.fxml"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }else{
+                    try {
+                        Parent page1 = FXMLLoader.load(getClass().getResource("/views/confiremail.fxml"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                     }
              
             }});
         btnconn.setOnAction(event -> {

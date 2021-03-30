@@ -26,7 +26,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import service.ReclamationService;
+import service.RelationsService;
 import service.UserService;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -86,11 +92,14 @@ public class UserprofilController implements Initializable {
     private Button reclamation;
     @FXML
     private Button apprentissage;
+    @FXML
+    private Label username;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     
         
         UserService pdao=new UserService();
+        RelationsService rela=new RelationsService();
         
         int id = UserService.getCurrentUser().getUser_id();
         System.out.println(id);
@@ -98,7 +107,7 @@ public class UserprofilController implements Initializable {
         
         
         
-        
+        username.setText(obj.getUsername());
         label_nom.setText(obj.getNom());
         label_email.setText(obj.getEmail());
         label_prenom.setText(obj.getPrenom());
@@ -110,6 +119,8 @@ public class UserprofilController implements Initializable {
         }else{
             confirmer_num.setVisible(false);
         }
+        int y = rela.nbfollowerByfolloweeId(id);
+        label_abonnees.setText(String.valueOf(y));
         
         btngérer.setOnAction(event -> {
             try {
@@ -183,9 +194,21 @@ public class UserprofilController implements Initializable {
                 Logger.getLogger(ModifierréclamationController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
-        
-            
+        ReclamationService rec= new ReclamationService();
+        if(rec.checkavertissement(id)){
+            String titre = "Attention";
+            String msg = "vous avez un avertissement sur " + rec.Nomprod_avertissement(id) ;
+            TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+
+            tray.setAnimationType(type);
+            tray.setTitle(titre);
+            tray.setMessage(msg);
+            tray.setNotificationType(NotificationType.WARNING);
+            tray.showAndDismiss(Duration.millis(4000)); 
+        }
+       
+
         
 
         

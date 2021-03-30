@@ -58,6 +58,7 @@ public class AdminAfficheruserdetailsController implements Initializable {
     private Label label_tel;
     @FXML
     private Label label_email;
+    @FXML
     private Label label_bio;
     @FXML
     private Label label_role;
@@ -69,8 +70,6 @@ public class AdminAfficheruserdetailsController implements Initializable {
     private Button reclamation;
     @FXML
     private Label label_nb;
-    @FXML
-    private Label label_bio1;
     @FXML
     private Label label_username;
     @FXML
@@ -85,6 +84,7 @@ public class AdminAfficheruserdetailsController implements Initializable {
     private Button ADD;
     @FXML
     private Button btnsupp;
+    
 
     /**
      * Initializes the controller class.

@@ -5,11 +5,14 @@
  */
 package controllers;
 
+import Iservice.MylistenerR;
 import entities.Reclamation;
 import entities.User;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import static java.util.Locale.filter;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -33,7 +36,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import service.ReclamationService;
 import service.UserService;
@@ -64,16 +70,6 @@ public class RéclamationController implements Initializable {
     private ObservableList<Reclamation> reclamations=FXCollections.observableArrayList();
 
     @FXML
-    private TableColumn<Reclamation, String> nom;
-    @FXML
-    private TableColumn<Reclamation, String> sujet;
-    @FXML
-    private TableColumn<Reclamation, String> description;
-    @FXML
-    private TableColumn<Reclamation, Date> date;
-    @FXML
-    private TableView<Reclamation> reclamationTable;
-    @FXML
     private ComboBox<String> filter;
     @FXML
     private Button ajouter_reclamation;
@@ -94,6 +90,9 @@ public class RéclamationController implements Initializable {
     private Button apprentissage;
     @FXML
     private Button btnsupp;
+    @FXML
+    private GridPane grid;
+    private MylistenerR Mylistener;
 
     /**
      * Initializes the controller class.
@@ -103,37 +102,71 @@ public class RéclamationController implements Initializable {
         ObservableList<String> cat = FXCollections.observableArrayList("evenements", "formations","oeuvres","tous les réclamations");
         filter.setItems(cat);
         ReclamationService recla = new ReclamationService();
-        reclamations=(ObservableList<Reclamation>) recla.displayAll();
-        reclamationTable.setItems(reclamations);
         
-        nom.setCellValueFactory(new PropertyValueFactory<>("reclamation_nom"));
-        sujet.setCellValueFactory(new PropertyValueFactory<>("sujet"));
-        description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        date.setCellValueFactory(new PropertyValueFactory<>("date"));
-       
-        reclamationTable.setOnMouseClicked((MouseEvent event) -> {
-            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
+        List<Reclamation> listrec =new ArrayList<>();
+//        
+        listrec.addAll(recla.displayAll());
+        
+        if (listrec.size() > 0) {
                 
-                Reclamation r = reclamationTable.getSelectionModel().getSelectedItem();
-                int i = r.getReclamation_id();
-                ModifierréclamationController.setI(i);
-                
-                System.out.println(r.getReclamation_id());
-                supp_reclamation.setOnAction(event1 -> {
-                recla.delete(r);
-        });
-                mod_reclamation.setOnAction(event1 -> {
-                 try {
-                    Parent page1 = FXMLLoader.load(getClass().getResource("/views/modifierréclamation.fxml"));
-                    Scene scene = new Scene(page1);
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });}
-        });
+                Mylistener = new MylistenerR() {
+                    
+
+                    @Override
+                    public void onClickListener(MouseEvent event, Reclamation r) {
+                       
+                        int i = r.getReclamation_id();
+                        ModifierréclamationController.setI(i);
+                        supp_reclamation.setOnAction(event1 -> {
+                            recla.delete(r);
+                        });
+                        mod_reclamation.setOnAction(event1 -> {
+                            try {
+                                Parent page1 = FXMLLoader.load(getClass().getResource("/views/modifierréclamation.fxml"));
+                                Scene scene = new Scene(page1);
+                                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException ex) {
+                                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                    
+                };
+                };}grid.getChildren().clear();
+            int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < listrec.size(); i++) {
+
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affreclamation.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffreclamationController itemController = fxmlLoader.getController();
+                    itemController.setData(listrec.get(i),Mylistener);
+
+                if (column == 1) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+        
+        
         ajouter_reclamation.setOnAction(event -> {
             try {
                 
@@ -215,24 +248,274 @@ public class RéclamationController implements Initializable {
         
         
         if(x=="formations"){
-            String statut = "formation_id";
-           reclamations=(ObservableList<Reclamation>) pdao.displaystatut(statut);
-           reclamationTable.setItems(reclamations);
-            
+           String statut = "formation_id";
+           ReclamationService recla = new ReclamationService();
+           
+           List<Reclamation> list =new ArrayList<>();
+            list.addAll(pdao.displaystatut(statut));
+            System.out.println(list.size());
+            if (list.size() > 0) {
+                
+                Mylistener = new MylistenerR() {
+                    
+
+                    @Override
+                    public void onClickListener(MouseEvent event, Reclamation r) {
+                        
+                        int i = r.getReclamation_id();
+                        ModifierréclamationController.setI(i);
+                        supp_reclamation.setOnAction(event1 -> {
+                            recla.delete(r);
+                        });
+                        mod_reclamation.setOnAction(event1 -> {
+                            try {
+                                Parent page1 = FXMLLoader.load(getClass().getResource("/views/modifierréclamation.fxml"));
+                                Scene scene = new Scene(page1);
+                                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException ex) {
+                                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                    }
+                };
+            } grid.getChildren().clear();
+        int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < list.size(); i++) {
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affreclamation.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffreclamationController itemController = fxmlLoader.getController();
+                    itemController.setData(list.get(i),Mylistener);
+                if (column == 1) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
         }
+            
+        
         if(x=="evenements"){
             String statut = "evenement_id";
-            reclamations=(ObservableList<Reclamation>) pdao.displaystatut(statut);
-            reclamationTable.setItems(reclamations);
+            ReclamationService recla = new ReclamationService();
+           
+           List<Reclamation> list =new ArrayList<>();
+            list.addAll(recla.displaystatut(statut));
+            System.out.println(list.size());
+            if (list.size() > 0) {
+                
+                Mylistener = new MylistenerR() {
+                    
+
+                    @Override
+                    public void onClickListener(MouseEvent event, Reclamation r) {
+                        
+                        int i = r.getReclamation_id();
+                        ModifierréclamationController.setI(i);
+                        supp_reclamation.setOnAction(event1 -> {
+                            recla.delete(r);
+                        });
+                        mod_reclamation.setOnAction(event1 -> {
+                            try {
+                                Parent page1 = FXMLLoader.load(getClass().getResource("/views/modifierréclamation.fxml"));
+                                Scene scene = new Scene(page1);
+                                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException ex) {
+                                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                    }
+                };
+            } grid.getChildren().clear();
+        int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < list.size(); i++) {
+
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affreclamation.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffreclamationController itemController = fxmlLoader.getController();
+                    itemController.setData(list.get(i),Mylistener);
+                    
+
+                if (column == 1) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+        
         }
         if(x=="oeuvres"){
             String statut = "oeuvrage_id";
-           reclamations=(ObservableList<Reclamation>) pdao.displaystatut(statut);
-           reclamationTable.setItems(reclamations);
+           ReclamationService recla = new ReclamationService();
+           
+           List<Reclamation> list =new ArrayList<>();
+            list.addAll(recla.displaystatut(statut));
+            System.out.println(list.size());
+            if (list.size() > 0) {
+                
+                Mylistener = new MylistenerR() {
+                    
+
+                    @Override
+                    public void onClickListener(MouseEvent event, Reclamation r) {
+                        
+                        int i = r.getReclamation_id();
+                        ModifierréclamationController.setI(i);
+                        supp_reclamation.setOnAction(event1 -> {
+                            recla.delete(r);
+                        });
+                        mod_reclamation.setOnAction(event1 -> {
+                            try {
+                                Parent page1 = FXMLLoader.load(getClass().getResource("/views/modifierréclamation.fxml"));
+                                Scene scene = new Scene(page1);
+                                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException ex) {
+                                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                    }
+                };
+            } grid.getChildren().clear();
+        int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < list.size(); i++) {
+
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affreclamation.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffreclamationController itemController = fxmlLoader.getController();
+                    itemController.setData(list.get(i),Mylistener);
+                    
+
+                if (column == 1) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+        
         }
         if(x=="tous les réclamations"){
-            reclamations=(ObservableList<Reclamation>) pdao.displayAll();
-           reclamationTable.setItems(reclamations);
+           
+           ReclamationService recla = new ReclamationService();
+           
+           List<Reclamation> list =new ArrayList<>();
+            list.addAll(recla.displayAll());
+            System.out.println(list.size());
+            if (list.size() > 0) {
+                
+                Mylistener = new MylistenerR() {
+                    
+
+                    @Override
+                    public void onClickListener(MouseEvent event, Reclamation r) {
+                        
+                        int i = r.getReclamation_id();
+                        ModifierréclamationController.setI(i);
+                        supp_reclamation.setOnAction(event1 -> {
+                            recla.delete(r);
+                        });
+                        mod_reclamation.setOnAction(event1 -> {
+                            try {
+                                Parent page1 = FXMLLoader.load(getClass().getResource("/views/modifierréclamation.fxml"));
+                                Scene scene = new Scene(page1);
+                                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException ex) {
+                                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                    }
+                };
+            } grid.getChildren().clear();
+        int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < list.size(); i++) {
+
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affreclamation.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffreclamationController itemController = fxmlLoader.getController();
+                    itemController.setData(list.get(i),Mylistener);
+                    
+
+                if (column == 1) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+        
         }
         
     

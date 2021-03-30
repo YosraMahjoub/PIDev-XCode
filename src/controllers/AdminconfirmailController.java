@@ -7,6 +7,7 @@ package controllers;
 
 import entities.User;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -22,45 +23,30 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javax.mail.MessagingException;
 import service.UserService;
-import utils.hashpassword;
+import utils.EmailSend;
 
 /**
  * FXML Controller class
  *
  * @author asus
  */
-public class Admin_changer_mdpController implements Initializable {
+public class AdminconfirmailController implements Initializable {
 
     @FXML
     private VBox mot_actuel;
     @FXML
-    private PasswordField mt_actuel;
+    private PasswordField code;
     @FXML
-    private PasswordField mot_nv;
+    private Button btnannuler;
     @FXML
-    private PasswordField mot_conf;
-    @FXML
-    private Button btninsert;
-    @FXML
-    private Button btnprofil1;
-    @FXML
-    private Button btnmdp1;
-    @FXML
-    private Button btnformation1;
-    @FXML
-    private Button btnevenement1;
-    @FXML
-    private Button btnoeuvres1;
-    @FXML
-    private Button btninfo1;
-    @FXML
-    private Button btnuser1;
-    @FXML
-    private Button reclamation;
+    private Button btnvalider;
     @FXML
     private HBox hi;
     @FXML
@@ -70,7 +56,24 @@ public class Admin_changer_mdpController implements Initializable {
     @FXML
     private Button ADD;
     @FXML
+    private Button btninfo;
+    @FXML
+    private Button btnprofil;
+    @FXML
+    private Button btnmdp;
+    @FXML
+    private Button btnuser;
+    @FXML
+    private Button btnformation;
+    @FXML
+    private Button btnevenement;
+    @FXML
+    private Button btnoeuvres;
+    @FXML
+    private Button reclamation;
+    @FXML
     private Button btnsupp;
+    String x;
 
     /**
      * Initializes the controller class.
@@ -78,46 +81,57 @@ public class Admin_changer_mdpController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         UserService pdao = new UserService();
-       btninsert.setOnAction(event -> {
-            hashpassword hash = new hashpassword();
-            User p = new User(mot_nv.getText() );
-            
-            int id =UserService.getCurrentUser().getUser_id(); 
-            String email = UserService.getCurrentUser().getEmail(); 
-            System.out.println(id);
-            if(!(hash.checkPass(mt_actuel.getText(), pdao.displayAuth(email).getPassword()))){
-                
+        
+        try {
+            x = EmailSend.SendMail("aa");
+        } catch (MessagingException ex) {
+            Logger.getLogger(ConfiremailController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ConfiremailController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        btnvalider.setOnAction(event -> {
+            if(!code.getText().equals(x)){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-
-                alert.setHeaderText("le mot de passe actuel est incorrect");
+                
+                alert.setHeaderText("code érroné");
                 alert.showAndWait();
             }
-            if(! mot_nv.getText().equals(mot_conf.getText())){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-
-                    alert.setHeaderText("les mots de passe ne sont pas identiques");
-                    alert.showAndWait();
-            }else{
-            String hashp = hash.hashPassword(mot_conf.getText());
-            pdao.updateMDP(id, hashp);
-            User obj = pdao.displayById(id);
-            System.out.println(obj.toString());
-            UserService.setCurrentUser(obj);
-            
-        
-            
-        try {
+            else{
+                //UserService pdao = new UserService();
+                System.out.println(UserService.getCurrentUser().getUser_id());
+                pdao.updatmailconfirmé(UserService.getCurrentUser().getUser_id());
+                User obj = pdao.displayEP(UserService.getCurrentUser().getEmail(), UserService.getCurrentUser().getPassword());
+                //System.out.println(obj.toString());
+                UserService.setCurrentUser(obj);
+                try {
+                
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/adminprofil.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
+                
                 stage.show();
             } catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
             }
+            
+            
         });
-       btnprofil1.setOnAction(event -> {
+        btnannuler.setOnAction(event -> {
+            try {
+                
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/adminprofil.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+       btnprofil.setOnAction(event -> {
             try {
                 
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/admingérercompte.fxml"));
@@ -130,7 +144,7 @@ public class Admin_changer_mdpController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-       btninfo1.setOnAction(event -> {
+        btninfo.setOnAction(event -> {
             try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/adminprofil.fxml"));
                 Scene scene = new Scene(page1);
@@ -141,18 +155,7 @@ public class Admin_changer_mdpController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-       btnuser1.setOnAction(event -> {
-            try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficher_user.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-       btnmdp1.setOnAction(event -> {
+        btnmdp.setOnAction(event -> {
             try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/admin_changer_mdp.fxml"));
                 Scene scene = new Scene(page1);
@@ -174,7 +177,18 @@ public class Admin_changer_mdpController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-       btnsupp.setOnAction(event -> {
+        btnuser.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficher_user.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        btnsupp.setOnAction(event -> {
             if (alert("voulez vous vraiment supprimer le compte ?").get() == ButtonType.OK) {
             pdao.updatevalidité(UserService.getCurrentUser().getUser_id());
             try {
@@ -188,15 +202,36 @@ public class Admin_changer_mdpController implements Initializable {
             }
        
         }});
-    }
         
-     private Optional<ButtonType> alert(String x){
+        
+            
+        
+
+        
+
+    }
+    private Optional<ButtonType> alert(String x){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle(" supprimer ");
             alert.setHeaderText(null);
             alert.setContentText(x);
             return alert.showAndWait();
     }   
-    }    
-    
 
+   @FXML
+    private void colorchange(KeyEvent event) {
+        code.setStyle("-fx-background-color:" + code.getText()+";");
+    }    
+
+    @FXML
+    private void renvoyer(MouseEvent event) {
+        try {
+            x = EmailSend.SendMail("aa");
+        } catch (MessagingException ex) {
+            Logger.getLogger(ConfiremailController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ConfiremailController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+}

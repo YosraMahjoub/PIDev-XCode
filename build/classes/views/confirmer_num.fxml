@@ -27,7 +27,7 @@
                         <Insets left="80.0" right="80.0" />
                      </VBox.margin>
                   </HBox>
-                  <Label text="renvoyer le code" textFill="#a65959" translateX="280.0" translateY="310.0" />
+                  <Label onMouseClicked="#renvoyer" text="renvoyer le code" textFill="#a65959" translateX="280.0" translateY="310.0" />
                   <Button fx:id="btnannuler" mnemonicParsing="false" prefHeight="29.0" prefWidth="128.0" style="-fx-background-color: #a65959; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Pas maintenant" translateX="350.0" translateY="250.0">
                      <font>
                         <Font name="System Bold" size="13.0" />

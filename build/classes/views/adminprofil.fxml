@@ -17,33 +17,33 @@
             <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Informations administrateur" translateX="60.0" translateY="50.0" />
             <HBox prefHeight="30.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="120.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Nom :" translateX="60.0" />
-                  <Label fx:id="label_nom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom" translateX="80.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Prenom :" translateX="180.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Nom :" translateX="60.0" translateY="5.0" />
+                  <Label fx:id="label_nom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom" translateX="80.0" translateY="5.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Prenom :" translateX="180.0" translateY="5.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Text>
-                  <Label fx:id="label_prenom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Prenom " translateX="190.0" />
+                  <Label fx:id="label_prenom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Prenom " translateX="190.0" translateY="5.0" />
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="140.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Adresse :" translateX="60.0" />
-                  <Label fx:id="label_adresse" style="-fx-font-size: 1.3em;" text="adresse" translateX="70.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Adresse :" translateX="60.0" translateY="5.0" />
+                  <Label fx:id="label_adresse" style="-fx-font-size: 1.3em;" text="adresse" translateX="70.0" translateY="5.0" />
                </children>
             </HBox>
             <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="160.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Numero :" translateX="60.0" />
-                  <Label fx:id="label_tel" style="-fx-font-size: 1.3em;" text="num_tel" translateX="70.0" />
-                  <Button fx:id="confirmer_num" mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" text="confirmer" translateX="140.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Numero :" translateX="60.0" translateY="5.0" />
+                  <Label fx:id="label_tel" style="-fx-font-size: 1.3em;" text="num_tel" translateX="70.0" translateY="5.0" />
+                  <Button fx:id="confirmer_num" mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" text="confirmer" translateX="250.0" translateY="5.0" />
                </children>
             </HBox>
             <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="180.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Email :" translateX="60.0" />
-                  <Label fx:id="label_email" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="email " translateX="70.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Email :" translateX="60.0" translateY="5.0" />
+                  <Label fx:id="label_email" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="email " translateX="70.0" translateY="5.0" />
                </children>
             </HBox>
          </children>

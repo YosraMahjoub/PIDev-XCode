@@ -301,6 +301,7 @@ public class ReclamationService   {
         } 
         
        return null;}
+    
         
     public String displayproduit(int id) {
         String x = null , nom =null;
@@ -319,9 +320,9 @@ public class ReclamationService   {
                 Integer oeuvrage_id = res.getInt("oeuvrage_id");
                 String description=res.getString("description"); 
                 Date date=res.getDate("date"); 
-                if(evenement_id !=null){
+                if(evenement_id !=0){
                    try{
-                    String req1 = "Select nom from evenement where evenement_id = ?";
+                    String req1 = "Select titre from evenement where evenement_id = ?";
                     PreparedStatement sti0 = conn.prepareStatement(req1);
                     sti0.setInt(1, evenement_id);
                     ResultSet res0 = sti0.executeQuery();
@@ -333,7 +334,7 @@ public class ReclamationService   {
         } 
                 }
                 
-               else if(formation_id !=null){ 
+               else if(formation_id !=0){ 
                 try{
                 String req1 = "Select titre from formation where formation_id = ?";
                 PreparedStatement sti1 = conn.prepareStatement(req1);
@@ -346,7 +347,7 @@ public class ReclamationService   {
            System.out.println("Erreur d'affichage"+e.getMessage());
         } 
                }
-               else if(oeuvrage_id !=null){try{ 
+               else if(oeuvrage_id !=0){try{ 
                  String req1 = "Select nom from oeuvrage where oeuvrage_id = ?";
                 PreparedStatement sti2 = conn.prepareStatement(req1);
                 sti2.setInt(1, oeuvrage_id);
@@ -473,9 +474,9 @@ public class ReclamationService   {
                 Integer evenement_id = res.getInt("evenement_id");
                 Integer formation_id = res.getInt("formation_id");
                 Integer oeuvrage_id = res.getInt("oeuvrage_id");
-                if(evenement_id !=null){x="evenement";}
-                if(formation_id !=null){ x="formation";}
-                if(oeuvrage_id !=null){ x="oeuvre";}
+                if(evenement_id !=0){x="evenement";}
+                if(formation_id !=0){ x="formation";}
+                if(oeuvrage_id !=0){ x="oeuvre";}
                 
                 Reclamation rec = new Reclamation(id, user_id,recName, x, description,date);
                 
@@ -503,6 +504,97 @@ public class ReclamationService   {
         } catch (SQLException ex) {
            System.out.println("Impossible de modifier la réclamation"+ex.getMessage());
         }
+    }
+    public boolean checkavertissement(int id)  {
+        boolean x = false;
+        int i ;
+        try{
+        
+            String req = "Select * from reclamation where user_id = ? and avertissement=? ";
+            PreparedStatement st = conn.prepareStatement(req);
+            st.setInt(1, id);
+            st.setInt(2, 1);
+
+
+            ResultSet rs = st.executeQuery();
+           if(rs.next()) {
+                x=true;
+            return x;}
+        } catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());}
+        return x;
+    }
+    public String Nomprod_avertissement(int id)  {
+        String nom ="" , x="";
+        int i ;
+        try{
+        
+        String req = "Select * from reclamation where user_id = ? and avertissement=? ";
+        PreparedStatement st = conn.prepareStatement(req);
+        st.setInt(1, id);
+        st.setInt(2, 1);
+        
+        ResultSet res = st.executeQuery();
+        while(res.next())
+            {
+                int reclamation_id = res.getInt("reclamation_id");
+                String reclamation_nom=res.getString("reclamation_nom"); 
+                int user_id = res.getInt("user_id");
+                Integer evenement_id = res.getInt("evenement_id");
+                Integer formation_id = res.getInt("formation_id");
+                Integer oeuvrage_id = res.getInt("oeuvrage_id");
+                String description=res.getString("description"); 
+                Date date=res.getDate("date"); 
+                if(evenement_id !=0){
+                    
+                   try{
+                    String req1 = "Select titre from evenement where evenement_id = ?";
+                    PreparedStatement sti0 = conn.prepareStatement(req1);
+                    sti0.setInt(1, evenement_id);
+                    ResultSet res0 = sti0.executeQuery();
+                    while(res0.next())
+                        { nom = res0.getString("nom"); return x="l'evenement " +nom;}}
+                   catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());
+        } 
+                }
+                
+               else if(formation_id !=0){ 
+                try{
+                String req1 = "Select titre from formation where formation_id = ?";
+                PreparedStatement sti1 = conn.prepareStatement(req1);
+                sti1.setInt(1, formation_id);
+                ResultSet res1 = sti1.executeQuery();
+                    while(res1.next())
+                        { nom = res1.getString("titre"); return x="la formation "+nom;}}
+                catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());
+        } 
+               }
+               else if(oeuvrage_id !=0){
+                    System.out.println("oeuvrageid" + oeuvrage_id);
+                   try{ 
+                 String req1 = "Select nom from oeuvrage where oeuvrage_id = ?";
+                PreparedStatement sti2 = conn.prepareStatement(req1);
+                sti2.setInt(1, oeuvrage_id);
+                ResultSet res2 = sti2.executeQuery();
+                    while(res2.next())
+                        { nom = res2.getString("nom"); return x= "l'oeuvre "+nom;}
+                
+                }catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());
+        } 
+                     
+                
+            }
+        }} catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());}
+        return x;
     }
     
 }

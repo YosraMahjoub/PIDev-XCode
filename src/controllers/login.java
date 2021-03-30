@@ -105,18 +105,16 @@ public class login implements Initializable {
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Parent page1 = null;
                     if(!pdao.checkmail(email1)){
-                         try {
-
-                             page1 = FXMLLoader.load(getClass().getResource("/views/confiremail.fxml"));
-                             Scene scene = new Scene(page1);
-                             //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                             stage.setScene(scene);
-                             stage.show();
-                        }
-                     catch (IOException ex) {
-                        Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
-
-            }
+                         if(obj.getRole().toLowerCase().contains("admin")){
+                    page1  = FXMLLoader.load(getClass().getResource("/views/adminconfirmail.fxml")); 
+                     }else{
+                    page1 = FXMLLoader.load(getClass().getResource("/views/confiremail.fxml"));
+                     }
+                         Scene scene = new Scene(page1);
+                     stage.setScene(scene);
+                     
+//                     
+                     stage.show();
                          
                      }
                     else{

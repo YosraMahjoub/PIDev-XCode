@@ -5,9 +5,12 @@
  */
 package controllers;
 
+import Iservice.MyListener;
 import entities.User;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -30,7 +33,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import service.UserService;
 
@@ -57,16 +63,6 @@ public class AdminAfficher_userController implements Initializable {
     private ComboBox<String> filter;
     private ObservableList<User> persons=FXCollections.observableArrayList();
     @FXML
-    private TableView<User> personsTable;
-    @FXML
-    private TableColumn<User, String> username;
-    @FXML
-    private TableColumn<User, String> nom;
-    @FXML
-    private TableColumn<User, String> prenom;
-    @FXML
-    private TableColumn<User, String> email;
-    @FXML
     private Button reclamation;
     @FXML
     private HBox hi;
@@ -78,6 +74,9 @@ public class AdminAfficher_userController implements Initializable {
     private Button ADD;
     @FXML
     private Button btnsupp;
+    @FXML
+     private GridPane grid;
+    private MyListener myListener;
 
     /**
      * Initializes the controller class.
@@ -89,37 +88,64 @@ public class AdminAfficher_userController implements Initializable {
         filter.setItems(cat);
         
         UserService pdao=new UserService();
+        List<User> listUser =new ArrayList<>();
+//        
+        listUser.addAll(pdao.displayAllrole());
         
-        //personsTable.setItems(persons);
-        //id.setCellValueFactory(new PropertyValueFactory<>("user_id"));
-        username.setCellValueFactory(new PropertyValueFactory<>("username"));
-        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        persons=(ObservableList<User>) pdao.displayAll();
-        personsTable.setItems(persons);
-        
-        
-        personsTable.setOnMouseClicked((MouseEvent event) -> {
-            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
+        if (listUser.size() > 0) {
                 
-                User u = personsTable.getSelectionModel().getSelectedItem();
-                int i = u.getUser_id();
-                AdminAfficheruserdetailsController.setI(i);
-                System.out.println(u.getNom());
-                try {
+                myListener = new MyListener() {
+                    
 
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/afficheruserdetails.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
+                    @Override
+                    public void onClickListener(MouseEvent event, User u) {
+                        try {
+                            AdminAfficheruserdetailsController.setI(u.getUser_id());
+                            AdminAfficheruserdetailsController.setX(0);
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficheruserdetails.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                };
+            } grid.getChildren().clear();
+            int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < listUser.size(); i++) {
 
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            }
-        });
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affuserpouradmin.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffuserpouradminController itemController = fxmlLoader.getController();
+                    itemController.setData(listUser.get(i),myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+        
+       
         btnprofil.setOnAction(event -> {
             try {
                 
@@ -196,40 +222,417 @@ public class AdminAfficher_userController implements Initializable {
         UserService pdao = new UserService();
         String x =filter.getValue();
         if(x=="les utilisateurs"){
-            persons=(ObservableList<User>) pdao.displayAll();
-            personsTable.setItems(persons);
+           
+            List<User> list =new ArrayList<>();
+            list.addAll(pdao.displayAll());
+            System.out.println(list.size());
+            if (list.size() > 0) {
+                
+                myListener = new MyListener() {
+                    
+
+                    @Override
+                    public void onClickListener(MouseEvent event, User u) {
+                        try {
+                             AdminAfficheruserdetailsController.setI(u.getUser_id());
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficheruserdetails.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                };
+            } grid.getChildren().clear();
+        int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < list.size(); i++) {
+
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affuserpouradmin.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffuserpouradminController itemController = fxmlLoader.getController();
+                    itemController.setData(list.get(i),myListener);
+                    
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
             
         }
         
         if(x=="vendeur"){
             String statut = "is_vendeur";
-            persons = (ObservableList<User>) pdao.displaystatut(statut);
-            personsTable.setItems(persons);
+            
+            List<User> list =new ArrayList<>();
+            list.addAll(pdao.displaystatut(statut));
+            System.out.println(list.size());
+            if (list.size() > 0) {
+                
+                myListener = new MyListener() {
+                    
+
+                    @Override
+                    public void onClickListener(MouseEvent event, User u) {
+                        try {
+                            AdminAfficheruserdetailsController.setI(u.getUser_id());
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficheruserdetails.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                };
+            } grid.getChildren().clear();
+        int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < list.size(); i++) {
+
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affuserpouradmin.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffuserpouradminController itemController = fxmlLoader.getController();
+                    itemController.setData(list.get(i),myListener);
+                    
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
             
         }
         if(x=="formateur"){
             String statut = "is_formateur";
-            persons =(ObservableList<User>)  pdao.displaystatut(statut); 
-            personsTable.setItems(persons);
+            List<User> list =new ArrayList<>();
+            list.addAll(pdao.displaystatut(statut));
+            System.out.println(list.size());
+            if (list.size() > 0) {
+                
+                myListener = new MyListener() {
+                    
+
+                    @Override
+                    public void onClickListener(MouseEvent event, User u) {
+                        try {
+                             AdminAfficheruserdetailsController.setI(u.getUser_id());
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficheruserdetails.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                };
+            } grid.getChildren().clear();
+        int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < list.size(); i++) {
+
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affuserpouradmin.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffuserpouradminController itemController = fxmlLoader.getController();
+                    itemController.setData(list.get(i),myListener);
+                    
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
         }
         if(x=="recruteur"){
             String statut = "is_recruteur";
-           persons = (ObservableList<User>) pdao.displaystatut(statut);  
-           personsTable.setItems(persons);
+            List<User> list =new ArrayList<>();
+            list.addAll(pdao.displaystatut(statut));
+            System.out.println(list.size());
+            if (list.size() > 0) {
+                
+                myListener = new MyListener() {
+                    
+
+                    @Override
+                    public void onClickListener(MouseEvent event, User u) {
+                        try {
+                             AdminAfficheruserdetailsController.setI(u.getUser_id());
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficheruserdetails.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                };
+            } grid.getChildren().clear();
+        int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < list.size(); i++) {
+
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affuserpouradmin.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffuserpouradminController itemController = fxmlLoader.getController();
+                    itemController.setData(list.get(i),myListener);
+                    
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
         }
         if(x=="client"){
-            persons =(ObservableList<User>)  pdao.displayrole();  
-            personsTable.setItems(persons);
+            
+            List<User> list =new ArrayList<>();
+            list.addAll( pdao.displayrole());
+            System.out.println(list.size());
+            if (list.size() > 0) {
+                
+                myListener = new MyListener() {
+                    
+
+                    @Override
+                    public void onClickListener(MouseEvent event, User u) {
+                        try {
+                             AdminAfficheruserdetailsController.setI(u.getUser_id());
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficheruserdetails.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                };
+            } grid.getChildren().clear();
+        int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < list.size(); i++) {
+
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affuserpouradmin.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffuserpouradminController itemController = fxmlLoader.getController();
+                    itemController.setData(list.get(i),myListener);
+                    
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+            
         }
         if(x=="validé"){
-            int i=1;
-            persons = (ObservableList<User>) pdao.displayvalidité(i);
-            personsTable.setItems(persons);
+            int y=1;
+            
+            List<User> list =new ArrayList<>();
+            list.addAll( pdao.displayvalidité(y));
+            System.out.println(list.size());
+            if (list.size() > 0) {
+                
+                myListener = new MyListener() {
+                    
+
+                    @Override
+                    public void onClickListener(MouseEvent event, User u) {
+                        try {
+                             AdminAfficheruserdetailsController.setI(u.getUser_id());
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficheruserdetails.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                };
+            } grid.getChildren().clear();
+        int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < list.size(); i++) {
+
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affuserpouradmin.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffuserpouradminController itemController = fxmlLoader.getController();
+                    itemController.setData(list.get(i),myListener);
+                    
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
         }
         if(x=="non validé"){
-            int i=0;
-            persons = (ObservableList<User>) pdao.displayvalidité(i);
-            personsTable.setItems(persons);
+            int y=0;
+            
+            List<User> list =new ArrayList<>();
+            list.addAll( pdao.displayvalidité(y));
+            System.out.println(list.size());
+            if (list.size() > 0) {
+                
+                myListener = new MyListener() {
+                    
+
+                    @Override
+                    public void onClickListener(MouseEvent event, User u) {
+                        try {
+                             AdminAfficheruserdetailsController.setI(u.getUser_id());
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficheruserdetails.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene); 
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                };
+            } grid.getChildren().clear();
+        int column = 0;
+            int row = 1;
+           try {
+                for (int i = 0; i < list.size(); i++) {
+
+                   FXMLLoader fxmlLoader = new FXMLLoader();
+                   fxmlLoader.setLocation(getClass().getResource("/views/affuserpouradmin.fxml"));
+                   AnchorPane anchorPane = fxmlLoader.load();
+
+                    AffuserpouradminController itemController = fxmlLoader.getController();
+                    itemController.setData(list.get(i),myListener);
+                    
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new javafx.geometry.Insets(10));
+                }
+                } catch (IOException ex) {
+                   Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+               }
         }
     }
     

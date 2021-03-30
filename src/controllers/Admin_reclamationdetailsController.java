@@ -93,7 +93,7 @@ public class Admin_reclamationdetailsController implements Initializable {
         
         UserService pdao = new UserService();
         ReclamationService rec = new ReclamationService();
-        Reclamation re = rec.displayById(i);
+        Reclamation re = rec.displayType(i);
         label_nom.setText(re.getReclamation_nom());
         label_sujet.setText(re.getSujet());
         label_desc.setText(re.getDescription());
@@ -190,6 +190,21 @@ public class Admin_reclamationdetailsController implements Initializable {
             }
        
         }});
+        avertissement.setOnAction(event -> {
+            pdao.updateavertissement(i);
+        });
+         
+        consulter_produit.setOnAction(event -> {
+            if(re.getEvenement_id()!=0){
+                //afficher evenement
+            }
+            else if(re.getFormation_id()!=0){
+                //afficher formation
+            }
+            else if(re.getOeuvrage_id()!=0){
+                //afficher oeuvre
+            }
+        });
     }
         
      private Optional<ButtonType> alert(String x){

@@ -26,6 +26,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -210,7 +211,18 @@ public class ConfiremailController implements Initializable {
 
     @FXML
     private void colorchange(KeyEvent event) {
-        label.setStyle("-fx-background-color:" + code.getText()+";");
+        code.setStyle("-fx-background-color:" + code.getText()+";");
+    }
+
+    @FXML
+    private void renvoyer(MouseEvent event) {
+         try {
+            x = EmailSend.SendMail("aa");
+        } catch (MessagingException ex) {
+            Logger.getLogger(ConfiremailController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ConfiremailController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

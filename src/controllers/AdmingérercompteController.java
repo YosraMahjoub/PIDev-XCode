@@ -108,7 +108,7 @@ public class AdmingérercompteController implements Initializable {
         User obj = pdao.displayById(id);
         text_nom.setText(obj.getNom());
         text_prenom.setText(obj.getPrenom());
-        text_username.setText(obj.getUsername());
+        //text_username.setText(obj.getUsername());
         text_adresse.setText(obj.getAdresse());
         text_num.setText(String.valueOf(obj.getNum_tel()));
         text_email.setText(obj.getEmail());
@@ -220,6 +220,17 @@ public class AdmingérercompteController implements Initializable {
             }
        
         }});
+       btnuser.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficher_user.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
         
      private Optional<ButtonType> alert(String x){
