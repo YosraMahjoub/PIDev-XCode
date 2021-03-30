@@ -9,6 +9,7 @@ import entities.Reclamation;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -165,9 +168,8 @@ public class Admin_reclamationsController implements Initializable {
                 Logger.getLogger(Admin_reclamationsController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        btnsupp.setOnAction(event -> {
-                            
-
+       btnsupp.setOnAction(event -> {
+            if (alert("voulez vous vraiment supprimer le compte ?").get() == ButtonType.OK) {
             pdao.updatevalidité(UserService.getCurrentUser().getUser_id());
             try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
@@ -176,10 +178,20 @@ public class Admin_reclamationsController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {
-                Logger.getLogger(Gérer_profilController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
-                }
+       
+        }});
+    }
+        
+     private Optional<ButtonType> alert(String x){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(" supprimer ");
+            alert.setHeaderText(null);
+            alert.setContentText(x);
+            return alert.showAndWait();
+    }   
+                
                     
 
     @FXML

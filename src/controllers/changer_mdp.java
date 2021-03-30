@@ -10,6 +10,7 @@ import entities.User;
 import java.io.IOException;
 import java.net.URL;
 import static java.util.Objects.hash;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -132,22 +134,7 @@ public class changer_mdp implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        btnsupp.setOnAction(event -> {
-           
-            UserService pdao = new UserService();                
-
-            pdao.updatevalidité(UserService.getCurrentUser().getUser_id());
-            try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-       
-        });
+        
         btninfo.setOnAction(event -> {
             try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/Userprofil.fxml"));
@@ -170,6 +157,30 @@ public class changer_mdp implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-    }    
+        btnsupp.setOnAction(event -> {
+            UserService pdao = new UserService();
+            if (alert("voulez vous vraiment supprimer le compte ?").get() == ButtonType.OK) {
+            pdao.updatevalidité(UserService.getCurrentUser().getUser_id());
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
+        }});
+    }
+        
+     private Optional<ButtonType> alert(String x){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(" supprimer ");
+            alert.setHeaderText(null);
+            alert.setContentText(x);
+            return alert.showAndWait();
+    }   
+      
     
 }

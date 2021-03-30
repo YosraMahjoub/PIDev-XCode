@@ -8,6 +8,7 @@ package controllers;
 import entities.User;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +19,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
@@ -132,10 +135,20 @@ public class UserprofilController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        reclamation.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/réclamation.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+       
         btnsupprimer.setOnAction(event -> {
-           
-                            
-
+            if (alert("voulez vous vraiment supprimer le compte ?").get() == ButtonType.OK) {
             pdao.updatevalidité(id);
             try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
@@ -147,7 +160,7 @@ public class UserprofilController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
        
-        });
+        }});
         confirmer_num.setOnAction(event -> {
             try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/confirmer_num.fxml"));
@@ -157,6 +170,17 @@ public class UserprofilController implements Initializable {
                 stage.show();
             } catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+         btninfo.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/Userprofil.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(ModifierréclamationController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         
@@ -180,6 +204,13 @@ public class UserprofilController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
+    }
+     private Optional<ButtonType> alert(String x){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(" supprimer ");
+            alert.setHeaderText(null);
+            alert.setContentText(x);
+            return alert.showAndWait();
     }
 }
     

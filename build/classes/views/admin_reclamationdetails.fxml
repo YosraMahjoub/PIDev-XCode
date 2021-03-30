@@ -221,7 +221,17 @@
             </Button>
          </children>
       </VBox>
-      <Button fx:id="btninsert" layoutX="786.0" layoutY="553.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #a65959; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Valider">
+      <Button fx:id="avertissement" layoutX="786.0" layoutY="553.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #a65959; -fx-background-radius: 100PX; -fx-text-fill: white;" text="envoyer avertissement">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="consulter_profil" layoutX="786.0" layoutY="515.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="consulter profil ">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="consulter_produit" layoutX="786.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="consulter produit">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

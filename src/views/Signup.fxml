@@ -16,11 +16,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" styleClass="pane" stylesheets="@../Style/login.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupController">
     <children>
-      <Button fx:id="btninsert" layoutX="561.0" layoutY="305.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #a65959; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Sign Up">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Button>
       <VBox alignment="TOP_RIGHT" layoutX="90.0" layoutY="141.0" prefHeight="275.0" prefWidth="836.0" style="-fx-background-color: #343E3D;" translateY="40.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 2em; -fx-font-family: Quicksan; -fx-font-weight: bold; -fx-fill: white;" text="Welcome to Fanny" textAlignment="CENTER" translateX="-60.0" translateY="70.0" wrappingWidth="226.724609375" x="20.0" y="20.0" />
@@ -30,7 +25,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btninscri" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #a65959; -fx-background-radius: 100PX; -fx-text-fill: white;" text="s'inscrire" translateX="-90.0" translateY="60.0">
+            <Button fx:id="btninsert" mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #a65959; -fx-background-radius: 100PX; -fx-text-fill: white;" text="s'inscrire" translateX="-90.0" translateY="60.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

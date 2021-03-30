@@ -105,25 +105,20 @@ public class UserService implements Idao<User>{
         } 
     
     }
+    private Optional<ButtonType> alert(String x){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(" supprimer ");
+            alert.setHeaderText(null);
+            alert.setContentText(x);
+            return alert.showAndWait();
+    }
 
     @Override
     public void delete(User user) {
         try {
             Statement ps = conn.createStatement();
-            
-            
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle(" supprimer ");
-            alert.setHeaderText(null);
-            alert.setContentText("voulez vous vraiment supprimer le compte");
-            Optional<ButtonType> option = alert.showAndWait();
-            if (option.get() == ButtonType.OK) {
-                ps.executeUpdate("delete from user where `user_id`=" + user.getUser_id());
-            } 
-            alert.show();
-            
-
-        } catch (SQLException ex) {
+            ps.executeUpdate("delete from user where `user_id`=" + user.getUser_id());
+            } catch (SQLException ex) {
             System.out.println("Impossible de supprimer un utilisateur"+ex.getMessage());
             //OptionPane.showMessageDialog(null,"Impossible de supprimer une categorie\n"+ex.getMessage());
         }  
@@ -582,21 +577,13 @@ public class UserService implements Idao<User>{
     }
     public void updatevalidité(int id) {
         try {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle(" supprimer ");
-            alert.setHeaderText(null);
-            alert.setContentText("voulez vous vraiment supprimer le compte");
-            Optional<ButtonType> option = alert.showAndWait();
-            if (option.get() == ButtonType.OK) {
             String req="UPDATE user SET validité=? WHERE  `user_id`= ?";
             PreparedStatement ps;
            ps =conn.prepareStatement(req); 
            ps.setInt(1,0);
            ps.setInt(2,id);
            ps.executeUpdate() ; 
-           alert.show();
-            }
-            else{}
+          
         }catch (SQLException ex) {
            System.out.println("Impossible de modifier un utilisateur"+ex.getMessage());
         }
@@ -630,13 +617,9 @@ public class UserService implements Idao<User>{
         try{
         String req = "Select * from user where "+statut+" =?";
         PreparedStatement st = conn.prepareStatement(req);
-         st.setInt(1, 1);
-        
-        
+        st.setInt(1, 1);
         ResultSet res = st.executeQuery();
-        
-
-         while(res.next())
+        while(res.next())
             {
                 int id = res.getInt("user_id");
                 String userName=res.getString("username");
@@ -659,11 +642,7 @@ public class UserService implements Idao<User>{
         try{
         String req = "Select * from user where role ='client'";
         PreparedStatement st = conn.prepareStatement(req);
-        
-        
         ResultSet res = st.executeQuery();
-        
-
         while(res.next())
             {
                 int id = res.getInt("user_id");
@@ -710,6 +689,51 @@ public class UserService implements Idao<User>{
         {
            System.out.println("Erreur d'affichage"+e.getMessage());}
         return list;
+    }
+    public int getavertissement(int id){
+        int x =0;
+        try {
+            String req = "Select avertissement from user where user_id = ?";
+            PreparedStatement st = conn.prepareStatement(req);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+            x = rs.getInt("avertissement"); return x;}
+            }catch (SQLException ex) {
+           System.out.println("Impossible de modifier un utilisateur"+ex.getMessage());
+        }return x;
+    }
+    public void updateavertissement(int id) {
+        try {
+            String req = "Select avertissement from user where user_id = ?";
+            PreparedStatement st = conn.prepareStatement(req);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+            int x = rs.getInt("avertissement");
+            String re="UPDATE user SET avertissement=? WHERE  `user_id`= ?";
+            PreparedStatement ps;
+            ps =conn.prepareStatement(re); 
+            ps.setInt(1,x+1);
+            ps.setInt(2,id);
+            ps.executeUpdate() ; }
+          
+        }catch (SQLException ex) {
+           System.out.println("Impossible de modifier un utilisateur"+ex.getMessage());
+        }
+    }
+    public void devenirx(String x, int id){ //x=is_formateur ken fi formation
+         String req="UPDATE user SET "+x+"=? WHERE  `user_id`= ?";
+        PreparedStatement ps;
+        try { 
+            ps =conn.prepareStatement(req); 
+            
+            ps.setInt(1,id);
+            ps.executeUpdate() ; 
+        } catch (SQLException ex) {
+           System.out.println("Impossible de modifier un utilisateur"+ex.getMessage());
+        }
+        
     }
 }
 

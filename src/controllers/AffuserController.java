@@ -42,6 +42,7 @@ public class AffuserController implements Initializable {
 //        this.u=u;
 //    }
 //    
+    @FXML
     private void click(MouseEvent event) {
         myListener.onClickListener(event,u);
     }

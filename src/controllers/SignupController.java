@@ -65,8 +65,6 @@ public class SignupController implements Initializable {
     private User user;
     @FXML
     private Button btnconn;
-    @FXML
-    private Button btninscri;
 
    
     /**

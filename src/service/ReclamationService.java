@@ -225,9 +225,9 @@ public class ReclamationService   {
                 Integer oeuvrage_id = res.getInt("oeuvrage_id");
                 String description=res.getString("description"); 
                 Date date=res.getDate("date"); 
-                if(evenement_id !=null){x="evenement";}
-                else if(formation_id !=null){ x="formation";}
-                else if(oeuvrage_id !=null){ x="oeuvre";}
+                if(evenement_id !=0){x="evenement";}
+                if(formation_id !=0){ x="formation";}
+                if(oeuvrage_id !=0){ x="oeuvre";}
                 
                 Reclamation rec = new Reclamation(reclamation_id, user_id,reclamation_nom, x, description,date);
                 
@@ -368,6 +368,72 @@ public class ReclamationService   {
         } 
         
        return null;}
+    public int displayproduitUSer(int id) {
+        String x = null , nom =null; int i=0;
+        try{
+        String req = "Select * from reclamation where reclamation_id = ?";
+        PreparedStatement st = conn.prepareStatement(req);
+        st.setInt(1, id);
+        ResultSet res = st.executeQuery();
+        while(res.next())
+            {
+                int reclamation_id = res.getInt("reclamation_id");
+                String reclamation_nom=res.getString("reclamation_nom"); 
+                int user_id = res.getInt("user_id");
+                Integer evenement_id = res.getInt("evenement_id");
+                Integer formation_id = res.getInt("formation_id");
+                Integer oeuvrage_id = res.getInt("oeuvrage_id");
+                String description=res.getString("description"); 
+                Date date=res.getDate("date"); 
+                if(evenement_id !=0){
+                   try{
+                    String req1 = "Select user_id from evenement where evenement_id = ?";
+                    PreparedStatement sti0 = conn.prepareStatement(req1);
+                    sti0.setInt(1, evenement_id);
+                    ResultSet res0 = sti0.executeQuery();
+                    while(res0.next())
+                        {i = res0.getInt("user_id"); return i;}}
+                   catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());
+        } 
+                }
+                
+               else if(formation_id !=0){ 
+                try{
+                String req1 = "Select user_id from formation where formation_id = ?";
+                PreparedStatement sti1 = conn.prepareStatement(req1);
+                sti1.setInt(1, formation_id);
+                ResultSet res1 = sti1.executeQuery();
+                    while(res1.next())
+                        { i = res1.getInt("user_id"); return i;}}
+                catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());
+        } 
+               }
+               else if(oeuvrage_id !=0){try{ 
+                 String req1 = "Select user_id from oeuvrage where oeuvrage_id = ?";
+                PreparedStatement sti2 = conn.prepareStatement(req1);
+                sti2.setInt(1, oeuvrage_id);
+                ResultSet res2 = sti2.executeQuery();
+                    while(res2.next())
+                        {i = res2.getInt("user_id"); return i;}
+                
+                }catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());
+        } 
+                     
+                
+            }
+        }}
+          catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());
+        } 
+        
+       return i;}
         
     public String displayuser(int id){
         String nom ="";
@@ -408,8 +474,8 @@ public class ReclamationService   {
                 Integer formation_id = res.getInt("formation_id");
                 Integer oeuvrage_id = res.getInt("oeuvrage_id");
                 if(evenement_id !=null){x="evenement";}
-                else if(formation_id !=null){ x="formation";}
-                else if(oeuvrage_id !=null){ x="oeuvre";}
+                if(formation_id !=null){ x="formation";}
+                if(oeuvrage_id !=null){ x="oeuvre";}
                 
                 Reclamation rec = new Reclamation(id, user_id,recName, x, description,date);
                 

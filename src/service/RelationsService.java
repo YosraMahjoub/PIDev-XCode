@@ -55,9 +55,9 @@ public class RelationsService implements Idao<Relations>{
             alert.setContentText("voulez vous vraiment se désabonner ?");
             Optional<ButtonType> option = alert.showAndWait();
             if (option.get() == ButtonType.OK) {
-                ps.executeUpdate("delete from relations where `follower_id`=" + o.getFollower_id()+" `followee_id`=" + o.getFollowee_id());
+                ps.executeUpdate("delete from relations where `follower_id`=" + o.getFollower_id()+" and  `followee_id`=" + o.getFollowee_id());
             } 
-            alert.show();
+           
             
 
         } catch (SQLException ex) {
@@ -137,6 +137,22 @@ public class RelationsService implements Idao<Relations>{
         {
            System.out.println("Erreur d'affichage"+e.getMessage());
         }  return list;   
+    }
+     public int nbfollowerByfolloweeId(int id) {
+        int nb=0;
+         try
+        {
+            Statement ps = conn.createStatement();
+            ResultSet res;
+            
+            res = ps.executeQuery("select count(follower_id) as nb from relations where `followee_id` =" + id);
+            while(res.next())
+            {nb = res.getInt("nb");}
+        }
+          catch(Exception e)
+        {
+           System.out.println("Erreur d'affichage"+e.getMessage());
+        }  return nb; 
     }
 
     @Override

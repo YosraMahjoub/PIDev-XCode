@@ -15,12 +15,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfilController">
    <children>
-      <HBox layoutX="176.0" layoutY="172.0" prefHeight="30.0" prefWidth="249.0" style="-fx-background-color: #f4f0f0;">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" translateX="60.0" />
-         </children>
-      </HBox>
-      <HBox layoutX="224.0" layoutY="202.0" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: #f4f0f0;" translateX="-5.0" />
       <VBox alignment="CENTER" layoutX="234.0" layoutY="244.0" prefHeight="322.0" prefWidth="548.0">
          <children>
             <Label fx:id="label_nom" prefHeight="23.0" prefWidth="77.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="username" />

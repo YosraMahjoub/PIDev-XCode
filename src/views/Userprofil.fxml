@@ -233,7 +233,7 @@
          </children>
       </VBox>
       <HBox fx:id="hello" alignment="CENTER_LEFT" layoutY="-1.0" prefHeight="76.0" prefWidth="250.0" style="-fx-background-color: #343E3D;">
-      <Button fx:id="ADD" mnemonicParsing="false" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE">
+      <Button fx:id="ADD" mnemonicParsing="false" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE" translateX="40.0">
                            <font>
                               <Font size="14.0" />
                            </font>

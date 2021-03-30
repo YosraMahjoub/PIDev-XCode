@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import static java.util.Locale.filter;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +24,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -54,8 +57,6 @@ public class RéclamationController implements Initializable {
     private Button btnoeuvres;
     @FXML
     private Button btnfavories;
-    @FXML
-    private Button btnsupprimer;
     @FXML
     private Button btninfo;
     @FXML
@@ -91,6 +92,8 @@ public class RéclamationController implements Initializable {
     private Button mod_reclamation;
     @FXML
     private Button apprentissage;
+    @FXML
+    private Button btnsupp;
 
     /**
      * Initializes the controller class.
@@ -177,8 +180,32 @@ public class RéclamationController implements Initializable {
                 Logger.getLogger(ModifierréclamationController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        btnsupp.setOnAction(event -> {
+            UserService pdao = new UserService();
+            if (alert("voulez vous vraiment supprimer le compte ?").get() == ButtonType.OK) {
+            pdao.updatevalidité(UserService.getCurrentUser().getUser_id());
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
+        }});
+    }
+        
+     private Optional<ButtonType> alert(String x){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(" supprimer ");
+            alert.setHeaderText(null);
+            alert.setContentText(x);
+            return alert.showAndWait();
+    }   
 
-    }    
+        
 
     @FXML
     private void comboAction(ActionEvent event) {

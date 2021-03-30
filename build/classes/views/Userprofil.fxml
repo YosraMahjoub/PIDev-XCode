@@ -73,7 +73,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="reclamation" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: #343E3D;" text="Mes réclamations" textAlignment="CENTER" textFill="WHITE" translateY="90.0">
+            <Button fx:id="apprentissage" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Mon apprentissage" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -81,7 +81,15 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnsupprimer" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #a65959; -fx-background-radius: 20;" text="Supprimer compte" textAlignment="CENTER" textFill="WHITE" translateY="90.0">
+            <Button fx:id="reclamation" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: #343E3D;" text="Mes réclamations" textAlignment="CENTER" textFill="WHITE" translateY="70.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnsupprimer" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #a65959; -fx-background-radius: 20;" text="Supprimer compte" textAlignment="CENTER" textFill="WHITE" translateY="72.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -225,7 +233,7 @@
          </children>
       </VBox>
       <HBox fx:id="hello" alignment="CENTER_LEFT" layoutY="-1.0" prefHeight="76.0" prefWidth="250.0" style="-fx-background-color: #343E3D;">
-      <Button fx:id="ADD" mnemonicParsing="false" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE">
+      <Button fx:id="ADD" mnemonicParsing="false" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE" translateX="40.0">
                            <font>
                               <Font size="14.0" />
                            </font>

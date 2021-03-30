@@ -98,16 +98,20 @@
       <VBox layoutX="276.0" layoutY="-9.0" prefHeight="553.0" prefWidth="441.0">
          <children>
             <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Informations utilisateur" translateX="60.0" translateY="50.0" />
-            <HBox prefHeight="30.0" prefWidth="430.0" style="-fx-background-color: #f4f0f0;" translateY="120.0">
+            <HBox prefHeight="30.0" prefWidth="430.0" style="-fx-background-color: #f4f0f0;" translateY="140.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Nom :" translateX="60.0" />
-                  <Label fx:id="label_nom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom" translateX="80.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Nom :" translateX="160.0" />
+                  <Label fx:id="label_nom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom" translateX="170.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Prenom :" translateX="200.0" />
+                  <Label fx:id="label_prenom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="prenom" translateX="210.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Username" translateX="-170.0" />
+                  <Label fx:id="label_username" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom" translateX="-160.0" />
                </children>
             </HBox>
             <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="150.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="sujet" translateX="60.0" />
-                  <Label fx:id="label_sujet" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="sujet" translateX="70.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="email " translateX="60.0" />
+                  <Label fx:id="label_email" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="email" translateX="70.0" />
                </children>
             </HBox>
             <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="160.0">
@@ -116,24 +120,50 @@
                   <Label fx:id="label_bio" prefHeight="23.0" prefWidth="309.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="bio" translateX="70.0" />
                </children>
             </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="170.0">
+            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="190.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Role :" translateX="60.0" />
                   <Label fx:id="label_role" prefHeight="23.0" prefWidth="98.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="role" translateX="70.0" />
                </children>
             </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="180.0">
+            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="210.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Statut" translateX="60.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Etat de compte" translateX="60.0" />
                   <Label fx:id="label_statut" text="statut" translateX="100.0" translateY="4.0" />
                </children>
             </HBox>
-            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="190.0">
+            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="220.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Cv" translateX="60.0" />
-                  <Label fx:id="label_cv" prefHeight="23.0" prefWidth="98.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="CV" translateX="70.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="nombre article" translateX="60.0" wrappingWidth="117.61229705810547" />
+                  <Label fx:id="label_nb" text="nb" translateX="100.0" translateY="4.0" />
                </children>
             </HBox>
+            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Bio : " translateX="60.0" />
+                  <Label fx:id="label_bio1" prefHeight="23.0" prefWidth="309.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="bio" translateX="70.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Adresse" translateX="45.0" wrappingWidth="70.22675704956055" />
+                  <Label fx:id="label_adresse" prefHeight="23.0" prefWidth="63.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="adresse" translateX="45.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="téléphone" translateX="75.0" wrappingWidth="76.22675704956055" />
+                  <Label fx:id="label_tel" prefHeight="23.0" prefWidth="63.0" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="tel" translateX="85.0" />
+               </children>
+            </HBox>
+            <Button fx:id="retour" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #414e4d; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Retour" textAlignment="CENTER" translateY="150.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
          </children>
          <padding>
             <Insets right="1.0" />

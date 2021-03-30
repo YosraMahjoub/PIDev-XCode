@@ -8,6 +8,7 @@ package controllers;
 import entities.User;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.KeyEvent;
@@ -126,9 +128,20 @@ public class Confirmer_numController implements Initializable {
             
             
         });
+        
+        reclamation.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/réclamation.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         btnsupp.setOnAction(event -> {
-                            
-
+            if (alert("voulez vous vraiment supprimer le compte ?").get() == ButtonType.OK) {
             pdao.updatevalidité(UserService.getCurrentUser().getUser_id());
             try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
@@ -139,10 +152,11 @@ public class Confirmer_numController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
-        reclamation.setOnAction(event -> {
+       
+        }});
+        btnmdp.setOnAction(event -> {
             try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/admin_reclamations.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/changer_mdp.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -151,7 +165,40 @@ public class Confirmer_numController implements Initializable {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-    }    
+         btnprofil.setOnAction(event -> {
+            try {
+                
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/gérer_profil.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+         btninfo.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/Userprofil.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(AjoutreclamationController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+    }
+        
+     private Optional<ButtonType> alert(String x){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(" supprimer ");
+            alert.setHeaderText(null);
+            alert.setContentText(x);
+            return alert.showAndWait();
+    }   
+       
 
     @FXML
     private void colorchange(KeyEvent event) {

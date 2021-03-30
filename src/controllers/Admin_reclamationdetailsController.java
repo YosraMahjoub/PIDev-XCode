@@ -8,6 +8,7 @@ package controllers;
 import entities.Reclamation;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,13 +18,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import service.ReclamationService;
+import service.RelationsService;
 import service.UserService;
 
 /**
@@ -55,8 +59,6 @@ public class Admin_reclamationdetailsController implements Initializable {
     @FXML
     private Label err_num;
     @FXML
-    private Button btninsert;
-    @FXML
     private Label label_nom;
     @FXML
     private Label err_username;
@@ -80,11 +82,16 @@ public class Admin_reclamationdetailsController implements Initializable {
     private Button ADD;
     @FXML
     private Button btnsupp;
+    @FXML
+    private Button avertissement;
+    @FXML
+    private Button consulter_profil;
+    @FXML
+    private Button consulter_produit;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         UserService pdao = new UserService();
-        
         ReclamationService rec = new ReclamationService();
         Reclamation re = rec.displayById(i);
         label_nom.setText(re.getReclamation_nom());
@@ -92,10 +99,13 @@ public class Admin_reclamationdetailsController implements Initializable {
         label_desc.setText(re.getDescription());
         label_nomP.setText(rec.displayproduit(i));
         label_user.setText(rec.displayuser(i));
+        int i = rec.displayproduitUSer(re.getReclamation_id());
+        System.out.println(i);
         
         
         
-btnprofil.setOnAction(event -> {
+        
+        btnprofil.setOnAction(event -> {
             try {
                 
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/admingérercompte.fxml"));
@@ -141,9 +151,33 @@ btnprofil.setOnAction(event -> {
                 Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        
+        consulter_profil.setOnAction(event -> {
+            AdminAfficheruserdetailsController.setX(re.getReclamation_id());
+            AdminAfficheruserdetailsController.setI(i);
+             try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficheruserdetails.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(AdminAfficheruserdetailsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        btnuser.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficher_user.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         btnsupp.setOnAction(event -> {
-                            
-
+            if (alert("voulez vous vraiment supprimer le compte ?").get() == ButtonType.OK) {
             pdao.updatevalidité(UserService.getCurrentUser().getUser_id());
             try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
@@ -152,10 +186,21 @@ btnprofil.setOnAction(event -> {
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {
-                Logger.getLogger(Gérer_profilController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
+       
+        }});
     }
+        
+     private Optional<ButtonType> alert(String x){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(" supprimer ");
+            alert.setHeaderText(null);
+            alert.setContentText(x);
+            return alert.showAndWait();
+    }   
+        
+    
     
 public static int getI() {
         return i;

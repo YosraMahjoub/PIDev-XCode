@@ -7,15 +7,25 @@ package controllers;
 
 import entities.Relations;
 import entities.User;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import service.RelationsService;
 import service.UserService;
 
@@ -47,9 +57,12 @@ public class ProfilController implements Initializable {
      private static int i;
 
     static void setUser(int ia) {
-       i=ia;
-        
+       i=ia;}
+    static int getUser(){
+        return i;
     }
+        
+    
     @FXML
     private HBox hi;
     @FXML
@@ -67,27 +80,45 @@ public class ProfilController implements Initializable {
         RelationsService rela = new RelationsService();
         ObservableList<Relations> list=FXCollections.observableArrayList();
         UserService pdao = new UserService();
-        String username ="";
-        User u = pdao.displayusername(username);
-        Relations o = new Relations(u.getUser_id(), UserService.getCurrentUser().getUser_id());
+        
+        User u = pdao.displayById(i);
+        System.out.println(u.getUser_id());
+        Relations o = new Relations(UserService.getCurrentUser().getUser_id(),u.getUser_id());
         label_nom.setText(u.getUsername());
         label_bio.setText(u.getBio());
-        label_role.setText(pdao.displayrole(username));
+        label_role.setText(pdao.displayrole(u.getUsername()));
         list = rela.displayByfolloweeId(u.getUser_id());
-        label_abonnees.setText(""+list.size());
+       
         int x = rela.existfollow(o);
-        if(x!=0){
-            sabonner.setText("abonné");
-            sabonner.setOnAction(event -> {
-            rela.delete(o);
-            sabonner.setText("s'abonner");
-        });
-        }
-        sabonner.setOnAction(event -> {
-            rela.insert(o);
-            sabonner.setText("abonné");
-        });
-        
-    }    
-    
-}
+        int y = rela.nbfollowerByfolloweeId(u.getUser_id());
+        label_abonnees.setText(""+y);
+        //if(x!=0){sabonner.setText("abonné");} else{ sabonner.setText("s'abonner");}
+           
+            sabonner.setOnAction(new EventHandler<ActionEvent>() {
+                
+                @Override
+                public void handle(ActionEvent event) {
+                    int y=0;
+                    int x = rela.existfollow(o);
+                    if(x!=0){
+                        sabonner.setText("abonné");
+                        rela.delete(o);
+                        sabonner.setText("s'abonner");
+                        y = rela.nbfollowerByfolloweeId(u.getUser_id());
+                        label_abonnees.setText(""+y);
+                        
+                    }
+                    else{
+                    rela.insert(o);
+                    sabonner.setText("abonné");
+                    y = rela.nbfollowerByfolloweeId(u.getUser_id());
+                   
+                    label_abonnees.setText(""+y);
+                    
+            }
+                
+            }
+                
+            });
+           
+}}
