@@ -99,7 +99,19 @@ public class AjouerFormationController implements Initializable {
     
     FormationServices fs = FormationServices.getInstance();
     @FXML
-    private Button apprenti;
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
    
     
     @Override
@@ -198,7 +210,7 @@ public class AjouerFormationController implements Initializable {
             } else {
                 alert.setHeaderText("");
                 alert.setContentText(" Formation en attente de confirmation de la part de l'admin ");
- alert.getButtonTypes().setAll(ButtonType.CLOSE);
+                alert.getButtonTypes().setAll(ButtonType.CLOSE);
             }
 //switch (ff.back(event)){
 //case back(event) 
@@ -284,9 +296,42 @@ public class AjouerFormationController implements Initializable {
         }
     }
 
-    @FXML
-    private void backClient(ActionEvent event) {
+//    @FXML
+//    private void backClient(ActionEvent event) {
+//        try {
+//            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+//            Scene scene = new Scene(page1);
+//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            stage.setScene(scene);
+//            stage.show();
+//        } catch (IOException ex) {
+//            Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+
+    private void backAprrenti(ActionEvent event) {
         try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/MesFormations.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjouerFormationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+         try {
             Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -298,15 +343,18 @@ public class AjouerFormationController implements Initializable {
     }
 
     @FXML
-    private void backAprrenti(ActionEvent event) {
-        try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/MesFormations.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjouerFormationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
     }
 }

@@ -55,6 +55,20 @@ public class CoursListeSANinscriController implements Initializable {
     private List<Cours> listc =new ArrayList<>();
   private CoursServices cs = new CoursServices();
  public static Formation f = new Formation();
+    @FXML
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -126,6 +140,34 @@ public class CoursListeSANinscriController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(CoursListeSANinscriController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
     }
 }
     

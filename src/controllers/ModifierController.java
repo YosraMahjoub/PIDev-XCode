@@ -88,16 +88,24 @@ public class ModifierController implements Initializable {
     @FXML
     private Button back1;
     @FXML
-    private Button apprenti;
-    @FXML
-    private Button back;
-    @FXML
-    private Button apprenti1;
-    @FXML
     private TextField btn_titre;
     @FXML
     private Button cours;
     CoursServices cs= new CoursServices();
+    @FXML
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -251,20 +259,19 @@ public class ModifierController implements Initializable {
     public static void setFor (Formation f ){
         s=f;
     }
-      @FXML
-    private void backClient(ActionEvent event) {
-         try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
+//      @FXML
+//    private void backClient(ActionEvent event) {
+//         try {
+//                Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+//                Scene scene = new Scene(page1);
+//                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException ex) {
+//                Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//    }
 
-    @FXML
     private void backAprrenti(ActionEvent event) {
         try {
             Parent page1 = FXMLLoader.load(getClass().getResource("/views/MesFormations.fxml"));
@@ -289,6 +296,43 @@ public class ModifierController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(ModifierController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+         try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
     }
 
    

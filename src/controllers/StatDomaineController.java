@@ -5,17 +5,26 @@
  */
 package controllers;
 
+import java.io.IOException;
 import service.FormationServices;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -27,7 +36,7 @@ public class StatDomaineController implements Initializable {
     @FXML
     private BarChart<String, Integer> idstatart;
     @FXML
-    private Button btnstatartt;
+    private Button back;
    
 
     /**
@@ -42,7 +51,16 @@ public class StatDomaineController implements Initializable {
     }    
 
     @FXML
-    private void RetourConsulart(MouseEvent event) {
+    private void adminNotif(ActionEvent event) {
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/StatDomaine.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(StatDomaineController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

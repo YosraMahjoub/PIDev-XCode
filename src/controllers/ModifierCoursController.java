@@ -71,6 +71,20 @@ List <File> files ;
     private TextField urlTextField;
     @FXML
     private ImageView img;
+    @FXML
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
     /**
      * Initializes the controller class.
      */
@@ -108,18 +122,18 @@ List <File> files ;
             stage.setScene(scene);
             stage.show();
             }
-    @FXML
-    private void backClient(ActionEvent event) {
-        try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(ModifierCoursController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    @FXML
+//    private void backClient(ActionEvent event) {
+//        try {
+//            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+//            Scene scene = new Scene(page1);
+//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            stage.setScene(scene);
+//            stage.show();
+//        } catch (IOException ex) {
+//            Logger.getLogger(ModifierCoursController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     @FXML
     private void acceuilFormafteur(ActionEvent event) {
@@ -193,6 +207,43 @@ c.setFile(file.getName());
     private void selectcat(ActionEvent event) {
           String s = niv.getSelectionModel().getSelectedItem();
         nameCat = s ;
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+            try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ModifierCoursController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
     }
     
 }

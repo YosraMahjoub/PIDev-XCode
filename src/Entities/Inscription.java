@@ -5,7 +5,7 @@
  */
 package entities;
 
-import Utils.ConnexionDB;
+import utils.ConnexionDB;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

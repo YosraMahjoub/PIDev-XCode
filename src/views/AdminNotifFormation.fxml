@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="617.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminNotifFormationController">
+     <HBox alignment="CENTER_RIGHT" prefHeight="85.0" prefWidth="1009.0" style="-fx-background-color: #343E3D;">
+                    <children>
+                          <HBox prefHeight="85.0" prefWidth="301.0" style="-fx-background-color: #343E3D;">
+                     <children>
+                        <Pane prefHeight="85.0" prefWidth="129.0" translateX="-121.0">
+                           <children>
+                              <Button fx:id="home" layoutX="24.0" layoutY="23.0" mnemonicParsing="false" onAction="#accueil" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE">
+                                  <font>
+                                    <Font size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="22" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children></HBox>
+                        <Button fx:id="emploi" mnemonicParsing="false" onAction="#gotoemploi" prefHeight="40.0" prefWidth="95.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Emplois" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="BRIEFCASE" size="22" />
+                           </graphic>
+               <font>
+                  <Font size="12.0" />
+               </font>
+                        </Button>
+                        <Button fx:id="form" mnemonicParsing="false" onAction="#gotoform" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="formations" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="MORTAR_BOARD" size="22" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
+                        </Button>
+                        <Button fx:id="events" layoutX="23.0" mnemonicParsing="false" onAction="#gotoevents" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="événements" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="22" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
+                        </Button>
+                        <Button fx:id="oeuvres" mnemonicParsing="false" onAction="#allerauxoeuvres" prefHeight="40.0" prefWidth="86.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="œuvres" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_BAG" size="22" />
+                           </graphic>
+               <font>
+                  <Font size="12.0" />
+               </font>
+                        </Button>
+                        <Button fx:id="profil" mnemonicParsing="false" onAction="#gotoprofil" prefHeight="40.0" prefWidth="67.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Profil" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="USER" size="22" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
+                        </Button>
+                        <Button fx:id="Deconnexion" layoutX="23.0" mnemonicParsing="false" onAction="#deconnecter" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="SIGN_IN" size="22" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="6.0" />
+                           </HBox.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
+                        </Button>
+                     </children>
+                  </HBox>
+   <VBox alignment="CENTER" layoutX="14.0" layoutY="92.0" prefHeight="523.0" prefWidth="206.0" style="-fx-background-color: #343E3D; -fx-background-radius: 25;">
+      <children>
+         <Button fx:id="btninfo" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D; -fx-background-radius: 20;" text="Mes informations" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Button>
+         <Button fx:id="btnprofil" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Gérer mon profil" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Button>
+         <Button fx:id="btnmdp" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Changer mot de passe" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Button>
+         <Button fx:id="btnuser" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: #343E3D;" text="Les utilisateurs" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Button>
+         <Button fx:id="form" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #414e4d; -fx-background-radius: 20;" text="Les formations" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Button>
+         <Button fx:id="btnevenement" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Les événements" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Button>
+         <Button fx:id="btnoeuvres" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Les oeuvres" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Button>
+         <Button fx:id="stat" blendMode="SRC_ATOP" mnemonicParsing="false" onAction="#statistics" opacity="0.85" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Statistiques" textAlignment="CENTER">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Button>
+         <Button fx:id="reclamations" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: #343E3D;" text="Les réclamations" textAlignment="CENTER" textFill="WHITE" translateY="90.0">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Button>
+         <Button fx:id="btnsupp" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="24.0" prefWidth="157.0" style="-fx-background-color: #a65959; -fx-background-radius: 20;" text="Supprimer compte" textAlignment="CENTER" textFill="WHITE" translateY="90.0">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Button>
+      </children>
+   </VBox>
+   <Label alignment="BOTTOM_RIGHT" layoutX="294.0" layoutY="93.0" prefHeight="50.0" prefWidth="528.0" text="Liste des Formations non validées" textFill="#a65959" underline="true">
+      <font>
+         <Font size="34.0" />
+      </font>
+   </Label>
+   <ScrollPane fx:id="scrollO" layoutX="235.0" layoutY="153.0" prefHeight="465.0" prefWidth="774.0" styleClass="transparent" stylesheets="@adminoeuvre.css">
+      <content>
+         <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+            <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            </rowConstraints>
+         </GridPane>
+      </content>
+   </ScrollPane>
+</AnchorPane>

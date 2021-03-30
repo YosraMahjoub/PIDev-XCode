@@ -15,7 +15,7 @@
    <children>
       <Pane layoutY="149.0" prefHeight="426.0" prefWidth="1000.0">
          <children>
-            <Label fx:id="adesco" alignment="TOP_LEFT" layoutX="677.0" layoutY="129.0" prefHeight="141.0" prefWidth="278.0" style="-fx-background-color: F4F0F0;" />
+            <Label fx:id="adesco" alignment="TOP_LEFT" layoutX="677.0" layoutY="163.0" prefHeight="119.0" prefWidth="278.0" style="-fx-background-color: F4F0F0;" />
             <Label fx:id="lieu" alignment="TOP_LEFT" layoutX="384.0" layoutY="260.0" prefHeight="45.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;" />
             <Label fx:id="aprixo" alignment="TOP_LEFT" layoutX="384.0" layoutY="349.0" prefHeight="45.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;" />
             <Label fx:id="adomaino" alignment="TOP_LEFT" layoutX="51.0" layoutY="177.0" prefHeight="45.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;" />
@@ -23,7 +23,7 @@
             <Label fx:id="lang" alignment="TOP_LEFT" layoutX="384.0" layoutY="88.0" prefHeight="45.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;" />
             <Label fx:id="date" alignment="TOP_LEFT" layoutX="51.0" layoutY="266.0" prefHeight="45.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;" />
             <Label fx:id="duree" alignment="TOP_LEFT" layoutX="51.0" layoutY="346.0" prefHeight="45.0" prefWidth="271.0" style="-fx-background-color: F4F0F0;" />
-            <Button fx:id="inscrit1" layoutX="717.0" layoutY="305.0" mnemonicParsing="false" onAction="#afficherCours" prefHeight="45.0" prefWidth="271.0" style="-fx-background-color: b7b7b7;" styleClass="add-btn" stylesheets="@affmesoeuves.css" text="Contenu de la formation" textFill="WHITE">
+            <Button fx:id="inscrit1" layoutX="712.0" layoutY="305.0" mnemonicParsing="false" onAction="#afficherCours" prefHeight="21.0" prefWidth="271.0" style="-fx-background-color: b7b7b7;" styleClass="add-btn" stylesheets="@affmesoeuves.css" text="Contenu de la formation" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
@@ -34,7 +34,7 @@
             <Label layoutX="384.0" layoutY="231.0" prefHeight="21.0" prefWidth="80.0" text="Lieu" />
             <Label layoutX="51.0" layoutY="242.0" text="Date" />
             <Label layoutX="52.0" layoutY="317.0" text="Durée" />
-            <Label layoutX="677.0" layoutY="100.0" prefHeight="21.0" prefWidth="80.0" text="Description" />
+            <Label layoutX="677.0" layoutY="136.0" prefHeight="21.0" prefWidth="80.0" text="Description" />
             <Label layoutX="384.0" layoutY="157.0" prefHeight="21.0" prefWidth="80.0" text="Niveau" />
             <Label layoutX="384.0" layoutY="50.0" prefHeight="21.0" prefWidth="80.0" text="Langue" />
             <Label layoutX="384.0" layoutY="330.0" prefHeight="21.0" prefWidth="80.0" text="Prix" />
@@ -46,19 +46,11 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="inscrit" layoutX="715.0" layoutY="360.0" mnemonicParsing="false" onAction="#AjouerFormationController" prefHeight="30.0" prefWidth="271.0" style="-fx-background-color: #D36A6A;" styleClass="add-btn" stylesheets="@affmesoeuves.css" text="S'inscrire" textFill="WHITE">
+            <ImageView fx:id="imgV" fitHeight="108.0" fitWidth="313.0" layoutX="677.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="inscrit" layoutX="715.0" layoutY="369.0" mnemonicParsing="false" onAction="#AjouerFormationController" prefHeight="45.0" prefWidth="264.0" style="-fx-background-color: #D36A6A;" styleClass="add-btn" stylesheets="@affmesoeuves.css" text="S'inscrire" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
-            </Button>
-            <ImageView fx:id="imgV" fitHeight="108.0" fitWidth="313.0" layoutX="239.0" layoutY="-48.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="apprenti" blendMode="SRC_ATOP" layoutX="786.0" layoutY="34.0" mnemonicParsing="false" onAction="#backAprrenti" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mon apprentissage" textAlignment="CENTER" underline="true">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
             </Button>
          </children>
       </Pane>
@@ -147,5 +139,18 @@
                         </Button>
                      </children>
                   </HBox>
+      <Button fx:id="apprenti" blendMode="SRC_ATOP" layoutX="28.0" layoutY="100.0" mnemonicParsing="false" onAction="#backAprrenti" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mon apprentissage" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="reclamer" layoutX="838.0" layoutY="94.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: #D36A60;" styleClass="add-btn" stylesheets="@affmesoeuves.css" text="Réclamer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

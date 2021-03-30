@@ -55,12 +55,12 @@ public class AdminclickController implements Initializable {
         nameLabel.setText(f.getTitre());
         nameLabel1.setText(f.getDescription());
         priceLable.setText((f.getPrix())+"DT");
-        Download d = new Download("C:\\xampp\\htdocs\\Formation\\Images","http://localhost/Formation/Images/");
-    d.doInBackground();
-    img.setImage(new Image(f.getImage()));
+//        Download d = new Download("C:\\xampp\\htdocs\\Formation\\Images","http://localhost/Formation/Images/");
+//    d.doInBackground();
+   // img.setImage(new Image(f.getImage()));
      File newFile = new File("C:\\xampp\\htdocs\\PI\\IMG" + f.getImage());
-//
-//        img.setImage(new Image(newFile.toURI().toString()));
+
+    img.setImage(new Image(newFile.toURI().toString()));
        
     }
 }

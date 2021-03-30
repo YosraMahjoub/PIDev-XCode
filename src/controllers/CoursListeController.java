@@ -55,6 +55,20 @@ public class CoursListeController  implements Initializable{
   public static Formation f = new Formation();
     @FXML
     private Button note;
+    @FXML
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
            
@@ -132,6 +146,7 @@ public class CoursListeController  implements Initializable{
     @FXML
     private void notation(ActionEvent event) {
           try {
+              RatingController.ff=f;
               Parent page1 = FXMLLoader.load(getClass().getResource("/views/Rating.fxml"));
               Scene scene = new Scene(page1);
               Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -140,6 +155,34 @@ public class CoursListeController  implements Initializable{
           } catch (IOException ex) {
               Logger.getLogger(CoursListeController.class.getName()).log(Level.SEVERE, null, ex);
           }
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
     }
       
 }

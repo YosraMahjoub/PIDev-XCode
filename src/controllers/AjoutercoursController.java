@@ -67,8 +67,6 @@ public class AjoutercoursController implements Initializable {
     private ComboBox<String> niv;
     
     String nameCat = "" ;
-    @FXML
-    private Button back1;
     
    // CoursServices cs = CoursServices();
 
@@ -84,6 +82,20 @@ public class AjoutercoursController implements Initializable {
       public static int getI(){
           return i;
       }
+    @FXML
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -258,19 +270,18 @@ else { Alert aa = new Alert(Alert.AlertType.INFORMATION);
         String s = niv.getSelectionModel().getSelectedItem();
         nameCat = s ;
     }
-
-    @FXML
-    private void backClient(ActionEvent event) {
-           try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
+//
+//    private void backClient(ActionEvent event) {
+//           try {
+//                Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+//                Scene scene = new Scene(page1);
+//                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException ex) {
+//                Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//    }
 
     @FXML
     private void acceuilFormafteur(ActionEvent event) {
@@ -283,6 +294,43 @@ else { Alert aa = new Alert(Alert.AlertType.INFORMATION);
             } catch (IOException ex) {
                 Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
             }
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+             try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
     }
 
 }

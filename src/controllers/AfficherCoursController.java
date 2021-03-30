@@ -85,13 +85,25 @@ public class AfficherCoursController implements Initializable {
      private TextFileReader reader = new TextFileReader();
     private static final Logger LOG = Logger.getLogger(AfficherCoursController.class.getName());
     @FXML 
-	private TextArea linesTextArea;
-    @FXML 
             Button showFile;
     @FXML
     TextField  urlTextField;
         private Future<List<String>> future;
 	private ExecutorService executorService = Executors.newSingleThreadExecutor();
+    @FXML
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         CoursServices cs = new CoursServices();
@@ -202,4 +214,41 @@ public class AfficherCoursController implements Initializable {
 //                Logger.getLogger(AfficherCoursController.class.getName()).log(Level.SEVERE, null, ex);
 //            }
 //        }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherCoursController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+    }
 }

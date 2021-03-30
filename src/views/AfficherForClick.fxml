@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onMousePressed="#click" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherForClickController">
+<AnchorPane id="AnchorPane" onMousePressed="#click" stylesheets="@afficheroeuvre.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherForClickController">
    <styleClass>
       <String fx:value="fruit-item" />
       <String fx:value="shadow" />
@@ -39,14 +39,14 @@
                   </Label>
                </children>
             </HBox>
-            <Pane>
+            <Pane prefHeight="192.0" prefWidth="240.0">
                <children>
                   <ImageView fx:id="img" fitHeight="142.0" fitWidth="160.0" layoutX="55.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../Desktop/icon-carte.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="desc" layoutX="57.0" layoutY="139.0" prefHeight="49.0" prefWidth="137.0" text="Description">
+                  <Label fx:id="desc" layoutX="14.0" layoutY="141.0" prefHeight="49.0" prefWidth="137.0" text="Description">
                      <font>
                         <Font name="Cambria Bold" size="12.0" />
                      </font>

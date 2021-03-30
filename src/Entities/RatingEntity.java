@@ -24,9 +24,6 @@ public class RatingEntity {
         return f;
     }
 
-    
-    
-
     public Users getU1() {
         return u1;
     }

@@ -104,21 +104,23 @@ public class ValidationAdmiController implements Initializable {
     private void validerO(ActionEvent event) throws SQLException {
            //ValidationAdmiController.setF(f);
           if(alert("Voulez vous vraiment valider cette formation?").get()==ButtonType.OK)
-          {  fs.valider(a); try {
-              Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminNotif.fxml"));
-              Scene scene = new Scene(page1);
-              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-              stage.setScene(scene);
-              stage.show();
-              } catch (IOException ex) {
-                  Logger.getLogger(ValidationAdmiController.class.getName()).log(Level.SEVERE, null, ex);
-              }
-          }
-            
-                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+          {  fs.valider(a); 
+//          try {
+//              Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminNotif.fxml"));
+//              Scene scene = new Scene(page1);
+//              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//              stage.setScene(scene);
+//              stage.show();
+//              } catch (IOException ex) {
+//                  Logger.getLogger(ValidationAdmiController.class.getName()).log(Level.SEVERE, null, ex);
+//              }     
+Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Dialog");
         alert.setHeaderText(null);
      alert.setContentText("formation validée");
+          }
+            
+          
     }
     private Optional<ButtonType> alert(String deux) {
         Alert alert = new Alert( Alert.AlertType.CONFIRMATION);
@@ -131,7 +133,7 @@ public class ValidationAdmiController implements Initializable {
     private void acceuilFor(ActionEvent event) {
         
           try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminNotif.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminNotifFormation.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);

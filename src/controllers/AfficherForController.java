@@ -41,6 +41,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import service.FileUploader;
 import Iservice.MyListenerF;
+import java.net.MalformedURLException;
+import java.net.URLConnection;
 
 /**
  * FXML Controller class
@@ -106,14 +108,20 @@ public class AfficherForController implements Initializable {
     private Button profil;
     @FXML
     private Button Deconnexion;
+    @FXML
+    private Button reclamer;
     
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-           File newFile2 = new File("C:\\xampp\\htdocs\\Formation\\Images" + a.getImage());
-      imgV.setImage(new Image(newFile2.toURI().toString()));
+        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG" + a.getImage());
+        imgV.setImage(new Image(newFile2.toURI().toString()));
+//            url = new URL("http://localhost/Formation/Images/");
+//            URLConnection conn = url.openConnection();
+//            InputStream in = conn.getInputStream();
+//            imgV.setImage(new Image(in.toString()));
 //      imgV.setImage(new Image(newFile2.g));
 //        Image.setCellValueFactory((TreeTableColumn.CellDataFeatures<BonPlan, Image> param) ->  
 //                new SimpleObjectProperty(new Image(param.getValue().getValue().getImg_bp())));
@@ -145,22 +153,21 @@ public class AfficherForController implements Initializable {
 //      } catch(Exception e) {
 //         System.out.println("Exception: " + e.getMessage());
 //      }
-   
-
-         adesco.setText(a.getDescription());
-        aprixo.setText(String.valueOf(a.getPrix()));
-         adomaino.setText(a.getDomaine());
-         lang.setText(a.getLangue());
-          niv.setText(a.getNiveau());
-          lieu.setText(a.getLieu());
-          duree.setText(a.getDuree());
-          date.setText(a.getDate());
-          titre.setText(a.getTitre());
-          
-          
-          if (fs.inscritVisible(a.getFormation_id(), Main.connectedUser.getUser_id()))
-          {inscrit.setVisible(true);}
-          else {inscrit.setVisible(false);}
+                            adesco.setText(a.getDescription());
+                            aprixo.setText(String.valueOf(a.getPrix()));
+                            adomaino.setText(a.getDomaine());
+                            lang.setText(a.getLangue());
+                            niv.setText(a.getNiveau());
+                            lieu.setText(a.getLieu());
+                            duree.setText(a.getDuree());
+                            date.setText(a.getDate());
+                            titre.setText(a.getTitre());
+                            
+                            if (fs.inscritVisible(a.getFormation_id(), Main.connectedUser.getUser_id()))
+                            {inscrit.setVisible(true);}
+                            else {inscrit.setVisible(false);}
+//        } catch (MalformedURLException ex) {
+//            Logger.getLogger(AfficherForController.class.getName()).log(Level.SEVERE, null, ex);
           
           
           
@@ -264,6 +271,17 @@ public class AfficherForController implements Initializable {
 
     @FXML
     private void gotoform(ActionEvent event) {
+            
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherForController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
     }
 
     @FXML

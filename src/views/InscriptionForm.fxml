@@ -30,25 +30,7 @@
          <left>
             <VBox prefHeight="600.0" prefWidth="320.0" style="-fx-background-color: #FFFFFF;" styleClass="right-bar" stylesheets="@affmesoeuves.css" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="159.0" prefWidth="382.0">
-                     <children>
-                        <Pane prefHeight="96.0" prefWidth="382.0" style="-fx-background-color: #343E3D;">
-                           <children>
-                              <Button fx:id="ADD1" layoutX="50.0" layoutY="23.0" mnemonicParsing="false" onAction="#accueil" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="22" />
-                                 </graphic>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="33.0" />
-                           </HBox.margin>
-                        </Pane>
-                     </children>
-                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="159.0" prefWidth="382.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="320.0" text="Les formations" textAlignment="CENTER" textFill="#878787">
@@ -58,7 +40,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <VBox fx:id="chosenFruitCard" alignment="CENTER" focusTraversable="true" layoutX="277.0" layoutY="92.0" prefHeight="463.0" prefWidth="280.0" styleClass="oeuvre-choisi" stylesheets="@affmesoeuves.css">
+                  <VBox fx:id="chosenFruitCard" alignment="CENTER" focusTraversable="true" layoutX="277.0" layoutY="92.0" prefHeight="477.0" prefWidth="280.0" styleClass="oeuvre-choisi" stylesheets="@affmesoeuves.css">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
@@ -110,7 +92,10 @@
                               <Font name="System Bold" size="21.0" />
                            </font>
                         </Button>
-                        <Rating fx:id="rateF" rating="0.0" />
+                        <Rating fx:id="rateF" prefHeight="5.0" prefWidth="176.0" rating="0.0">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin></Rating>
                      </children>
                   </VBox>
                   <Pane prefHeight="26.0" prefWidth="382.0" />
@@ -127,32 +112,6 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
-                     <children>
-                        <Pane prefHeight="100.0" prefWidth="996.0" style="-fx-background-color: #343E3D;">
-                           <children>
-                              <Button layoutX="443.0" layoutY="23.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Profil" textFill="WHITE">
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="USER" size="22" />
-                                 </graphic>
-                              </Button>
-                              <Button layoutX="291.0" layoutY="23.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Evénements" textFill="WHITE">
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="22" />
-                                 </graphic>
-                              </Button>
-                              <Button layoutX="138.0" layoutY="23.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Formations" textFill="WHITE">
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="MORTAR_BOARD" size="22" />
-                                 </graphic>
-                              </Button>
-                              <Button layoutX="569.0" layoutY="23.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textAlignment="CENTER" textFill="WHITE">
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="SIGN_IN" size="22" />
-                                 </graphic>
-                              </Button>
-                           </children>
-                        </Pane>
-                     </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="69.0" prefWidth="522.0" stylesheets="@affmesoeuves.css" VBox.vgrow="NEVER">
                      <VBox.margin>
@@ -182,7 +141,7 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="ADD" mnemonicParsing="false" onAction="#ajoutttt" prefHeight="48.0" prefWidth="201.0" style="-fx-background-color: b7b7b7;" styleClass="search-button" stylesheets="@affmesoeuves.css" text="Enseigner sur Fanny " textFill="WHITE" />
+                        <Button fx:id="ADD" mnemonicParsing="false" onAction="#ajoutttt" prefHeight="43.0" prefWidth="191.0" style="-fx-background-color: b7b7b7;" styleClass="search-button" stylesheets="@affmesoeuves.css" text="Enseigner sur Fanny " textFill="WHITE" />
                        
                                  </children>
                      <styleClass>
@@ -213,5 +172,91 @@
             </VBox>
          </center>
       </BorderPane>
+      <HBox alignment="CENTER_RIGHT" layoutY="-3.0" prefHeight="89.0" prefWidth="1092.0" style="-fx-background-color: #343E3D;">
+         <children>
+            <HBox prefHeight="89.0" prefWidth="372.0" style="-fx-background-color: #343E3D;">
+               <children>
+                  <Pane prefHeight="85.0" prefWidth="129.0" translateX="-121.0">
+                     <children>
+                        <Button fx:id="home" layoutX="24.0" layoutY="23.0" mnemonicParsing="false" onAction="#accueil" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="22" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <Button fx:id="emploi" mnemonicParsing="false" onAction="#gotoemploi" prefHeight="40.0" prefWidth="95.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Emplois" textFill="WHITE">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BRIEFCASE" size="22" />
+               </graphic>
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="form" mnemonicParsing="false" onAction="#gotoform" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="formations" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="MORTAR_BOARD" size="22" />
+               </graphic>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="events" layoutX="23.0" mnemonicParsing="false" onAction="#gotoevents" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="événements" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="22" />
+               </graphic>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="oeuvres" mnemonicParsing="false" onAction="#allerauxoeuvres" prefHeight="40.0" prefWidth="86.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="œuvres" textFill="WHITE">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_BAG" size="22" />
+               </graphic>
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="profil" mnemonicParsing="false" onAction="#gotoprofil" prefHeight="40.0" prefWidth="67.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Profil" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="22" />
+               </graphic>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="Deconnexion" layoutX="23.0" mnemonicParsing="false" onAction="#deconnecter" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="SIGN_IN" size="22" />
+               </graphic>
+               <HBox.margin>
+                  <Insets right="6.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

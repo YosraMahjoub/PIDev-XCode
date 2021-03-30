@@ -94,8 +94,6 @@ public class InscrController implements Initializable {
   //  private ObservableList<Formation> data ;
     String nameCat = "" ;
     @FXML
-    private Button ADD1;
-    @FXML
     private Label nomO;
     @FXML
     private Button rechbtn;
@@ -106,6 +104,20 @@ public class InscrController implements Initializable {
     FormationServices fs = new FormationServices();
     @FXML
     private Rating rateF;
+    @FXML
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
     
     
     @Override
@@ -195,8 +207,8 @@ AfficherForClickController itemController = fxmlLoader.getController();
         prixo.setText((ff.getPrix())+"DT");
         descO.setText(ff.getDescription());
         RatingSer rs = new RatingSer();
-       // rs.ratingAff(ff.getFormation_id());
-        rateF.setRating(rs.ratingAff(ff.getFormation_id()));
+       rateF.setDisable(true);
+         rateF.setRating(rs.ratingAff(ff.getFormation_id()));
                 File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + ff.getImage());
 
         //image = new Image(getClass().getResourceAsStream(o.getImg()));
@@ -435,5 +447,39 @@ AfficherForClickController itemController = fxmlLoader.getController();
 
     @FXML
     private void rechercheO(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(InscrController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
     }
 }

@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-import Utils.ConnexionDB;
+import utils.ConnexionDB;
 import entities.Formation;
 import entities.RatingEntity;
 import entities.Users;
@@ -280,7 +280,7 @@ private static FormationServices instance;
       
       
        public List<Formation> afficherForClient() {
-        String req="SELECT * FROM `formation`WHERE `isvalid`=1";
+        String req="SELECT * FROM `formation` WHERE `isvalid`=1";
         List<Formation> listf =new ArrayList<>();
         
         try {
@@ -290,8 +290,10 @@ private static FormationServices instance;
             while(rs.next()){
                 Formation f1 =new Formation();
              f1.setFormation_id(rs.getInt("formation_id"));
-                         
+              f1.setNiveau(rs.getString("niveau"));
+               f1.setLangue(rs.getString("langue"));     
                // formations.add(new Formation(rs.getInt(1),rs.getString("image")));
+               f1.setTitre(rs.getString("titre"));
                f1.setUser_id(rs.getInt("user_id"));
                f1.setDescription(rs.getString("description"));
                f1.setImage(rs.getString("image"));
@@ -300,6 +302,7 @@ private static FormationServices instance;
                f1.setLieu(rs.getString("lieu"));
                f1.setDomaine(rs.getString("domaine"));
                f1.setDate(rs.getString("date"));
+               f1.setImage(rs.getString("image"));
                        
                listf.add(f1);
             }
@@ -356,7 +359,7 @@ private static FormationServices instance;
           
 public List <Formation> tri_prix() throws SQLException{
 List <Formation> listP = new ArrayList<>();
-String req = "SELECT * FROM formation order by prix asc";
+String req = "SELECT * FROM formation where isvalid=1 order by prix asc";
  Statement ps = cnx.createStatement();
             ResultSet rs;
             rs = ps.executeQuery(req);
@@ -470,6 +473,7 @@ String req = "SELECT * FROM formation order by prix asc";
             pste=cnx.prepareStatement(req);
             pste.setInt(1, u_id);
             ResultSet rs= pste.executeQuery();
+            
             if (rs.next()){
             int i= rs.getInt("nb");
           if (i==0) {x= false;}

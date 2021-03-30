@@ -7,7 +7,7 @@ package service;
 
 import entities.Formation;
 import entities.Users;
-import Utils.ConnexionDB;
+import utils.ConnexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

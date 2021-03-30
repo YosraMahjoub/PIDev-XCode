@@ -57,7 +57,7 @@ public class AfficherForClickController implements Initializable {
         nameLabel.setText(f.getTitre());
         priceLable.setText((f.getPrix())+"DT");
         desc.setText(f.getDescription());
-      File newFile = new File("C:\\xampp\\htdocs\\Formation\\Images" + f.getImage());
+      File newFile = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + f.getImage());
 
       img.setImage(new Image(newFile.toURI().toString()));
         

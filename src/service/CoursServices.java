@@ -5,7 +5,7 @@
  */
 package service;
 
-import Utils.ConnexionDB;
+import utils.ConnexionDB;
 import entities.Cours;
 import entities.Formation;
 

@@ -39,10 +39,10 @@ public class RatingController implements Initializable {
 
     @FXML
     private Rating rate;
-RatingEntity r = new RatingEntity();
-Rating ra;
-RatingSer rs = new RatingSer();
-static Formation ff;
+        RatingEntity r = new RatingEntity();
+        Rating ra;
+        RatingSer rs = new RatingSer();
+    static Formation ff;
     @FXML
     private Label msg;
     @FXML
@@ -78,17 +78,30 @@ static Formation ff;
         try {
 //            r.setValue( rate.getRating());
 //              r.setU1(Main.connectedUser);
-//              Formation x=ff;
+//          Formation x=ff;
 //              r.setF(x);// nheb nekhou id te3ha 
-          
-            rs.rating(rate.getRating(),ff);
-            
-//ra.setRating(rate.getRating());
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+          if (rs.fIsrated(Main.connectedUser.getUser_id(), ff.getFormation_id())==0)
+          {
+              rs.AjouterRating(rate.getRating(),ff);
+          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("confirmation");
         alert.setHeaderText("notation ajoutée");
         alert.setContentText("Merci pour votre contribution!!");
+        alert.show();}
+          
+          
+          else {
+              rs.modifierR(rate.getRating(),ff);
+              Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("confirmation");
+        alert.setHeaderText("notation modifié");
+        alert.setContentText("Merci pour votre contribution!!");
         alert.show();
+                      }
+            
+            
+//ra.setRating(rate.getRating());
+        
         Parent page1 = FXMLLoader.load(getClass().getResource("/views/CoursListe.fxml"));
         Scene scene = new Scene(page1);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -98,7 +111,7 @@ static Formation ff;
             Logger.getLogger(RatingController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
- 
+  
        
     
     

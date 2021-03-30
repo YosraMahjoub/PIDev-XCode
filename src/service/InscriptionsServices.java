@@ -6,7 +6,7 @@
 package service;
 
 import entities.Inscription;
-import Utils.ConnexionDB;
+import utils.ConnexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
