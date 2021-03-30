@@ -88,11 +88,11 @@ public class AjouterOeuvreController implements Initializable {
     @FXML
     private Button form;
     @FXML
-    private Button event;
-    @FXML
     private Button profil;
     @FXML
-    private Button deconnexion;
+    private Button events;
+    @FXML
+    private Button Deconnexion;
   
     
     /**
@@ -206,25 +206,19 @@ Stage primary = new Stage();
 
     @FXML
     private void annuler(ActionEvent event) {
-       desco.setText("");
-        nomo.setText(""); 
-        prixo.setText("");
-        
-    }
-
-    private void mesO(ActionEvent event) {
-        
+     
         try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/affmesoeuves.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/affmesoeuvres.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }
 
+   
     @FXML
     private void verifNom(KeyEvent event) {
         if (!controle.controleTextFieldOnlyLetters(nomo, "que des lettres", errornom)) 
@@ -260,17 +254,6 @@ Stage primary = new Stage();
     private void allerauxoeuvres(ActionEvent event) {
     }
 
-    @FXML
-    private void allerauemploi(ActionEvent event) {
-    }
-
-    @FXML
-    private void allerauform(ActionEvent event) {
-    }
-
-    @FXML
-    private void allerauevent(ActionEvent event) {
-    }
 
     @FXML
     private void gotoprofil(ActionEvent event) {
@@ -278,6 +261,18 @@ Stage primary = new Stage();
 
     @FXML
     private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
     }
 }
     

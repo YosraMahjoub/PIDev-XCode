@@ -165,6 +165,9 @@ public class AdminconsulterOeuvreController implements Initializable {
         }
                        
                     }
+
+                    @Override
+                    public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
                 };
             }
            int column = 0;
@@ -293,6 +296,9 @@ public class AdminconsulterOeuvreController implements Initializable {
                     public void onClickListener(MouseEvent event ,Oeuvre oeuvre) {
 
                     }
+
+                    @Override
+                    public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
                 };
             }
            grid.getChildren().clear();
@@ -400,6 +406,9 @@ public class AdminconsulterOeuvreController implements Initializable {
                             Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
+
+              @Override
+              public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
                 };
            
            grid.getChildren().clear();
@@ -455,6 +464,9 @@ public class AdminconsulterOeuvreController implements Initializable {
                             Logger.getLogger(AdminconsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
+
+              @Override
+              public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
                 };
            
            grid.getChildren().clear();
@@ -500,6 +512,9 @@ public class AdminconsulterOeuvreController implements Initializable {
                     public void onClickListener(MouseEvent event ,Oeuvre oeuvre) {
                     
                     }
+
+              @Override
+              public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
                 };
            grid.getChildren().clear();
            int column = 0;

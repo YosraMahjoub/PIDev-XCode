@@ -42,7 +42,7 @@ public class OeuvrageService implements IOeuvreService<Oeuvre>{
             ps.setFloat(5, o.getQuantite());
             ps.setString(6, o.getDescription());
             ps.setString(7, o.getImg());
-           
+         
             ps.executeUpdate();
            
         } catch (SQLException ex) {
@@ -303,16 +303,13 @@ return b;
                 o2.setImg(rs.getString("image"));
                 o2.setIsvalid(rs.getInt("isvalid"));
                
-                
-                
             }}
         catch (SQLException ex) {
             Logger.getLogger(OeuvrageService.class.getName()).log(Level.SEVERE, null, ex);   
         }
         
         return o2;
-    
-    
+        
     }
   public Oeuvre afficherbynom(String nom ) {
     String req="SELECT * FROM `oeuvrage`WHERE `nom`='"+nom+"'";

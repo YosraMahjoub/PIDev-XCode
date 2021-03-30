@@ -132,6 +132,21 @@ public class ConsulterOeuvreController implements Initializable {
                             Logger.getLogger(RatingoController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
+
+                    @Override
+                    public void onpressed(ActionEvent event, Oeuvre oeuvre) {
+                    
+                        try {
+                            ModiferOController.setOeuvre(oeuvre);
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/modiferOeuvre.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(ConsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                 };
             }
            int column = 0;
@@ -140,10 +155,10 @@ public class ConsulterOeuvreController implements Initializable {
                 for (int i = 0; i < listOeuvre.size(); i++) {
 
                    FXMLLoader fxmlLoader = new FXMLLoader();
-                   fxmlLoader.setLocation(getClass().getResource("/views/afficherOeuvre.fxml"));
+                   fxmlLoader.setLocation(getClass().getResource("/views/afficherOP.fxml"));
                    AnchorPane anchorPane = fxmlLoader.load();
 
-                    AfficherOeuvreController itemController = fxmlLoader.getController();
+                    AfficherOPController itemController = fxmlLoader.getController();
                 itemController.setData(listOeuvre.get(i),myListener);
 
                 if (column == 3) {
@@ -201,10 +216,10 @@ public class ConsulterOeuvreController implements Initializable {
                 for (int i = 0; i < listOeuvre.size(); i++) {
 
                    FXMLLoader fxmlLoader = new FXMLLoader();
-                   fxmlLoader.setLocation(getClass().getResource("/views/afficherOeuvre.fxml"));
+                   fxmlLoader.setLocation(getClass().getResource("/views/afficherOP.fxml"));
                    AnchorPane anchorPane = fxmlLoader.load();
 
-                    AfficherOeuvreController itemController = fxmlLoader.getController();
+                    AfficherOPController itemController = fxmlLoader.getController();
                 itemController.setData(listOeuvre.get(i),myListener);
 
                 if (column == 3) {
@@ -254,6 +269,19 @@ public class ConsulterOeuvreController implements Initializable {
                             Logger.getLogger(RatingoController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
+
+                   @Override
+                   public void onpressed(ActionEvent event, Oeuvre oeuvre) { 
+                       try {
+                            ModiferOController.setOeuvre(oeuvre);
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/modiferOeuvre.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(ConsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+                        } }
                 };
             }
            grid.getChildren().clear();
@@ -263,10 +291,10 @@ public class ConsulterOeuvreController implements Initializable {
                 for (int i = 0; i < rechOeuvre.size(); i++) {
 
                    FXMLLoader fxmlLoader = new FXMLLoader();
-                   fxmlLoader.setLocation(getClass().getResource("/views/afficherOeuvre.fxml"));
+                   fxmlLoader.setLocation(getClass().getResource("/views/afficherOP.fxml"));
                    AnchorPane anchorPane = fxmlLoader.load();
 
-                    AfficherOeuvreController itemController = fxmlLoader.getController();
+                     AfficherOPController itemController = fxmlLoader.getController();
                 itemController.setData(rechOeuvre.get(i),myListener);
 
                 if (column == 3) {
@@ -373,6 +401,20 @@ public class ConsulterOeuvreController implements Initializable {
                             Logger.getLogger(RatingoController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
+
+                    @Override
+                    public void onpressed(ActionEvent event, Oeuvre oeuvre) {
+                     try {
+                            ModiferOController.setOeuvre(oeuvre);
+                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/modiferOeuvre.fxml"));
+                            Scene scene = new Scene(page1);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(ConsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                 };
             }
            grid.getChildren().clear();
@@ -382,10 +424,10 @@ public class ConsulterOeuvreController implements Initializable {
                 for (int i = 0; i < rechOeuvre.size(); i++) {
 
                    FXMLLoader fxmlLoader = new FXMLLoader();
-                   fxmlLoader.setLocation(getClass().getResource("/views/afficherOeuvre.fxml"));
+                   fxmlLoader.setLocation(getClass().getResource("/views/afficherOP.fxml"));
                    AnchorPane anchorPane = fxmlLoader.load();
 
-                    AfficherOeuvreController itemController = fxmlLoader.getController();
+                     AfficherOPController itemController = fxmlLoader.getController();
                 itemController.setData(rechOeuvre.get(i),myListener);
 
                 if (column == 3) {

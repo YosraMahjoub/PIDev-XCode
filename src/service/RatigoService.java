@@ -40,6 +40,9 @@ public class RatigoService {
             Logger.getLogger(OeuvrageService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+       
+       
+////       NZID L CURRENT USER
        public void modifierRo(float a, Oeuvre o) {
          String req = "UPDATE `rating_oeuvre` SET `note`=? WHERE oeuvrage_id ="+o.getOeuvrage_id();
         try {

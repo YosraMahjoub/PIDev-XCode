@@ -55,10 +55,10 @@ public class FavorisOService {
         }
         
 }
-       public List<FavorisO> afflf() {
+       public List<Oeuvre> afflf(int id) {
       
-            String req = "SELECT f.oeuvrage_id, `nom`, `domaine`, `prix`, `quantité`, `description`, `image` FROM favoris_o f INNER join oeuvrage o on f.oeuvrage_id = o.oeuvrage_id WHERE F.user_id = 1";
-            List<FavorisO> listO =new ArrayList<>();
+            String req = "SELECT f.oeuvrage_id, `nom`, `domaine`, `prix`, `quantité`, `description`, `image` FROM favoris_o f INNER join oeuvrage o on f.oeuvrage_id = o.oeuvrage_id WHERE F.user_id ="+id;
+            List<Oeuvre> listO =new ArrayList<>();
             
              try { 
             Statement ste = conx.createStatement();
@@ -67,15 +67,15 @@ public class FavorisOService {
             
             
             while(rs.next()){
-                FavorisO f =new FavorisO();
-                f.getO().setOeuvrage_id(rs.getInt("Oeuvrage_id"));
-                f.getO().setNom(rs.getString("nom"));
-                f.getO().setDoamine(rs.getString("domaine"));
-                f.getO().setPrix(rs.getFloat("prix"));
-                f.getO().setQuantite(rs.getFloat("quantité"));
-                f.getO().setDescription(rs.getString("description"));
-                f.getO().setImg(rs.getString("image"));
-              listO.add(f);
+                Oeuvre o =new Oeuvre();
+                o.setOeuvrage_id(rs.getInt("Oeuvrage_id"));
+                o.setNom(rs.getString("nom"));
+              o.setDoamine(rs.getString("domaine"));
+                o.setPrix(rs.getFloat("prix"));
+                o.setQuantite(rs.getFloat("quantité"));
+               o.setDescription(rs.getString("description"));
+                o.setImg(rs.getString("image"));
+              listO.add(o);
             }
             
             

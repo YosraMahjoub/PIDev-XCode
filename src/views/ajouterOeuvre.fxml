@@ -15,54 +15,95 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="439.0" prefWidth="766.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterOeuvreController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterOeuvreController">
     <stylesheets>
         <URL value="@../Style/ajouteroeuvre.css" />
     </stylesheets>
    <children>
       <Pane layoutX="112.0" layoutY="86.0" prefHeight="353.0" prefWidth="766.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
          <children>
-            <TextField fx:id="desco" alignment="TOP_LEFT" layoutX="294.0" layoutY="192.0" prefHeight="116.0" prefWidth="174.0" promptText="description" style="-fx-background-radius: 10;" />
-            <TextField fx:id="nomo" layoutX="294.0" layoutY="122.0" onKeyPressed="#verifNom" onKeyReleased="#verifexist" promptText="Nom" style="-fx-background-radius: 5;" />
-            <TextField fx:id="prixo" layoutX="510.0" layoutY="121.0" onKeyPressed="#verifprix" prefHeight="25.0" prefWidth="130.0" promptText="prix" style="-fx-background-radius: 5;" />
-            <ComboBox fx:id="domaino" layoutX="294.0" layoutY="66.0" onAction="#selectcat" prefWidth="150.0" promptText="Catégorie" style="-fx-background-radius: 5;" />
-            <Spinner fx:id="qteo" editable="true" layoutX="510.0" layoutY="66.0" style="-fx-background-radius: 5;" />
-            <Label layoutX="659.0" layoutY="119.0" text="DT" textFill="#d36a6a">
+            <TextField fx:id="desco" alignment="TOP_LEFT" layoutX="388.0" layoutY="319.0" prefHeight="116.0" prefWidth="275.0" promptText="description" style="-fx-background-radius: 10;">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="nomo" layoutX="388.0" layoutY="210.0" onKeyPressed="#verifNom" onKeyReleased="#verifexist" prefHeight="30.0" prefWidth="175.0" promptText="Nom" style="-fx-background-radius: 5;">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="prixo" layoutX="688.0" layoutY="93.0" onKeyPressed="#verifprix" prefHeight="30.0" prefWidth="175.0" promptText="prix" style="-fx-background-radius: 5;">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <ComboBox fx:id="domaino" layoutX="388.0" layoutY="93.0" onAction="#selectcat" prefHeight="30.0" prefWidth="175.0" promptText="Catégorie" style="-fx-background-radius: 5;" />
+            <Spinner fx:id="qteo" editable="true" layoutX="688.0" layoutY="213.0" prefHeight="30.0" prefWidth="175.0" style="-fx-background-radius: 5;" />
+            <Label layoutX="890.0" layoutY="93.0" text="DT" textFill="#d36a6a">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="bimgo" layoutX="198.0" layoutY="216.0" mnemonicParsing="false" onAction="#chercherI" prefHeight="25.0" prefWidth="11.0" text="..." />
-            <Button fx:id="ajoutero" layoutX="510.0" layoutY="198.0" mnemonicParsing="false" onAction="#ajouterO" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #D36A6A;" text="ajouter" textFill="WHITE">
+            <Button fx:id="bimgo" layoutX="227.0" layoutY="269.0" mnemonicParsing="false" onAction="#chercherI" prefHeight="25.0" prefWidth="11.0" text="..." />
+            <Button fx:id="ajoutero" layoutX="713.0" layoutY="319.0" mnemonicParsing="false" onAction="#ajouterO" prefHeight="37.0" prefWidth="150.0" style="-fx-background-color: #D36A6A;" text="ajouter" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="annulero" layoutX="510.0" layoutY="262.0" mnemonicParsing="false" onAction="#annuler" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #D36A6A;" text="annuler" textFill="WHITE">
+            <Button fx:id="annulero" layoutX="713.0" layoutY="398.0" mnemonicParsing="false" onAction="#annuler" prefHeight="37.0" prefWidth="149.0" style="-fx-background-color: #D36A6A;" text="annuler" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <TextField fx:id="txtimg" layoutX="39.0" layoutY="216.0" promptText="insérer l'image d'œuvre" />
-            <Pane layoutX="24.0" layoutY="54.0" prefHeight="131.0" prefWidth="217.0">
+            <TextField fx:id="txtimg" layoutX="35.0" layoutY="266.0" promptText="insérer l'image d'œuvre">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <Pane layoutX="35.0" layoutY="65.0" prefHeight="172.0" prefWidth="242.0">
                <children>
-                  <ImageView fx:id="imgV" fitHeight="131.0" fitWidth="217.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgV" fitHeight="172.0" fitWidth="242.0" pickOnBounds="true" preserveRatio="true">
                      <viewport>
                         <Rectangle2D />
                      </viewport>
                   </ImageView>
                </children>
             </Pane>
-            <Label fx:id="errornom" layoutX="294.0" layoutY="159.0" prefHeight="17.0" prefWidth="150.0" textFill="#6f0707" />
-            <Label fx:id="errorprix" layoutX="516.0" layoutY="159.0" prefHeight="17.0" prefWidth="122.0" textFill="#6f0707" />
+            <Label fx:id="errornom" layoutX="388.0" layoutY="261.0" prefHeight="17.0" prefWidth="150.0" textFill="#6f0707" />
+            <Label fx:id="errorprix" layoutX="688.0" layoutY="142.0" prefHeight="17.0" prefWidth="122.0" textFill="#6f0707" />
+            <Label layoutX="388.0" layoutY="57.0" prefHeight="17.0" prefWidth="95.0" text="Catégorie" />
+            <Label layoutX="442.0" layoutY="53.0" text="*" textFill="#bc3838">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="388.0" layoutY="174.0" prefHeight="17.0" prefWidth="95.0" text="Nom de l'oeuvre" />
+            <Label layoutX="479.0" layoutY="170.0" text="*" textFill="#bc3838">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="388.0" layoutY="286.0" prefHeight="17.0" prefWidth="122.0" text="A propos votre oeuvre" />
+            <Label layoutX="510.0" layoutY="282.0" text="*" textFill="#bc3838">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="688.0" layoutY="59.0" prefHeight="17.0" prefWidth="95.0" text="Prix de l'oeuvre" />
+            <Label layoutX="774.0" layoutY="55.0" text="*" textFill="#bc3838">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="687.0" layoutY="176.0" prefHeight="17.0" prefWidth="122.0" text="Quantité de l'oeuvre" />
+            <Label layoutX="800.0" layoutY="172.0" text="*" textFill="#bc3838">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-     <HBox alignment="CENTER_RIGHT" prefHeight="85.0" prefWidth="766.0" style="-fx-background-color: #343E3D;">
-                     
+      <HBox alignment="CENTER_RIGHT" prefHeight="85.0" prefWidth="1000.0" style="-fx-background-color: #343E3D;">
+                    <children>
+                          <HBox prefHeight="85.0" prefWidth="275.0" style="-fx-background-color: #343E3D;">
                      <children>
-                          <HBox prefHeight="85.0" prefWidth="108.0" style="-fx-background-color: #343E3D;">
-                     <children>
-                        <Pane prefHeight="85.0" prefWidth="321.0" translateX="-55.0">
+                        <Pane prefHeight="85.0" prefWidth="321.0" translateX="-121.0">
                            <children>
                               <Button fx:id="home" layoutX="24.0" layoutY="23.0" mnemonicParsing="false" onAction="#accueil" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE">
                                   <font>
@@ -75,7 +116,7 @@
                            </children>
                         </Pane>
                      </children></HBox>
-                        <Button fx:id="emploi" mnemonicParsing="false" onAction="#allerauemploi" prefHeight="40.0" prefWidth="95.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Emplois" textFill="WHITE">
+                        <Button fx:id="emploi" mnemonicParsing="false" onAction="#gotoemploi" prefHeight="40.0" prefWidth="95.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Emplois" textFill="WHITE">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
@@ -83,7 +124,7 @@
                               <FontAwesomeIconView fill="WHITE" glyphName="BRIEFCASE" size="22" />
                            </graphic>
                         </Button>
-                        <Button fx:id="form" mnemonicParsing="false" onAction="#allerauform" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="formations" textFill="WHITE">
+                        <Button fx:id="form" mnemonicParsing="false" onAction="#gotoform" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="formations" textFill="WHITE">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="MORTAR_BOARD" size="22" />
                            </graphic>
@@ -91,7 +132,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="event" layoutX="23.0" mnemonicParsing="false" onAction="#allerauevent" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="événements" textFill="WHITE">
+                        <Button fx:id="events" layoutX="23.0" mnemonicParsing="false" onAction="#gotoevents" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="événements" textFill="WHITE">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="22" />
                            </graphic>
@@ -115,7 +156,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="deconnexion" layoutX="23.0" mnemonicParsing="false" onAction="#deconnecter" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textFill="WHITE">
+                        <Button fx:id="Deconnexion" layoutX="23.0" mnemonicParsing="false" onAction="#deconnecter" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textFill="WHITE">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="SIGN_IN" size="22" />
                            </graphic>

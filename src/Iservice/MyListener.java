@@ -8,6 +8,7 @@ package Iservice;
 
 import javafx.scene.input.MouseEvent;
 import entities.Oeuvre;
+import javafx.event.ActionEvent;
 
 /**
  *
@@ -15,5 +16,6 @@ import entities.Oeuvre;
  */
 public interface MyListener {
       public void onClickListener(MouseEvent event ,Oeuvre oeuvre);
+      public void onpressed(ActionEvent  event ,Oeuvre oeuvre);
     
 }

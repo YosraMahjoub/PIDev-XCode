@@ -119,6 +119,9 @@ public class AffmesoeuvesController implements Initializable {
 
                         setChosenO(oeuvre);
                     }
+
+                    @Override
+                    public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
                 };
             }
            int column = 0;
@@ -174,7 +177,7 @@ public class AffmesoeuvesController implements Initializable {
         if (os.nbNV(2)>= 5){
          
         String titre = "Attention";
-        String msg = "vous avez déjà 5 oeuvres non valid ! rod bellik !";
+        String msg = "vous avez déjà 5 oeuvres non valid !";
         TrayNotification tray = new TrayNotification();
         AnimationType type = AnimationType.POPUP;
         
@@ -304,6 +307,10 @@ public class AffmesoeuvesController implements Initializable {
 
                         setChosenO(oeuvre);
                     }
+
+                    @Override
+                    public void onpressed(ActionEvent event, Oeuvre oeuvre) {
+                       }
                 };
             }
            grid.getChildren().clear();
@@ -346,6 +353,15 @@ public class AffmesoeuvesController implements Initializable {
 
     @FXML
     private void allerauxoeuvres(ActionEvent event) {
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/consulterlesoeuvres.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AffmesoeuvesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 

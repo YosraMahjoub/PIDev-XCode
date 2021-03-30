@@ -29,6 +29,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import Iservice.MyListener;
 import entities.Oeuvre;
+import javafx.event.ActionEvent;
 import service.OeuvrageService;
 
 /**
@@ -92,6 +93,9 @@ public class AccueilFrontController implements Initializable {
                             Logger.getLogger(RatingoController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
+
+                    @Override
+                    public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
                 };
             }
            int column = 0;
@@ -116,24 +120,14 @@ public class AccueilFrontController implements Initializable {
                 grido.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grido.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grido.setMaxHeight(Region.USE_PREF_SIZE);
-                
-                
-             
-                //set grid height
+                    //set grid height
                
-            
-               
-                
                 GridPane.setMargin(anchorPane, new Insets(10));
                 }
                 } catch (IOException ex) {
                    Logger.getLogger(AffmesoeuvesController.class.getName()).log(Level.SEVERE, null, ex);
                }
            
-           
-           
-       
-         
            try {
                 for (int i = 0; i < listOeuvre.size(); i++) {
 
@@ -141,7 +135,7 @@ public class AccueilFrontController implements Initializable {
                    fxmlLoader.setLocation(getClass().getResource("/views/afficherOeuvre.fxml"));
                    AnchorPane anchorPane = fxmlLoader.load();
 
-                    AfficherOeuvreController itemController = fxmlLoader.getController();
+                AfficherOeuvreController itemController = fxmlLoader.getController();
                 itemController.setData(listOeuvre.get(i),myListener);
  
                 gride.add(anchorPane, column++, row); //(child,column,row)

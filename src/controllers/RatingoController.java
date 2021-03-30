@@ -172,7 +172,7 @@ public class RatingoController implements Initializable {
     @FXML
     private void back(ActionEvent event) {
        try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/consulterOeuvre.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/consulterlesoeuvres.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -224,13 +224,13 @@ public class RatingoController implements Initializable {
         tray.setNotificationType(NotificationType.SUCCESS);
         tray.showAndDismiss(Duration.millis(2000));
            
-        
+         
         }
         else {
             fs.supprimerFo( a);
             heart.setStyle("-fx-background-color: #FFFFFF; "); 
             heart.setStyle("-fx-border-color:  #000000 ");
-             String msg = "Oeuvre suprimé la liste des favoris ";
+            String msg = "Oeuvre suprimé la liste des favoris ";
         TrayNotification tray = new TrayNotification();
         AnimationType type = AnimationType.POPUP;
         
@@ -238,8 +238,6 @@ public class RatingoController implements Initializable {
         tray.setMessage(msg);
         tray.setNotificationType(NotificationType.ERROR);
         tray.showAndDismiss(Duration.millis(2000));
-               
-            
         }
     }
 

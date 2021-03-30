@@ -59,7 +59,7 @@ public class ModiferOController implements Initializable {
     private Button annulero;
     @FXML
     private Button modifiero;
-     private static Oeuvre s ;
+     public static Oeuvre s ;
     
     ControleSaisie controlem = new ControleSaisie();
     
@@ -70,24 +70,27 @@ public class ModiferOController implements Initializable {
     @FXML
     private ImageView imgV;
     
-    @FXML
-    private Label nomer;
-    @FXML
-    private Label prixerr;
+    
     @FXML
     private Button oeuvres;
     @FXML
     private Button home;
     @FXML
-    private Button emplo;
-    @FXML
     private Button form;
-    @FXML
-    private Button event;
     @FXML
     private Button profil;
     @FXML
-    private Button deconnexion;
+    private Label errornom;
+    @FXML
+    private Label errorprix;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button events;
+    @FXML
+    private Button Deconnexion;
+    @FXML
+    private Button back;
 
     /**
      * Initializes the controller class.
@@ -108,6 +111,8 @@ public class ModiferOController implements Initializable {
         try {
          File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + s.getImg());
           imgV.setImage(new Image(newFile2.toURI().toString()));
+          imgV.setFitHeight(172);
+        imgV.setFitWidth(242);
           nomo.setText(s.getNom());
           prixo.setText(String.valueOf(s.getPrix()));
           desco.setText(s.getDescription());
@@ -123,11 +128,12 @@ public class ModiferOController implements Initializable {
     public static void setOeuvre (Oeuvre o ){
         s=o;
     }
+
+    
     @FXML
     private void selectCat(ActionEvent event) {
         String s = domaino.getSelectionModel().getSelectedItem();
         nameCat = s ;
-         
     }
 
     @FXML
@@ -151,68 +157,25 @@ public class ModiferOController implements Initializable {
         s.setPrix(Float.parseFloat( prixo.getText()));
         s.setQuantite( qteo.getValue());
         
-        
         os.modifierO(s);
-        
-        
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Oeuvre modifié ☺ ");
             alert.setContentText("oeuvre modifié avec sucèes ☺ ");
             alert.showAndWait();
         }
     
     }
-    @FXML
-    private void CLICK(ActionEvent event) {
-        
-      try {
-         File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + s.getImg());
-          imgV.setImage(new Image(newFile2.toURI().toString()));
-          nomo.setText(s.getNom());
-          prixo.setText(String.valueOf(s.getPrix()));
-          desco.setText(s.getDescription());
-          domaino.setValue(s.getDoamine());
-        } catch (Exception e) {
-        }
-        
-    }
     
-
-    private void ajouterO(ActionEvent event) {
-        
-        try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/ajouterOeuvre.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void afficherMO(ActionEvent event) {
-        try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/affmesoeuves.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-    }
-
     @FXML
     private void verifn(KeyEvent event) {
-        if (!controlem.controleTextFieldOnlyLetters(nomo, "que des lettres", nomer)) 
+        if (!controlem.controleTextFieldOnlyLetters(nomo, "que des lettres", errornom)) 
          { ;
         }
     }
 
     @FXML
     private void verifp(KeyEvent event) {
-        if (!controlem.controleTextFieldChiffres(prixo, "que des chiffres", prixerr)) 
+        if (!controlem.controleTextFieldChiffres(prixo, "que des chiffres", errorprix)) 
          { 
        ;
         }
@@ -226,17 +189,11 @@ public class ModiferOController implements Initializable {
     private void allerauxoeuvres(ActionEvent event) {
     }
 
-    @FXML
-    private void gotoemplo(ActionEvent event) {
-    }
 
     @FXML
     private void gotoform(ActionEvent event) {
     }
 
-    @FXML
-    private void gotoevent(ActionEvent event) {
-    }
 
     @FXML
     private void gotoprofil(ActionEvent event) {
@@ -247,6 +204,42 @@ public class ModiferOController implements Initializable {
     }
 
 
-  
+
+
+    @FXML
+    private void annuler(ActionEvent event) {
+       try {
+         File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + s.getImg());
+          imgV.setImage(new Image(newFile2.toURI().toString()));
+          nomo.setText(s.getNom());
+          prixo.setText(String.valueOf(s.getPrix()));
+          desco.setText(s.getDescription());
+          domaino.setValue(s.getDoamine());
+        } catch (Exception e) {
+        }
+          
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void back(ActionEvent event) {
+        
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/affmesoeuvres.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
 
 }
