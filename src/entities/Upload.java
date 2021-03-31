@@ -17,9 +17,14 @@ import java.util.logging.Logger;
 
 
 
+
 public class Upload {
     public String upload(File file) throws FileNotFoundException, IOException {
         
+
+public class Upload {
+    public String upload(File file) throws FileNotFoundException, IOException {
+
         BufferedOutputStream stream = null;
         String globalPath="C:\\xampp\\htdocs\\PI\\IMG";
         String localPath="localhost/";
@@ -46,7 +51,7 @@ public class Upload {
         } catch (IOException ex) {
             Logger.getLogger(Upload.class.getName()).log(Level.SEVERE, null, ex);
             return "error2";
-       
+
         }
     }
     
