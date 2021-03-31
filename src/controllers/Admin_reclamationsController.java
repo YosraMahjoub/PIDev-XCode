@@ -76,13 +76,23 @@ public class Admin_reclamationsController implements Initializable {
     @FXML
     private HBox hello;
     @FXML
-    private Button ADD;
-    @FXML
     private Button btnuser;
     @FXML
     private Button reclamation;
     @FXML
     private Button btnsupp;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
+    @FXML
+    private Button home;
 
 
     /**
@@ -220,6 +230,34 @@ public class Admin_reclamationsController implements Initializable {
             reclamations=(ObservableList<Reclamation>) pdao.displayAll();
            reclamationsTable.setItems(reclamations);
         }
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
     }
     
 }

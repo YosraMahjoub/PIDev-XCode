@@ -27,6 +27,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -69,6 +70,14 @@ public class SignupController implements Initializable {
     private Button btnconn;
     @FXML
     private TextField imgpath;
+    @FXML
+    private Label err_username;
+    @FXML
+    private Label err_nom;
+    @FXML
+    private Label err_prenom;
+    @FXML
+    private Label err_tel;
 
    
     /**
@@ -85,6 +94,7 @@ public class SignupController implements Initializable {
                 || adresse.getText().isEmpty()
                 || email.getText().isEmpty()
                 || password.getText().isEmpty()
+                    
                ) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
 
@@ -100,6 +110,12 @@ public class SignupController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
 
                 alert.setHeaderText("adresse mail existe déja");
+                alert.showAndWait();
+            }
+            if(imgpath.getText().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+
+                alert.setHeaderText("veuillez fournir une photo de profil");
                 alert.showAndWait();
             }
                 
@@ -196,5 +212,33 @@ public class SignupController implements Initializable {
      String textTOimg = imgpath.getText();
         textTOimg = FileUploader.upload(textTOimg);
         textTOimg="http://localhost/PI/IMG"+ textTOimg;}
+
+    @FXML
+    private void verifprenom(KeyEvent event) {
+        if (!controle.controleTextFieldOnlyLetters(prenom, "pas des chiffres", err_prenom)) {
+            ;
+        }
+    }
+
+    @FXML
+    private void verifinom(KeyEvent event) {
+        if (!controle.controleTextFieldOnlyLetters(nom, "pas des chiffres", err_prenom)) {
+            ;
+        }
+    }
+
+    @FXML
+    private void verifnum(KeyEvent event) {
+        if (!controle.controleTextFieldNonNumerique(num_tel, "que des chiffres", err_tel)) {
+            ;
+        }
+    }
+
+    @FXML
+    private void verifusername(KeyEvent event) {
+        if (!controle.controleTextFieldOnlyLetters(username, "pas des chiffres", err_username)) {
+            ;
+        }
+    }
     
 }

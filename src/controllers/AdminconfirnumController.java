@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,8 +52,6 @@ public class AdminconfirnumController implements Initializable {
     @FXML
     private HBox hello;
     @FXML
-    private Button ADD;
-    @FXML
     private Button btninfo;
     @FXML
     private Button btnprofil;
@@ -70,6 +69,18 @@ public class AdminconfirnumController implements Initializable {
     private Button reclamation;
     @FXML
     private Button btnsupp;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
+    @FXML
+    private Button home;
 
     /**
      * Initializes the controller class.
@@ -221,6 +232,34 @@ public class AdminconfirnumController implements Initializable {
      String x = null;
 
         // x = SMSsend.SMSsend("aa"); 
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
         
     
 }

@@ -28,6 +28,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
@@ -53,6 +54,24 @@ public class Affichage_utilisateursController implements Initializable {
     private Button recruteurs;
     @FXML
     private Button tous;
+    @FXML
+    private HBox hi;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
+    @FXML
+    private HBox hello;
+    @FXML
+    private Button home;
 
     /**
      * Initializes the controller class.
@@ -355,6 +374,34 @@ public class Affichage_utilisateursController implements Initializable {
                 } catch (IOException ex) {
                    Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
                }
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
     }
 
     

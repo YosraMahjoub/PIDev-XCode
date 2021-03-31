@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -79,8 +80,6 @@ public class Admin_reclamationdetailsController implements Initializable {
     @FXML
     private HBox hello;
     @FXML
-    private Button ADD;
-    @FXML
     private Button btnsupp;
     @FXML
     private Button avertissement;
@@ -88,6 +87,18 @@ public class Admin_reclamationdetailsController implements Initializable {
     private Button consulter_profil;
     @FXML
     private Button consulter_produit;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
+    @FXML
+    private Button home;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -230,6 +241,34 @@ public static int getI() {
 
     @FXML
     private void verifusername(KeyEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
     }
     
 }

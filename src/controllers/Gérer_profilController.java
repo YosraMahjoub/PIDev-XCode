@@ -101,13 +101,25 @@ public class Gérer_profilController implements Initializable {
     @FXML
     private Button oeuvres;
     @FXML
-    private Button ADD;
-    @FXML
     private Button btnannuler;
     @FXML
     private Button apprentissage;
     @FXML
     private TextField imgpath;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
+    @FXML
+    private HBox hello;
+    @FXML
+    private Button home;
 
     /**
      * Initializes the controller class.
@@ -308,6 +320,34 @@ public class Gérer_profilController implements Initializable {
      String textTOimg = imgpath.getText();
         textTOimg = FileUploader.upload(textTOimg);
         textTOimg="http://localhost/PI/IMG"+ textTOimg;}
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
     
 
 }

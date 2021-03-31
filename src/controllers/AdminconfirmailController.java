@@ -13,6 +13,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -54,8 +55,6 @@ public class AdminconfirmailController implements Initializable {
     @FXML
     private HBox hello;
     @FXML
-    private Button ADD;
-    @FXML
     private Button btninfo;
     @FXML
     private Button btnprofil;
@@ -74,6 +73,18 @@ public class AdminconfirmailController implements Initializable {
     @FXML
     private Button btnsupp;
     String x;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
+    @FXML
+    private Button home;
 
     /**
      * Initializes the controller class.
@@ -232,6 +243,34 @@ public class AdminconfirmailController implements Initializable {
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(ConfiremailController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
     }
     
 }

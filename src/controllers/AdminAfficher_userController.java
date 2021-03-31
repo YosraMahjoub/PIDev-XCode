@@ -71,12 +71,22 @@ public class AdminAfficher_userController implements Initializable {
     @FXML
     private HBox hello;
     @FXML
-    private Button ADD;
-    @FXML
     private Button btnsupp;
     @FXML
      private GridPane grid;
     private MyListener myListener;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
+    @FXML
+    private Button home;
 
     /**
      * Initializes the controller class.
@@ -634,6 +644,34 @@ public class AdminAfficher_userController implements Initializable {
                    Logger.getLogger(Affichage_utilisateursController.class.getName()).log(Level.SEVERE, null, ex);
                }
         }
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
     }
     
 }

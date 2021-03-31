@@ -69,11 +69,12 @@
                         <Insets top="70.0" />
                      </VBox.margin>
                      <children>
-                        <TextField fx:id="username" prefHeight="23.0" prefWidth="250.0" promptText="username" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="username" onKeyPressed="#verifusername" prefHeight="23.0" prefWidth="250.0" promptText="username" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
                         </TextField>
+                        <Label fx:id="err_username" prefHeight="18.0" prefWidth="181.0" translateY="5.0" />
                      </children>
                   </HBox>
                   <HBox maxWidth="-Infinity" prefHeight="34.0" prefWidth="249.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
@@ -93,20 +94,22 @@
                   </HBox>
                   <HBox maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
                      <children>
-                        <TextField fx:id="nom" prefHeight="35.0" prefWidth="250.0" promptText="nom" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="nom" onKeyPressed="#verifinom" prefHeight="35.0" prefWidth="250.0" promptText="nom" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
                         </TextField>
+                        <Label fx:id="err_nom" prefHeight="18.0" prefWidth="181.0" translateY="5.0" />
                      </children>
                   </HBox>
                   <HBox maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
                      <children>
-                        <TextField fx:id="prenom" prefHeight="33.0" prefWidth="250.0" promptText="prenom" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="prenom" onKeyPressed="#verifprenom" prefHeight="33.0" prefWidth="250.0" promptText="prenom" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
                         </TextField>
+                        <Label fx:id="err_prenom" prefHeight="18.0" prefWidth="181.0" translateY="5.0" />
                      </children>
                   </HBox>
                   <HBox maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
@@ -120,11 +123,12 @@
                   </HBox>
                   <HBox maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
                      <children>
-                        <TextField fx:id="num_tel" prefHeight="35.0" prefWidth="250.0" promptText="phone" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="num_tel" onKeyPressed="#verifnum" prefHeight="35.0" prefWidth="250.0" promptText="phone" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
                         </TextField>
+                        <Label fx:id="err_tel" prefHeight="18.0" prefWidth="181.0" translateY="5.0" />
                      </children>
                   </HBox>
                </children>

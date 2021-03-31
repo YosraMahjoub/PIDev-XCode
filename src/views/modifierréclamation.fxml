@@ -69,7 +69,7 @@
       </VBox>
       <HBox fx:id="hi" alignment="CENTER_RIGHT" layoutX="178.0" prefHeight="75.0" prefWidth="837.0" style="-fx-background-color: #343E3D;">
          <children>
-            <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Emplois" textFill="WHITE">
+            <Button fx:id="emploi" mnemonicParsing="false" onAction="#gotoemploi" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Emplois" textFill="WHITE">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
@@ -77,7 +77,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="BRIEFCASE" size="22" />
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="113.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="formations" textFill="WHITE">
+            <Button fx:id="form" mnemonicParsing="false" onAction="#gotoform" prefHeight="35.0" prefWidth="113.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="formations" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="MORTAR_BOARD" size="22" />
                </graphic>
@@ -85,7 +85,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button layoutX="23.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="événements" textFill="WHITE">
+            <Button fx:id="events" layoutX="23.0" mnemonicParsing="false" onAction="#gotoevents" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="événements" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="22" />
                </graphic>
@@ -93,7 +93,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="oeuvres" mnemonicParsing="false" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="œuvres" textFill="WHITE">
+            <Button fx:id="oeuvres" mnemonicParsing="false" onAction="#allerauxoeuvres" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="œuvres" textFill="WHITE">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
@@ -101,7 +101,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_BAG" size="22" />
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Profil" textFill="WHITE">
+            <Button fx:id="profil" mnemonicParsing="false" onAction="#gotoprofil" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Profil" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="USER" size="22" />
                </graphic>
@@ -109,7 +109,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button layoutX="23.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="114.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textFill="WHITE">
+            <Button fx:id="Deconnexion" layoutX="23.0" mnemonicParsing="false" onAction="#deconnecter" prefHeight="32.0" prefWidth="114.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="SIGN_IN" size="22" />
                </graphic>
@@ -121,7 +121,7 @@
       </HBox>
       <HBox fx:id="hello" alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="216.0" style="-fx-background-color: #343E3D;">
          <children>
-            <Button fx:id="ADD" mnemonicParsing="false" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE">
+            <Button fx:id="home" mnemonicParsing="false" onAction="#accueil" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE" translateX="30.0">
                <font>
                   <Font size="14.0" />
                </font>

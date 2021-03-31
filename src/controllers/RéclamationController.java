@@ -83,8 +83,6 @@ public class RéclamationController implements Initializable {
     @FXML
     private HBox hello;
     @FXML
-    private Button ADD;
-    @FXML
     private Button mod_reclamation;
     @FXML
     private Button apprentissage;
@@ -93,6 +91,18 @@ public class RéclamationController implements Initializable {
     @FXML
     private GridPane grid;
     private MylistenerR Mylistener;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form;
+    @FXML
+    private Button events;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
+    @FXML
+    private Button home;
 
     /**
      * Initializes the controller class.
@@ -520,5 +530,33 @@ public class RéclamationController implements Initializable {
         
     
     } 
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
     
 }
