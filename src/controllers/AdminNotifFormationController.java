@@ -102,7 +102,7 @@ public class AdminNotifFormationController implements Initializable {
                             stage.show();
                         } 
                           catch (IOException ex) {
-                            Logger.getLogger(AdminNotifController.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(AdminNotifFormationController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                    } 
 
@@ -142,9 +142,9 @@ public class AdminNotifFormationController implements Initializable {
                 }
               
                 } catch (IOException ex) {
-                   Logger.getLogger(AdminNotifController.class.getName()).log(Level.SEVERE, null, ex);
+                   Logger.getLogger(AdminNotifFormationController.class.getName()).log(Level.SEVERE, null, ex);
                } catch (Exception ex) {
-            Logger.getLogger(AdminNotifController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminNotifFormationController.class.getName()).log(Level.SEVERE, null, ex);
         }
           
         

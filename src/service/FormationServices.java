@@ -55,9 +55,9 @@ private static FormationServices instance;
 //         ZoneId defaultZoneId = ZoneId.systemDefault();
 //          (java.sql.Date) Date.from(f.getDate().atStartOfDay(defaultZoneId).toInstant())
         try {
-            pste =cnx.prepareStatement("insert into formation (user_id ,domaine,date,durée, lieu,prix,niveau,langue,nbr_inscrits,description,image,titre) "
+            pste =cnx.prepareStatement("insert into formation (user_id ,domaine,date,durée, lieu,prix,niveau,langue,description,image,titre) "
                     //  + "values((select user_id=? from user)a,?,?,?,?,?,?,?,?,?,(select cours_id=? from cours) b,?);");
-                    + "values(?,?,?,?,?,?,?,?,?,?,?,?);");
+                    + "values(?,?,?,?,?,?,?,?,?,?,?);");
             int userid =f.u1.getUser_id();
             
             pste.setInt(1,userid);
@@ -69,14 +69,12 @@ private static FormationServices instance;
             pste.setFloat(6, f.getPrix());
             pste.setString (7,f.getNiveau());
             pste.setString (8, f.getLangue());
-            pste.setInt (9, f.getNbr_inscrits());
-            //pste.setInt(10, f.getNotation());
+          //  pste.setInt (9, f.getNbr_inscrits());
+          
             
-           // pste.setInt(11, f.getCours_id());
-            
-            pste.setString(10, f.getDescription());
-            pste.setString(11, f.getImage());
-            pste.setString(12, f.getTitre());
+            pste.setString(9, f.getDescription());
+            pste.setString(10, f.getImage());
+            pste.setString(11, f.getTitre());
           //  pste.setInt(14, f.getFormation_id());
             
             pste.executeUpdate();
@@ -102,7 +100,7 @@ private static FormationServices instance;
     @Override
     public void update(Formation f ) throws SQLException {
         String req = "update formation set user_id=?, domaine=?, date = ?, durée=?, lieu=?,"
-              + "prix = ?  , langue=?, niveau=?, description=?, image=?, titre = ? where formation_id= "+f.getFormation_id() ; 
+              + "prix = ?  , niveau=?, langue=?, description=?, image=?, titre = ? where formation_id= "+f.getFormation_id() ; 
           pste=cnx.prepareStatement(req);
            int userid =f.u1.getUser_id();
             
@@ -116,8 +114,7 @@ private static FormationServices instance;
             pste.setString (8, f.getLangue());
             //maybe i should remove this
           //pste.setInt (, f.getNbr_inscrits());
-            //pste.setInt(10, f.getNotation());
-            //pste.setInt(9, f.getCours_id());
+          
             pste.setString(9, f.getDescription());
             pste.setString(10, f.getImage());
             pste.setString(11, f.getTitre());
@@ -129,8 +126,7 @@ private static FormationServices instance;
     public List readAll() throws SQLException {
         List <Formation> formations = new   ArrayList();
         String req = "select * from formation;";
-//         String req = "select * from formation where domaine=?, date between '?' and '?', duree=?, lieu=?,"
-//                 + "prix between '?' and '?' , langue=?, niveau=?; " ; 
+
 //           
          ResultSet rs= ste.executeQuery(req);
          
@@ -302,7 +298,7 @@ private static FormationServices instance;
                f1.setLieu(rs.getString("lieu"));
                f1.setDomaine(rs.getString("domaine"));
                f1.setDate(rs.getString("date"));
-               f1.setImage(rs.getString("image"));
+              
                        
                listf.add(f1);
             }
@@ -357,32 +353,32 @@ private static FormationServices instance;
     
           
           
-public List <Formation> tri_prix() throws SQLException{
-List <Formation> listP = new ArrayList<>();
-String req = "SELECT * FROM formation where isvalid=1 order by prix asc";
- Statement ps = cnx.createStatement();
-            ResultSet rs;
-            rs = ps.executeQuery(req);
- while(rs.next())
-            {
-                int user_id= rs.getInt("user_id");
-                
-               String desc =rs.getString("description");
-               String img =rs.getString("image");
-             float prix= rs.getFloat("prix");
-              String dur= rs.getString("durée");
-              String lieu= rs.getString("lieu");
-              String dom= rs.getString("domaine");
-              String date= rs.getString("date");  
-              String niv =rs.getString("niveau");
-              String lang = rs.getString("langue");
-              String titre = rs.getString("titre");
-              Formation f = new Formation(user_id, dom, date, dur, lieu, prix, niv, lang, 0,  desc,img, titre);
-           // Formation f = new Formation(user_id, dom, date, dur, lieu, prix, niv, lang, user_id, user_id, desc, img, titre)
-                    
-              listP.add(f)  ;          }
- return listP;
-}  
+        public List <Formation> tri_prix() throws SQLException{
+        List <Formation> listP = new ArrayList<>();
+        String req = "SELECT * FROM formation where isvalid=1 order by prix asc";
+         Statement ps = cnx.createStatement();
+                    ResultSet rs;
+                    rs = ps.executeQuery(req);
+         while(rs.next())
+                    {
+                        int user_id= rs.getInt("user_id");
+
+                       String desc =rs.getString("description");
+                       String img =rs.getString("image");
+                     float prix= rs.getFloat("prix");
+                      String dur= rs.getString("durée");
+                      String lieu= rs.getString("lieu");
+                      String dom= rs.getString("domaine");
+                      String date= rs.getString("date");  
+                      String niv =rs.getString("niveau");
+                      String lang = rs.getString("langue");
+                      String titre = rs.getString("titre");
+                      Formation f = new Formation(user_id, dom, date, dur, lieu, prix, niv, lang, 0,  desc,img, titre);
+                   // Formation f = new Formation(user_id, dom, date, dur, lieu, prix, niv, lang, user_id, user_id, desc, img, titre)
+
+                      listP.add(f)  ;          }
+         return listP;
+        }  
   
     public List<Formation> rechercherFor(String titre) throws SQLException {
          ArrayList<Formation> listef = new ArrayList<Formation>();

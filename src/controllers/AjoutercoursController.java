@@ -7,6 +7,7 @@ package controllers;
 
 import entities.Cours;
 import entities.Formation;
+import entities.Upload;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -38,6 +39,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.ImageView;
+import service.FileUploader;
 
 /**
  * FXML Controller class
@@ -96,13 +99,15 @@ public class AjoutercoursController implements Initializable {
     private Button profil;
     @FXML
     private Button Deconnexion;
+    @FXML
+    private ImageView imgV;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
                 ObservableList<String> cat = FXCollections.observableArrayList("débutant", "intermédiaire","avancé");
         niv.setItems(cat);
-    
+      txtimg.setDisable(true);
          }    
 
 
@@ -127,10 +132,7 @@ public class AjoutercoursController implements Initializable {
         c.setDescription(desc.getText());
         c.setNiveau(nameCat);
         c.setDuree(duree.getText());
-        //c.setFile(nameCat);
-      //  c.setFormation_id(4);// the problem is here 
-      
-       c.setFile(file.getName());
+         c.setFile(file.getName());
 //       for (int i=0; i<files.size(); i++){
 //       c.setFile(files.get(i).getName());
 //       }
@@ -140,6 +142,8 @@ public class AjoutercoursController implements Initializable {
          System.out.println("el couuuurus " + getI());
        // c.setFormation_id(f.getFormation_id());
         //cs.ajouter(c);
+          
+        
        cs.ajouter(c,i);
         
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -169,8 +173,8 @@ else { Alert aa = new Alert(Alert.AlertType.INFORMATION);
             aa.setContentText("cours ajouté avec sucèes ☺ ");
             aa.showAndWait();
 //
-}
-}
+            }
+        }
         
         
     }
@@ -185,19 +189,17 @@ else { Alert aa = new Alert(Alert.AlertType.INFORMATION);
     
       @FXML
     private void chercherI(ActionEvent event) throws FileNotFoundException, IOException  {
-// Stage primary = new Stage();
+        Stage primary = new Stage();
 //       File dest =new File("C:\\xampp\\htdocs\\PI\\IMG");
 //        
-//        FileChooser filechooser = new FileChooser();
-//        filechooser.setInitialDirectory(new File("C:\\"));
-//        filechooser.setTitle("insérer image");
-//      //  filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"), new FileChooser.ExtensionFilter("Text Files", "*.txt"));
-//        filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("all", "*.*"));
-//      file = filechooser.showOpenDialog(primary);
+        FileChooser filechooser = new FileChooser();
+        filechooser.setInitialDirectory(new File("C:\\"));
+        filechooser.setTitle("insérer image");
+ filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"), new FileChooser.ExtensionFilter("Text Files", "*.txt"),new FileChooser.ExtensionFilter("Text pdf", "*.pdf"));
+     // filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("all", "*.*"));
+          file = filechooser.showOpenDialog(primary);
 //        
-//        
-//        List <File> files = filechooser.showOpenMultipleDialog(primary);
-//         
+//        List <File> files = filechooser.showOpenMultipleDialog(primary);      
 //     for (int i=0; i<files.size(); i++){
 //        
 //        FileUtils.copyFileToDirectory(files.get(i), dest);
@@ -219,36 +221,31 @@ else { Alert aa = new Alert(Alert.AlertType.INFORMATION);
 ////                e.printStackTrace();
 ////            }
 //        }
-//   
-//     else {
-//               System.out.println("Image introuvable");         
-//    }}
-    
-    Stage primary = new Stage();
-       File dest =new File("C:\\xampp\\htdocs\\PI\\IMG");
-        
-        FileChooser filechooser = new FileChooser();
-        filechooser.setInitialDirectory(new File("C:\\"));
-        filechooser.setTitle("insérer image");
-        filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"), new FileChooser.ExtensionFilter("Text Files", "*.txt"));
-        
-        file = filechooser.showOpenDialog(primary);
-        FileUtils.copyFileToDirectory(file, dest);
-        
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
 
-        FileInputStream input2 = new FileInputStream(newFile2);
-        Image image2 = new Image(input2);
-        txtimg.setText(newFile2.getName());
-     //   imgV.setImage(image2);
-       System.out.println(txtimg.getText());
+//        FileUtils.copyFileToDirectory(file, dest);
+//        
+//        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
+//
+//        FileInputStream input2 = new FileInputStream(newFile2);
+//        Image image2 = new Image(input2);
+//        txtimg.setText(newFile2.getName());
+//     //   imgV.setImage(image2);
+//       System.out.println(txtimg.getText());
       //files.get(i)
-        if(file!=null)
+      
+             if (file != null) {
+              Upload u = new Upload();
+           u.upload(file);
+           txtimg.setText(file.getAbsolutePath());//ahaya liaison
+           imgV.setImage(new Image("http://localhost/PI/IMG/"+ file.getName()));
+       
+           
+           if(file!=null)
         {
         txtimg.setVisible(true);
         //s.get(i)
         txtimg.setText(file.getName());
-//            try {             Files.copy(file.toPath(),new File(path+"\\"+file.getName()).toPath());
+//            try {   Files.copy(file.toPath(),new File(path+"\\"+file.getName()).toPath());
 //            } catch (IOException e) {
 //                e.printStackTrace();
 //            }
@@ -256,14 +253,14 @@ else { Alert aa = new Alert(Alert.AlertType.INFORMATION);
     else {
                System.out.println("Image introuvable");         
     }
-    }
+    }}
     
-    public void chercherI2 (ActionEvent event) throws FileNotFoundException, IOException  {
-    
-    
-    
-    
-    }
+//    public void chercherI2 (ActionEvent event) throws FileNotFoundException, IOException  {
+//    
+//    
+//    
+//    
+//    }
 
     @FXML
     private void selectcat(ActionEvent event) {
@@ -331,6 +328,11 @@ else { Alert aa = new Alert(Alert.AlertType.INFORMATION);
 
     @FXML
     private void deconnecter(ActionEvent event) {
+    }
+    public void imggg(){
+      String textTOimg = txtimg.getText();
+            textTOimg= FileUploader.upload(textTOimg);
+            textTOimg="http://localhost/PI/IMG/"+textTOimg;
     }
 
 }

@@ -156,11 +156,6 @@
                               <Insets left="100.0" right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="inscritBTN" mnemonicParsing="false" onAction="#inscrit" opacity="0.0" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: b7b7b7;" styleClass="search-button" stylesheets="@affmesoeuves.css" text="S'inscrire à une formation?" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="40.0" />
-                           </HBox.margin>
-                        </Button>
                      </children>
                      <styleClass>
                         <String fx:value="search-box" />

@@ -44,6 +44,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
@@ -120,67 +121,31 @@ public class AfficherCoursController implements Initializable {
 //            duree.setText(cours.get(i).getDuree());
 //            niveau.setText(cours.get(i).getNiveau());
 //        }
-        // tkharajli cours nafsou 
-//        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + cours.get(0).getFile());
-//        file.setImage(new Image(newFile2.toURI().toString()));
-//        desc.setText(cours.get(0).getDescription());
-//        titre.setText(cours.get(0).getTitre());
-//        duree.setText(cours.get(0).getDuree());
-//        niveau.setText(cours.get(0).getNiveau());
+ 
 
-// tekhdemsh 
-  File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + aa.getFile());
-        file.setImage(new Image(newFile2.toURI().toString()));
+//  File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + aa.getFile());
+        file.setImage(new Image("http://localhost/PI/IMG/"+ aa.getFile()));
         
         desc.setText(aa.getDescription());
         titre.setText(aa.getTitre());
         duree.setText(aa.getDuree());
         niveau.setText(aa.getNiveau());
-      //  linesTextArea.setText(aa.getFile());
+      // linesTextArea.setText(aa.getFile());
       urlTextField.setText(aa.getFile());
       
     }
     @FXML
 	@SuppressWarnings("NestedAssignment")
-	public void showFileLines(ActionEvent event) throws InterruptedException, ExecutionException {
-            
-            try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AfficherCoursFiles.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AfficherCoursController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+	public void showFileLines(ActionEvent event) throws InterruptedException, ExecutionException, IOException {
+             
+                Parent root = FXMLLoader.load(getClass().getResource("/views/AfficherCoursFiles.fxml"));
 
-//             try {
-//                 
-//            FXMLLoader page1 = FXMLLoader.load(getClass().getResource("/View/AfficherCoursFiles.fxml"));
-//           // Scene scene = new Scene(page1);
-//           Parent root = (Parent) page1.load();
-//            Stage stage =  new Stage();
-//                    //(Stage) ((Node) event.getSource()).getScene().getWindow();
-////            stage.initStyle(StageStyle.DECORATED);
-//            stage.setScene(new Scene(root));
-//            stage.show();
-//        } catch (IOException ex) {
-//            Logger.getLogger(AfficherCoursController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//		future = executorService.submit(new Callable<List<String>>() {
-//			public List<String> call() throws Exception {
-//				return reader.read(new File ("C:\\xampp\\htdocs\\PI\\IMG\\" + aa.getFile())
-//                                );
-//			}
-//		});
-//		
-//		List<String> lines = future.get();
-//		executorService.shutdownNow();
-//		linesTextArea.clear();
-//		for (String line : lines ) {
-//			linesTextArea.appendText(line + "\n");
-//		}
-        
+                    Stage stage = new Stage();
+
+                    stage.setScene(new Scene(root));
+
+                    stage.show();
+      
         }
 
     @FXML

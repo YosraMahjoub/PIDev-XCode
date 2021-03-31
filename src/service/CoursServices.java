@@ -82,11 +82,11 @@ public class CoursServices implements IServicesCours{
           } 
     }
 
-    @Override
-    public void delete(Cours c) throws SQLException {
-      String req = "delete from formation where " + "formation_id=?";
-    pste=cnx.prepareStatement(req);
-    }
+            @Override
+            public void delete(Cours c) throws SQLException {
+              String req = "delete from formation where " + "formation_id=?";
+            pste=cnx.prepareStatement(req);
+            }
 
     @Override
     public void update(Cours c) throws SQLException {
@@ -171,7 +171,7 @@ public class CoursServices implements IServicesCours{
     public List<Cours> readAll(Formation f )  {
           List <Cours> cours = new   ArrayList<Cours>();
             try {
-           //String req1= "select * from cours  where formation_id=?";
+           
                String req = "select * from cours  where formation_id= "+f.getFormation_id();
                        //f.getFormation_id();
              // String req = "select c.titre,c.description,c.durée,c.niveau,c.image,count(c.cours_id),c.formation_id from cours c  join formation f on f.formation_id=c.formation_id group by c.formation_id";
@@ -190,7 +190,7 @@ public class CoursServices implements IServicesCours{
                   c.setNiveau(rs.getString("niveau"));
                   c.setFile(rs.getString("image"));
                   cours.add(c);
-                  
+                  System.out.println(f.getFormation_id());
                   System.out.println("hhhh");
                   cours.forEach(System.out::println);
               }

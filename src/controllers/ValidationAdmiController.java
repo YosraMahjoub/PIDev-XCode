@@ -29,6 +29,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import service.CoursServices;
+import xcode_pidev.Main;
 
 /**
  * FXML Controller class
@@ -38,19 +40,7 @@ import javafx.stage.Stage;
 public class ValidationAdmiController implements Initializable {
 
     @FXML
-    private Button gest;
-    @FXML
-    private Button mdp;
-    @FXML
-    private Button role;
-    @FXML
-    private Button event;
-    @FXML
-    private Button favoris;
-    @FXML
     private Button form;
-    @FXML
-    private Button event1;
     @FXML
     private Label adesco;
     @FXML
@@ -83,12 +73,46 @@ public class ValidationAdmiController implements Initializable {
      public static void setF (Formation f ){
         a=f;
     }
-    
+    @FXML
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form1;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
+    @FXML
+    private Button btninfo;
+    @FXML
+    private Button btnprofil;
+    @FXML
+    private Button btnmdp;
+    @FXML
+    private Button btnuser;
+    @FXML
+    private Button btnevenement;
+    @FXML
+    private Button btnoeuvres;
+    @FXML
+    private Button stat;
+    @FXML
+    private Button reclamations;
+    @FXML
+    private Button btnsupp;
+    @FXML
+    private Button inscrit1;
+    CoursServices cs= new CoursServices();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-          File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG" + a.getImage());
-        imgV.setImage(new Image(newFile2.toURI().toString()));
+         // File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + a.getImage());
+        imgV.setImage(new Image("http://localhost/PI/IMG/" + a.getImage()));
         titre.setText(a.getTitre());
          adesco.setText(a.getDescription());
         aprixo.setText(String.valueOf(a.getPrix()));
@@ -98,6 +122,8 @@ public class ValidationAdmiController implements Initializable {
           lieu.setText(a.getLieu());
           duree.setText(a.getDuree());
           date.setText(a.getDate());
+          if (cs.coursVisible(a.getFormation_id())){inscrit1.setVisible(true);}
+          else{inscrit1.setVisible(false);}
                  }    
 
     @FXML
@@ -132,15 +158,76 @@ Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     @FXML
     private void acceuilFor(ActionEvent event) {
         
-          try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminNotifFormation.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(AdminNotifController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminNotifFormation.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ValidationAdmiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+        
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ValidationAdmiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void statistics(ActionEvent event) {
+    }
+
+    @FXML
+    private void afficherCours(ActionEvent event) {
+        if (cs.coursVisible(a.getFormation_id()))
+        try {
+            CoursListeController.x=0;
+            CoursListeController.f=a;
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/CoursListe.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ValidationAdmiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

@@ -26,7 +26,7 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <Button fx:id="note" alignment="CENTER" blendMode="SRC_ATOP" layoutX="917.0" layoutY="100.0" mnemonicParsing="false" onAction="#notation" prefHeight="31.0" prefWidth="155.0" style="-fx-background-color: #414E4D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Noter la formation?" textAlignment="CENTER" underline="true">
+      <Button fx:id="note" alignment="CENTER" blendMode="SRC_ATOP" layoutX="917.0" layoutY="100.0" mnemonicParsing="false" onAction="#notation" opacity="0.0" prefHeight="31.0" prefWidth="155.0" style="-fx-background-color: #414E4D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Noter la formation?" textAlignment="CENTER" underline="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -34,25 +34,9 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="form" blendMode="SRC_ATOP" layoutX="366.0" layoutY="99.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #414e4d; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mon apprentissage" textAlignment="CENTER" underline="true">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
-      <Button fx:id="back" alignment="CENTER" blendMode="SRC_ATOP" layoutX="691.0" layoutY="93.0" mnemonicParsing="false" onAction="#backClient" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Les formations" textAlignment="CENTER" underline="true">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
-      <HBox alignment="CENTER_RIGHT" layoutX="-1.0" layoutY="-1.0" prefHeight="85.0" prefWidth="1087.0" style="-fx-background-color: #343E3D;">
+      <HBox alignment="CENTER_RIGHT" layoutX="-1.0" layoutY="-1.0" prefHeight="85.0" prefWidth="1097.0" style="-fx-background-color: #343E3D;">
          <children>
-            <HBox prefHeight="85.0" prefWidth="301.0" style="-fx-background-color: #343E3D;">
+            <HBox prefHeight="85.0" prefWidth="360.0" style="-fx-background-color: #343E3D;">
                <children>
                   <Pane prefHeight="85.0" prefWidth="129.0" translateX="-121.0">
                      <children>

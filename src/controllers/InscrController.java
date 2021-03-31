@@ -55,7 +55,7 @@ import controllers.AfficherForController;
 import org.controlsfx.control.Rating;
 import service.RatingSer;
 import Iservice.MyListenerF;
-
+import service.UserService;
 /**
  * FXML Controller class
  *
@@ -159,17 +159,17 @@ public class InscrController implements Initializable {
                 };      } catch (SQLException ex) {
                 Logger.getLogger(InscrController.class.getName()).log(Level.SEVERE, null, ex);
             }
-}
-int column = 0;
-int row = 1;
-try {
-    for (int i = 0; i < listf.size(); i++) {
+                }
+                int column = 0;
+                int row = 1;
+                try {
+                    for (int i = 0; i < listf.size(); i++) {
         
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/views/AfficherForClick.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
 // allows to show and scroll  of all the "formations" with their titre/prix/desc
-AfficherForClickController itemController = fxmlLoader.getController();
+            AfficherForClickController itemController = fxmlLoader.getController();
 
                 itemController.setData(listf.get(i),myListener);
 
@@ -197,7 +197,7 @@ AfficherForClickController itemController = fxmlLoader.getController();
             Logger.getLogger(ACCUEILController.class.getName()).log(Level.SEVERE, null, ex);
         }
 //
-            if (fs.formationsVisible( Main.connectedUser.getUser_id()))
+            if (fs.formationsVisible( UserService.getCurrentUser().getUser_id()))
             {ADD.setText("Ajouter Formation");}
             else {ADD.setText("Enseigner sur Fanny");}
                 }
@@ -209,10 +209,10 @@ AfficherForClickController itemController = fxmlLoader.getController();
         RatingSer rs = new RatingSer();
        rateF.setDisable(true);
          rateF.setRating(rs.ratingAff(ff.getFormation_id()));
-                File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + ff.getImage());
+               // File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + ff.getImage());
 
         //image = new Image(getClass().getResourceAsStream(o.getImg()));
-        img.setImage(new Image(newFile2.toURI().toString()));
+        img.setImage(new Image("http://localhost/PI/IMG/"+ff.getImage()));
          f=ff;
 //        String path = "http://...";
 //String pathToOpen = "http://...";

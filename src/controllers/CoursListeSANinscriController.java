@@ -152,6 +152,17 @@ public class CoursListeSANinscriController implements Initializable {
 
     @FXML
     private void gotoform(ActionEvent event) {
+         
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(CoursListeSANinscriController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
 
     @FXML

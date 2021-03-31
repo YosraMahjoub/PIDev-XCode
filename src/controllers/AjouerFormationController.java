@@ -49,7 +49,7 @@ import controllers.ACCUEILController;
 import controllers.AjoutercoursController;
 import static controllers.CoursListeController.f;
 import java.sql.SQLException;
-
+import service.UserService;
 /**
  * FXML Controller class
  *
@@ -122,9 +122,10 @@ public class AjouerFormationController implements Initializable {
         ObservableList<String> catniv = FXCollections.observableArrayList("débutant", "intermédiaire","avancé");
         btn_niv.setItems(catniv);
                 
-        if (fs.formationsVisible(Main.connectedUser.getUser_id()))
+        if (fs.formationsVisible(UserService.getCurrentUser().getUser_id()))
           {back.setVisible(true);}
           else {back.setVisible(false);}
+        txtimg.setDisable(true);
     }
 
     @FXML
@@ -156,8 +157,8 @@ public class AjouerFormationController implements Initializable {
         } else {
             //txtimg.file.getName()
             Formation f = new Formation();
-            //Main.connectedUser.setUser_id(25);
-            f.setU1(Main.connectedUser);
+           
+            f.setU1(UserService.getCurrentUser());
             
             f.setDuree(btn_duree.getText());
             f.setTitre(btn_titre.getText());
@@ -167,24 +168,22 @@ public class AjouerFormationController implements Initializable {
             f.setDomaine(nameCat);
             f.setPrix(Float.parseFloat(btn_prix.getText()));
             f.setDate(btn_date.getValue().toString());
-            
             f.setImage(file.getName());
             f.setNiveau(nameNIV);
             
            
             String textTOimg = txtimg.getText();
             textTOimg= FileUploader.upload(textTOimg);
-            textTOimg="http://localhost/Formation/Images/"+textTOimg;
+            textTOimg="http://localhost/PI/IMG/"+textTOimg;
+            
             //  Formation f = new Formation(1,nameCat ,btn_date.getValue().toString() , btn_duree.getText(), btn_lieu.getText(),Float.parseFloat((btn_prix.getText())), btn_niv.getText(),btn_lang.getText() ,
             //  0, 0,1,  btn_desc.getText(), null);
 
             
             fs.ajouter(f);
             Formation x = fs.readformation(btn_titre.getText(), btn_lieu.getText(), btn_desc.getText());
-            System.out.println("fel formation"+x.getFormation_id());           
+            System.out.println("fel formation"+ x.getFormation_id());           
            
-            
-            
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("confirmation");
             alert.setHeaderText("Formation ajoutée");
@@ -281,11 +280,10 @@ public class AjouerFormationController implements Initializable {
 //            txtimg.setText(file.getName());
             
              if (file != null) {
-           
-           Upload u = new Upload();
+              Upload u = new Upload();
            u.upload(file);
            txtimg.setText(file.getAbsolutePath());//ahaya liaison
-            
+            imgV.setImage(new Image("http://localhost/PI/IMG/"+ file.getName()));
                  
 //            try {  Files.copy(file.toPath(),new File(path+"\\"+file.getName()).toPath());
 //            } catch (IOException e) {

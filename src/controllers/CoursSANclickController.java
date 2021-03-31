@@ -43,9 +43,11 @@ private MyListenerF myListener;
         this.myListener = myListener;
         titre.setText(c.getTitre());
         desc.setText((c.getDescription()));
-      File newFile = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + c.getFile());
-
-        img.setImage(new Image(newFile.toURI().toString()));
+//      File newFile = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + c.getFile());
+//
+//        img.setImage(new Image(newFile.toURI().toString()));
+        
+         img.setImage(new Image("http://localhost/PI/IMG/"+c.getFile()));
        
     }
 }

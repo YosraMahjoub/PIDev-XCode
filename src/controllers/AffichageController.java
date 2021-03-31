@@ -56,13 +56,12 @@ public class AffichageController implements Initializable {
         titre.setText(f.getTitre());
         nameLabel.setText(f.getDescription());
         priceLable.setText((f.getPrix())+"DT");
-                    File newFile= new File("C:\\xampp\\htdocs\\Formation\\Images" + f.getImage());
-
+                   // File newFile= new File("C:\\xampp\\htdocs\\Formation\\Images" + f.getImage());
+    //File newFile= new File("C:\\xampp\\htdocs\\PI\\IMG" + f.getImage());
         //image = new Image(getClass().getResourceAsStream(o.getImg()));
-        img.setImage(new Image(newFile.toURI().toString()));
+        img.setImage(new Image("http://localhost/PI/IMG/"+ f.getImage()));
         
-//        Image image = new Image(getClass().getResourceAsStream(oeuvre.getImg()));
-//        img.setImage(image);
+
     } 
 }
         

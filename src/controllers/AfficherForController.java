@@ -6,10 +6,10 @@
 package controllers;
 
 import entities.Cours;
-import entities.Download;
+
 import entities.Formation;
 import entities.Inscription;
-import service.FileDownloader;
+
 import service.FormationServices;
 import service.InscriptionsServices;
 import xcode_pidev.Main;
@@ -43,7 +43,7 @@ import service.FileUploader;
 import Iservice.MyListenerF;
 import java.net.MalformedURLException;
 import java.net.URLConnection;
-
+import service.UserService;
 /**
  * FXML Controller class
  *
@@ -116,8 +116,8 @@ public class AfficherForController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG" + a.getImage());
-        imgV.setImage(new Image(newFile2.toURI().toString()));
+        //File newFile2 = new File("http://localhost/PI/IMG" + a.getImage());
+        imgV.setImage(new Image("http://localhost/PI/IMG/" + a.getImage()));
 //            url = new URL("http://localhost/Formation/Images/");
 //            URLConnection conn = url.openConnection();
 //            InputStream in = conn.getInputStream();
@@ -163,35 +163,29 @@ public class AfficherForController implements Initializable {
                             date.setText(a.getDate());
                             titre.setText(a.getTitre());
                             
-                            if (fs.inscritVisible(a.getFormation_id(), Main.connectedUser.getUser_id()))
+                            if (fs.inscritVisible(a.getFormation_id(), UserService.getCurrentUser().getUser_id()))
                             {inscrit.setVisible(true);}
-                            else {inscrit.setVisible(false);}
-//        } catch (MalformedURLException ex) {
-//            Logger.getLogger(AfficherForController.class.getName()).log(Level.SEVERE, null, ex);
-          
-          
-          
-    }    
-
-    @FXML
-    private void backClient(ActionEvent event) {
-         try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(AfficherForController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
+                            else {inscrit.setVisible(false);}    }    
+//
+//    @FXML
+//    private void backClient(ActionEvent event) {
+//         try {
+//                Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+//                Scene scene = new Scene(page1);
+//                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException ex) {
+//                Logger.getLogger(AfficherForController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//    }
 @FXML
      private void AjouerFormationController(ActionEvent event) throws IOException {
         
           try {
                 Inscription i = new Inscription();
                 InscriptionsServices in =new InscriptionsServices();
-                i.setU1(Main.connectedUser);
+                i.setU1(UserService.getCurrentUser());
                 Formation x =a;
                 i.setF(x);
                                               
@@ -232,6 +226,8 @@ public class AfficherForController implements Initializable {
             Logger.getLogger(AfficherForController.class.getName()).log(Level.SEVERE, null, ex);
         }}
           else {   try {
+              CoursListeController.x=1;
+            
              CoursListeController.f=a;
             Parent page1 = FXMLLoader.load(getClass().getResource("/views/CoursListe.fxml"));
             Scene scene = new Scene(page1);
@@ -243,7 +239,6 @@ public class AfficherForController implements Initializable {
         } 
            }
      
-            
                }
 
     @FXML

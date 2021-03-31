@@ -47,7 +47,7 @@ private static RatingSer instance;
        public void AjouterRating (double v, Formation f) throws SQLException{
             
          
-           String req= "insert into rating (value, user_id, formation_id) values (?,?,?);";  
+           String req= "insert into rating_formation (value, user_id, formation_id) values (?,?,?);";  
           // String req1 = "insert into rating (value) values(?)";
            pste =cnx.prepareStatement(req);
            pste.setDouble(1,v);
@@ -59,7 +59,7 @@ private static RatingSer instance;
          }
        public void modifierR (double v,Formation f) throws SQLException{
         
-             String req = "UPDATE `rating` SET `value`=? WHERE `formation_id`=? and `user_id`=?" ;
+             String req = "UPDATE `rating_formation` SET `value`=? WHERE `formation_id`=? and `user_id`=?" ;
              PreparedStatement pste = cnx.prepareStatement(req);
              pste.setDouble(1,v);
              pste.setInt(2, f.getFormation_id());
@@ -70,7 +70,7 @@ private static RatingSer instance;
        }
        public double ratingAff (int f_id) throws SQLException{
        double i = 0;
-           String req = "select avg (value) as moyenne from rating where formation_id =?";
+           String req = "select avg (value) as moyenne from rating_formation where formation_id =?";
        PreparedStatement p = cnx.prepareStatement(req);
        p.setInt(1,f_id);
 //       RatingEntity r = new RatingEntity();
@@ -87,7 +87,7 @@ private static RatingSer instance;
         int i =0;
            try {
              
-             String req = "select count(user_id) as nb from rating where formation_id=?" + " and user_id=?";
+             String req = "select count(user_id) as nb from rating_formation where formation_id=?" + " and user_id=?";
              PreparedStatement p = cnx.prepareStatement(req);
              p.setInt(1,f_id);
              p.setInt(2,u_id);

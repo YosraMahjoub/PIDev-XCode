@@ -5,7 +5,9 @@
  */
 package controllers;
 
+import entities.Cours;
 import entities.Formation;
+import entities.Upload;
 import service.CoursServices;
 import service.FormationServices;
 import xcode_pidev.Main;
@@ -41,7 +43,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
-
+import service.FileUploader;
+import service.UserService;
 /**
  * FXML Controller class
  *
@@ -78,14 +81,14 @@ public class ModifierController implements Initializable {
      * Initializes the controller class.
      */
       private static Formation s ;
-    
+      private static Cours cc;
     //ControleSaisie controlem = new ControleSaisie();
     
     
     FormationServices fs = new FormationServices();
     String nameCat = "" ;
     File file ;
-    @FXML
+    @FXML 
     private Button back1;
     @FXML
     private TextField btn_titre;
@@ -113,13 +116,10 @@ public class ModifierController implements Initializable {
          ObservableList<String> cat = FXCollections.observableArrayList( "dance","theatre", "musique","littérature",	"peinture",	"audiovisuel",	"sculpture");
         btn_domaine.setItems(cat);
     
-  
- 
-      
         
         
-         File newFile2 = new File("C:\\xampp\\htdocs\\Formation\\Images" + s.getImage());
-          imgV.setImage(new Image(newFile2.toURI().toString()));
+       //  File newFile2 = new File("C:\\xampp\\htdocs\\Formation\\Images" + s.getImage());
+          imgV.setImage(new Image("http://localhost/PI/IMG/"+ s.getImage()));
           btn_titre.setText(s.getTitre());
           btn_lieu.setText(s.getLieu());
           btn_lang.setText(s.getLangue());
@@ -129,7 +129,7 @@ public class ModifierController implements Initializable {
         btn_prix.setText(String.valueOf(s.getPrix()));
           btn_desc.setText(s.getDescription());
           btn_domaine.setValue(s.getDomaine());
-        
+         txtimg.setDisable(true);
 //        LocalDate d = btn_date.getValue();
 //                d.toString();
 //              // .toLocalDate();
@@ -176,25 +176,27 @@ public class ModifierController implements Initializable {
         filechooser.setTitle("insérer image");
         filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         file = filechooser.showOpenDialog(primary);
-        FileUtils.copyFileToDirectory(file, dest);
-        
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
-
-        FileInputStream input2 = new FileInputStream(newFile2);
-        Image image2 = new Image(input2);
-        txtimg.setText(newFile2.getName());
-        imgV.setImage(image2);
-        
-        
-        System.out.println(txtimg.getText());
+//        FileUtils.copyFileToDirectory(file, dest);
+//        
+//        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
+//
+//        FileInputStream input2 = new FileInputStream(newFile2);
+//        Image image2 = new Image(input2);
+//        txtimg.setText(newFile2.getName());
+//        imgV.setImage(image2);
+//        
+//        
+//        System.out.println(txtimg.getText());
         if(file!=null)
         {
         txtimg.setVisible(true);
         txtimg.setText(file.getName());
-//            try {             Files.copy(file.toPath(),new File(path+"\\"+file.getName()).toPath());
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+          if (file != null) {
+              Upload u = new Upload();
+           u.upload(file);
+           txtimg.setText(file.getAbsolutePath());//ahaya liaison
+            imgV.setImage(new Image("http://localhost/PI/IMG/"+ file.getName()));}
+        
         }
     else {
                System.out.println("Image introuvable");         
@@ -231,24 +233,23 @@ public class ModifierController implements Initializable {
 //             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 //        Date date = new Date(System.currentTimeMillis());
 //        date.toLocalDate();
-        s.setU1(Main.connectedUser);
+        s.setU1(UserService.getCurrentUser());
         s.setTitre(btn_titre.getText());
-             s.setDuree(btn_duree.getText());
+           s.setDuree(btn_duree.getText());
            s.setLieu(btn_lieu.getText());
            s.setLangue(btn_lang.getText());
         s.setDescription(btn_desc.getText());
         s.setDomaine(nameCat);
         s.setPrix(Float.parseFloat( btn_prix.getText()));
        s.setDate(btn_date.getValue().toString());
-    s.setImage(file.getName());
+        s.setImage(file.getName());
         s.setNiveau(btn_niv.getText());
         
         fs.update(s);
         
         
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      //  alert.setHeaderText("Formation modifié ☺ ");
-            alert.setContentText("Formation modifiée avec sucèes ☺ ");
+        alert.setContentText("Formation modifiée avec sucèes ☺ ");
             alert.showAndWait();
        // }
       
@@ -287,7 +288,9 @@ public class ModifierController implements Initializable {
     @FXML
     private void CoursModif(ActionEvent event) {
         try {
-            CoursListeController.f=s;
+            //CoursListeController.f=s;
+            System.out.println("mta3 static"+s.getFormation_id());
+           ModifierCoursListeController.s=s;
             Parent page1 = FXMLLoader.load(getClass().getResource("/views/ModifierCoursListe.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -333,6 +336,11 @@ public class ModifierController implements Initializable {
 
     @FXML
     private void deconnecter(ActionEvent event) {
+    }
+    public void imgg (){
+     String textTOimg = txtimg.getText();
+            textTOimg= FileUploader.upload(textTOimg);
+            textTOimg="http://localhost/PI/IMG/"+textTOimg;
     }
 
    

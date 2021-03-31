@@ -29,7 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
-
+import service.UserService;
 /**
  * FXML Controller class
  *
@@ -80,7 +80,7 @@ public class RatingController implements Initializable {
 //              r.setU1(Main.connectedUser);
 //          Formation x=ff;
 //              r.setF(x);// nheb nekhou id te3ha 
-          if (rs.fIsrated(Main.connectedUser.getUser_id(), ff.getFormation_id())==0)
+          if (rs.fIsrated(UserService.getCurrentUser().getUser_id(), ff.getFormation_id())==0)
           {
               rs.AjouterRating(rate.getRating(),ff);
           Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -94,7 +94,7 @@ public class RatingController implements Initializable {
               rs.modifierR(rate.getRating(),ff);
               Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("confirmation");
-        alert.setHeaderText("notation modifié");
+        alert.setHeaderText("notation modifiée");
         alert.setContentText("Merci pour votre contribution!!");
         alert.show();
                       }

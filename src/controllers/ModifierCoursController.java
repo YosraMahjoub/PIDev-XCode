@@ -6,6 +6,8 @@
 package controllers;
 
 import entities.Cours;
+import entities.Formation;
+import entities.Upload;
 import service.CoursServices;
 import java.io.File;
 import java.io.FileInputStream;
@@ -61,10 +63,11 @@ public class ModifierCoursController implements Initializable {
     private TextField txtimg;
     @FXML
     private ComboBox<String> niv;
-String nameCat="";
-File file;
-List <File> files ;
-  static Cours aa ;
+    String nameCat="";
+    File file;
+    List <File> files ;
+    static Cours aa ;
+    static Formation s ;
     @FXML
     private Button showFile;
     @FXML
@@ -98,9 +101,11 @@ List <File> files ;
         
         //File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + aa.getFile());
 //         file.setReadOnly();
+       txtimg.setDisable(true);
       if (img!=null){
-      File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + aa.getFile());
-      img.setImage(new Image(newFile2.toURI().toString()));
+//      File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + aa.getFile());
+//      img.setImage(new Image(newFile2.toURI().toString()));
+        img.setImage(new Image("http://localhost/PI/IMG/"+ aa.getFile()));
       
       }
         
@@ -121,19 +126,7 @@ List <File> files ;
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
-            }
-//    @FXML
-//    private void backClient(ActionEvent event) {
-//        try {
-//            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
-//            Scene scene = new Scene(page1);
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            stage.setScene(scene);
-//            stage.show();
-//        } catch (IOException ex) {
-//            Logger.getLogger(ModifierCoursController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+        }
 
     @FXML
     private void acceuilFormafteur(ActionEvent event) {
@@ -151,24 +144,27 @@ List <File> files ;
     @FXML
     private void chercherI(ActionEvent event) throws IOException {
              Stage primary = new Stage();
-       File dest =new File("C:\\xampp\\htdocs\\PI\\IMG");
+//       File dest =new File("C:\\xampp\\htdocs\\PI\\IMG");
         
         FileChooser filechooser = new FileChooser();
         filechooser.setInitialDirectory(new File("C:\\"));
         filechooser.setTitle("insérer image");
         filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         file = filechooser.showOpenDialog(primary);
-        FileUtils.copyFileToDirectory(file, dest);
-        
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
-
-        FileInputStream input2 = new FileInputStream(newFile2);
-        Image image2 = new Image(input2);
-        txtimg.setText(newFile2.getName());
-        img.setImage(image2);
-        
-        
-        System.out.println(txtimg.getText());
+//        FileUtils.copyFileToDirectory(file, dest);
+//        
+//        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
+//
+//        FileInputStream input2 = new FileInputStream(newFile2);
+//        Image image2 = new Image(input2);
+//        txtimg.setText(newFile2.getName());
+//        img.setImage(image2);
+//        System.out.println(txtimg.getText());
+    if (file != null) {
+              Upload u = new Upload();
+           u.upload(file);
+           txtimg.setText(file.getAbsolutePath());//ahaya liaison
+           img.setImage(new Image("http://localhost/PI/IMG/"+ file.getName()));
         if(file!=null)
         {
         txtimg.setVisible(true);
@@ -181,7 +177,7 @@ List <File> files ;
     else {
                System.out.println("Image introuvable");         
     
-    }}
+    }}}
 
     @FXML
     private void ValiderModif(ActionEvent event) throws SQLException {
@@ -194,7 +190,7 @@ List <File> files ;
 //      
 //        c.setFile(files.get(i).getName());}
 
-c.setFile(file.getName());
+        c.setFile(file.getName());
         CoursServices cs = new CoursServices();
         cs.update(c);
          Alert alert = new Alert(Alert.AlertType.INFORMATION);

@@ -23,35 +23,35 @@
             <Accordion layoutX="417.0" layoutY="538.0" prefHeight="95.0" prefWidth="166.0" />
             <Accordion layoutX="387.0" layoutY="192.0" />
             <Group layoutX="177.0" layoutY="267.0" />
-            <Label layoutX="161.0" layoutY="182.0" prefHeight="21.0" prefWidth="200.0" text="Domaine" />
-            <TextField fx:id="btn_lieu" layoutX="157.0" layoutY="491.0" prefHeight="31.0" prefWidth="308.0" />
-            <TextField fx:id="btn_duree" layoutX="157.0" layoutY="398.0" prefHeight="31.0" prefWidth="308.0" />
-            <Label layoutX="161.0" layoutY="453.0" prefHeight="21.0" prefWidth="80.0" text="Lieu" />
-            <Label layoutX="160.0" layoutY="277.0" text="Date" />
-            <Label layoutX="161.0" layoutY="362.0" text="Durée" />
-            <DatePicker fx:id="btn_date" layoutX="157.0" layoutY="308.0" prefHeight="31.0" prefWidth="308.0" />
-            <TextField fx:id="btn_lang" layoutX="562.0" layoutY="213.0" prefHeight="31.0" prefWidth="308.0" />
-            <TextField fx:id="btn_prix" layoutX="554.0" layoutY="491.0" prefHeight="31.0" prefWidth="308.0" />
-            <TextField fx:id="btn_desc" layoutX="562.0" layoutY="398.0" prefHeight="31.0" prefWidth="308.0" />
-            <TextField fx:id="btn_niv" layoutX="562.0" layoutY="308.0" prefHeight="31.0" prefWidth="308.0" />
-            <Label layoutX="562.0" layoutY="362.0" prefHeight="21.0" prefWidth="80.0" text="Description" />
-            <Label layoutX="562.0" layoutY="277.0" prefHeight="21.0" prefWidth="80.0" text="Niveau" />
-            <Label layoutX="562.0" layoutY="182.0" prefHeight="21.0" prefWidth="80.0" text="Langue" />
-            <Label layoutX="562.0" layoutY="453.0" prefHeight="21.0" prefWidth="80.0" text="Prix" />
-            <ComboBox fx:id="btn_domaine" layoutX="157.0" layoutY="213.0" onAction="#choisirDomaine" prefHeight="31.0" prefWidth="308.0" promptText="Choisir un domaine" />
-            <TextField fx:id="txtimg" layoutX="350.0" layoutY="538.0" prefHeight="32.0" prefWidth="277.0" promptText="telechager une affiche" />
-            <Button fx:id="bimgo" layoutX="627.0" layoutY="539.0" mnemonicParsing="false" onAction="#chercherI" prefHeight="25.0" prefWidth="11.0" text="..." />
-            <Button fx:id="btn_valider" layoutX="716.0" layoutY="539.0" mnemonicParsing="false" onAction="#validerModif" prefHeight="31.0" prefWidth="166.0" style="-fx-background-color: #a65959;" text="Valider modification" textFill="WHITE">
+            <Label layoutX="65.0" layoutY="177.0" prefHeight="21.0" prefWidth="200.0" text="Domaine" />
+            <TextField fx:id="btn_lieu" layoutX="61.0" layoutY="486.0" prefHeight="31.0" prefWidth="308.0" />
+            <TextField fx:id="btn_duree" layoutX="61.0" layoutY="393.0" prefHeight="31.0" prefWidth="308.0" />
+            <Label layoutX="65.0" layoutY="448.0" prefHeight="21.0" prefWidth="80.0" text="Lieu" />
+            <Label layoutX="64.0" layoutY="272.0" text="Date" />
+            <Label layoutX="65.0" layoutY="357.0" text="Durée" />
+            <DatePicker fx:id="btn_date" layoutX="61.0" layoutY="303.0" prefHeight="31.0" prefWidth="308.0" />
+            <TextField fx:id="btn_lang" layoutX="466.0" layoutY="208.0" prefHeight="31.0" prefWidth="308.0" />
+            <TextField fx:id="btn_prix" layoutX="466.0" layoutY="486.0" prefHeight="31.0" prefWidth="308.0" />
+            <TextField fx:id="btn_desc" layoutX="466.0" layoutY="393.0" prefHeight="31.0" prefWidth="308.0" />
+            <TextField fx:id="btn_niv" layoutX="466.0" layoutY="303.0" prefHeight="31.0" prefWidth="308.0" />
+            <Label layoutX="466.0" layoutY="357.0" prefHeight="21.0" prefWidth="80.0" text="Description" />
+            <Label layoutX="466.0" layoutY="272.0" prefHeight="21.0" prefWidth="80.0" text="Niveau" />
+            <Label layoutX="466.0" layoutY="177.0" prefHeight="21.0" prefWidth="80.0" text="Langue" />
+            <Label layoutX="466.0" layoutY="448.0" prefHeight="21.0" prefWidth="80.0" text="Prix" />
+            <ComboBox fx:id="btn_domaine" layoutX="61.0" layoutY="208.0" onAction="#choisirDomaine" prefHeight="31.0" prefWidth="308.0" promptText="Choisir un domaine" />
+            <TextField fx:id="txtimg" layoutX="254.0" layoutY="533.0" prefHeight="32.0" prefWidth="189.0" promptText="telechager une affiche" />
+            <Button fx:id="bimgo" layoutX="428.0" layoutY="534.0" mnemonicParsing="false" onAction="#chercherI" prefHeight="25.0" prefWidth="11.0" text="..." />
+            <Button fx:id="btn_valider" layoutX="820.0" layoutY="550.0" mnemonicParsing="false" onAction="#validerModif" prefHeight="31.0" prefWidth="166.0" style="-fx-background-color: #a65959;" text="Valider modification" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
-            <ImageView fx:id="imgV" fitHeight="113.0" fitWidth="189.0" layoutX="405.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgV" fitHeight="69.0" fitWidth="200.0" layoutX="515.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
                <viewport>
                   <Rectangle2D />
                </viewport>
             </ImageView>
-            <TextField fx:id="btn_titre" layoutX="346.0" layoutY="133.0" prefHeight="31.0" prefWidth="308.0" />
-            <Label layoutX="346.0" layoutY="96.0" prefHeight="21.0" prefWidth="67.0" text="Titre" />
+            <TextField fx:id="btn_titre" layoutX="250.0" layoutY="128.0" prefHeight="31.0" prefWidth="308.0" />
+            <Label layoutX="250.0" layoutY="91.0" prefHeight="21.0" prefWidth="67.0" text="Titre" />
             <Button fx:id="cours" alignment="CENTER" blendMode="SRC_ATOP" layoutX="-76.0" layoutY="141.0" mnemonicParsing="false" onAction="#CoursModif" prefHeight="32.0" prefWidth="159.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Cours de la formation" textAlignment="CENTER" underline="true">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -68,6 +68,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
+            <Label layoutX="108.0" layoutY="539.0" prefHeight="21.0" prefWidth="139.0" text="Télécharger Image" />
          </children>
       </AnchorPane>
       <HBox alignment="CENTER_RIGHT" prefHeight="84.0" prefWidth="1083.0" style="-fx-background-color: #343E3D;">

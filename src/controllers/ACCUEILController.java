@@ -43,6 +43,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import Iservice.MyListenerF;
+import service.UserService;
 
 /**
  * FXML Controller class
@@ -80,6 +81,7 @@ public class ACCUEILController implements Initializable {
    private MyListenerF myListener;
     private List<Formation> listf =new ArrayList<>();
     FormationServices ff = new FormationServices();
+    
     @FXML
     private TextField cher;
     @FXML
@@ -105,7 +107,7 @@ public class ACCUEILController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        listf.addAll(ff.readAll(Main.connectedUser.getUser_id()));
+        listf.addAll(ff.readAll(UserService.getCurrentUser().getUser_id()));
            if (listf.size() > 0) {
                System.out.println(listf.get(0));
                 setChosenO(listf.get(0));
@@ -166,9 +168,9 @@ public class ACCUEILController implements Initializable {
         titre.setText(ff.getTitre());
         prixo.setText((ff.getPrix())+"DT");
         descO.setText(ff.getDescription());
-        File newFile2 = new File("C:\\xampp\\htdocs\\Formation\\Images" + ff.getImage());
+        //File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG" + ff.getImage());
 
-        img.setImage(new Image(newFile2.toURI().toString()));
+        img.setImage(new Image("http://localhost/PI/IMG/"+ ff.getImage()));
         f=ff;
     }
         
@@ -186,18 +188,18 @@ public class ACCUEILController implements Initializable {
             }}
 
 
-    @FXML
-    private void inscrit(ActionEvent event) {
-        try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(InscrController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
+//    @FXML
+//    private void inscrit(ActionEvent event) {
+//        try {
+//                Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+//                Scene scene = new Scene(page1);
+//                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException ex) {
+//                Logger.getLogger(InscrController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+   // }
 
     @FXML
     private void modifier(ActionEvent event) {
@@ -216,7 +218,7 @@ public class ACCUEILController implements Initializable {
     @FXML
     private void suppr(ActionEvent event) throws IOException, SQLException {
          
-              if(   alert("Voulez vous supprimer cette formation").get()==ButtonType.OK)
+              if(   alert("Voulez vous supprimer cette formation ?").get()==ButtonType.OK)
               {  ff.delete(f);
               Parent page1 = FXMLLoader.load(getClass().getResource("/views/ACCUEIL.fxml"));
             Scene scene = new Scene(page1);

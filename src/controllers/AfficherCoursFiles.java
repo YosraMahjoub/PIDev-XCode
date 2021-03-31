@@ -47,20 +47,23 @@ public class AfficherCoursFiles implements Initializable {
     private TextFileReader reader = new TextFileReader();
     private static final Logger LOG = Logger.getLogger(AfficherCoursController.class.getName());
     static Cours c ;
-    @FXML 
-            Button showFile;
-    @FXML
+    Button showFile;
     TextField  urlTextField;
         private Future<List<String>> future;
 	private ExecutorService executorService = Executors.newSingleThreadExecutor();
+    @FXML
+    private Button back;
+    @FXML
+    private Button back1;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         future = executorService.submit(new Callable<List<String>>() {
 			public List<String> call() throws Exception {
-				return reader.read(new File ("C:\\xampp\\htdocs\\PI\\IMG\\" + AfficherCoursController.aa.getFile())
-                                );
-			}
+                            URL u = new URL ("http://localhost/PI/IMG/"+AfficherCoursController.aa.getFile());
+                             return reader.read(new File("C:\\xampp\\htdocs\\PI\\IMG\\"+AfficherCoursController.aa.getFile()));
+			
+                        }
 		});
 		
 		List<String> lines;
@@ -90,5 +93,19 @@ public class AfficherCoursFiles implements Initializable {
             Logger.getLogger(AfficherCoursController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
+
+    @FXML
+    private void backMod(ActionEvent event) {
+        
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/ModifierCoursListe.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherCoursFiles.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

@@ -52,7 +52,10 @@ public class CoursListeController  implements Initializable{
     private List<Cours> listc =new ArrayList<>();
   private CoursServices cs = new CoursServices();
    Cours c;
-  public static Formation f = new Formation();
+  public static Formation f ;
+  
+  
+   static int x;
     @FXML
     private Button note;
     @FXML
@@ -78,14 +81,14 @@ public class CoursListeController  implements Initializable{
                     System.out.println(listc.get(0));
                     myListener = new MyListenerF() {
                         @Override
-                        public void onClickListener(MouseEvent event, Formation oeuvre) {
+                        public void onClickListener(MouseEvent event, Formation f) {
                            // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                         }
                         
                         @Override
                         public void onClickListener(MouseEvent event, Cours cours) {
-                            try { AfficherCoursController.setF(f);
-                                AfficherCoursController.setC(cours);
+                            try { AfficherCoursController.setF(f);// preciser formation 
+                                AfficherCoursController.setC(cours);// preciser cours
                             Parent page1 = FXMLLoader.load(getClass().getResource("/views/AfficherCours.fxml"));
                             Scene scene = new Scene(page1);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -132,12 +135,19 @@ public class CoursListeController  implements Initializable{
     }
      @FXML
     private void backClient(ActionEvent event) {
+        
          try {
+             if (x==1){
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/AfficherFor.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
-                stage.show();
+                stage.show();}
+             else if (x==0){ Parent page1 = FXMLLoader.load(getClass().getResource("/views/ValidationAdmin.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();}
             } catch (IOException ex) {
                 Logger.getLogger(AfficherForController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -167,6 +177,16 @@ public class CoursListeController  implements Initializable{
 
     @FXML
     private void gotoform(ActionEvent event) {
+        
+          try {
+              Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+              Scene scene = new Scene(page1);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
+          } catch (IOException ex) {
+              Logger.getLogger(CoursListeController.class.getName()).log(Level.SEVERE, null, ex);
+          }
     }
 
     @FXML

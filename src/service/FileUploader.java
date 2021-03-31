@@ -15,8 +15,8 @@ import java.util.logging.Logger;
 //import javax.swing.text.html.HTML;
 
 public class FileUploader {
-    private static String ScriptsURL = "http://localhost/Formation/";
-    
+   // private static String ScriptsURL = "http://localhost/Formation/";
+     private static String ScriptsURL = "http://localhost/PI/";
     public static String upload(String path){
         try {
             HttpURLConnection httpUrlConnection = (HttpURLConnection)new URL(ScriptsURL+"upload.php").openConnection();// url class: to open a connection to the file we want to download.

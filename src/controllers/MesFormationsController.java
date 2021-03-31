@@ -32,7 +32,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import Iservice.MyListenerF;
-
+import service.UserService;
 /**
  * FXML Controller class
  *
@@ -47,19 +47,7 @@ public class MesFormationsController implements Initializable {
     @FXML
     private Button note;
     @FXML
-    private Button gest;
-    @FXML
-    private Button mdp;
-    @FXML
-    private Button role;
-    @FXML
-    private Button event;
-    @FXML
-    private Button favoris;
-    @FXML
     private Button form;
-    @FXML
-    private Button event1;
     @FXML
     private Button back;
 
@@ -71,26 +59,41 @@ public class MesFormationsController implements Initializable {
       private MyListenerF myListener;
     private List<Formation> listforInscrit =new ArrayList<>();
     private FormationServices fs = new FormationServices();
+    @FXML
+    private Button home;
+    @FXML
+    private Button emploi;
+    @FXML
+    private Button form1;
+    @FXML
+    private Button events;
+    @FXML
+    private Button oeuvres;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        listforInscrit.addAll(fs.read(Main.connectedUser.getUser_id()));
+        listforInscrit.addAll(fs.read(UserService.getCurrentUser().getUser_id()));
         if (listforInscrit.size() > 0) {
                System.out.println(listforInscrit.get(0));
                myListener = new MyListenerF() {
                    @Override
                    public void onClickListener(MouseEvent event, Formation f) {
-                          try {
-                            AfficherForController.setF(f);
-                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AfficherFor.fxml"));
-                            Scene scene = new Scene(page1);
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(scene); 
-                            stage.show();
-                        } 
-                          catch (IOException ex) {
-                            Logger.getLogger(AdminNotifController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                          
+                       try {
+                           AfficherForController.setF(f);
+                           Parent page1 = FXMLLoader.load(getClass().getResource("/views/AfficherFor.fxml"));
+                           Scene scene = new Scene(page1);
+                           Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                           stage.setScene(scene);
+                           stage.show();
+                       } catch (IOException ex) {
+                           Logger.getLogger(MesFormationsController.class.getName()).log(Level.SEVERE, null, ex);
+                       }
+                       
                    } 
 
                    @Override
@@ -104,13 +107,14 @@ public class MesFormationsController implements Initializable {
                        }
         int column = 0;
             int row = 1;
-            try {
+           
                 for (int i = 0; i < listforInscrit.size(); i++) {
 
-                   FXMLLoader fxmlLoader = new FXMLLoader();
-                   fxmlLoader.setLocation(getClass().getResource("/views/affichage.fxml"));
-                   AnchorPane anchorPane = fxmlLoader.load();
-                   AffichageController itemController = fxmlLoader.getController();
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/views/affichage.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                AffichageController itemController = fxmlLoader.getController();
                 itemController.setData(listforInscrit.get(i),myListener);
 
                 if (column == 3) {
@@ -126,11 +130,12 @@ public class MesFormationsController implements Initializable {
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
                 GridPane.setMargin(anchorPane, new Insets(10));
+            } catch (IOException ex) {
+                Logger.getLogger(MesFormationsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 }
               
-                } catch (IOException ex) {
-                   Logger.getLogger(AdminNotifController.class.getName()).log(Level.SEVERE, null, ex);
-               }
+               
             
     }    
 
@@ -138,15 +143,52 @@ public class MesFormationsController implements Initializable {
     private void notation(ActionEvent event) {
     }
 
+//    @FXML
+//    private void backClient(ActionEvent event) throws IOException {
+//        
+//        Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+//                            Scene scene = new Scene(page1);
+//                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                            stage.setScene(scene); 
+//                            stage.show(); 
+//        
+//    }
+
     @FXML
-    private void backClient(ActionEvent event) throws IOException {
-        
-        Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
-                            Scene scene = new Scene(page1);
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(scene); 
-                            stage.show(); 
-        
+    private void accueil(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/InscriptionForm.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene); 
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MesFormationsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void allerauxoeuvres(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
     }
     
 }

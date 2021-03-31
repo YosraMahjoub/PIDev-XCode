@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="581.0" prefWidth="780.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controllers.AfficherCoursFiles">
+<AnchorPane id="AnchorPane" prefHeight="581.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherCoursFiles">
    <children>
-      <TextArea fx:id="linesTextArea" layoutX="40.0" layoutY="51.0" prefHeight="530.0" prefWidth="740.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="51.0" />
-      <Button fx:id="back" alignment="CENTER" blendMode="SRC_ATOP" layoutX="40.0" layoutY="14.0" mnemonicParsing="false" onAction="#backFor" prefHeight="31.0" prefWidth="68.0" style="-fx-background-color: #414E4D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Retour" textAlignment="CENTER" underline="true">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
+      <TextArea fx:id="linesTextArea" layoutY="51.0" prefHeight="530.0" prefWidth="780.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="51.0" />
    </children>
 </AnchorPane>

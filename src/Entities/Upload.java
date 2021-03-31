@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Radhi
+ * @author Hela
  */
 public class Upload {
     public String upload(File file) throws FileNotFoundException, IOException {
@@ -25,7 +25,8 @@ public class Upload {
         
         BufferedOutputStream stream = null;//increase the performance
         
-        String globalPath="C:\\xampp\\htdocs\\Formation\\Images";
+       // String globalPath="C:\\xampp\\htdocs\\Formation\\Images";
+        String globalPath="C:\\xampp\\htdocs\\PI\\IMG";
         String localPath="localhost/";
         String fileName = file.getName();
         fileName=fileName.replace(" ", "_");
