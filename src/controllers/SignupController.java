@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import entities.Upload;
 import entities.User;
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,6 +31,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
+import service.FileUploader;
 import service.UserService;
 import utils.controlsaisie;
 import utils.hashpassword;
@@ -65,6 +67,8 @@ public class SignupController implements Initializable {
     private User user;
     @FXML
     private Button btnconn;
+    @FXML
+    private TextField imgpath;
 
    
     /**
@@ -110,27 +114,35 @@ public class SignupController implements Initializable {
             
             
             
-            User p = new User(nom.getText(), prenom.getText(), username.getText(),hashp,adresse.getText(),Integer.parseInt(num_tel.getText()),email.getText() );
+            User p = new User(nom.getText(), prenom.getText(), username.getText(),hashp,adresse.getText(),Integer.parseInt(num_tel.getText()),email.getText(),file.getName());
             pdao.insert(p);
             
             
             User obj = pdao.displayEP(email.getText(), hashp);
             UserService.setCurrentUser(obj);
            
-           
+           Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+           Parent page1=null;
             if(obj.getRole().toLowerCase().contains("admin")){
                     try { 
-                        Parent page1  = FXMLLoader.load(getClass().getResource("/views/adminconfirmail.fxml"));
+                        page1  = FXMLLoader.load(getClass().getResource("/views/adminconfirmail.fxml"));
                     } catch (IOException ex) {
                         Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
                     }
             }else{
                     try {
-                        Parent page1 = FXMLLoader.load(getClass().getResource("/views/confiremail.fxml"));
+                        page1 = FXMLLoader.load(getClass().getResource("/views/confiremail.fxml"));
                     } catch (IOException ex) {
                         Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                      }
+             //Parent page1 = FXMLLoader.load(getClass().getResource("/view/Userprofil.fxml"));
+                     Scene scene = new Scene(page1);
+                     stage.setScene(scene);
+                     
+//                     User i = UserService.getCurrentUser();
+//                     System.out.println(i.toString());
+                     stage.show();
              
             }});
         btnconn.setOnAction(event -> {
@@ -147,7 +159,7 @@ public class SignupController implements Initializable {
                
         });
         
-        
+       
         
         
                 }    
@@ -155,21 +167,34 @@ public class SignupController implements Initializable {
     @FXML
     private void Chercheimg(MouseEvent event) throws IOException {
         Stage primary = new Stage();
-       File dest =new File("C:\\xampp\\htdocs\\PI\\IMG");
+       //File dest =new File("C:\\xampp\\htdocs\\PI\\IMG");
         
         FileChooser filechooser = new FileChooser();
         filechooser.setInitialDirectory(new File("C:\\"));
         filechooser.setTitle("insérer image");
         filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         file = filechooser.showOpenDialog(primary);
-        FileUtils.copyFileToDirectory(file, dest);
+//        FileUtils.copyFileToDirectory(file, dest);
+//        
+//        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
+//
+//        FileInputStream input2 = new FileInputStream(newFile2);
+//        Image image2 = new Image(input2);
+//        img.setImage(image2);
         
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
-
-        FileInputStream input2 = new FileInputStream(newFile2);
-        Image image2 = new Image(input2);
-        img.setImage(image2);
-        
+        if(file!=null){
+            Upload u = new Upload();
+            u.upload(file);
+            imgpath.setText(file.getAbsolutePath());
+            img.setImage(new Image("http://localhost/PI/IMG/" +file.getName()));
+        }else{
+            System.out.println("image introuvable");
+        }
     }
+    
+    public void imgggg(){
+     String textTOimg = imgpath.getText();
+        textTOimg = FileUploader.upload(textTOimg);
+        textTOimg="http://localhost/PI/IMG"+ textTOimg;}
     
 }

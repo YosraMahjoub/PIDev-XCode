@@ -22,7 +22,7 @@ public class EmailSend {
         //System.out.println(colorCode);
 
     public static String SendMail(String mail) throws MessagingException, UnsupportedEncodingException{
-        Email email = new Email("mariem.arif@esprit.tn", "203@JFT1500");
+        Email email = new Email("mariem.arif@esprit.tn", "@203@JFT1500");
    
         Random obj = new Random();
         int rand_num = obj.nextInt(0xffffff + 1);

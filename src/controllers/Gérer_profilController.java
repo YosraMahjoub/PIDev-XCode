@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import entities.Upload;
 import entities.User;
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,6 +36,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
+import service.FileUploader;
 import service.UserService;
 import utils.controlsaisie;
 
@@ -53,7 +55,6 @@ public class Gérer_profilController implements Initializable {
     private TextField text_adresse;
     @FXML
     private TextField text_num;
-    @FXML
     private TextField text_email;
     @FXML
     private TextField test_bio;
@@ -87,6 +88,7 @@ public class Gérer_profilController implements Initializable {
     private Label err_email;
     @FXML
     private Label err_username;
+    @FXML
     private ImageView img;
     private User user;
     File file;
@@ -104,6 +106,8 @@ public class Gérer_profilController implements Initializable {
     private Button btnannuler;
     @FXML
     private Button apprentissage;
+    @FXML
+    private TextField imgpath;
 
     /**
      * Initializes the controller class.
@@ -121,9 +125,9 @@ public class Gérer_profilController implements Initializable {
         text_username.setText(obj.getUsername());
         text_adresse.setText(obj.getAdresse());
         text_num.setText(String.valueOf(obj.getNum_tel()));
-        text_email.setText(obj.getEmail());
-        test_bio.setText(obj.getBio());
         
+        test_bio.setText(obj.getBio());
+        img.setImage(new Image("http://localhost/PI/IMG/" +obj.getImage()));
         
         
         
@@ -133,15 +137,15 @@ public class Gérer_profilController implements Initializable {
             if (text_nom.getText().isEmpty()
                     || text_prenom.getText().isEmpty()
                     || text_username.getText().isEmpty()
-                    || text_adresse.getText().isEmpty()
-                    || text_email.getText().isEmpty()) {
+                    || text_adresse.getText().isEmpty())
+                    {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
 
                 alert.setHeaderText("Veuillez remplir tous les champs");
                 alert.showAndWait();
             } else {
                 
-                User p = new User(text_nom.getText(), text_prenom.getText(), text_username.getText(), text_adresse.getText(), Integer.parseInt(text_num.getText()), text_email.getText(), test_bio.getText() );
+                User p = new User(text_nom.getText(), text_prenom.getText(), text_username.getText(), text_adresse.getText(), Integer.parseInt(text_num.getText()),  test_bio.getText(),file.getName() );
             
                
                 System.out.println(id);
@@ -273,23 +277,37 @@ public class Gérer_profilController implements Initializable {
         }
     }
 
-    private void Chercheimg(MouseEvent event) throws FileNotFoundException, IOException {
+   @FXML
+    private void Chercheimg(MouseEvent event) throws IOException {
         Stage primary = new Stage();
-        File dest = new File("C:\\xampp\\htdocs\\PI\\IMG");
-
+       //File dest =new File("C:\\xampp\\htdocs\\PI\\IMG");
+        
         FileChooser filechooser = new FileChooser();
         filechooser.setInitialDirectory(new File("C:\\"));
         filechooser.setTitle("insérer image");
         filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         file = filechooser.showOpenDialog(primary);
-        FileUtils.copyFileToDirectory(file, dest);
-
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
-
-        FileInputStream input2 = new FileInputStream(newFile2);
-        Image image2 = new Image(input2);
-        img.setImage(image2);
-
+//        FileUtils.copyFileToDirectory(file, dest);
+//        
+//        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
+//
+//        FileInputStream input2 = new FileInputStream(newFile2);
+//        Image image2 = new Image(input2);
+//        img.setImage(image2);
+        
+        if(file!=null){
+            Upload u = new Upload();
+            u.upload(file);
+            imgpath.setText(file.getAbsolutePath());
+            img.setImage(new Image("http://localhost/PI/IMG/" +file.getName()));
+        }else{
+            System.out.println("image introuvable");
+        }
     }
+     public void imgggg(){
+     String textTOimg = imgpath.getText();
+        textTOimg = FileUploader.upload(textTOimg);
+        textTOimg="http://localhost/PI/IMG"+ textTOimg;}
+    
 
 }

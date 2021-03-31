@@ -24,6 +24,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import service.RelationsService;
@@ -71,6 +74,10 @@ public class ProfilController implements Initializable {
     private HBox hello;
     @FXML
     private Button ADD;
+    @FXML
+    private ImageView img;
+    @FXML
+    private TextField imgpath;
 
     /**
      * Initializes the controller class.
@@ -87,6 +94,7 @@ public class ProfilController implements Initializable {
         label_nom.setText(u.getUsername());
         label_bio.setText(u.getBio());
         label_role.setText(pdao.displayrole(u.getUsername()));
+        img.setImage(new Image("http://localhost/PI/IMG/" +u.getImage()));
         list = rela.displayByfolloweeId(u.getUser_id());
        
         int x = rela.existfollow(o);

@@ -24,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -94,6 +95,8 @@ public class UserprofilController implements Initializable {
     private Button apprentissage;
     @FXML
     private Label username;
+    @FXML
+    private ImageView img;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     
@@ -114,6 +117,7 @@ public class UserprofilController implements Initializable {
         label_adresse.setText(obj.getAdresse());
         label_tel.setText(String.valueOf(obj.getNum_tel()));
         label_bio.setText(obj.getBio());
+        img.setImage(new Image("http://localhost/PI/IMG/" +obj.getImage()));
         if(!pdao.checknum(UserService.getCurrentUser().getEmail())){
             confirmer_num.setVisible(true);
         }else{
@@ -215,19 +219,7 @@ public class UserprofilController implements Initializable {
 
     }
 
-    @FXML
-    private void gotooeuvre(ActionEvent event) {
-     
-                 try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/views/affmesoeuvres.fxml"));
-                Scene scene = new Scene(page1);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
+    
      private Optional<ButtonType> alert(String x){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle(" supprimer ");

@@ -46,8 +46,8 @@ public class UserService implements Idao<User>{
     
     @Override
     public void insert(User user) {
-        String req= "INSERT INTO user( `nom`, `prenom`, `username`, `password`,  `adresse`, `num_tel`, `email` ,`validité`, `mailconfirmé`,`numconfirmé`,`role` )"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        String req= "INSERT INTO user( `nom`, `prenom`, `username`, `password`,  `adresse`, `num_tel`, `email` ,`validité`, `mailconfirmé`,`numconfirmé`,`role` ,`avertissement`,`image`)"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps;
         try { 
             ps =conn.prepareStatement(req); 
@@ -63,6 +63,9 @@ public class UserService implements Idao<User>{
             ps.setInt(9, 0);
             ps.setInt(10, 0);
             ps.setString(11, "client");
+             ps.setInt(12, 0);
+             
+             ps.setString(13, user.getImage());
             
             //ps.setString(9,user.getImage());
 
@@ -75,7 +78,7 @@ public class UserService implements Idao<User>{
     
     }
     public void UpdateGérer(User user , int id) {
-        String req= "Update  user set `nom`=?, `prenom`=?, `username`=?, `adresse`=?, `num_tel`=?, `email`=?, `bio`=? where `user_id`=?";
+        String req= "Update  user set `nom`=?, `prenom`=?, `username`=?, `adresse`=?, `num_tel`=?, `bio`=? ,`image`=? where `user_id`=?";
         PreparedStatement ps;
         try { 
             ps =conn.prepareStatement(req); 
@@ -86,9 +89,10 @@ public class UserService implements Idao<User>{
             
             ps.setString(4,user.getAdresse());
             ps.setInt(5,user.getNum_tel()) ; 
-            ps.setString(6,user.getEmail()) ;
+          
             
-            ps.setString(7,user.getBio());
+            ps.setString(6,user.getBio());
+            ps.setString(7,user.getImage());
             ps.setInt(8,id);
 
 
@@ -143,7 +147,7 @@ public class UserService implements Idao<User>{
                 String nom=res.getString("nom"); 
                 String prenom=res.getString("prenom");
                 String image=res.getString("image"); 
-                User user = new User(id, userName, nom, prenom, email);
+                User user = new User(id, userName, nom, prenom, email,image);
                 list.add(user);
             }
         }
@@ -174,7 +178,7 @@ public class UserService implements Idao<User>{
                 String nom=res.getString("nom"); 
                 String prenom=res.getString("prenom");
                 String image=res.getString("image"); 
-                User user = new User(id, userName, nom, prenom, email);
+                User user = new User(id, userName, nom, prenom, email,image);
                 list.add(user);
             }
         }
@@ -302,7 +306,7 @@ public class UserService implements Idao<User>{
             obj.setPrenom(rs.getString("prenom"));
             obj.setBio(rs.getString("bio"));
             obj.setAdresse(rs.getString("adresse"));
-            //obj.setImage(rs.getString("image"));
+            obj.setImage(rs.getString("image"));
             int x = rs.getInt("validité");
             if(x==1){
                  obj.setValidité("valide");
@@ -365,8 +369,8 @@ public class UserService implements Idao<User>{
             int is_vendeur = rs.getInt("is_vendeur");
             
             if(is_formateur==0){x="formateur" ;}
-            if(is_recruteur==0){x= " / "+"recruteur";}
-            if(is_vendeur==0){x= " / "+"vendeur";}
+            if(is_recruteur==0){x= "recruteur";}
+            if(is_vendeur==0){x= "vendeur";}
             return x; }
         } catch(Exception e)
         {
@@ -629,7 +633,7 @@ public class UserService implements Idao<User>{
                 String nom=res.getString("nom"); 
                 String prenom=res.getString("prenom");
                 String image=res.getString("image"); 
-                User user = new User(id,userName, nom,prenom, email);
+                User user = new User(id,userName, nom,prenom, email,image);
                 list.add(user);
             }
         } catch(Exception e)
@@ -653,7 +657,7 @@ public class UserService implements Idao<User>{
                 String nom=res.getString("nom"); 
                 String prenom=res.getString("prenom");
                 String image=res.getString("image"); 
-                User user = new User(id,userName, nom,prenom, email);
+                User user = new User(id,userName, nom,prenom, email,image);
                 list.add(user);
             }
         } catch(Exception e)
@@ -682,7 +686,7 @@ public class UserService implements Idao<User>{
                 String nom=res.getString("nom"); 
                 String prenom=res.getString("prenom");
                 String image=res.getString("image"); 
-                User user = new User(id,userName, nom,prenom, email);
+                User user = new User(id,userName, nom,prenom, email,image);
                 list.add(user);
             }
         } catch(Exception e)

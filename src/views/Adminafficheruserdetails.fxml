@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -13,19 +14,20 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminAfficheruserdetailsController">
    <children>
+      <ImageView fx:id="img" fitHeight="179.0" fitWidth="253.0" layoutX="758.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" />
       <VBox layoutX="266.0" layoutY="98.0" prefHeight="532.0" prefWidth="545.0">
          <children>
             <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Informations utilisateur" translateX="40.0" translateY="20.0" />
-            <HBox prefHeight="30.0" prefWidth="552.0" style="-fx-background-color: #f4f0f0;" translateY="90.0">
+            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="548.0" translateY="95.0">
                <children>
-                  <Separator orientation="VERTICAL" prefHeight="200.0" translateX="180.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Nom :" translateX="210.0" />
-                  <Label fx:id="label_nom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom" translateX="220.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Prenom :" translateX="290.0" />
-                  <Label fx:id="label_prenom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="prenom" translateX="300.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Username" translateX="-170.0" />
-                  <Label fx:id="label_username" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom" translateX="-160.0" />
-                  <Separator orientation="VERTICAL" prefHeight="200.0" translateX="30.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Username" translateX="-40.0" />
+                  <Label fx:id="label_username" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom" translateX="-35.0" />
+                  <Separator orientation="VERTICAL" prefHeight="200.0" translateX="-12.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Nom :" />
+                  <Label fx:id="label_nom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="Nom" translateX="5.0" />
+                  <Separator orientation="VERTICAL" prefHeight="200.0" translateX="20.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em;" text="Prenom :" translateX="25.0" />
+                  <Label fx:id="label_prenom" style="-fx-font-size: 1.3em; -fx-text-fill: #343E3D;" text="prenom" translateX="30.0" />
                </children>
             </HBox>
             <HBox prefHeight="37.0" prefWidth="460.0" style="-fx-background-color: #f4f0f0;" translateY="110.0">
@@ -219,6 +221,14 @@
          </children>
       </VBox>
       <Button fx:id="retour" blendMode="SRC_ATOP" layoutX="831.0" layoutY="560.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #414e4d; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Retour" textAlignment="CENTER" translateX="-20.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="reclamation1" blendMode="SRC_ATOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: #343E3D;" text="Les réclamations" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

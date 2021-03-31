@@ -120,7 +120,7 @@ public class login implements Initializable {
                     else{
                     
                      if(obj.getRole().toLowerCase().contains("admin")){
-                    page1  = FXMLLoader.load(getClass().getResource("/views/admin_reclamations.fxml")); 
+                    page1  = FXMLLoader.load(getClass().getResource("/views/adminprofil.fxml")); 
                      }else{
                     page1 = FXMLLoader.load(getClass().getResource("/views/Userprofil.fxml"));
                      }

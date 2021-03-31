@@ -54,16 +54,17 @@
                         <Font name="Segoe UI" size="12.0" />
                      </font>
                   </Label>
-                  <HBox maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;" translateY="65.0">
+                  <TextField fx:id="imgpath" opacity="0.0" prefHeight="25.0" prefWidth="238.0" translateY="55.0" />
+                  <HBox maxWidth="-Infinity" prefHeight="19.0" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;" translateY="60.0">
                      <children>
-                        <TextField fx:id="email" prefHeight="31.0" prefWidth="250.0" promptText="email" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="email" prefHeight="11.0" prefWidth="250.0" promptText="email" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
+                  <HBox maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;" translateY="-5.0">
                      <VBox.margin>
                         <Insets top="70.0" />
                      </VBox.margin>

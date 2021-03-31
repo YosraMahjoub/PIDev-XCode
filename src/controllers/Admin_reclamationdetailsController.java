@@ -153,7 +153,7 @@ public class Admin_reclamationdetailsController implements Initializable {
         });
         
         consulter_profil.setOnAction(event -> {
-            AdminAfficheruserdetailsController.setX(re.getReclamation_id());
+            AdminAfficheruserdetailsController.setX(5);
             AdminAfficheruserdetailsController.setI(i);
              try {
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficheruserdetails.fxml"));

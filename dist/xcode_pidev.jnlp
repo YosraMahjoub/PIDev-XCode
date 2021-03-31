@@ -21,7 +21,7 @@
     <jar href="lib\org.apache.commons.io.jar" size="83613" download="eager" />
     <jar href="lib\techsoftemail.jar" size="3878" download="eager" />
     <jar href="lib\twilio-0.0.1-jar-with-dependencies.jar" size="8300618" download="eager" />
-    <jar href="xcode_pidev.jar" size="2635970" download="eager" />
+    <jar href="xcode_pidev.jar" size="2640335" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="xcode_pidev" >
     <param name="requiredFXVersion" value="8.0+"/>

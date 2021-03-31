@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -50,6 +51,7 @@ public class AffuserController implements Initializable {
         this.u=u;
         this.myListener=myListener;
         username.setText(u.getUsername());
+        img.setImage(new Image("http://localhost/PI/IMG/" +u.getImage()));
         
     }
 }

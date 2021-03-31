@@ -22,6 +22,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -84,6 +86,10 @@ public class AdminAfficheruserdetailsController implements Initializable {
     private Button ADD;
     @FXML
     private Button btnsupp;
+    @FXML
+    private ImageView img;
+    @FXML
+    private Button reclamation1;
     
 
     /**
@@ -105,15 +111,32 @@ public class AdminAfficheruserdetailsController implements Initializable {
         label_tel.setText(String.valueOf(obj.getNum_tel()));
         label_bio.setText(obj.getBio());
         label_role.setText(obj.getRole());
+        img.setImage(new Image("http://localhost/PI/IMG/" +obj.getImage()));
         String value = "";
         label_role.setText(value);
         label_statut.setText(obj.getValidité());
-        if(x!=0){
+        if(x==5){
             retour.setVisible(true);
             retour.setOnAction(event -> {
                 try {
                 
                 Parent page1 = FXMLLoader.load(getClass().getResource("/views/admin_reclamationdetails.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            });
+        }
+        if(x==0){
+            retour.setVisible(true);
+            retour.setOnAction(event -> {
+                try {
+                
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/Adminafficher_user.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
