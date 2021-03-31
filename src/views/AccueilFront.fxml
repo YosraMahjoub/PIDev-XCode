@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AccueilFrontController">
+    <stylesheets>
+        <URL value="@../Style/accueilfront.css" />
+    </stylesheets>
+     <children>
+      <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <VBox prefHeight="744.0" prefWidth="834.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="69.0" prefWidth="522.0">
+                     <children>
+                        <TextField fx:id="recho" prefHeight="40.0" prefWidth="398.0" promptText="tapez ici le nom" styleClass="transparent" stylesheets="@../Style/affmesoeuves.css">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria Bold" size="18.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="rechbtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="44.0" styleClass="search-button" stylesheets="@../Style/affmesoeuves.css" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="18" />
+                           </graphic>
+                        </Button>
+                     </children>
+                     <styleClass>
+                        <String fx:value="search-box" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </HBox>
+                  <ScrollPane fx:id="scrolaccueil" prefHeight="488.0" prefWidth="1000.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="495.0" prefWidth="910.0">
+                           <children>
+                              <VBox layoutX="-3.0">
+                                 <children>
+                                    <Label text="Nos Oeuvres">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="BASELINE_CENTER" prefHeight="111.0" prefWidth="979.0">
+                                       <children>
+                                          <ScrollPane fx:id="scrollO11" minHeight="-Infinity" minWidth="-Infinity" prefHeight="115.0" prefWidth="971.0" styleClass="transparent" stylesheets="@../Style/affmesoeuves.css" HBox.hgrow="NEVER">
+                                             <content>
+                                                <GridPane fx:id="grido" prefHeight="0.0" prefWidth="0.0">
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                                   </rowConstraints>
+                                                </GridPane>
+                                             </content>
+                                             <HBox.margin>
+                                                <Insets top="9.0" />
+                                             </HBox.margin>
+                                          </ScrollPane>
+                                       </children>
+                                    </HBox>
+                                    <Label prefHeight="17.0" prefWidth="380.0" text="Nos événements">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="BASELINE_CENTER" prefHeight="76.0" prefWidth="1008.0">
+                                       <children>
+                                          <ScrollPane fx:id="scrollO" minHeight="-Infinity" minWidth="-Infinity" prefHeight="139.0" prefWidth="1008.0" styleClass="transparent" stylesheets="@../Style/affmesoeuves.css" HBox.hgrow="NEVER">
+                                             <content>
+                                                <GridPane fx:id="gride" prefHeight="0.0" prefWidth="0.0">
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                                   </rowConstraints>
+                                                </GridPane>
+                                             </content>
+                                             <HBox.margin>
+                                                <Insets top="9.0" />
+                                             </HBox.margin>
+                                          </ScrollPane>
+                                       </children>
+                                    </HBox>
+                                    <Label text="Nos formations">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="BASELINE_CENTER" prefHeight="69.0" prefWidth="934.0">
+                                       <children>
+                                          <ScrollPane fx:id="scrollO1" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="956.0" styleClass="transparent" stylesheets="@../Style/affmesoeuves.css" HBox.hgrow="NEVER">
+                                             <content>
+                                                <GridPane fx:id="gridf" prefHeight="0.0" prefWidth="0.0">
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                                   </rowConstraints>
+                                                </GridPane>
+                                             </content>
+                                             <HBox.margin>
+                                                <Insets top="9.0" />
+                                             </HBox.margin>
+                                          </ScrollPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </center>
+         <top>
+            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="1000.0" style="-fx-background-color: #343E3D;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Formations" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="MORTAR_BOARD" size="22" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Evénements" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="22" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Profil" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="USER" size="22" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_IN" size="22" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+      <FontAwesomeIconView />
+   </children>
+</AnchorPane>

@@ -63,6 +63,7 @@ public class User {
         
         this.email=email;
     }
+
     public User(int user_id,String username ,String nom,String prenom, String email,String image){
         
         this.user_id=user_id;
@@ -73,6 +74,7 @@ public class User {
         this.email=email;
     }
 
+
     public User(String email, String password) {
             this.email=email;
             this.password=password; 
@@ -82,12 +84,19 @@ public class User {
             
             this.password=password; 
     }
+
+    public User(String nom, String prenom, String username,String adresse, int num_tel, String email, String bio) {
+
     public User(String nom, String prenom, String username,String adresse, int num_tel,  String bio,String image) {
+
         this.prenom=prenom;
         this.username=username;
         this.num_tel= num_tel;
         this.nom=nom;
-        
+
+        this.email=email;
+
+
         this.adresse=adresse;
         this.bio=bio;
         this.image=image;
@@ -103,7 +112,11 @@ this.prenom=prenom;
         this.adresse=adresse;    }
     
 
+
+    public User(String nom, String prenom, String username,String password, String adresse, int num_tel, String email) {
+
     public User(String nom, String prenom, String username,String password, String adresse, int num_tel, String email,String image) {
+
 this.prenom=prenom;
         this.username=username;
         this.num_tel= num_tel;
