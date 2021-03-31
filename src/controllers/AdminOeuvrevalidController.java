@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import static controllers.ModiferOController.s;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -83,8 +84,8 @@ public class AdminOeuvrevalidController implements Initializable {
        if (a.getIsvalid()==2){
            supprimer.setVisible(false);
        }
-         File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + a.getImg());
-          imgV.setImage(new Image(newFile2.toURI().toString()));
+         
+          imgV.setImage(new Image("http://localhost/PI/IMG/"+ s.getImg()));
           anomo.setText("Nom :\n "+ a.getNom());
           aprixo.setText("Prix :\n "+ String.valueOf(a.getPrix())+" DT");
           adesco.setText("A propos : \n" +a.getDescription());

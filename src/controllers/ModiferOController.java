@@ -109,8 +109,7 @@ public class ModiferOController implements Initializable {
         qteo.setValueFactory(valueFactory); 
         
         try {
-         File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + s.getImg());
-          imgV.setImage(new Image(newFile2.toURI().toString()));
+          imgV.setImage(new Image("http://localhost/PI/IMG/"+ s.getImg()));
           imgV.setFitHeight(172);
         imgV.setFitWidth(242);
           nomo.setText(s.getNom());
@@ -187,6 +186,17 @@ public class ModiferOController implements Initializable {
 
     @FXML
     private void allerauxoeuvres(ActionEvent event) {
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/views/consulterlesoeuvres.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ModiferOController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 
@@ -209,8 +219,7 @@ public class ModiferOController implements Initializable {
     @FXML
     private void annuler(ActionEvent event) {
        try {
-         File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + s.getImg());
-          imgV.setImage(new Image(newFile2.toURI().toString()));
+          imgV.setImage(new Image("http://localhost/PI/IMG/"+ s.getImg()));
           nomo.setText(s.getNom());
           prixo.setText(String.valueOf(s.getPrix()));
           desco.setText(s.getDescription());

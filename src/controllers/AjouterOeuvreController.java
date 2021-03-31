@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import entities.Oeuvre;
+import entities.Upload;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.Optional;
@@ -40,6 +41,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.OeuvrageService;
 import org.apache.commons.io.FileUtils;
+import service.FileUploader;
 import utils.ControleSaisie;
 
 /**
@@ -111,6 +113,7 @@ public class AjouterOeuvreController implements Initializable {
  
         qteo.setValueFactory(valueFactory);   
        
+    
     } 
     
     
@@ -166,6 +169,10 @@ public class AjouterOeuvreController implements Initializable {
             alert.setContentText("oeuvre ajouté avec sucèes ☺ ");
             alert.showAndWait();
         }
+        
+        String textTOimg = txtimg.getText();
+        textTOimg = FileUploader.upload(textTOimg);
+        textTOimg="http://localhost/PI/IMG/"+textTOimg;
     }
 
     @FXML
@@ -177,27 +184,31 @@ public class AjouterOeuvreController implements Initializable {
     @FXML
     private void chercherI(ActionEvent event) throws FileNotFoundException, IOException  {
 
-Stage primary = new Stage();
-       File dest =new File("C:\\xampp\\htdocs\\PI\\IMG");
+        Stage primary = new Stage();
         
+//        File dest =new File("C:\\xampp\\htdocs\\PI\\IMG");
         FileChooser filechooser = new FileChooser();
         filechooser.setInitialDirectory(new File("C:\\Users\\pc\\Desktop\\IMAGE"));
         filechooser.setTitle("insérer image");
+        
         filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         file = filechooser.showOpenDialog(primary);
-        FileUtils.copyFileToDirectory(file, dest);
+//        FileUtils.copyFileToDirectory(file, dest);
         
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
-        FileInputStream input2 = new FileInputStream(newFile2);
-        Image image2 = new Image(input2);
-        txtimg.setText(newFile2.getName());
-        imgV.setImage(image2);
-        
-        System.out.println(txtimg.getText());
+//        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + file.getName());
+//        FileInputStream input2 = new FileInputStream(newFile2);
+//        Image image2 = new Image(input2);
+//        txtimg.setText(newFile2.getName());
+//        imgV.setImage(image2);
+//        
+//        System.out.println(txtimg.getText());
+
         if(file!=null)
         {
-        txtimg.setVisible(true);
-        txtimg.setText(file.getName());
+       Upload u = new Upload();
+       u.upload(file);
+       txtimg.setText(file.getAbsolutePath());
+       imgV.setImage(new Image("http://localhost/PI/IMG/"+ file.getName()));
      
         }
     else {
@@ -222,10 +233,7 @@ Stage primary = new Stage();
     @FXML
     private void verifNom(KeyEvent event) {
         if (!controle.controleTextFieldOnlyLetters(nomo, "que des lettres", errornom)) 
-         {
-           
-       ;
-        }
+         { }
       
        
     }
@@ -233,10 +241,7 @@ Stage primary = new Stage();
     @FXML
     private void verifprix(KeyEvent event) {
         if (!controle.controleTextFieldChiffres(prixo, "que des chiffres", errorprix)) 
-         {
-           
-       ;
-        }
+         { }
     }
 
     @FXML
@@ -252,6 +257,17 @@ Stage primary = new Stage();
 
     @FXML
     private void allerauxoeuvres(ActionEvent event) {
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/views/consulterlesoeuvres.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjouterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 

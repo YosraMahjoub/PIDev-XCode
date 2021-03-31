@@ -43,6 +43,7 @@ import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 import Iservice.MyListener;
+import entities.ElementPanier;
 import entities.Oeuvre;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -99,8 +100,8 @@ public class AdminconsulterOeuvreController implements Initializable {
         ObservableList<String> vald = FXCollections.observableArrayList("oeuvre validé", "oeuvre en attente","oeuvre non validé");
         combov.setItems(vald);
         
-        
-         if (os.nbNV(0)>= 1){
+        //        changer 1 par id
+         if (os.nbNV(0,1)>= 1){
          
         String titre = "Oeuvre non valid ";
         String msg = "vous avez des noeuveux oeuvres non valid ! Veuillez les voir ";
@@ -168,6 +169,9 @@ public class AdminconsulterOeuvreController implements Initializable {
 
                     @Override
                     public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
+
+                    @Override
+                    public void onClickListener(ElementPanier facture) {  }
                 };
             }
            int column = 0;
@@ -299,6 +303,9 @@ public class AdminconsulterOeuvreController implements Initializable {
 
                     @Override
                     public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
+
+                    @Override
+                    public void onClickListener(ElementPanier facture) { }
                 };
             }
            grid.getChildren().clear();
@@ -409,6 +416,9 @@ public class AdminconsulterOeuvreController implements Initializable {
 
               @Override
               public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
+
+              @Override
+              public void onClickListener(ElementPanier facture) {  }
                 };
            
            grid.getChildren().clear();
@@ -467,6 +477,9 @@ public class AdminconsulterOeuvreController implements Initializable {
 
               @Override
               public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
+
+              @Override
+              public void onClickListener(ElementPanier facture) { }
                 };
            
            grid.getChildren().clear();
@@ -515,6 +528,9 @@ public class AdminconsulterOeuvreController implements Initializable {
 
               @Override
               public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
+
+              @Override
+              public void onClickListener(ElementPanier facture) {  }
                 };
            grid.getChildren().clear();
            int column = 0;

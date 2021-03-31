@@ -8,6 +8,7 @@ import animatefx.animation.FadeIn;
 import animatefx.animation.Flash;
 import animatefx.animation.Tada;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import entities.ElementPanier;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,9 +43,12 @@ import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 import entities.Oeuvre;
+import entities.PanierHolder;
 import entities.RatingO;
+import java.util.List;
 import service.FavorisOService;
 import service.RatigoService;
+import service.cmdservices;
 
 /**
  * FXML Controller class
@@ -73,6 +77,7 @@ public class RatingoController implements Initializable {
      
      RatigoService rs = new RatigoService();
      FavorisOService fs = new FavorisOService();
+     cmdservices os = new cmdservices();
      
     /**
      * Initializes the controller class.
@@ -107,15 +112,19 @@ public class RatingoController implements Initializable {
     private Button panier;
     @FXML
     private Button reclam;
+    @FXML
+    private Button p;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
 //        AJOUTER AUX FAVORIS
-        if (fs.isclicked(a)!=0){ 
+
+//changer 1 par id
+        if (fs.isclicked(a,1)!=0){ 
             heart.setStyle("-fx-background-color: #A65959; "); 
         }
-        else if(fs.isclicked(a)==0) {
+        else if(fs.isclicked(a,1)==0) {
             heart.setStyle("-fx-background-color: #FFFFFF; ");
              heart.setStyle("-fx-border-color:  #000000 ");
         }
@@ -123,8 +132,7 @@ public class RatingoController implements Initializable {
 //        RATING
          new FadeIn(rats).play();
         
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + a.getImg());
-          imgV.setImage(new Image(newFile2.toURI().toString()));
+          imgV.setImage(new Image("http://localhost/PI/IMG/"+ a.getImg()));
           anomo.setText( a.getNom());
           aprixo.setText("Prix : "+ String.valueOf(a.getPrix())+"DT");
           adesco.setText(a.getDescription());
@@ -187,9 +195,9 @@ public class RatingoController implements Initializable {
     private void noterat(MouseEvent event) {
         
         new Tada(nb).play();
-        
-            if (rs.israted(a)==0){
-        rs.creerRo((float)rats.getRating(),a);
+//        changer 1 par id)
+            if (rs.israted(a,1)==0){
+        rs.creerRo((float)rats.getRating(),a,1);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("RATING ");
             alert.setContentText("note ajouté avec sucèes ☺ ");
@@ -197,7 +205,7 @@ public class RatingoController implements Initializable {
         
     }
     else {
-        rs.modifierRo((float)rats.getRating(),a);
+        rs.modifierRo((float)rats.getRating(),a,1);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("RATTING  ");
             alert.setContentText("votre note a été modifié  ☺ ");
@@ -211,8 +219,9 @@ public class RatingoController implements Initializable {
 
     @FXML
     private void favoris(ActionEvent event) {
-        if (fs.isclicked(a)==0){
-            fs.creerFo(a);
+//        changer 1 par id
+        if (fs.isclicked(a,1)==0){
+            fs.creerFo(a,1);
             heart.setStyle("-fx-background-color: #A65959; "); 
          
         String msg = "Oeuvre ajouté à la liste des favoris ";
@@ -227,7 +236,8 @@ public class RatingoController implements Initializable {
          
         }
         else {
-            fs.supprimerFo( a);
+            //        changer 1 par id
+            fs.supprimerFo(a,1);
             heart.setStyle("-fx-background-color: #FFFFFF; "); 
             heart.setStyle("-fx-border-color:  #000000 ");
             String msg = "Oeuvre suprimé la liste des favoris ";
@@ -247,6 +257,18 @@ public class RatingoController implements Initializable {
 
     @FXML
     private void allerauxoeuvres(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/views/consulterlesoeuvres.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(RatingoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -275,10 +297,90 @@ public class RatingoController implements Initializable {
 
     @FXML
     private void panier(ActionEvent event) {
-    }
+        
+        
+//        changer 1 par id
+        
+    List<ElementPanier> listEOp=PanierHolder.getInstance().getEP();
+                ElementPanier ep=new ElementPanier();
+
+     
+        boolean existsElem=false;
+        int i;
+        for(i=0;i<listEOp.size();i++)
+        {
+            if(listEOp.get(i).getOeuv().equals(a))
+            {
+                existsElem=true;
+                ep=listEOp.get(i);
+                
+                 break;
+            }
+
+        }
+         if (a.getQuantite()==0){
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("hors stock ! ");
+            alert.setContentText("hors stock! ");
+            alert.showAndWait(); 
+        }
+        else {
+        if(!existsElem)
+        {   
+            ep.setOeuv(a);
+            ep.setQuantite(1);
+            listEOp.add(ep);
+            os.createPanierTemp(1,ep.getOeuv().getOeuvrage_id(),ep.getQuantite());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Element ajouté ! ");
+            alert.setContentText("Element ajouté avec sucèes ! ");
+            alert.showAndWait(); 
+        }
+        else
+        {   
+            if(a.getQuantite()>ep.getQuantite())
+            {
+            os.updatePanierTemp(1,ep.getOeuv().getOeuvrage_id(),1);
+            System.out.println(a.getOeuvrage_id()+"    1");
+            ep.setQuantite(ep.getQuantite()+1);
+            
+            listEOp.set(i, ep);
+            
+            
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+         alert.setHeaderText("Element existe ! ");
+            alert.setContentText("Element existe deja, quantité incrementé ! ");
+            alert.showAndWait(); 
+            }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Stock insuffisant ! ");
+            alert.setContentText("Stock insuffisant! ");
+            alert.showAndWait(); 
+            }
+        }
+             
+            PanierHolder.getInstance().setEP(listEOp);
+        
+    }}
 
     @FXML
     private void reclamer(ActionEvent event) {
+    }
+
+    @FXML
+    private void voirpanier(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/views/Panier.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(RatingoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     

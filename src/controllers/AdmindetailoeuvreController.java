@@ -83,8 +83,7 @@ public class AdmindetailoeuvreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + a.getImg());
-          imgV.setImage(new Image(newFile2.toURI().toString()));
+          imgV.setImage(new Image("http://localhost/PI/IMG/"+ a.getImg()));
           anomo.setText("Nom : \n"+ a.getNom());
           aprixo.setText("Prix :\n "+ String.valueOf(a.getPrix())+" DT");
           adesco.setText("A propos :\n " +a.getDescription());

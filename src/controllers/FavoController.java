@@ -68,9 +68,9 @@ public class FavoController implements Initializable {
     private void Afavoris(ActionEvent event) {
         try {
             myListener.onpressed(event, oeuvre);
-            
-            if (fs.isclicked(oi)==0){
-                fs.creerFo(oi);
+            //        changer 1 par id
+            if (fs.isclicked(oi,1)==0){
+                fs.creerFo(oi,1);
                 heart.setStyle("-fx-background-color: #A65959; ");
                 
                 String msg = "Oeuvre ajouté à la liste des favoris ";
@@ -85,7 +85,8 @@ public class FavoController implements Initializable {
                 
             }
             else {
-                fs.supprimerFo(oi);
+                //        changer 1 par id
+                fs.supprimerFo(oi,1);
                 heart.setStyle("-fx-background-color: #FFFFFF; ");
                 heart.setStyle("-fx-border-color:  #000000 ");
                 String msg = "Oeuvre suprimé la liste des favoris ";
@@ -120,10 +121,7 @@ public class FavoController implements Initializable {
         this.myListener = myListener;
         nameLabel.setText(oeuvre.getNom());
         priceLable.setText((oeuvre.getPrix())+"DT");
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + oeuvre.getImg());
-       
-
-        img.setImage(new Image(newFile2.toURI().toString()));
+        img.setImage(new Image("http://localhost/PI/IMG/"+ oeuvre.getImg()));
         img.setFitHeight(150);
         img.setFitWidth(150);
     

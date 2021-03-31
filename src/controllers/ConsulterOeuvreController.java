@@ -42,9 +42,12 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import Iservice.MyListener;
+import entities.ElementPanier;
 import entities.Oeuvre;
+import entities.PanierHolder;
 import service.OeuvrageService;
 import service.RatigoService;
+import service.cmdservices;
 
 /**
  * FXML Controller class
@@ -74,6 +77,7 @@ public class ConsulterOeuvreController implements Initializable {
     
     OeuvrageService os = new OeuvrageService();
     RatigoService rs = new RatigoService();
+    cmdservices cs = new cmdservices();
     @FXML
     private Button filter;
     @FXML
@@ -136,17 +140,67 @@ public class ConsulterOeuvreController implements Initializable {
                     @Override
                     public void onpressed(ActionEvent event, Oeuvre oeuvre) {
                     
-                        try {
-                            ModiferOController.setOeuvre(oeuvre);
-                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/modiferOeuvre.fxml"));
-                            Scene scene = new Scene(page1);
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (IOException ex) {
-                            Logger.getLogger(ConsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                          
+//        changer 1 par id
+        
+    List<ElementPanier> listEOp=PanierHolder.getInstance().getEP();
+                ElementPanier ep=new ElementPanier();
+                boolean existsElem=false;
+        int i;
+        for(i=0;i<listEOp.size();i++)
+        {
+            if(listEOp.get(i).getOeuv().equals(oeuvre))
+            {
+                existsElem=true;
+                ep=listEOp.get(i);
+                
+                 break;
+            }
+        }
+        if (oeuvre.getQuantite()==0){
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("hors stock ! ");
+            alert.setContentText("hors stock! ");
+            alert.showAndWait(); 
+        }
+        else {
+        if(!existsElem)
+        {   
+            ep.setOeuv(oeuvre);
+            ep.setQuantite(1);
+            listEOp.add(ep);
+            cs.createPanierTemp(1,ep.getOeuv().getOeuvrage_id(),ep.getQuantite());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Element ajouté ! ");
+            alert.setContentText("Element ajouté avec sucèes ! ");
+            alert.showAndWait(); 
+        }
+        else
+        {   
+            if(oeuvre.getQuantite()>ep.getQuantite())
+            {
+            cs.updatePanierTemp(1,ep.getOeuv().getOeuvrage_id(),1);
+             ep.setQuantite(ep.getQuantite()+1);
+            
+            listEOp.set(i, ep);
+            
+            
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+         alert.setHeaderText("Element existe ! ");
+            alert.setContentText("Element existe deja, quantité incrementé ! ");
+            alert.showAndWait(); 
+            }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Stock insuffisant ! ");
+            alert.setContentText("Stock insuffisant! ");
+            alert.showAndWait(); 
+            }
+        }}
+            PanierHolder.getInstance().setEP(listEOp);
                     }
+
+                    @Override
+                    public void onClickListener(ElementPanier facture) { }
                 };
             }
            int column = 0;
@@ -160,7 +214,6 @@ public class ConsulterOeuvreController implements Initializable {
 
                     AfficherOPController itemController = fxmlLoader.getController();
                 itemController.setData(listOeuvre.get(i),myListener);
-
                 if (column == 3) {
                     column = 0;
                     row++;
@@ -181,7 +234,7 @@ public class ConsulterOeuvreController implements Initializable {
                 } catch (IOException ex) {
                    Logger.getLogger(AffmesoeuvesController.class.getName()).log(Level.SEVERE, null, ex);
                }
- float max = os.max();
+        float max = os.max();
         prixo.setMin(0);
         prixo.setMax(max+1);
         prixo.setValue(max+1);
@@ -272,16 +325,65 @@ public class ConsulterOeuvreController implements Initializable {
 
                    @Override
                    public void onpressed(ActionEvent event, Oeuvre oeuvre) { 
-                       try {
-                            ModiferOController.setOeuvre(oeuvre);
-                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/modiferOeuvre.fxml"));
-                            Scene scene = new Scene(page1);
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (IOException ex) {
-                            Logger.getLogger(ConsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-                        } }
+                       //        changer 1 par id
+        
+    List<ElementPanier> listEOp=PanierHolder.getInstance().getEP();
+                ElementPanier ep=new ElementPanier();
+                boolean existsElem=false;
+        int i;
+        for(i=0;i<listEOp.size();i++)
+        {
+            if(listEOp.get(i).getOeuv().equals(oeuvre))
+            {
+                existsElem=true;
+                ep=listEOp.get(i);
+                
+                 break;
+            }
+        }
+         if (oeuvre.getQuantite()==0){
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("hors stock ! ");
+            alert.setContentText("hors stock! ");
+            alert.showAndWait(); 
+        }
+        else {
+        if(!existsElem)
+        {   
+            ep.setOeuv(oeuvre);
+            ep.setQuantite(1);
+            listEOp.add(ep);
+            cs.createPanierTemp(1,ep.getOeuv().getOeuvrage_id(),ep.getQuantite());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Element ajouté ! ");
+            alert.setContentText("Element ajouté avec sucèes ! ");
+            alert.showAndWait(); 
+        }
+        else
+        {   
+            if(oeuvre.getQuantite()>ep.getQuantite())
+            {
+            cs.updatePanierTemp(1,ep.getOeuv().getOeuvrage_id(),1);
+             ep.setQuantite(ep.getQuantite()+1);
+            
+            listEOp.set(i, ep);
+            
+            
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+         alert.setHeaderText("Element existe ! ");
+            alert.setContentText("Element existe deja, quantité incrementé ! ");
+            alert.showAndWait(); 
+            }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Stock insuffisant ! ");
+            alert.setContentText("Stock insuffisant! ");
+            alert.showAndWait(); 
+            }
+        }
+            PanierHolder.getInstance().setEP(listEOp); }}
+
+                   @Override
+                   public void onClickListener(ElementPanier facture) {  }
                 };
             }
            grid.getChildren().clear();
@@ -404,17 +506,66 @@ public class ConsulterOeuvreController implements Initializable {
 
                     @Override
                     public void onpressed(ActionEvent event, Oeuvre oeuvre) {
-                     try {
-                            ModiferOController.setOeuvre(oeuvre);
-                            Parent page1 = FXMLLoader.load(getClass().getResource("/views/modiferOeuvre.fxml"));
-                            Scene scene = new Scene(page1);
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (IOException ex) {
-                            Logger.getLogger(ConsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
+                    //        changer 1 par id
+        
+    List<ElementPanier> listEOp=PanierHolder.getInstance().getEP();
+                ElementPanier ep=new ElementPanier();
+                boolean existsElem=false;
+        int i;
+        for(i=0;i<listEOp.size();i++)
+        {
+            if(listEOp.get(i).getOeuv().equals(oeuvre))
+            {
+                existsElem=true;
+                ep=listEOp.get(i);
+                
+                 break;
+            }
+        }
+         if (oeuvre.getQuantite()==0){
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("hors stock ! ");
+            alert.setContentText("hors stock! ");
+            alert.showAndWait(); 
+        }
+        else {
+        if(!existsElem)
+        {   
+            ep.setOeuv(oeuvre);
+            ep.setQuantite(1);
+            listEOp.add(ep);
+            cs.createPanierTemp(1,ep.getOeuv().getOeuvrage_id(),ep.getQuantite());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Element ajouté ! ");
+            alert.setContentText("Element ajouté avec sucèes ! ");
+            alert.showAndWait(); 
+        }
+        else
+        {   
+            if(oeuvre.getQuantite()>ep.getQuantite())
+            {
+            cs.updatePanierTemp(1,ep.getOeuv().getOeuvrage_id(),1);
+             ep.setQuantite(ep.getQuantite()+1);
+            
+            listEOp.set(i, ep);
+            
+            
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+         alert.setHeaderText("Element existe ! ");
+            alert.setContentText("Element existe deja, quantité incrementé ! ");
+            alert.showAndWait(); 
+            }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Stock insuffisant ! ");
+            alert.setContentText("Stock insuffisant! ");
+            alert.showAndWait(); 
+            }
+        }
+            PanierHolder.getInstance().setEP(listEOp);
+                    }}
+
+                    @Override
+                    public void onClickListener(ElementPanier facture) { }
                 };
             }
            grid.getChildren().clear();
@@ -454,6 +605,17 @@ public class ConsulterOeuvreController implements Initializable {
 
     @FXML
     private void allerauxoeuvres(ActionEvent event) {
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/views/consulterlesoeuvres.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -482,6 +644,17 @@ public class ConsulterOeuvreController implements Initializable {
 
     @FXML
     private void voirpanier(ActionEvent event) {
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/views/Panier.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsulterOeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 

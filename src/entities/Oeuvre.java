@@ -48,8 +48,25 @@ public class Oeuvre {
     }
 
  
- 
+ @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Oeuvre other = (Oeuvre) obj;
+        if (this.oeuvrage_id != other.oeuvrage_id) {
+            return false;
+        }
+        return true;
+    }
 
+    
     public Oeuvre(int User_id, String nom, String doamine, float prix, float quantite, String description, String img) {
         this.User_id = User_id;
         this.nom = nom;

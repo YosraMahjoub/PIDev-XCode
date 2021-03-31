@@ -6,6 +6,7 @@
 package controllers;
 
 import Iservice.MyListener;
+import entities.ElementPanier;
 import entities.FavorisO;
 import entities.Oeuvre;
 import java.io.IOException;
@@ -50,8 +51,6 @@ public class AfficherfavoController implements Initializable {
     private Button btnformation;
     @FXML
     private Button btneven;
-    @FXML
-    private Button btnoeuvres;
     @FXML
     private Button btnfavories;
     @FXML
@@ -105,6 +104,9 @@ public class AfficherfavoController implements Initializable {
                     public void onpressed(ActionEvent event, Oeuvre oeuvre) {
                             FavoController.oi=oeuvre;
                     }
+
+                    @Override
+                    public void onClickListener(ElementPanier facture) {}
                 };
             }
            int column = 0;
@@ -153,6 +155,38 @@ public class AfficherfavoController implements Initializable {
                             Logger.getLogger(AfficherfavoController.class.getName()).log(Level.SEVERE, null, ex);
                         }
         
+    }
+
+    @FXML
+    private void mesO(ActionEvent event) {
+    }
+
+    @FXML
+    private void mesfavo(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoemploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoform(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoevents(ActionEvent event) {
+    }
+
+    @FXML
+    private void gotoprofil(ActionEvent event) {
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+    }
+
+    @FXML
+    private void accueil(ActionEvent event) {
     }
     
 }

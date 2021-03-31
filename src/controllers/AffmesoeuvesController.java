@@ -42,6 +42,7 @@ import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 import Iservice.MyListener;
+import entities.ElementPanier;
 import entities.Oeuvre;
 import service.OeuvrageService;
 
@@ -122,6 +123,11 @@ public class AffmesoeuvesController implements Initializable {
 
                     @Override
                     public void onpressed(ActionEvent event, Oeuvre oeuvre) { }
+
+                    @Override
+                    public void onClickListener(ElementPanier facture) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
                 };
             }
            int column = 0;
@@ -164,17 +170,16 @@ public class AffmesoeuvesController implements Initializable {
         nomO.setText(o.getNom());
         prixo.setText((o.getPrix())+" DT");
         descO.setText(o.getDescription());
-                File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + o.getImg());
 
         //image = new Image(getClass().getResourceAsStream(o.getImg()));
-        imgO.setImage(new Image(newFile2.toURI().toString()));
+        imgO.setImage(new Image("http://localhost/PI/IMG/"+ o.getImg()));
         oi=o;
     }
     
     @FXML
     private void ajouter(ActionEvent event) {
-        
-        if (os.nbNV(2)>= 5){
+        //        changer 1 par id
+        if (os.nbNV(2,1)>= 5){
          
         String titre = "Attention";
         String msg = "vous avez déjà 5 oeuvres non valid !";
@@ -311,6 +316,9 @@ public class AffmesoeuvesController implements Initializable {
                     @Override
                     public void onpressed(ActionEvent event, Oeuvre oeuvre) {
                        }
+
+                    @Override
+                    public void onClickListener(ElementPanier facture) {}
                 };
             }
            grid.getChildren().clear();

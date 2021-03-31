@@ -61,10 +61,13 @@ public void setData(Oeuvre oeuvre, MyListener myListener) {
         this.myListener = myListener;
         nameLabel.setText(oeuvre.getNom());
         priceLable.setText((oeuvre.getPrix())+"DT");
-        File newFile2 = new File("C:\\xampp\\htdocs\\PI\\IMG\\" + oeuvre.getImg());
         if (oeuvre.getIsvalid()==1){
+            if(oeuvre.getQuantite()==0){
+               valido.setText(" hors stock "); 
+            }
+            else {
             valido.setText("Quantité : "+ String.valueOf(oeuvre.getQuantite()));
-        }
+        } }
         if (oeuvre.getIsvalid()==0){
             valido.setText("en attente");
             valido.setTextFill(Color.rgb(0xa6, 0x59, 0x59));
@@ -74,7 +77,7 @@ public void setData(Oeuvre oeuvre, MyListener myListener) {
             anchorpane.setStyle("-fx-background-color: #C3C0C0");
         }
 
-        img.setImage(new Image(newFile2.toURI().toString()));
+        img.setImage(new Image("http://localhost/PI/IMG/"+ oeuvre.getImg()));
         img.setFitHeight(150);
         img.setFitWidth(150);
     } 
