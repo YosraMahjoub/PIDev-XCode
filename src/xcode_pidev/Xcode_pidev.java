@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  *
  * @author HELA
  */
-public class FXMain extends Application {
+public class Xcode_pidev extends Application {
      private Stage primaryStage;
     private Parent parentPage;
     

@@ -158,7 +158,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="form" blendMode="SRC_ATOP" mnemonicParsing="false" onAction="#acceuilFor" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #414e4d; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Les formations à valider" textAlignment="CENTER" underline="true">
+            <Button fx:id="btnevenement" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: #343E3D;" text="Les événements" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -166,7 +166,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnevenement" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #343E3D;" text="Les événements à valider" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="statformation" blendMode="SRC_ATOP" mnemonicParsing="false" onAction="#statistics" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Statistiques formations" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -174,15 +174,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnoeuvres" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Les oeuvres à valider" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <Button fx:id="stat" blendMode="SRC_ATOP" mnemonicParsing="false" onAction="#statistics" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Statistiques" textAlignment="CENTER">
+            <Button fx:id="statoeuvre" blendMode="SRC_ATOP" mnemonicParsing="false" onAction="#statistics" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Statistiques oeuvres" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

@@ -113,7 +113,7 @@ public class AjouerFormationController implements Initializable {
     @FXML
     private Button Deconnexion;
    
-    
+     UserService us = new UserService();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> cat = FXCollections.observableArrayList("dance", "theatre", "musique", "littérature", "peinture", "audiovisuel", "sculpture");
@@ -181,6 +181,9 @@ public class AjouerFormationController implements Initializable {
 
             
             fs.ajouter(f);
+            
+              us.devenirx("is_formateur", UserService.getCurrentUser().getUser_id());
+            
             Formation x = fs.readformation(btn_titre.getText(), btn_lieu.getText(), btn_desc.getText());
             System.out.println("fel formation"+ x.getFormation_id());           
            

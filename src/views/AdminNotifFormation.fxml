@@ -4,6 +4,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -133,7 +135,7 @@
                <Insets />
             </opaqueInsets>
          </Button>
-         <Button fx:id="form" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #414e4d; -fx-background-radius: 20;" text="Les formations à valider" textAlignment="CENTER" textFill="WHITE">
+         <Button fx:id="stat" blendMode="SRC_ATOP" mnemonicParsing="false" onAction="#statistics" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Statistiques formations" textAlignment="CENTER">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
@@ -141,23 +143,7 @@
                <Insets />
             </opaqueInsets>
          </Button>
-         <Button fx:id="btnevenement" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #343E3D;" text="Les événements à valider" textAlignment="CENTER" textFill="WHITE">
-            <font>
-               <Font name="System Bold" size="13.0" />
-            </font>
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-         </Button>
-         <Button fx:id="btnoeuvres" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Les oeuvres à valider" textAlignment="CENTER" textFill="WHITE">
-            <font>
-               <Font name="System Bold" size="13.0" />
-            </font>
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-         </Button>
-         <Button fx:id="stat" blendMode="SRC_ATOP" mnemonicParsing="false" onAction="#statistics" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Statistiques" textAlignment="CENTER">
+         <Button fx:id="stat1" blendMode="SRC_ATOP" mnemonicParsing="false" onAction="#statistics" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Statistiques oeuvres" textAlignment="CENTER">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
@@ -183,12 +169,12 @@
          </Button>
       </children>
    </VBox>
-   <Label alignment="BOTTOM_RIGHT" layoutX="294.0" layoutY="93.0" prefHeight="50.0" prefWidth="528.0" text="Liste des Formations non validées" textFill="#a65959" underline="true">
+   <Label alignment="BOTTOM_RIGHT" layoutX="309.0" layoutY="104.0" prefHeight="50.0" prefWidth="330.0" text="Liste des Formations " textFill="#a65959" underline="true">
       <font>
          <Font size="34.0" />
       </font>
    </Label>
-   <ScrollPane fx:id="scrollO" layoutX="235.0" layoutY="153.0" prefHeight="465.0" prefWidth="774.0" styleClass="transparent" stylesheets="@adminoeuvre.css">
+   <ScrollPane fx:id="scrollO" layoutX="234.0" layoutY="201.0" prefHeight="417.0" prefWidth="775.0" styleClass="transparent" stylesheets="@adminoeuvre.css">
       <content>
          <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
             <rowConstraints>
@@ -197,4 +183,13 @@
          </GridPane>
       </content>
    </ScrollPane>
+   <MenuButton layoutX="748.0" layoutY="110.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="222.0" style="-fx-background-color: b7b7b7;" text="Filtrer les formations " textFill="#fffafa">
+      <items>
+         <MenuItem fx:id="nonValidee" mnemonicParsing="false" onAction="#nonValidees" text="non validées" />
+         <MenuItem fx:id="Val" mnemonicParsing="false" onAction="#validees" text="validées" />
+      </items>
+      <font>
+         <Font size="17.0" />
+      </font>
+   </MenuButton>
 </AnchorPane>
