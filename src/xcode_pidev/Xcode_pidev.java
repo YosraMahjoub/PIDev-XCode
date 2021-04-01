@@ -7,6 +7,8 @@ package xcode_pidev;
 
 import java.io.IOException;
 import javafx.application.Application;
+
+
 import javafx.beans.property.adapter.ReadOnlyJavaBeanDoublePropertyBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,6 +18,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+/**
+ *
+ * @author HELA
+ */
+public class Xcode_pidev extends Application {
+     private Stage primaryStage;
 import entities.Oeuvre;
 import service.OeuvrageService;
 import utils.ConnexionDB;
@@ -31,6 +40,17 @@ public class Xcode_pidev extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Fanny");
+        
+        parentPage = FXMLLoader.load(getClass().getResource("/views/AdminNotifFormation.fxml"));
+        Scene scene = new Scene(parentPage);
+        this.primaryStage.setScene(scene);
+        this.primaryStage.show();
+        
+        
+        
+     }
 //        Button btn = new Button();
 //        btn.setText("Say 'Hello World'");
 //       
