@@ -1,0 +1,11 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.default-color1.chart-bar { -fx-bar-fill: #A65959; }
+.default-color0.chart-bar { -fx-bar-fill: #5E8486; }
+.default-color0.chart-pie { -fx-pie-color:#A65959; }
+.default-color1.chart-pie {-fx-pie-color: #5E8486; }
+.default-color2.chart-pie {-fx-pie-color: #A0D7A8; }
+.default-color4.chart-pie {-fx-pie-color: #EFBC9B; }
+.default-color3.chart-pie {-fx-pie-color: #DAF7A6; }
