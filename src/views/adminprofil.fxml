@@ -169,6 +169,14 @@
                   <Insets />
                </opaqueInsets>
             </Button>
+            <Button fx:id="btneventplace" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Lieux des événements" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
             <Button fx:id="btnoeuvres" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Les oeuvres" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -177,7 +185,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="reclamation" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: #343E3D;" text="Les réclamations" textAlignment="CENTER" textFill="WHITE" translateY="90.0">
+            <Button fx:id="reclamation" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: #343E3D;" text="Les réclamations" textAlignment="CENTER" textFill="WHITE" translateY="70.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -185,7 +193,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnsupp" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #a65959; -fx-background-radius: 20;" text="Supprimer compte" textAlignment="CENTER" textFill="WHITE" translateY="90.0">
+            <Button fx:id="btnsupp" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #a65959; -fx-background-radius: 20;" text="Supprimer compte" textAlignment="CENTER" textFill="WHITE" translateY="70.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

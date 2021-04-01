@@ -86,6 +86,8 @@ public class AdminprofilController implements Initializable {
     private Button Deconnexion;
     @FXML
     private Button home;
+    @FXML
+    private Button btneventplace;
 
     /**
      * Initializes the controller class.
@@ -186,6 +188,34 @@ public class AdminprofilController implements Initializable {
             }
        
         }});
+        
+        //begin kairi foradmin
+           btneventplace.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/GestionLieuAdmin.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+           
+               btnevenement.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/ValidationEvenementAdmin.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+               
+               //endkairi
     }
         
      private Optional<ButtonType> alert(String x){
@@ -206,6 +236,19 @@ public class AdminprofilController implements Initializable {
 
     @FXML
     private void gotoevents(ActionEvent event) {
+        
+          try {
+                
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/AccueilUtilisateur.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }
 
     @FXML

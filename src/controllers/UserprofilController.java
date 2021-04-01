@@ -223,7 +223,18 @@ public class UserprofilController implements Initializable {
         }
        
 
-        
+        //begin kairi user
+        btneven.setOnAction(event -> {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/afficher_mesévenements.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
 
         
 
@@ -248,6 +259,19 @@ public class UserprofilController implements Initializable {
 
     @FXML
     private void gotoevents(ActionEvent event) {
+         try {
+                
+                Parent page1 = FXMLLoader.load(getClass().getResource("/views/AccueilUtilisateur.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(UserprofilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        
     }
 
     @FXML

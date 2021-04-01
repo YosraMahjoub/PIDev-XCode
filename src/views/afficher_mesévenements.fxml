@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Afficher_mesévenementsController">
+   <children>
+      <AnchorPane layoutX="8.0" prefHeight="650.0" prefWidth="277.0" style="-fx-background-color: #a65959;" visible="false">
+         <children>
+            <AnchorPane layoutX="-8.0" layoutY="-10.0" prefHeight="658.0" prefWidth="264.0" style="-fx-background-color: #343E3D;">
+               <children>
+                  <Accordion layoutX="83.0" layoutY="85.0" />
+                  <Button fx:id="btninsert1" blendMode="SRC_ATOP" layoutX="25.0" layoutY="164.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Gérer mon profil" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="btninsert11" blendMode="SRC_ATOP" layoutX="25.0" layoutY="205.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Changer mot de passe" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="btninsert111" blendMode="SRC_ATOP" layoutX="25.0" layoutY="248.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes roles" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="btninsert1111" blendMode="SRC_ATOP" layoutX="25.0" layoutY="289.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes formation" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="btninsert11111" blendMode="SRC_ATOP" layoutX="25.0" layoutY="331.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #414e4d; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes évenements" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="btninsert111111" blendMode="SRC_ATOP" layoutX="25.0" layoutY="374.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Mes Oeuvres" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="btninsert1111111" blendMode="SRC_ATOP" layoutX="25.0" layoutY="416.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Favories" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <ImageView fitHeight="94.0" fitWidth="93.0" layoutX="79.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Deafult-Profile-Pitcher-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btninsert112" blendMode="SRC_ATOP" layoutX="25.0" layoutY="449.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100PX; -fx-text-fill: white;" text="Supprimer compte" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets right="1.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <VBox fx:id="myeventsPage" layoutX="220.0" layoutY="75.0" prefHeight="527.0" prefWidth="794.0" style="-fx-background-color: white;" visible="false">
+         <children>
+            <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Mes événements" translateX="60.0" translateY="10.0" />
+            <Button fx:id="goToMyEventsAdd" mnemonicParsing="false" style="-fx-background-color: #64de72; -fx-text-fill: white;" text="Ajouter" translateX="680.0" translateY="15.0" />
+            <ScrollPane fx:id="myEventsScrollPane" prefHeight="438.0" prefWidth="455.0" translateY="20.0" />
+         </children>
+         <padding>
+            <Insets right="1.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <VBox fx:id="myeventsAdd" layoutX="221.0" layoutY="75.0" prefHeight="518.0" prefWidth="776.0" style="-fx-background-color: white;" visible="false">
+         <children>
+            <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Ajouter un événement" translateX="60.0" translateY="10.0" />
+            <AnchorPane prefHeight="448.0" prefWidth="754.0" translateY="20.0">
+               <children>
+                  <TextField fx:id="addEventTitle" layoutX="47.0" layoutY="85.0" />
+                  <Label layoutX="47.0" layoutY="57.0" text="Titre" />
+                  <Label layoutX="47.0" layoutY="129.0" text="Description" />
+                  <TextField fx:id="AddEventDescription" layoutX="47.0" layoutY="153.0" />
+                  <DatePicker fx:id="AddEventDate" layoutX="272.0" layoutY="152.0" prefHeight="25.0" prefWidth="149.0" />
+                  <Label layoutX="270.0" layoutY="129.0" text="Date" />
+                  <ComboBox fx:id="AddEventcomboPlace" layoutX="48.0" layoutY="307.0" prefWidth="150.0" />
+                  <Label layoutX="48.0" layoutY="279.0" text="Lieu" />
+                  <TextField fx:id="AddEventNbr" layoutX="49.0" layoutY="221.0" />
+                  <Label layoutX="45.0" layoutY="197.0" text="Nombre de participants" />
+                  <ImageView fx:id="AddEventPicturePreview" fitHeight="138.0" fitWidth="179.0" layoutX="493.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="AddEventSubmit" layoutX="312.0" layoutY="396.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #64de72; -fx-text-fill: white;" text="Ajouter" />
+                  <Label fx:id="AddEventOpenFIlePicker" layoutX="469.0" layoutY="324.0" style="-fx-text-fill: blue;" text="Cliquer ici pour ajouter une image" underline="true" />
+                  <Label layoutX="260.0" layoutY="194.0" text="Prix (dt)" />
+                  <Button fx:id="AddEventCancel" layoutX="679.0" layoutY="396.0" mnemonicParsing="false" style="-fx-background-color: #e0cb2b; -fx-text-fill: white;" text="Annuler" />
+                  <TextField fx:id="AddEventPrice" layoutX="263.0" layoutY="223.0" />
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets right="1.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <VBox fx:id="myeventsUpdate" layoutX="221.0" layoutY="75.0" prefHeight="527.0" prefWidth="776.0" style="-fx-background-color: white;" visible="false">
+         <children>
+            <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Modifier un événement" translateX="60.0" translateY="10.0" />
+            <AnchorPane prefHeight="457.0" prefWidth="775.0" translateY="20.0">
+               <children>
+                  <TextField fx:id="updateEventTitle" layoutX="47.0" layoutY="85.0" />
+                  <Label layoutX="47.0" layoutY="57.0" text="Titre" />
+                  <Label layoutX="47.0" layoutY="129.0" text="Description" />
+                  <TextField fx:id="UpdateEventDescription" layoutX="47.0" layoutY="153.0" />
+                  <DatePicker fx:id="UpdateEventDate" layoutX="256.0" layoutY="152.0" prefHeight="25.0" prefWidth="149.0" />
+                  <Label layoutX="254.0" layoutY="129.0" text="Date" />
+                  <ComboBox fx:id="UpdateEventcomboPlace" layoutX="250.0" layoutY="85.0" prefWidth="150.0" />
+                  <Label layoutX="250.0" layoutY="57.0" text="Lieu" />
+                  <TextField fx:id="UpdateEventNbr" layoutX="254.0" layoutY="238.0" />
+                  <Label layoutX="252.0" layoutY="205.0" text="Nombre de participants" />
+                  <ImageView fx:id="UpdateEventPicturePreview" fitHeight="138.0" fitWidth="179.0" layoutX="468.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="UpdateEventSubmit" layoutX="165.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #64de72; -fx-text-fill: white;" text="Modifier" />
+                  <Label fx:id="UpdateEventOpenFIlePicker" layoutX="445.0" layoutY="366.0" style="-fx-text-fill: blue;" text="Cliquer ici pour ajouter une image" underline="true" />
+                  <Label layoutX="46.0" layoutY="205.0" text="Prix (dt)" />
+                  <Button fx:id="UpdateEventCancel" layoutX="371.0" layoutY="411.0" mnemonicParsing="false" style="-fx-text-fill: white; -fx-background-color: #e0cb2b;" text="Annuler" />
+                  <TextField fx:id="UpdateEventPrice" layoutX="49.0" layoutY="234.0" />
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets right="1.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <VBox fx:id="myeventsDetails" layoutX="221.0" layoutY="75.0" prefHeight="527.0" prefWidth="776.0" style="-fx-background-color: white;" visible="false">
+         <children>
+            <Button fx:id="DetailEventCancel" mnemonicParsing="false" style="-fx-background-color: #e0cb2b; -fx-text-fill: white;" text="Retour" translateX="680.0" translateY="40.0" />
+            <Label fx:id="DetailEventTitle" style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Modifier un événement" translateX="50.0" translateY="10.0" />
+            <AnchorPane prefHeight="428.0" prefWidth="775.0" translateY="20.0">
+               <children>
+                  <Label layoutX="19.0" layoutY="42.0" style="-fx-font-size: 1.5em; -fx-text-fill: #a65959;" text="Description" />
+                  <Label layoutX="19.0" layoutY="193.0" style="-fx-font-size: 1.5em; -fx-text-fill: #a65959;" text="Date" />
+                  <Label layoutX="19.0" layoutY="249.0" style="-fx-text-fill: #a65959; -fx-font-size: 1.5em;" text="Lieu" />
+                  <Label layoutX="19.0" layoutY="133.0" style="-fx-text-fill: #a65959; -fx-font-size: 1.5em;" text="Maximum de participants" />
+                  <ImageView fx:id="DetailEventPicture" fitHeight="261.0" fitWidth="374.0" layoutX="387.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="19.0" layoutY="292.0" style="-fx-text-fill: #a65959; -fx-font-size: 1.5em;" text="Prix (dt)" />
+                  <Label fx:id="DetailEventDescription" layoutX="150.0" layoutY="53.0" prefHeight="59.0" prefWidth="230.0" style="-fx-font-size: 1.2em;" wrapText="true" />
+                  <Button fx:id="DetailEventOpenMap" layoutX="351.0" layoutY="375.0" mnemonicParsing="false" style="-fx-text-fill: white; -fx-background-color: #770391;" text="Localisation" />
+                  <Label fx:id="DetailEventNbr" layoutX="288.0" layoutY="133.0" prefHeight="27.0" prefWidth="112.0" style="-fx-font-size: 1.5em;" text="Label" />
+                  <Label fx:id="DetailEventDate" layoutX="81.0" layoutY="193.0" prefHeight="27.0" prefWidth="79.0" style="-fx-font-size: 1.5em;" text="Label" />
+                  <Label fx:id="DetailEventPrice" layoutX="106.0" layoutY="292.0" prefHeight="27.0" prefWidth="79.0" style="-fx-font-size: 1.5em;" text="Label" />
+                  <Label fx:id="DetailEventPlaceTitle" layoutX="75.0" layoutY="246.0" prefHeight="33.0" prefWidth="91.0" style="-fx-font-size: 1.5em;" text="Label" />
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets right="1.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <VBox fx:id="myeventsDetailsMap" layoutX="221.0" layoutY="75.0" prefHeight="527.0" prefWidth="775.0" style="-fx-background-color: white;">
+         <children>
+            <Button fx:id="MapEventCancel" mnemonicParsing="false" style="-fx-text-fill: white; -fx-background-color: #e0cb2b;" text="Retour" translateX="680.0" translateY="40.0" />
+            <Label style="-fx-font-size: 2em; -fx-text-fill: #a65959;" text="Localisation" translateX="50.0" translateY="10.0" />
+            <AnchorPane prefHeight="431.0" prefWidth="774.0" style="-fx-background-color: #bdfcd9;" translateY="20.0">
+               <children>
+                  <WebView fx:id="myeventsDetailsMapWebView" layoutX="9.0" layoutY="7.0" prefHeight="417.0" prefWidth="757.0" />
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets right="1.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="14.0" layoutY="91.0" prefHeight="502.0" prefWidth="206.0" style="-fx-background-color: #343E3D; -fx-background-radius: 25;">
+         <children>
+            <Button fx:id="btninfo" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Mes informations" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btngérer" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Gérer mon profil" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnmdp" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Changer mot de passe" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnformation" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: #343E3D;" text="Mes formation" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btneven" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #414e4d; -fx-background-radius: 20;" text="Mes évenements" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnoeuvres" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Mes Oeuvres" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnfavories" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Favories" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="apprentissage" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #343E3D;" text="Mon apprentissage" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="reclamation" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: #343E3D;" text="Mes réclamations" textAlignment="CENTER" textFill="WHITE" translateY="70.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnsupprimer" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="33.0" prefWidth="169.0" style="-fx-background-color: #a65959; -fx-background-radius: 20;" text="Supprimer compte" textAlignment="CENTER" textFill="WHITE" translateY="72.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+         </children>
+      </VBox>
+      <HBox fx:id="hi" alignment="CENTER_RIGHT" layoutX="178.0" prefHeight="75.0" prefWidth="827.0" style="-fx-background-color: #343E3D;">
+         <children>
+            <Button fx:id="emploi" mnemonicParsing="false" onAction="#gotoemploi" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Emplois" textFill="WHITE">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BRIEFCASE" size="22" />
+               </graphic>
+            </Button>
+            <Button fx:id="form" mnemonicParsing="false" onAction="#gotoform" prefHeight="35.0" prefWidth="113.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="formations" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="MORTAR_BOARD" size="22" />
+               </graphic>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="events" layoutX="23.0" mnemonicParsing="false" onAction="#gotoevents" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="événements" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="22" />
+               </graphic>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="oeuvres" mnemonicParsing="false" onAction="#allerauxoeuvres" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="œuvres" textFill="WHITE">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_BAG" size="22" />
+               </graphic>
+            </Button>
+            <Button fx:id="profil" mnemonicParsing="false" onAction="#gotoprofil" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Profil" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="22" />
+               </graphic>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="Deconnexion" layoutX="23.0" mnemonicParsing="false" onAction="#deconnecter" prefHeight="32.0" prefWidth="114.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Deconnexion" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="SIGN_IN" size="22" />
+               </graphic>
+               <HBox.margin>
+                  <Insets right="6.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="hello" alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="216.0" style="-fx-background-color: #343E3D;">
+         <children>
+            <Button fx:id="home" mnemonicParsing="false" onAction="#accueil" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #343E3D; -fx-background-radius: 100;" text="Accueil" textFill="WHITE" translateX="30.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="22" />
+               </graphic>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
